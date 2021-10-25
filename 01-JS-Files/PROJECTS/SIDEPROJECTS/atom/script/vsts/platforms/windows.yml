@@ -35,7 +35,6 @@ jobs:
 
       - template: templates/test.yml
 
-
       - pwsh: |
           if ($env:BUILD_ARCH -eq "x64") {
             $env:FileID="-x64"
@@ -114,7 +113,7 @@ jobs:
       - template: templates/download-unzip.yml
         parameters:
           artifacts:
-            -  atom$(FileID)-windows.zip
+            - atom$(FileID)-windows.zip
 
       #  Core renderer tests
       - template: templates/test.yml

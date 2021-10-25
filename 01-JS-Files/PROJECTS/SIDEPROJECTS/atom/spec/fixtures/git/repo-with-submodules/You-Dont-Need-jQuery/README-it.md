@@ -17,9 +17,10 @@ Il mondo del Frontend si evolve rapidamente oggigiorno, i browsers moderni hanno
 ## Query Selector
 
 Al posto di comuni selettori come class, id o attributi possiamo usare `document.querySelector` o `document.querySelectorAll` per sostituzioni. La differenza risiede in:
-* `document.querySelector` restituisce il primo elemento combiaciante
-* `document.querySelectorAll` restituisce tutti gli elementi combiacianti della NodeList. Puo' essere convertito in Array usando `[].slice.call(document.querySelectorAll(selector) || []);`
-* Se nessun elemento combiacia, jQuery restituitirebbe `[]` li' dove il DOM API ritornera' `null`. Prestate attenzione al Null Pointer Exception. Potete anche usare `||` per settare valori di default se non trovato, come `document.querySelectorAll(selector) || []`
+
+- `document.querySelector` restituisce il primo elemento combiaciante
+- `document.querySelectorAll` restituisce tutti gli elementi combiacianti della NodeList. Puo' essere convertito in Array usando `[].slice.call(document.querySelectorAll(selector) || []);`
+- Se nessun elemento combiacia, jQuery restituitirebbe `[]` li' dove il DOM API ritornera' `null`. Prestate attenzione al Null Pointer Exception. Potete anche usare `||` per settare valori di default se non trovato, come `document.querySelectorAll(selector) || []`
 
 > Notare: `document.querySelector` e `document.querySelectorAll` sono abbastanza **SLOW**, provate ad usare `getElementById`, `document.getElementsByClassName` o `document.getElementsByTagName` se volete avere un bonus in termini di performance.
 
@@ -71,7 +72,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
 - [1.4](#1.4) <a name='1.4'></a> Trovare qualcosa.
 
-  + Trovare nodes
+  - Trovare nodes
 
     ```js
     // jQuery
@@ -81,7 +82,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     el.querySelectorAll('li');
     ```
 
-  + Trovare body
+  - Trovare body
 
     ```js
     // jQuery
@@ -91,7 +92,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     document.body;
     ```
 
-  + Trovare Attributi
+  - Trovare Attributi
 
     ```js
     // jQuery
@@ -101,7 +102,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     e.getAttribute('foo');
     ```
 
-  + Trovare attributo data
+  - Trovare attributo data
 
     ```js
     // jQuery
@@ -116,19 +117,19 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
 - [1.5](#1.5) <a name='1.5'></a> Fratelli/Precedento/Successivo Elemento
 
-  + Elementi fratelli
+  - Elementi fratelli
 
     ```js
     // jQuery
     $el.siblings();
 
     // Nativo
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + Elementi precedenti
+  - Elementi precedenti
 
     ```js
     // jQuery
@@ -138,7 +139,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     el.previousElementSibling;
     ```
 
-  + Elementi successivi
+  - Elementi successivi
 
     ```js
     // jQuery
@@ -155,13 +156,17 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
   ```js
   // jQuery
   $el.closest(queryString);
-  
+
   // Nativo - Solo ultimo, NO IE
   el.closest(selector);
 
-  // Nativo - IE10+ 
+  // Nativo - IE10+
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -185,7 +190,11 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
   // Nativo
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // il match parte dal parente
     el = el.parentElement;
@@ -205,7 +214,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
 - [1.8](#1.8) <a name='1.8'></a> Form
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -215,7 +224,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     document.querySelector('#my-input').value;
     ```
 
-  + Get index of e.currentTarget between `.radio`
+  - Get index of e.currentTarget between `.radio`
 
     ```js
     // jQuery
@@ -229,7 +238,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
   `$('iframe').contents()` restituisce `contentDocument` per questo specifico iframe
 
-  + Iframe contenuti
+  - Iframe contenuti
 
     ```js
     // jQuery
@@ -239,7 +248,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     iframe.contentDocument;
     ```
 
-  + Iframe Query
+  - Iframe Query
 
     ```js
     // jQuery
@@ -255,11 +264,11 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + Ottenere style
+  - Ottenere style
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Nativo
     // NOTA: Bug conosciuto, restituira' 'auto' se il valore di style e' 'auto'
@@ -268,22 +277,21 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     win.getComputedStyle(el, null).color;
     ```
 
-  + Settare style
+  - Settare style
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Nativo
     el.style.color = '#ff0011';
     ```
 
-  + Ottenere/Settare Styles
+  - Ottenere/Settare Styles
 
     Nota che se volete settare styles multipli in una sola volta, potete riferire [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194) metodo in oui-dom-utils package.
 
-
-  + Aggiungere classe
+  - Aggiungere classe
 
     ```js
     // jQuery
@@ -293,7 +301,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     el.classList.add(className);
     ```
 
-  + Rimouvere class
+  - Rimouvere class
 
     ```js
     // jQuery
@@ -303,7 +311,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     el.classList.remove(className);
     ```
 
-  + has class
+  - has class
 
     ```js
     // jQuery
@@ -313,7 +321,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     el.classList.contains(className);
     ```
 
-  + Toggle class
+  - Toggle class
 
     ```js
     // jQuery
@@ -327,7 +335,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
   Width e Height sono teoricamente identici, prendendo Height come esempio:
 
-  + Window height
+  - Window height
 
     ```js
     // window height
@@ -338,7 +346,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     window.innerHeight;
     ```
 
-  + Document height
+  - Document height
 
     ```js
     // jQuery
@@ -348,7 +356,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     document.documentElement.scrollHeight;
     ```
 
-  + Element height
+  - Element height
 
     ```js
     // jQuery
@@ -362,7 +370,9 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // preciso a intero（quando `border-box`, e' `height`; quando `content-box`, e' `height + padding + border`）
     el.clientHeight;
@@ -372,7 +382,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
 - [2.3](#2.3) <a name='2.3'></a> Position & Offset
 
-  + Position
+  - Position
 
     ```js
     // jQuery
@@ -382,20 +392,21 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Offset
+  - Offset
 
     ```js
     // jQuery
     $el.offset();
 
     // Nativo
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -406,7 +417,8 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
   $(window).scrollTop();
 
   // Nativo
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -414,6 +426,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 ## Manipolazione DOM
 
 - [3.1](#3.1) <a name='3.1'></a> Remove
+
   ```js
   // jQuery
   $el.remove();
@@ -424,7 +437,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
 - [3.2](#3.2) <a name='3.2'></a> Text
 
-  + Get text
+  - Get text
 
     ```js
     // jQuery
@@ -434,7 +447,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     el.textContent;
     ```
 
-  + Set text
+  - Set text
 
     ```js
     // jQuery
@@ -446,7 +459,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + Ottenere HTML
+  - Ottenere HTML
 
     ```js
     // jQuery
@@ -456,7 +469,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
     el.innerHTML;
     ```
 
-  + Settare HTML
+  - Settare HTML
 
     ```js
     // jQuery
@@ -475,7 +488,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
   $el.append("<div id='container'>hello</div>");
 
   // Nativo
-  el.insertAdjacentHTML("beforeend","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('beforeend', "<div id='container'>hello</div>");
   ```
 
 - [3.5](#3.5) <a name='3.5'></a> Prepend
@@ -485,7 +498,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
   $el.prepend("<div id='container'>hello</div>");
 
   // Nativo
-  el.insertAdjacentHTML("afterbegin","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('afterbegin', "<div id='container'>hello</div>");
   ```
 
 - [3.6](#3.6) <a name='3.6'></a> insertBefore
@@ -525,7 +538,7 @@ Al posto di comuni selettori come class, id o attributi possiamo usare `document
   // Nativo
   el.matches(selector);
   ```
-  
+
 **[⬆ back to top](#table-of-contents)**
 
 ## Ajax
@@ -562,14 +575,14 @@ Per una completa sostituzione con namespace e delegation, riferire a https://git
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Nativo
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -625,26 +638,26 @@ Per una completa sostituzione con namespace e delegation, riferire a https://git
 
 ## Alternative
 
-* [Forse non hai bisogno di jQuery](http://youmightnotneedjquery.com/) - Esempi di come creare eventi comuni, elementi, ajax etc usando puramente javascript.
-* [npm-dom](http://github.com/npm-dom) e [webmodules](http://github.com/webmodules) - Organizzazione dove puoi trovare moduli per il DOM individuale su NPM
+- [Forse non hai bisogno di jQuery](http://youmightnotneedjquery.com/) - Esempi di come creare eventi comuni, elementi, ajax etc usando puramente javascript.
+- [npm-dom](http://github.com/npm-dom) e [webmodules](http://github.com/webmodules) - Organizzazione dove puoi trovare moduli per il DOM individuale su NPM
 
 ## Traduzioni
 
-* [한국어](./README.ko-KR.md)
-* [简体中文](./README.zh-CN.md)
-* [Bahasa Melayu](./README-my.md)
-* [Bahasa Indonesia](./README-id.md)
-* [Português(PT-BR)](./README.pt-BR.md)
-* [Tiếng Việt Nam](./README-vi.md)
-* [Español](./README-es.md)
-* [Italiano](./README-it.md)
-* [Türkçe](./README-tr.md)
+- [한국어](./README.ko-KR.md)
+- [简体中文](./README.zh-CN.md)
+- [Bahasa Melayu](./README-my.md)
+- [Bahasa Indonesia](./README-id.md)
+- [Português(PT-BR)](./README.pt-BR.md)
+- [Tiếng Việt Nam](./README-vi.md)
+- [Español](./README-es.md)
+- [Italiano](./README-it.md)
+- [Türkçe](./README-tr.md)
 
 ## Supporto Browsers
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Ultimo ✔ | Ultimo ✔ | 10+ ✔ | Ultimo ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Ultimo ✔                                                                             | Ultimo ✔                                                                                | 10+ ✔                                                                                                  | Ultimo ✔                                                                          | 6.1+ ✔                                                                               |
 
 # Licenza
 

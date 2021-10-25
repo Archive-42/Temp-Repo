@@ -4,14 +4,14 @@ const fs = require('fs-extra');
 const path = require('path');
 const syncRequest = require('sync-request');
 
-module.exports = function(downloadURL, destinationPath) {
+module.exports = function (downloadURL, destinationPath) {
   console.log(`Downloading file from GitHub Repository to ${destinationPath}`);
   const response = syncRequest('GET', downloadURL, {
     headers: {
       Accept: 'application/vnd.github.v3.raw',
       'User-Agent': 'Atom Build',
-      Authorization: `token ${process.env.GITHUB_TOKEN}`
-    }
+      Authorization: `token ${process.env.GITHUB_TOKEN}`,
+    },
   });
 
   if (response.statusCode === 200) {

@@ -25,7 +25,7 @@ module.exports = function upload(connStr, directory, assets) {
   }
 
   function uploadAssets(assets) {
-    return assets.reduce(function(promise, asset) {
+    return assets.reduce(function (promise, asset) {
       return promise.then(() => uploadAsset(asset));
     }, Promise.resolve());
   }

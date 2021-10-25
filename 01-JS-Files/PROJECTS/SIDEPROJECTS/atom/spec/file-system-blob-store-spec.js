@@ -3,22 +3,22 @@ const path = require('path');
 const fs = require('fs-plus');
 const FileSystemBlobStore = require('../src/file-system-blob-store');
 
-describe('FileSystemBlobStore', function() {
+describe('FileSystemBlobStore', function () {
   let [storageDirectory, blobStore] = [];
 
-  beforeEach(function() {
+  beforeEach(function () {
     storageDirectory = temp.path('atom-spec-filesystemblobstore');
     blobStore = FileSystemBlobStore.load(storageDirectory);
   });
 
   afterEach(() => fs.removeSync(storageDirectory));
 
-  it("is empty when the file doesn't exist", function() {
+  it("is empty when the file doesn't exist", function () {
     expect(blobStore.get('foo')).toBeUndefined();
     expect(blobStore.get('bar')).toBeUndefined();
   });
 
-  it('allows to read and write buffers from/to memory without persisting them', function() {
+  it('allows to read and write buffers from/to memory without persisting them', function () {
     blobStore.set('foo', Buffer.from('foo'));
     blobStore.set('bar', Buffer.from('bar'));
 
@@ -29,7 +29,7 @@ describe('FileSystemBlobStore', function() {
     expect(blobStore.get('qux')).toBeUndefined();
   });
 
-  it('persists buffers when saved and retrieves them on load, giving priority to in-memory ones', function() {
+  it('persists buffers when saved and retrieves them on load, giving priority to in-memory ones', function () {
     blobStore.set('foo', Buffer.from('foo'));
     blobStore.set('bar', Buffer.from('bar'));
     blobStore.save();
@@ -46,7 +46,7 @@ describe('FileSystemBlobStore', function() {
     expect(blobStore.get('foo')).toEqual(Buffer.from('changed'));
   });
 
-  it('persists in-memory and previously stored buffers, and deletes unused keys when saved', function() {
+  it('persists in-memory and previously stored buffers, and deletes unused keys when saved', function () {
     blobStore.set('foo', Buffer.from('foo'));
     blobStore.set('bar', Buffer.from('bar'));
     blobStore.save();
@@ -63,7 +63,7 @@ describe('FileSystemBlobStore', function() {
     expect(blobStore.get('qux')).toEqual(Buffer.from('qux'));
   });
 
-  it('allows to delete keys from both memory and stored buffers', function() {
+  it('allows to delete keys from both memory and stored buffers', function () {
     blobStore.set('a', Buffer.from('a'));
     blobStore.set('b', Buffer.from('b'));
     blobStore.save();
@@ -85,7 +85,7 @@ describe('FileSystemBlobStore', function() {
     expect(blobStore.get('c')).toBeUndefined();
   });
 
-  it('ignores errors when loading an invalid blob store', function() {
+  it('ignores errors when loading an invalid blob store', function () {
     blobStore.set('a', Buffer.from('a'));
     blobStore.set('b', Buffer.from('b'));
     blobStore.save();

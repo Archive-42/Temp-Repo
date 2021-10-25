@@ -12,7 +12,6 @@ jobs:
   - template: platforms/macos.yml
   - template: platforms/linux.yml
 
-
   - job: Release
     pool:
       vmImage: 'ubuntu-latest'

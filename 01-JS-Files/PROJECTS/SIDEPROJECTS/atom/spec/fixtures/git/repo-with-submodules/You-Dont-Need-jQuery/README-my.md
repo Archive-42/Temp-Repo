@@ -16,9 +16,10 @@ Mutakhir ini perkembangan dalam persekitaran frontend berlaku begitu pesat sekal
 ## Pemilihan Elemen
 
 Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh pakai `document.querySelector` atau `document.querySelectorAll` sebagai ganti. Bezanya terletak pada
-* `document.querySelector` akan mengembalikan elemen pertama sekali yang sepadan dijumpai
-* `document.querySelectorAll` akan mengembalikan kesemua elemen yang sepadan dijumpai kedalam sebuah NodeList. Ia boleh ditukar kedalam bentuk array menggunakan `[].slice.call`
-* Sekiranya tiada elemen yang sepadan dijumpai, jQuery akan mengembalikan `[]` dimana API DOM pula akan mengembalikan `null`. Sila ambil perhatian pada Null Pointer Exception
+
+- `document.querySelector` akan mengembalikan elemen pertama sekali yang sepadan dijumpai
+- `document.querySelectorAll` akan mengembalikan kesemua elemen yang sepadan dijumpai kedalam sebuah NodeList. Ia boleh ditukar kedalam bentuk array menggunakan `[].slice.call`
+- Sekiranya tiada elemen yang sepadan dijumpai, jQuery akan mengembalikan `[]` dimana API DOM pula akan mengembalikan `null`. Sila ambil perhatian pada Null Pointer Exception
 
 > AWAS: `document.querySelector` dan `document.querySelectorAll` agak **LEMBAB** berbanding `getElementById`, `document.getElementsByClassName` atau `document.getElementsByTagName` jika anda menginginkan bonus dari segi prestasi.
 
@@ -54,7 +55,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
 - [1.4](#1.4) <a name='1.4'></a> Cari sth.
 
-  + Find nodes
+  - Find nodes
 
     ```js
     // jQuery
@@ -64,7 +65,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     el.querySelectorAll('li');
     ```
 
-  + Cari body
+  - Cari body
 
     ```js
     // jQuery
@@ -74,7 +75,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     document.body;
     ```
 
-  + Cari Attribute
+  - Cari Attribute
 
     ```js
     // jQuery
@@ -84,7 +85,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     e.getAttribute('foo');
     ```
 
-  + Cari atribut data
+  - Cari atribut data
 
     ```js
     // jQuery
@@ -99,19 +100,19 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
 - [1.5](#1.5) <a name='1.5'></a> Sibling/Previous/Next Elements
 
-  + Sibling elements
+  - Sibling elements
 
     ```js
     // jQuery
     $el.siblings();
 
     // Native
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + Previous elements
+  - Previous elements
 
     ```js
     // jQuery
@@ -119,10 +120,9 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
     // Native
     el.previousElementSibling;
-
     ```
 
-  + Next elements
+  - Next elements
 
     ```js
     // next
@@ -140,7 +140,11 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
   // Native
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -164,7 +168,11 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
   // Native
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // match start from parent
     el = el.parentElement;
@@ -184,7 +192,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
 - [1.8](#1.8) <a name='1.8'></a> Form
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -194,7 +202,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     document.querySelector('#my-input').value;
     ```
 
-  + Get index of e.currentTarget between `.radio`
+  - Get index of e.currentTarget between `.radio`
 
     ```js
     // jQuery
@@ -208,7 +216,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
   `$('iframe').contents()` returns `contentDocument` for this specific iframe
 
-  + Iframe contents
+  - Iframe contents
 
     ```js
     // jQuery
@@ -218,7 +226,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     iframe.contentDocument;
     ```
 
-  + Iframe Query
+  - Iframe Query
 
     ```js
     // jQuery
@@ -234,11 +242,11 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + Get style
+  - Get style
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Native
     // NOTE: Known bug, will return 'auto' if style value is 'auto'
@@ -247,22 +255,21 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     win.getComputedStyle(el, null).color;
     ```
 
-  + Set style
+  - Set style
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Native
     el.style.color = '#ff0011';
     ```
 
-  + Get/Set Styles
+  - Get/Set Styles
 
     Note that if you want to set multiple styles once, you could refer to [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194) method in oui-dom-utils package.
 
-
-  + Add class
+  - Add class
 
     ```js
     // jQuery
@@ -272,7 +279,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     el.classList.add(className);
     ```
 
-  + Remove class
+  - Remove class
 
     ```js
     // jQuery
@@ -282,7 +289,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     el.classList.remove(className);
     ```
 
-  + has class
+  - has class
 
     ```js
     // jQuery
@@ -292,7 +299,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     el.classList.contains(className);
     ```
 
-  + Toggle class
+  - Toggle class
 
     ```js
     // jQuery
@@ -306,7 +313,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
   Width and Height are theoretically identical, take Height as example:
 
-  + Window height
+  - Window height
 
     ```js
     // window height
@@ -317,7 +324,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     window.innerHeight;
     ```
 
-  + Document height
+  - Document height
 
     ```js
     // jQuery
@@ -327,7 +334,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     document.documentElement.scrollHeight;
     ```
 
-  + Element height
+  - Element height
 
     ```js
     // jQuery
@@ -341,7 +348,9 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // accurate to integer（when `border-box`, it's `height`; when `content-box`, it's `height + padding + border`）
     el.clientHeight;
@@ -351,7 +360,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
 - [2.3](#2.3) <a name='2.3'></a> Position & Offset
 
-  + Position
+  - Position
 
     ```js
     // jQuery
@@ -361,20 +370,21 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Offset
+  - Offset
 
     ```js
     // jQuery
     $el.offset();
 
     // Native
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -385,7 +395,8 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
   $(window).scrollTop();
 
   // Native
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -393,6 +404,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 ## DOM Manipulation
 
 - [3.1](#3.1) <a name='3.1'></a> Remove
+
   ```js
   // jQuery
   $el.remove();
@@ -403,7 +415,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
 - [3.2](#3.2) <a name='3.2'></a> Text
 
-  + Get text
+  - Get text
 
     ```js
     // jQuery
@@ -413,7 +425,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     el.textContent;
     ```
 
-  + Set text
+  - Set text
 
     ```js
     // jQuery
@@ -425,7 +437,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + Get HTML
+  - Get HTML
 
     ```js
     // jQuery
@@ -435,7 +447,7 @@ Pemilihan elemen yang umum seperti class, id atau atribut, biasanya kita boleh p
     el.innerHTML;
     ```
 
-  + Set HTML
+  - Set HTML
 
     ```js
     // jQuery
@@ -535,14 +547,14 @@ For a complete replacement with namespace and delegation, refer to https://githu
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Native
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -598,17 +610,17 @@ For a complete replacement with namespace and delegation, refer to https://githu
 
 ## Terjemahan
 
-* [한국어](./README.ko-KR.md)
-* [简体中文](./README.zh-CN.md)
-* [English](./README.md)
-* [Русский](./README-ru.md)
-* [Türkçe](./README-tr.md)
+- [한국어](./README.ko-KR.md)
+- [简体中文](./README.zh-CN.md)
+- [English](./README.md)
+- [Русский](./README-ru.md)
+- [Türkçe](./README-tr.md)
 
 ## Sokongan Pelayar
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | 10+ ✔ | Latest ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Latest ✔                                                                             | Latest ✔                                                                                | 10+ ✔                                                                                                  | Latest ✔                                                                          | 6.1+ ✔                                                                               |
 
 # Lesen
 

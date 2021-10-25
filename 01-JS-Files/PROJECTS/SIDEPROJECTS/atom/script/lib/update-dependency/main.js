@@ -11,7 +11,7 @@ const {
   addLabel,
   findOpenPRs,
   checkCIstatus,
-  mergePR
+  mergePR,
 } = require('./pull-request');
 const runApmInstall = require('../run-apm-install');
 const {
@@ -19,12 +19,12 @@ const {
   createCommit,
   switchToCleanBranch,
   publishBranch,
-  deleteBranch
+  deleteBranch,
 } = require('./git')(git, repositoryRootPath);
 const { updatePackageJson, sleep } = require('./util')(repositoryRootPath);
 const fetchOutdatedDependencies = require('./fetch-outdated-dependencies');
 
-module.exports = async function() {
+module.exports = async function () {
   try {
     // ensure we are on master
     await switchToCleanBranch();
@@ -32,7 +32,7 @@ module.exports = async function() {
     const successfullBumps = [];
     const outdateDependencies = [
       ...(await fetchOutdatedDependencies.npm(repositoryRootPath)),
-      ...(await fetchOutdatedDependencies.apm(packageJSON))
+      ...(await fetchOutdatedDependencies.apm(packageJSON)),
     ];
     const totalDependencies = outdateDependencies.length;
     const pendingPRs = [];
@@ -42,7 +42,7 @@ module.exports = async function() {
         console.log(`Branch was found ${found}`);
         console.log('checking if a PR already exists');
         const {
-          data: { total_count }
+          data: { total_count },
         } = await findPR(dependency, newBranch);
         if (total_count > 0) {
           console.log(`pull request found!`);
@@ -65,7 +65,7 @@ module.exports = async function() {
         pendingPRs.push({
           dependency,
           branch: newBranch,
-          branchIsRemote: false
+          branchIsRemote: false,
         });
       }
 
@@ -91,8 +91,8 @@ module.exports = async function() {
       {
         totalDependencies,
         totalSuccessfullBumps: successfullBumps.length,
-        totalFailedBumps: failedBumps.length
-      }
+        totalFailedBumps: failedBumps.length,
+      },
     ]);
     console.log('Successfull bumps');
     console.table(successfullBumps);
@@ -105,12 +105,12 @@ module.exports = async function() {
   // merge previous bumps that passed CI requirements
   try {
     const {
-      data: { items }
+      data: { items },
     } = await findOpenPRs();
     for (const { title } of items) {
       const ref = title.replace('⬆️ ', '').replace('@', '-');
       const {
-        data: { state }
+        data: { state },
       } = await checkCIstatus({ ref });
       if (state === 'success') {
         await mergePR({ ref });

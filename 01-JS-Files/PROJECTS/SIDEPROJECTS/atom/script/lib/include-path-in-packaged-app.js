@@ -3,7 +3,7 @@
 const path = require('path');
 const CONFIG = require('../config');
 
-module.exports = function(filePath) {
+module.exports = function (filePath) {
   return (
     !EXCLUDED_PATHS_REGEXP.test(filePath) ||
     INCLUDED_PATHS_REGEXP.test(filePath)
@@ -119,7 +119,7 @@ const EXCLUDE_REGEXPS_SOURCES = [
     'transforers' +
     escapeRegExp(path.sep) +
     'spec' +
-    escapeRegExp(path.sep)
+    escapeRegExp(path.sep),
 ];
 
 // Ignore spec directories in all bundled packages
@@ -145,7 +145,7 @@ if (process.platform === 'darwin') {
 }
 
 const EXCLUDED_PATHS_REGEXP = new RegExp(
-  EXCLUDE_REGEXPS_SOURCES.map(path => `(${path})`).join('|')
+  EXCLUDE_REGEXPS_SOURCES.map((path) => `(${path})`).join('|')
 );
 
 const INCLUDED_PATHS_REGEXP = new RegExp(

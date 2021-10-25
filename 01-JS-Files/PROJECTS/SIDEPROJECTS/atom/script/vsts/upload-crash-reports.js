@@ -24,9 +24,7 @@ async function uploadCrashReports() {
 
   if (crashes && crashes.length > 0) {
     console.log(
-      `Uploading ${
-        crashes.length
-      } private crash reports to Azure Blob Storage under '${azureBlobPath}'`
+      `Uploading ${crashes.length} private crash reports to Azure Blob Storage under '${azureBlobPath}'`
     );
 
     await uploadToAzure(
@@ -40,7 +38,7 @@ async function uploadCrashReports() {
 
 // Wrap the call the async function and catch errors from its promise because
 // Node.js doesn't yet allow use of await at the script scope
-uploadCrashReports().catch(err => {
+uploadCrashReports().catch((err) => {
   console.error('An error occurred while uploading crash reports:\n\n', err);
   process.exit(1);
 });

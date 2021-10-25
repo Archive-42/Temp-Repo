@@ -1,5 +1,5 @@
 describe('"atom" protocol URL', () =>
-  it('sends the file relative in the package as response', function() {
+  it('sends the file relative in the package as response', function () {
     let called = false;
     const request = new XMLHttpRequest();
     request.addEventListener('load', () => (called = true));

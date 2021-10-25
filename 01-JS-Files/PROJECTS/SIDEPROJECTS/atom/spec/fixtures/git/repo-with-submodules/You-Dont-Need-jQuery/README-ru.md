@@ -15,10 +15,12 @@
 1. [Поддержка браузеров](#Поддержка-браузеров)
 
 ## Query Selector
+
 Для часто используемых селекторов, таких как class, id или attribute мы можем использовать `document.querySelector` или `document.querySelectorAll` для замены. Разница такова:
-* `document.querySelector` возвращает первый совпавший элемент
-* `document.querySelectorAll` возвращает все совспавшие элементы как  коллекцию узлов(NodeList). Его можно конвертировать в массив используя `[].slice.call(document.querySelectorAll(selector) || []);`
-* Если никакие элементы не совпадут, jQuery вернет `[]` где DOM API вернет `null`. Обратите внимание на указатель исключения  Null (Null Pointer Exception). Вы так же можете использовать `||` для установки значения по умолчанию если не было найдемо совпадений `document.querySelectorAll(selector) || []`
+
+- `document.querySelector` возвращает первый совпавший элемент
+- `document.querySelectorAll` возвращает все совспавшие элементы как коллекцию узлов(NodeList). Его можно конвертировать в массив используя `[].slice.call(document.querySelectorAll(selector) || []);`
+- Если никакие элементы не совпадут, jQuery вернет `[]` где DOM API вернет `null`. Обратите внимание на указатель исключения Null (Null Pointer Exception). Вы так же можете использовать `||` для установки значения по умолчанию если не было найдемо совпадений `document.querySelectorAll(selector) || []`
 
 > Заметка: `document.querySelector` и `document.querySelectorAll` достаточно **МЕДЛЕННЫ**, старайтесь использовать `getElementById`, `document.getElementsByClassName` или `document.getElementsByTagName` если хотите улучшить производительность.
 
@@ -70,7 +72,7 @@
 
 - [1.4](#1.4) <a name='1.4'></a> Найти среди потомков
 
-  + Найти nodes
+  - Найти nodes
 
     ```js
     // jQuery
@@ -80,7 +82,7 @@
     el.querySelectorAll('li');
     ```
 
-  + Найти body
+  - Найти body
 
     ```js
     // jQuery
@@ -90,7 +92,7 @@
     document.body;
     ```
 
-  + Найти атрибуты
+  - Найти атрибуты
 
     ```js
     // jQuery
@@ -100,7 +102,7 @@
     e.getAttribute('foo');
     ```
 
-  + Найти data attribute
+  - Найти data attribute
 
     ```js
     // jQuery
@@ -115,19 +117,19 @@
 
 - [1.5](#1.5) <a name='1.5'></a> Родственные/Предыдущие/Следующие Элементы
 
-  + Родственные элементы
+  - Родственные элементы
 
     ```js
     // jQuery
     $el.siblings();
 
     // Нативно
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + Предыдущие элементы
+  - Предыдущие элементы
 
     ```js
     // jQuery
@@ -137,7 +139,7 @@
     el.previousElementSibling;
     ```
 
-  + Следующие элементы
+  - Следующие элементы
 
     ```js
     // jQuery
@@ -154,13 +156,17 @@
   ```js
   // jQuery
   $el.closest(queryString);
-  
+
   // Нативно - Only latest, NO IE
   el.closest(selector);
 
-  // Нативно - IE10+ 
+  // Нативно - IE10+
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -184,7 +190,11 @@
   // Нативно
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // Совпадать начиная от родителя
     el = el.parentElement;
@@ -204,7 +214,7 @@
 
 - [1.8](#1.8) <a name='1.8'></a> От
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -214,7 +224,7 @@
     document.querySelector('#my-input').value;
     ```
 
-  + получить индекс e.currentTarget между `.radio`
+  - получить индекс e.currentTarget между `.radio`
 
     ```js
     // jQuery
@@ -228,7 +238,7 @@
 
   `$('iframe').contents()` возвращает `contentDocument` для именно этого iframe
 
-  + Контент Iframe
+  - Контент Iframe
 
     ```js
     // jQuery
@@ -238,7 +248,7 @@
     iframe.contentDocument;
     ```
 
-  + Iframe Query
+  - Iframe Query
 
     ```js
     // jQuery
@@ -254,11 +264,11 @@
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + Получить стиль
+  - Получить стиль
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Нативно
     // ЗАМЕТКА: Известная ошика, возвращает 'auto' если значение стиля 'auto'
@@ -267,22 +277,21 @@
     win.getComputedStyle(el, null).color;
     ```
 
-  + Присвоение style
+  - Присвоение style
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Нативно
     el.style.color = '#ff0011';
     ```
 
-  + Получение/Присвоение стилей
+  - Получение/Присвоение стилей
 
     Заметьте что если вы хотите присвоить несколько стилей за раз, вы можете сослаться на [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194) метод в oui-dom-utils package.
 
-
-  + Добавить класс
+  - Добавить класс
 
     ```js
     // jQuery
@@ -292,7 +301,7 @@
     el.classList.add(className);
     ```
 
-  + Удалить class
+  - Удалить class
 
     ```js
     // jQuery
@@ -302,7 +311,7 @@
     el.classList.remove(className);
     ```
 
-  + Имеет класс
+  - Имеет класс
 
     ```js
     // jQuery
@@ -312,7 +321,7 @@
     el.classList.contains(className);
     ```
 
-  + Переключать класс
+  - Переключать класс
 
     ```js
     // jQuery
@@ -326,7 +335,7 @@
 
   Ширина и высота теоритечески идентичны, например возьмем высоту:
 
-  + высота окна
+  - высота окна
 
     ```js
     // Высота окна
@@ -337,7 +346,7 @@
     window.innerHeight;
     ```
 
-  + высота документа
+  - высота документа
 
     ```js
     // jQuery
@@ -347,7 +356,7 @@
     document.documentElement.scrollHeight;
     ```
 
-  + Высота элемента
+  - Высота элемента
 
     ```js
     // jQuery
@@ -361,7 +370,9 @@
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // С точностью до целого числа（когда `border-box`, это `height`; когда `content-box`, это `height + padding + border`）
     el.clientHeight;
@@ -371,7 +382,7 @@
 
 - [2.3](#2.3) <a name='2.3'></a> Позиция и смещение
 
-  + Позиция
+  - Позиция
 
     ```js
     // jQuery
@@ -381,20 +392,21 @@
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Смещение
+  - Смещение
 
     ```js
     // jQuery
     $el.offset();
 
     // Нативно
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -405,7 +417,8 @@
   $(window).scrollTop();
 
   // Нативно
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ Наверх](#Содержание)**
@@ -413,6 +426,7 @@
 ## Манипуляции DOM
 
 - [3.1](#3.1) <a name='3.1'></a> Remove
+
   ```js
   // jQuery
   $el.remove();
@@ -423,7 +437,7 @@
 
 - [3.2](#3.2) <a name='3.2'></a> Текст
 
-  + Получить текст
+  - Получить текст
 
     ```js
     // jQuery
@@ -433,7 +447,7 @@
     el.textContent;
     ```
 
-  + Присвоить текст 
+  - Присвоить текст
 
     ```js
     // jQuery
@@ -445,7 +459,7 @@
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + Получить HTML
+  - Получить HTML
 
     ```js
     // jQuery
@@ -455,7 +469,7 @@
     el.innerHTML;
     ```
 
-  + Присвоить HTML
+  - Присвоить HTML
 
     ```js
     // jQuery
@@ -474,7 +488,7 @@
   $el.append("<div id='container'>hello</div>");
 
   // Нативно
-  el.insertAdjacentHTML("beforeend","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('beforeend', "<div id='container'>hello</div>");
   ```
 
 - [3.5](#3.5) <a name='3.5'></a> Prepend
@@ -484,7 +498,7 @@
   $el.prepend("<div id='container'>hello</div>");
 
   // Нативно
-  el.insertAdjacentHTML("afterbegin","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('afterbegin', "<div id='container'>hello</div>");
   ```
 
 - [3.6](#3.6) <a name='3.6'></a> insertBefore
@@ -515,7 +529,7 @@
 
 - [3.8](#3.8) <a name='3.8'></a> is
 
-  Возвращает `true` если  совпадает с селектором запроса
+  Возвращает `true` если совпадает с селектором запроса
 
   ```js
   // jQuery - заметьте что `is` так же работает с `function` или `elements` которые не имют к этому отношения
@@ -524,7 +538,7 @@
   // Нативно
   el.matches(selector);
   ```
-  
+
 **[⬆ Наверх](#Содержание)**
 
 ## Ajax
@@ -561,14 +575,14 @@
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Нативно
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -624,26 +638,26 @@
 
 ## Альтернативы
 
-* [You Might Not Need jQuery](http://youmightnotneedjquery.com/) - Примеры как исполняются частые события, элементы, ajax и тд с ванильным javascript.
-* [npm-dom](http://github.com/npm-dom) и [webmodules](http://github.com/webmodules) - Отдельные DOM модули можно найти на NPM
+- [You Might Not Need jQuery](http://youmightnotneedjquery.com/) - Примеры как исполняются частые события, элементы, ajax и тд с ванильным javascript.
+- [npm-dom](http://github.com/npm-dom) и [webmodules](http://github.com/webmodules) - Отдельные DOM модули можно найти на NPM
 
 ## Переводы
 
-* [한국어](./README.ko-KR.md)
-* [简体中文](./README.zh-CN.md)
-* [Bahasa Melayu](./README-my.md)
-* [Bahasa Indonesia](./README-id.md)
-* [Português(PT-BR)](./README.pt-BR.md)
-* [Tiếng Việt Nam](./README-vi.md)
-* [Español](./README-es.md)
-* [Русский](./README-ru.md)
-* [Türkçe](./README-tr.md)
+- [한국어](./README.ko-KR.md)
+- [简体中文](./README.zh-CN.md)
+- [Bahasa Melayu](./README-my.md)
+- [Bahasa Indonesia](./README-id.md)
+- [Português(PT-BR)](./README.pt-BR.md)
+- [Tiếng Việt Nam](./README-vi.md)
+- [Español](./README-es.md)
+- [Русский](./README-ru.md)
+- [Türkçe](./README-tr.md)
 
 ## Поддержка браузеров
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | 10+ ✔ | Latest ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Latest ✔                                                                             | Latest ✔                                                                                | 10+ ✔                                                                                                  | Latest ✔                                                                          | 6.1+ ✔                                                                               |
 
 # License
 

@@ -1,8 +1,7 @@
-
 > #### You Don't Need jQuery
 
-Tú no necesitas jQuery
----
+## Tú no necesitas jQuery
+
 El desarrollo Frontend evoluciona día a día, y los navegadores modernos ya han implementado nativamente APIs para trabajar con DOM/BOM, las cuales son muy buenas, por lo que definitivamente no es necesario aprender jQuery desde cero para manipular el DOM. En la actualidad, gracias al surgimiento de librerías frontend como React, Angular y Vue, manipular el DOM es contrario a los patrones establecidos, y jQuery se ha vuelto menos importante. Este proyecto resume la mayoría de métodos alternativos a jQuery, pero de forma nativa con soporte IE 10+.
 
 ## Tabla de Contenidos
@@ -16,13 +15,13 @@ El desarrollo Frontend evoluciona día a día, y los navegadores modernos ya han
 1. [Traducción](#traducción)
 1. [Soporte de Navegadores](#soporte-de-navegadores)
 
-
 ## Query Selector
 
 En lugar de los selectores comunes como clase, id o atributos podemos usar `document.querySelector` o `document.querySelectorAll` como alternativas. Las diferencias radican en:
-* `document.querySelector` devuelve el primer elemento que cumpla con la condición
-* `document.querySelectorAll` devuelve todos los elementos que cumplen con la condición en forma de NodeList. Puede ser convertido a Array usando `[].slice.call(document.querySelectorAll(selector) || []);`
-* Si ningún elemento cumple con la condición, jQuery retornaría `[]` mientras la API DOM retornaría `null`. Nótese el NullPointerException. Se puede usar `||` para establecer el valor por defecto al no encontrar elementos, como en `document.querySelectorAll(selector) || []`
+
+- `document.querySelector` devuelve el primer elemento que cumpla con la condición
+- `document.querySelectorAll` devuelve todos los elementos que cumplen con la condición en forma de NodeList. Puede ser convertido a Array usando `[].slice.call(document.querySelectorAll(selector) || []);`
+- Si ningún elemento cumple con la condición, jQuery retornaría `[]` mientras la API DOM retornaría `null`. Nótese el NullPointerException. Se puede usar `||` para establecer el valor por defecto al no encontrar elementos, como en `document.querySelectorAll(selector) || []`
 
 > Notice: `document.querySelector` and `document.querySelectorAll` are quite **SLOW**, try to use `getElementById`, `document.getElementsByClassName` o `document.getElementsByTagName` if you want to Obtener a performance bonus.
 
@@ -74,7 +73,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
 - [1.4](#1.4) <a name='1.4'></a> Buscar
 
-  + Buscar nodos
+  - Buscar nodos
 
     ```js
     // jQuery
@@ -84,7 +83,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     el.querySelectorAll('li');
     ```
 
-  + Buscar "body"
+  - Buscar "body"
 
     ```js
     // jQuery
@@ -94,7 +93,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     document.body;
     ```
 
-  + Buscar Atributo
+  - Buscar Atributo
 
     ```js
     // jQuery
@@ -104,7 +103,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     e.getAttribute('foo');
     ```
 
-  + Buscar atributo "data"
+  - Buscar atributo "data"
 
     ```js
     // jQuery
@@ -119,19 +118,19 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
 - [1.5](#1.5) <a name='1.5'></a> Elementos Hermanos/Previos/Siguientes
 
-  + Elementos hermanos
+  - Elementos hermanos
 
     ```js
     // jQuery
     $el.siblings();
 
     // Nativo
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + Elementos previos
+  - Elementos previos
 
     ```js
     // jQuery
@@ -141,7 +140,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     el.previousElementSibling;
     ```
 
-  + Elementos siguientes
+  - Elementos siguientes
 
     ```js
     // jQuery
@@ -161,7 +160,11 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
   // Nativo
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -185,7 +188,11 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
   // Nativo
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // Partir desde el elemento padre
     el = el.parentElement;
@@ -205,7 +212,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
 - [1.8](#1.8) <a name='1.8'></a> Formularios
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -215,7 +222,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     document.querySelector('#my-input').value;
     ```
 
-  + Obtener el índice de e.currentTarget en `.radio`
+  - Obtener el índice de e.currentTarget en `.radio`
 
     ```js
     // jQuery
@@ -229,7 +236,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
   `$('iframe').contents()` devuelve `contentDocument` para este iframe específico
 
-  + Contenidos de Iframe
+  - Contenidos de Iframe
 
     ```js
     // jQuery
@@ -239,7 +246,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     iframe.contentDocument;
     ```
 
-  + Buscar dentro de un Iframe
+  - Buscar dentro de un Iframe
 
     ```js
     // jQuery
@@ -255,11 +262,11 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + Obtener Estilo
+  - Obtener Estilo
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Nativo
     // NOTA: Bug conocido, retornará 'auto' si el valor de estilo es 'auto'
@@ -268,21 +275,21 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     win.getComputedStyle(el, null).color;
     ```
 
-  + Establecer style
+  - Establecer style
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Nativo
     el.style.color = '#ff0011';
     ```
 
-  + Obtener/Establecer Estilos
+  - Obtener/Establecer Estilos
 
     Nótese que si se desea establecer múltiples estilos a la vez, se puede utilizar el método [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194) en el paquete oui-dom-utils.
 
-  + Agregar clase
+  - Agregar clase
 
     ```js
     // jQuery
@@ -292,7 +299,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     el.classList.add(className);
     ```
 
-  + Quitar Clase
+  - Quitar Clase
 
     ```js
     // jQuery
@@ -302,7 +309,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     el.classList.remove(className);
     ```
 
-  + Consultar si tiene clase
+  - Consultar si tiene clase
 
     ```js
     // jQuery
@@ -312,7 +319,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     el.classList.contains(className);
     ```
 
-  + Toggle class
+  - Toggle class
 
     ```js
     // jQuery
@@ -326,7 +333,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
   Ancho y Alto son teóricamente idénticos. Usaremos el Alto como ejemplo:
 
-  + Alto de Ventana
+  - Alto de Ventana
 
     ```js
     // alto de ventana
@@ -337,7 +344,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     window.innerHeight;
     ```
 
-  + Alto de Documento
+  - Alto de Documento
 
     ```js
     // jQuery
@@ -347,7 +354,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     document.documentElement.scrollHeight;
     ```
 
-  + Alto de Elemento
+  - Alto de Elemento
 
     ```js
     // jQuery
@@ -361,7 +368,9 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // Precisión de integer（when `border-box`, it's `height`; when `content-box`, it's `height + padding + border`）
     el.clientHeight;
@@ -371,7 +380,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
 - [2.3](#2.3) <a name='2.3'></a> Posición & Offset
 
-  + Posición
+  - Posición
 
     ```js
     // jQuery
@@ -381,20 +390,21 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Offset
+  - Offset
 
     ```js
     // jQuery
     $el.offset();
 
     // Nativo
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -405,7 +415,8 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
   $(window).scrollTop();
 
   // Nativo
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ volver al inicio](#tabla-de-contenidos)**
@@ -413,6 +424,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 ## Manipulación DOM
 
 - [3.1](#3.1) <a name='3.1'></a> Remove
+
   ```js
   // jQuery
   $el.remove();
@@ -423,7 +435,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
 - [3.2](#3.2) <a name='3.2'></a> Text
 
-  + Obtener Texto
+  - Obtener Texto
 
     ```js
     // jQuery
@@ -433,7 +445,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     el.textContent;
     ```
 
-  + Establecer Texto
+  - Establecer Texto
 
     ```js
     // jQuery
@@ -445,7 +457,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + Obtener HTML
+  - Obtener HTML
 
     ```js
     // jQuery
@@ -455,7 +467,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
     el.innerHTML;
     ```
 
-  + Establecer HTML
+  - Establecer HTML
 
     ```js
     // jQuery
@@ -474,7 +486,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
   $el.append("<div id='container'>hello</div>");
 
   // Nativo
-  el.insertAdjacentHTML("beforeend","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('beforeend', "<div id='container'>hello</div>");
   ```
 
 - [3.5](#3.5) <a name='3.5'></a> Prepend
@@ -486,7 +498,7 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
   $el.prepend("<div id='container'>hello</div>");
 
   // Nativo
-  el.insertAdjacentHTML("afterbegin","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('afterbegin', "<div id='container'>hello</div>");
   ```
 
 - [3.6](#3.6) <a name='3.6'></a> insertBefore
@@ -519,11 +531,10 @@ En lugar de los selectores comunes como clase, id o atributos podemos usar `docu
 
 ## Ajax
 
-Reemplazar con [fetch](https://github.com/camsong/fetch-ie8) y [fetch-jsonp](https://github.com/camsong/fetch-jsonp)
-+[Fetch API](https://fetch.spec.whatwg.org/) es el nuevo estándar quue reemplaza a XMLHttpRequest para efectuar peticiones AJAX. Funciona en Chrome y Firefox, como también es posible usar un polyfill en otros navegadores.
-+
-+Es una buena alternativa utilizar [github/fetch](http://github.com/github/fetch) en IE9+ o [fetch-ie8](https://github.com/camsong/fetch-ie8/) en IE8+, [fetch-jsonp](https://github.com/camsong/fetch-jsonp) para efectuar peticiones JSONP.
-**[⬆ volver al inicio](#tabla-de-contenidos)**
+Reemplazar con [fetch](https://github.com/camsong/fetch-ie8) y [fetch-jsonp](https://github.com/camsong/fetch-jsonp) +[Fetch API](https://fetch.spec.whatwg.org/) es el nuevo estándar quue reemplaza a XMLHttpRequest para efectuar peticiones AJAX. Funciona en Chrome y Firefox, como también es posible usar un polyfill en otros navegadores.
+
+- +Es una buena alternativa utilizar [github/fetch](http://github.com/github/fetch) en IE9+ o [fetch-ie8](https://github.com/camsong/fetch-ie8/) en IE8+, [fetch-jsonp](https://github.com/camsong/fetch-jsonp) para efectuar peticiones JSONP.
+  **[⬆ volver al inicio](#tabla-de-contenidos)**
 
 ## Eventos
 
@@ -553,14 +564,14 @@ Para un reemplazo completo con namespace y delegación, utilizar https://github.
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Nativo
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -616,21 +627,21 @@ Para un reemplazo completo con namespace y delegación, utilizar https://github.
 
 ## Traducción
 
-* [한국어](./README.ko-KR.md)
-* [简体中文](./README.zh-CN.md)
-* [Bahasa Melayu](./README-my.md)
-* [Bahasa Indonesia](./README-id.md)
-* [Português(PT-BR)](./README.pt-BR.md)
-* [Tiếng Việt Nam](./README-vi.md)
-* [Español](./README-es.md)
-* [Русский](./README-ru.md)
-* [Türkçe](./README-tr.md)
+- [한국어](./README.ko-KR.md)
+- [简体中文](./README.zh-CN.md)
+- [Bahasa Melayu](./README-my.md)
+- [Bahasa Indonesia](./README-id.md)
+- [Português(PT-BR)](./README.pt-BR.md)
+- [Tiếng Việt Nam](./README-vi.md)
+- [Español](./README-es.md)
+- [Русский](./README-ru.md)
+- [Türkçe](./README-tr.md)
 
 ## Soporte de Navegadores
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Última ✔ | Última ✔ | 10+ ✔ | Última ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Última ✔                                                                             | Última ✔                                                                                | 10+ ✔                                                                                                  | Última ✔                                                                          | 6.1+ ✔                                                                               |
 
 # Licencia
 

@@ -32,7 +32,6 @@ steps:
     displayName: Post-process test results
     condition: ne(variables['Atom.SkipTests'], 'true')
 
-
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: JUnit

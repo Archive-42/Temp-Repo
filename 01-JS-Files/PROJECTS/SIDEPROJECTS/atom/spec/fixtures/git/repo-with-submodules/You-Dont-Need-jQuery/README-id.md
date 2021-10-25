@@ -2,7 +2,6 @@
 
 Dewasa ini perkembangan environment frontend sangatlah pesat, dimana banyak browser sudah mengimplementasikan DOM/BOM APIs dengan baik. Kita tidak perlu lagi belajar jQuery dari nol untuk keperluan manipulasi DOM atau events. Disaat yang sama; dengan berterimakasih kepada library frontend terkini seperti React, Angular dan Vue; Memanipulasi DOM secara langsung telah menjadi anti-pattern alias sesuatu yang tidak perlu dilakukan. Dengan kata lain, jQuery sekarang menjadi semakin tidak diperlukan. Projek ini memberikan informasi mengenai metode alternatif dari jQuery untuk implementasi Native dengan support untuk browser IE 10+.
 
-
 ## Daftar Isi
 
 1. [Query Selector](#query-selector)
@@ -17,9 +16,10 @@ Dewasa ini perkembangan environment frontend sangatlah pesat, dimana banyak brow
 ## Query Selector
 
 Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggunakan `document.querySelector` atau `document.querySelectorAll` sebagai pengganti. Perbedaan diantaranya adalah:
-* `document.querySelector` mengembalikan elemen pertama yang cocok
-* `document.querySelectorAll` mengembalikan semua elemen yang cocok sebagai NodeList. Hasilnya bisa dikonversikan menjadi Array `[].slice.call(document.querySelectorAll(selector) || []);`
-* Bila tidak ada hasil pengembalian elemen yang cocok, jQuery akan mengembalikan `[]` sedangkan DOM API akan mengembalikan `null`. Mohon diperhatikan mengenai Null Pointer Exception. Anda juga bisa menggunakan operator `||` untuk set nilai awal jika hasil pencarian tidak ditemukan : `document.querySelectorAll(selector) || []`
+
+- `document.querySelector` mengembalikan elemen pertama yang cocok
+- `document.querySelectorAll` mengembalikan semua elemen yang cocok sebagai NodeList. Hasilnya bisa dikonversikan menjadi Array `[].slice.call(document.querySelectorAll(selector) || []);`
+- Bila tidak ada hasil pengembalian elemen yang cocok, jQuery akan mengembalikan `[]` sedangkan DOM API akan mengembalikan `null`. Mohon diperhatikan mengenai Null Pointer Exception. Anda juga bisa menggunakan operator `||` untuk set nilai awal jika hasil pencarian tidak ditemukan : `document.querySelectorAll(selector) || []`
 
 > Perhatian: `document.querySelector` dan `document.querySelectorAll` sedikit **LAMBAT**. Silahkan menggunakan `getElementById`, `document.getElementsByClassName` atau `document.getElementsByTagName` jika anda menginginkan tambahan performa.
 
@@ -71,7 +71,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
 - [1.4](#1.4) <a name='1.4'></a> Pencarian.
 
-  + Mencari nodes
+  - Mencari nodes
 
     ```js
     // jQuery
@@ -81,7 +81,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     el.querySelectorAll('li');
     ```
 
-  + Mencari body
+  - Mencari body
 
     ```js
     // jQuery
@@ -91,7 +91,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     document.body;
     ```
 
-  + Mencari Attribute
+  - Mencari Attribute
 
     ```js
     // jQuery
@@ -101,7 +101,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     e.getAttribute('foo');
     ```
 
-  + Mencari data attribute
+  - Mencari data attribute
 
     ```js
     // jQuery
@@ -116,19 +116,19 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
 - [1.5](#1.5) <a name='1.5'></a> Elemen-elemen Sibling/Previous/Next
 
-  + Elemen Sibling
+  - Elemen Sibling
 
     ```js
     // jQuery
     $el.siblings();
 
     // Native
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + Elemen Previous
+  - Elemen Previous
 
     ```js
     // jQuery
@@ -136,10 +136,9 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
     // Native
     el.previousElementSibling;
-
     ```
 
-  + Elemen Next
+  - Elemen Next
 
     ```js
     // next
@@ -157,7 +156,11 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
   // Native
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -181,7 +184,11 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
   // Native
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // match start from parent
     el = el.parentElement;
@@ -201,7 +208,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
 - [1.8](#1.8) <a name='1.8'></a> Form
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -211,7 +218,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     document.querySelector('#my-input').value;
     ```
 
-  + Get index of e.currentTarget between `.radio`
+  - Get index of e.currentTarget between `.radio`
 
     ```js
     // jQuery
@@ -225,7 +232,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
   `$('iframe').contents()` mengembalikan `contentDocument`
 
-  + Iframe contents
+  - Iframe contents
 
     ```js
     // jQuery
@@ -235,7 +242,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     iframe.contentDocument;
     ```
 
-  + Iframe Query
+  - Iframe Query
 
     ```js
     // jQuery
@@ -251,11 +258,11 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + Get style
+  - Get style
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Native
     // PERHATIAN: ada bug disini, dimana fungsi ini akan mengembalikan nilai 'auto' bila nilai dari atribut style adalah 'auto'
@@ -264,21 +271,21 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     win.getComputedStyle(el, null).color;
     ```
 
-  + Set style
+  - Set style
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Native
     el.style.color = '#ff0011';
     ```
 
-  + Get/Set Styles
+  - Get/Set Styles
 
     Mohon dicatat jika anda ingin men-set banyak style bersamaan, anda dapat menemukan referensi di metode [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194) pada package oui-dom-utils
 
-  + Add class
+  - Add class
 
     ```js
     // jQuery
@@ -288,7 +295,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     el.classList.add(className);
     ```
 
-  + Remove class
+  - Remove class
 
     ```js
     // jQuery
@@ -298,7 +305,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     el.classList.remove(className);
     ```
 
-  + has class
+  - has class
 
     ```js
     // jQuery
@@ -308,7 +315,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     el.classList.contains(className);
     ```
 
-  + Toggle class
+  - Toggle class
 
     ```js
     // jQuery
@@ -322,7 +329,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
   Secara teori, width dan height identik, contohnya Height:
 
-  + Window height
+  - Window height
 
     ```js
     // window height
@@ -333,7 +340,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     window.innerHeight;
     ```
 
-  + Document height
+  - Document height
 
     ```js
     // jQuery
@@ -343,7 +350,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     document.documentElement.scrollHeight;
     ```
 
-  + Element height
+  - Element height
 
     ```js
     // jQuery
@@ -357,7 +364,9 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // accurate to integer（when `border-box`, it's `height`; when `content-box`, it's `height + padding + border`）
     el.clientHeight;
@@ -367,7 +376,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
 - [2.3](#2.3) <a name='2.3'></a> Position & Offset
 
-  + Position
+  - Position
 
     ```js
     // jQuery
@@ -377,20 +386,21 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Offset
+  - Offset
 
     ```js
     // jQuery
     $el.offset();
 
     // Native
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -401,7 +411,8 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
   $(window).scrollTop();
 
   // Native
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ back to top](#daftar-isi)**
@@ -409,6 +420,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 ## DOM Manipulation
 
 - [3.1](#3.1) <a name='3.1'></a> Remove
+
   ```js
   // jQuery
   $el.remove();
@@ -419,7 +431,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
 - [3.2](#3.2) <a name='3.2'></a> Text
 
-  + Get text
+  - Get text
 
     ```js
     // jQuery
@@ -429,7 +441,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     el.textContent;
     ```
 
-  + Set text
+  - Set text
 
     ```js
     // jQuery
@@ -441,7 +453,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + Get HTML
+  - Get HTML
 
     ```js
     // jQuery
@@ -451,7 +463,7 @@ Untuk selector-selector umum seperti class, id atau attribute, kita dapat menggu
     el.innerHTML;
     ```
 
-  + Set HTML
+  - Set HTML
 
     ```js
     // jQuery
@@ -551,14 +563,14 @@ Untuk penggantian secara menyeluruh dengan namespace dan delegation, rujuk ke ht
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Native
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -614,20 +626,20 @@ Untuk penggantian secara menyeluruh dengan namespace dan delegation, rujuk ke ht
 
 ## Terjemahan
 
-* [한국어](./README.ko-KR.md)
-* [简体中文](./README.zh-CN.md)
-* [Bahasa Melayu](./README-my.md)
-* [Bahasa Indonesia](./README-id.md)
-* [Português(PT-BR)](./README.pt-BR.md)
-* [Tiếng Việt Nam](./README-vi.md)
-* [Русский](./README-ru.md)
-* [Türkçe](./README-tr.md)
+- [한국어](./README.ko-KR.md)
+- [简体中文](./README.zh-CN.md)
+- [Bahasa Melayu](./README-my.md)
+- [Bahasa Indonesia](./README-id.md)
+- [Português(PT-BR)](./README.pt-BR.md)
+- [Tiếng Việt Nam](./README-vi.md)
+- [Русский](./README-ru.md)
+- [Türkçe](./README-tr.md)
 
 ## Browser yang di Support
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | 10+ ✔ | Latest ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Latest ✔                                                                             | Latest ✔                                                                                | 10+ ✔                                                                                                  | Latest ✔                                                                          | 6.1+ ✔                                                                               |
 
 # License
 
