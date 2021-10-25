@@ -15,9 +15,8 @@ export default class GuideView {
     this.didClickStylingButton = this.didClickStylingButton.bind(this);
     this.didClickInitScriptButton = this.didClickInitScriptButton.bind(this);
     this.didClickSnippetsButton = this.didClickSnippetsButton.bind(this);
-    this.didExpandOrCollapseSection = this.didExpandOrCollapseSection.bind(
-      this
-    );
+    this.didExpandOrCollapseSection =
+      this.didExpandOrCollapseSection.bind(this);
     etch.initialize(this);
   }
 
@@ -358,7 +357,7 @@ export default class GuideView {
   getSectionProps(sectionName) {
     const props = {
       dataset: { section: sectionName },
-      onclick: this.didExpandOrCollapseSection
+      onclick: this.didExpandOrCollapseSection,
     };
     if (
       this.props.openSections &&
@@ -391,7 +390,7 @@ export default class GuideView {
     return {
       deserializer: this.constructor.name,
       openSections: this.getOpenSections(),
-      uri: this.getURI()
+      uri: this.getURI(),
     };
   }
 
@@ -409,7 +408,7 @@ export default class GuideView {
 
   getOpenSections() {
     return Array.from(this.element.querySelectorAll('details[open]')).map(
-      sectionElement => sectionElement.dataset.section
+      (sectionElement) => sectionElement.dataset.section
     );
   }
 

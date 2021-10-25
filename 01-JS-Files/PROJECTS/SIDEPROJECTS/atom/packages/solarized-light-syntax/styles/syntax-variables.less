@@ -1,4 +1,4 @@
-@import "colors.less";
+@import 'colors.less';
 
 // This defines all syntax variables that syntax themes must implement when they
 // include a syntax-variables.less file.
@@ -23,7 +23,10 @@
 @syntax-gutter-text-color: @base00;
 @syntax-gutter-text-color-selected: @base03;
 @syntax-gutter-background-color: @base2;
-@syntax-gutter-background-color-selected: darken(@syntax-gutter-background-color, 10%);
+@syntax-gutter-background-color-selected: darken(
+  @syntax-gutter-background-color,
+  10%
+);
 
 // For git diff info. i.e. in the gutter
 @syntax-color-added: @green;
@@ -45,11 +48,13 @@
 @syntax-color-import: @red;
 @syntax-color-snippet: @syntax-color-keyword;
 
-
 // Custom variables
 // Warning: Don't use in packages
 
 @syntax-comment-color: @base1;
 @syntax-subtle-color: @base00;
 @syntax-emphasized-color: @base01;
-@syntax-cursor-line: fade(darken(@syntax-background-color, 30%), 15%); // needs to be semi-transparent
+@syntax-cursor-line: fade(
+  darken(@syntax-background-color, 30%),
+  15%
+); // needs to be semi-transparent

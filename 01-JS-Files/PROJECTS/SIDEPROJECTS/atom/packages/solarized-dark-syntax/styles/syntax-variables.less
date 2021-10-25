@@ -1,4 +1,4 @@
-@import "colors.less";
+@import 'colors.less';
 
 // This defines all syntax variables that syntax themes must implement when they
 // include a syntax-variables.less file.
@@ -45,11 +45,13 @@
 @syntax-color-import: @red;
 @syntax-color-snippet: @syntax-color-keyword;
 
-
 // Custom variables
 // Warning: Don't use in packages
 
 @syntax-comment-color: @base01;
 @syntax-subtle-color: @base00;
 @syntax-emphasized-color: @base1;
-@syntax-cursor-line: fade(lighten(@syntax-background-color, 30%), 8%); // needs to be semi-transparent
+@syntax-cursor-line: fade(
+  lighten(@syntax-background-color, 30%),
+  8%
+); // needs to be semi-transparent

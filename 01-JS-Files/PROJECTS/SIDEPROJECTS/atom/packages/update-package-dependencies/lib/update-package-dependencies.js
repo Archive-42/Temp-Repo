@@ -19,9 +19,8 @@ module.exports = {
   },
 
   consumeStatusBar(statusBar) {
-    this.updatePackageDependenciesStatusView = new UpdatePackageDependenciesStatusView(
-      statusBar
-    );
+    this.updatePackageDependenciesStatusView =
+      new UpdatePackageDependenciesStatusView(statusBar);
   },
 
   update() {
@@ -33,15 +32,15 @@ module.exports = {
 
     const command = atom.packages.getApmPath();
     const args = ['install', '--no-color'];
-    const stderr = output => {
+    const stderr = (output) => {
       errorOutput += output;
     };
     const options = {
       cwd: this.getActiveProjectPath(),
-      env: Object.assign({}, process.env, { NODE_ENV: 'development' })
+      env: Object.assign({}, process.env, { NODE_ENV: 'development' }),
     };
 
-    const exit = code => {
+    const exit = (code) => {
       this.process = null;
       if (this.updatePackageDependenciesStatusView)
         this.updatePackageDependenciesStatusView.detach();
@@ -51,7 +50,7 @@ module.exports = {
       } else {
         atom.notifications.addError('Failed to update package dependencies', {
           detail: errorOutput,
-          dismissable: true
+          dismissable: true,
         });
       }
     };
@@ -61,7 +60,7 @@ module.exports = {
       args,
       stderr,
       exit,
-      options
+      options,
     });
   },
 
@@ -77,5 +76,5 @@ module.exports = {
     } else {
       return atom.project.getPaths()[0];
     }
-  }
+  },
 };

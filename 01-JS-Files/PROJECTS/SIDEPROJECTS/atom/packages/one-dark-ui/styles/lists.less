@@ -28,7 +28,6 @@
     li.list-nested-item.selected.status-@{status} > .list-item {
       color: @color;
     }
-
   }
 
   .generate-list-item-status-color(@text-color-added, added);
@@ -43,7 +42,7 @@
   }
 
   .no-icon {
-    padding-left: calc(@ui-padding-icon ~"+" @component-icon-size);
+    padding-left: calc(@ui-padding-icon ~'+' @component-icon-size);
   }
 }
 
@@ -73,7 +72,9 @@
   // know their size.
   li.selected {
     background-color: @background-color-selected;
-    &:before{ display: none; }
+    &:before {
+      display: none;
+    }
   }
 
   &.mark-active {
@@ -87,7 +88,8 @@
       background-color: transparent;
       position: static;
       display: inline-block;
-      left: auto; right: auto;
+      left: auto;
+      right: auto;
       height: @active-icon-size;
       width: @active-icon-size;
       font-size: @active-icon-size;
@@ -106,7 +108,7 @@
 }
 
 .select-list.popover-list {
-  @popover-list-padding: @ui-padding/4;
+  @popover-list-padding: @ui-padding / 4;
   background-color: @overlay-background-color;
   box-shadow: 0 2px 8px 1px rgba(0, 0, 0, 0.3);
   padding: @popover-list-padding;
