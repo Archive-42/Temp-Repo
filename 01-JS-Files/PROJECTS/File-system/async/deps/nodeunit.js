@@ -175,28 +175,28 @@ nodeunit = (function () {
   }
 
   (function () {
-    'use strict';
+    "use strict";
 
     function f(n) {
       // Format integers to have at least two digits.
-      return n < 10 ? '0' + n : n;
+      return n < 10 ? "0" + n : n;
     }
 
-    if (typeof Date.prototype.toJSON !== 'function') {
+    if (typeof Date.prototype.toJSON !== "function") {
       Date.prototype.toJSON = function (key) {
         return isFinite(this.valueOf())
           ? this.getUTCFullYear() +
-              '-' +
+              "-" +
               f(this.getUTCMonth() + 1) +
-              '-' +
+              "-" +
               f(this.getUTCDate()) +
-              'T' +
+              "T" +
               f(this.getUTCHours()) +
-              ':' +
+              ":" +
               f(this.getUTCMinutes()) +
-              ':' +
+              ":" +
               f(this.getUTCSeconds()) +
-              'Z'
+              "Z"
           : null;
       };
 
@@ -216,13 +216,13 @@ nodeunit = (function () {
       indent,
       meta = {
         // table of character substitutions
-        '\b': '\\b',
-        '\t': '\\t',
-        '\n': '\\n',
-        '\f': '\\f',
-        '\r': '\\r',
+        "\b": "\\b",
+        "\t": "\\t",
+        "\n": "\\n",
+        "\f": "\\f",
+        "\r": "\\r",
         '"': '\\"',
-        '\\': '\\\\',
+        "\\": "\\\\",
       },
       rep;
 
@@ -237,9 +237,9 @@ nodeunit = (function () {
         ? '"' +
             string.replace(escapable, function (a) {
               var c = meta[a];
-              return typeof c === 'string'
+              return typeof c === "string"
                 ? c
-                : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+                : "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
             }) +
             '"'
         : '"' + string + '"';
@@ -260,8 +260,8 @@ nodeunit = (function () {
 
       if (
         value &&
-        typeof value === 'object' &&
-        typeof value.toJSON === 'function'
+        typeof value === "object" &&
+        typeof value.toJSON === "function"
       ) {
         value = value.toJSON(key);
       }
@@ -269,23 +269,23 @@ nodeunit = (function () {
       // If we were called with a replacer function, then call the replacer to
       // obtain a replacement value.
 
-      if (typeof rep === 'function') {
+      if (typeof rep === "function") {
         value = rep.call(holder, key, value);
       }
 
       // What happens next depends on the value's type.
 
       switch (typeof value) {
-        case 'string':
+        case "string":
           return quote(value);
 
-        case 'number':
+        case "number":
           // JSON numbers must be finite. Encode non-finite numbers as null.
 
-          return isFinite(value) ? String(value) : 'null';
+          return isFinite(value) ? String(value) : "null";
 
-        case 'boolean':
-        case 'null':
+        case "boolean":
+        case "null":
           // If the value is a boolean or null, convert it to a string. Note:
           // typeof null does not produce 'null'. The case is included here in
           // the remote chance that this gets fixed someday.
@@ -295,12 +295,12 @@ nodeunit = (function () {
         // If the type is 'object', we might be dealing with an object or an array or
         // null.
 
-        case 'object':
+        case "object":
           // Due to a specification blunder in ECMAScript, typeof null is 'object',
           // so watch out for that case.
 
           if (!value) {
-            return 'null';
+            return "null";
           }
 
           // Make an array to hold the partial results of stringifying this object value.
@@ -310,13 +310,13 @@ nodeunit = (function () {
 
           // Is the value an array?
 
-          if (Object.prototype.toString.apply(value) === '[object Array]') {
+          if (Object.prototype.toString.apply(value) === "[object Array]") {
             // The value is an array. Stringify every element. Use null as a placeholder
             // for non-JSON values.
 
             length = value.length;
             for (i = 0; i < length; i += 1) {
-              partial[i] = str(i, value) || 'null';
+              partial[i] = str(i, value) || "null";
             }
 
             // Join all of the elements together, separated with commas, and wrap them in
@@ -324,24 +324,24 @@ nodeunit = (function () {
 
             v =
               partial.length === 0
-                ? '[]'
+                ? "[]"
                 : gap
-                ? '[\n' + gap + partial.join(',\n' + gap) + '\n' + mind + ']'
-                : '[' + partial.join(',') + ']';
+                ? "[\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "]"
+                : "[" + partial.join(",") + "]";
             gap = mind;
             return v;
           }
 
           // If the replacer is an array, use it to select the members to be stringified.
 
-          if (rep && typeof rep === 'object') {
+          if (rep && typeof rep === "object") {
             length = rep.length;
             for (i = 0; i < length; i += 1) {
               k = rep[i];
-              if (typeof k === 'string') {
+              if (typeof k === "string") {
                 v = str(k, value);
                 if (v) {
-                  partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                  partial.push(quote(k) + (gap ? ": " : ":") + v);
                 }
               }
             }
@@ -352,7 +352,7 @@ nodeunit = (function () {
               if (Object.hasOwnProperty.call(value, k)) {
                 v = str(k, value);
                 if (v) {
-                  partial.push(quote(k) + (gap ? ': ' : ':') + v);
+                  partial.push(quote(k) + (gap ? ": " : ":") + v);
                 }
               }
             }
@@ -363,10 +363,10 @@ nodeunit = (function () {
 
           v =
             partial.length === 0
-              ? '{}'
+              ? "{}"
               : gap
-              ? '{\n' + gap + partial.join(',\n' + gap) + '\n' + mind + '}'
-              : '{' + partial.join(',') + '}';
+              ? "{\n" + gap + partial.join(",\n" + gap) + "\n" + mind + "}"
+              : "{" + partial.join(",") + "}";
           gap = mind;
           return v;
       }
@@ -374,7 +374,7 @@ nodeunit = (function () {
 
     // If the JSON object does not yet have a stringify method, give it one.
 
-    if (typeof JSON.stringify !== 'function') {
+    if (typeof JSON.stringify !== "function") {
       JSON.stringify = function (value, replacer, space) {
         // The stringify method takes a value and an optional replacer, and an optional
         // space parameter, and returns a JSON text. The replacer can be a function
@@ -383,19 +383,19 @@ nodeunit = (function () {
         // produce text that is more easily readable.
 
         var i;
-        gap = '';
-        indent = '';
+        gap = "";
+        indent = "";
 
         // If the space parameter is a number, make an indent string containing that
         // many spaces.
 
-        if (typeof space === 'number') {
+        if (typeof space === "number") {
           for (i = 0; i < space; i += 1) {
-            indent += ' ';
+            indent += " ";
           }
 
           // If the space parameter is a string, it will be used as the indent string.
-        } else if (typeof space === 'string') {
+        } else if (typeof space === "string") {
           indent = space;
         }
 
@@ -405,22 +405,22 @@ nodeunit = (function () {
         rep = replacer;
         if (
           replacer &&
-          typeof replacer !== 'function' &&
-          (typeof replacer !== 'object' || typeof replacer.length !== 'number')
+          typeof replacer !== "function" &&
+          (typeof replacer !== "object" || typeof replacer.length !== "number")
         ) {
-          throw new Error('JSON.stringify');
+          throw new Error("JSON.stringify");
         }
 
         // Make a fake root object containing our value under the key of ''.
         // Return the result of stringifying the value.
 
-        return str('', { '': value });
+        return str("", { "": value });
       };
     }
 
     // If the JSON object does not yet have a parse method, give it one.
 
-    if (typeof JSON.parse !== 'function') {
+    if (typeof JSON.parse !== "function") {
       JSON.parse = function (text, reviver) {
         // The parse method takes a text and an optional reviver function, and returns
         // a JavaScript value if the text is a valid JSON text.
@@ -434,7 +434,7 @@ nodeunit = (function () {
           var k,
             v,
             value = holder[key];
-          if (value && typeof value === 'object') {
+          if (value && typeof value === "object") {
             for (k in value) {
               if (Object.hasOwnProperty.call(value, k)) {
                 v = walk(value, k);
@@ -457,7 +457,7 @@ nodeunit = (function () {
         cx.lastIndex = 0;
         if (cx.test(text)) {
           text = text.replace(cx, function (a) {
-            return '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
+            return "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4);
           });
         }
 
@@ -477,12 +477,12 @@ nodeunit = (function () {
         if (
           /^[\],:{}\s]*$/.test(
             text
-              .replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+              .replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@")
               .replace(
                 /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,
-                ']'
+                "]"
               )
-              .replace(/(?:^|:|,)(?:\s*\[)+/g, '')
+              .replace(/(?:^|:|,)(?:\s*\[)+/g, "")
           )
         ) {
           // In the third stage we use the eval function to compile the text into a
@@ -490,17 +490,17 @@ nodeunit = (function () {
           // in JavaScript: it can begin a block or an object literal. We wrap the text
           // in parens to eliminate the ambiguity.
 
-          j = eval('(' + text + ')');
+          j = eval("(" + text + ")");
 
           // In the optional fourth stage, we recursively walk the new structure, passing
           // each name/value pair to a reviver function for possible transformation.
 
-          return typeof reviver === 'function' ? walk({ '': j }, '') : j;
+          return typeof reviver === "function" ? walk({ "": j }, "") : j;
         }
 
         // If the text is not JSON parseable, then a SyntaxError is thrown.
 
-        throw new SyntaxError('JSON.parse');
+        throw new SyntaxError("JSON.parse");
       };
     }
   })();
@@ -517,7 +517,7 @@ nodeunit = (function () {
     var root = this,
       previous_async = root.async;
 
-    if (typeof module !== 'undefined' && module.exports) {
+    if (typeof module !== "undefined" && module.exports) {
       module.exports = async;
     } else {
       root.async = async;
@@ -589,7 +589,7 @@ nodeunit = (function () {
 
     //// nextTick implementation with browser-compatible fallback ////
     async.nextTick = function (fn) {
-      if (typeof process === 'undefined' || !process.nextTick) {
+      if (typeof process === "undefined" || !process.nextTick) {
         setTimeout(fn, 0);
       } else {
         process.nextTick(fn);
@@ -1143,7 +1143,7 @@ nodeunit = (function () {
           args.concat([
             function (err) {
               var args = Array.prototype.slice.call(arguments, 1);
-              if (typeof console !== 'undefined') {
+              if (typeof console !== "undefined") {
                 if (err) {
                   if (console.error) {
                     console.error(err);
@@ -1159,8 +1159,8 @@ nodeunit = (function () {
         );
       };
     };
-    async.log = _console_fn('log');
-    async.dir = _console_fn('dir');
+    async.log = _console_fn("log");
+    async.dir = _console_fn("dir");
     /*async.info = _console_fn('info');
     async.warn = _console_fn('warn');
     async.error = _console_fn('error');*/
@@ -1221,7 +1221,7 @@ nodeunit = (function () {
     // new assert.AssertionError({message: message, actual: actual, expected: expected})
 
     assert.AssertionError = function AssertionError(options) {
-      this.name = 'AssertionError';
+      this.name = "AssertionError";
       this.message = options.message;
       this.actual = options.actual;
       this.expected = options.expected;
@@ -1245,14 +1245,14 @@ nodeunit = (function () {
 
     assert.AssertionError.prototype.toString = function () {
       if (this.message) {
-        return [this.name + ':', this.message].join(' ');
+        return [this.name + ":", this.message].join(" ");
       } else {
         return [
-          this.name + ':',
+          this.name + ":",
           JSON.stringify(this.expected),
           this.operator,
           JSON.stringify(this.actual),
-        ].join(' ');
+        ].join(" ");
       }
     };
 
@@ -1292,7 +1292,7 @@ nodeunit = (function () {
     // assert.strictEqual(true, guard, message_opt);.
 
     assert.ok = function ok(value, message) {
-      if (!!!value) fail(value, true, message, '==', assert.ok);
+      if (!!!value) fail(value, true, message, "==", assert.ok);
     };
 
     // 5. The equality assertion tests shallow, coercive equality with
@@ -1301,7 +1301,7 @@ nodeunit = (function () {
 
     assert.equal = function equal(actual, expected, message) {
       if (actual != expected)
-        fail(actual, expected, message, '==', assert.equal);
+        fail(actual, expected, message, "==", assert.equal);
     };
 
     // 6. The non-equality assertion tests for whether two objects are not equal
@@ -1309,7 +1309,7 @@ nodeunit = (function () {
 
     assert.notEqual = function notEqual(actual, expected, message) {
       if (actual == expected) {
-        fail(actual, expected, message, '!=', assert.notEqual);
+        fail(actual, expected, message, "!=", assert.notEqual);
       }
     };
 
@@ -1318,7 +1318,7 @@ nodeunit = (function () {
 
     assert.deepEqual = function deepEqual(actual, expected, message) {
       if (!_deepEqual(actual, expected)) {
-        fail(actual, expected, message, 'deepEqual', assert.deepEqual);
+        fail(actual, expected, message, "deepEqual", assert.deepEqual);
       }
     };
 
@@ -1333,7 +1333,7 @@ nodeunit = (function () {
 
         // 7.3. Other pairs that do not both pass typeof value == "object",
         // equivalence is determined by ==.
-      } else if (typeof actual != 'object' && typeof expected != 'object') {
+      } else if (typeof actual != "object" && typeof expected != "object") {
         return actual == expected;
 
         // 7.4. For all other Object pairs, including Array objects, equivalence is
@@ -1352,7 +1352,7 @@ nodeunit = (function () {
     }
 
     function isArguments(object) {
-      return Object.prototype.toString.call(object) == '[object Arguments]';
+      return Object.prototype.toString.call(object) == "[object Arguments]";
     }
 
     function objEquiv(a, b) {
@@ -1401,7 +1401,7 @@ nodeunit = (function () {
 
     assert.notDeepEqual = function notDeepEqual(actual, expected, message) {
       if (_deepEqual(actual, expected)) {
-        fail(actual, expected, message, 'notDeepEqual', assert.notDeepEqual);
+        fail(actual, expected, message, "notDeepEqual", assert.notDeepEqual);
       }
     };
 
@@ -1410,7 +1410,7 @@ nodeunit = (function () {
 
     assert.strictEqual = function strictEqual(actual, expected, message) {
       if (actual !== expected) {
-        fail(actual, expected, message, '===', assert.strictEqual);
+        fail(actual, expected, message, "===", assert.strictEqual);
       }
     };
 
@@ -1419,7 +1419,7 @@ nodeunit = (function () {
 
     assert.notStrictEqual = function notStrictEqual(actual, expected, message) {
       if (actual === expected) {
-        fail(actual, expected, message, '!==', assert.notStrictEqual);
+        fail(actual, expected, message, "!==", assert.notStrictEqual);
       }
     };
 
@@ -1428,11 +1428,11 @@ nodeunit = (function () {
         threw = false,
         typematters = true;
 
-      message = message || '';
+      message = message || "";
 
       //handle optional arguments
       if (arguments.length == 3) {
-        if (typeof err == 'string') {
+        if (typeof err == "string") {
           message = err;
           typematters = false;
         }
@@ -1449,16 +1449,16 @@ nodeunit = (function () {
 
       if (shouldThrow && !threw) {
         fail(
-          'Missing expected exception' +
-            (err && err.name ? ' (' + err.name + ').' : '.') +
-            (message ? ' ' + message : '')
+          "Missing expected exception" +
+            (err && err.name ? " (" + err.name + ")." : ".") +
+            (message ? " " + message : "")
         );
       }
       if (!shouldThrow && threw && typematters && exception instanceof err) {
         fail(
-          'Got unwanted exception' +
-            (err && err.name ? ' (' + err.name + ').' : '.') +
-            (message ? ' ' + message : '')
+          "Got unwanted exception" +
+            (err && err.name ? " (" + err.name + ")." : ".") +
+            (message ? " " + message : "")
         );
       }
       if (
@@ -1516,8 +1516,8 @@ nodeunit = (function () {
 
     exports.assertion = function (obj) {
       return {
-        method: obj.method || '',
-        message: obj.message || (obj.error && obj.error.message) || '',
+        method: obj.method || "",
+        message: obj.message || (obj.error && obj.error.message) || "",
         error: obj.error,
         passed: function () {
           return !this.error;
@@ -1605,9 +1605,9 @@ nodeunit = (function () {
         done: function (err) {
           if (expecting !== undefined && expecting !== a_list.length) {
             var e = new Error(
-              'Expected ' + expecting + ' assertions, ' + a_list.length + ' ran'
+              "Expected " + expecting + " assertions, " + a_list.length + " ran"
             );
-            var a1 = exports.assertion({ method: 'expect', error: e });
+            var a1 = exports.assertion({ method: "expect", error: e });
             a_list.push(a1);
             if (options.log) {
               async.nextTick(function () {
@@ -1631,9 +1631,9 @@ nodeunit = (function () {
             callback(null, a_list);
           });
         },
-        ok: wrapAssert('ok', 'ok', 2),
-        same: wrapAssert('same', 'deepEqual', 3),
-        equals: wrapAssert('equals', 'equal', 3),
+        ok: wrapAssert("ok", "ok", 2),
+        same: wrapAssert("same", "deepEqual", 3),
+        equals: wrapAssert("equals", "equal", 3),
         expect: function (num) {
           expecting = num;
         },
@@ -1662,10 +1662,10 @@ nodeunit = (function () {
         opt[name] = opt[name] || function () {};
       };
 
-      optionalCallback('moduleStart');
-      optionalCallback('moduleDone');
-      optionalCallback('testStart');
-      optionalCallback('testDone');
+      optionalCallback("moduleStart");
+      optionalCallback("moduleDone");
+      optionalCallback("testStart");
+      optionalCallback("testDone");
       //optionalCallback('log');
 
       // 'done' callback is not optional.
@@ -1755,10 +1755,10 @@ nodeunit = (function () {
 
           _name.toString = function () {
             // fallback for old one
-            return this.join(' - ');
+            return this.join(" - ");
           };
 
-          if (typeof prop === 'function') {
+          if (typeof prop === "function") {
             exports.runTest(_name, suite[k], opt, cb);
           } else {
             exports.runSuite(_name, suite[k], opt, cb);
@@ -1877,9 +1877,9 @@ nodeunit = (function () {
       var keys = _keys(group);
       for (var i = 0; i < keys.length; i++) {
         var k = keys[i];
-        if (typeof group[k] === 'function') {
+        if (typeof group[k] === "function") {
           tests[k] = wrapTest(setUp, tearDown, group[k]);
-        } else if (typeof group[k] === 'object') {
+        } else if (typeof group[k] === "object") {
           tests[k] = wrapGroup(setUp, tearDown, group[k]);
         }
       }
@@ -1923,7 +1923,7 @@ nodeunit = (function () {
      * Reporter info string
      */
 
-    exports.info = 'Browser-based test reporter';
+    exports.info = "Browser-based test reporter";
 
     /**
      * Run all tests within each module, reporting the results
@@ -1936,9 +1936,9 @@ nodeunit = (function () {
       var start = new Date().getTime();
 
       function setText(el, txt) {
-        if ('innerText' in el) {
+        if ("innerText" in el) {
           el.innerText = txt;
-        } else if ('textContent' in el) {
+        } else if ("textContent" in el) {
           el.textContent = txt;
         }
       }
@@ -1953,11 +1953,11 @@ nodeunit = (function () {
         return el;
       }
 
-      var header = getOrCreate('h1', 'nodeunit-header');
-      var banner = getOrCreate('h2', 'nodeunit-banner');
-      var userAgent = getOrCreate('h2', 'nodeunit-userAgent');
-      var tests = getOrCreate('ol', 'nodeunit-tests');
-      var result = getOrCreate('p', 'nodeunit-testresult');
+      var header = getOrCreate("h1", "nodeunit-header");
+      var banner = getOrCreate("h2", "nodeunit-banner");
+      var userAgent = getOrCreate("h2", "nodeunit-userAgent");
+      var tests = getOrCreate("ol", "nodeunit-tests");
+      var result = getOrCreate("p", "nodeunit-testresult");
 
       setText(userAgent, navigator.userAgent);
 
@@ -1970,41 +1970,41 @@ nodeunit = (function () {
             results.appendChild(module);*/
         },
         testDone: function (name, assertions) {
-          var test = document.createElement('li');
-          var strong = document.createElement('strong');
+          var test = document.createElement("li");
+          var strong = document.createElement("strong");
           strong.innerHTML =
             name +
             ' <b style="color: black;">(' +
             '<b class="fail">' +
             assertions.failures() +
-            '</b>, ' +
+            "</b>, " +
             '<b class="pass">' +
             assertions.passes() +
-            '</b>, ' +
+            "</b>, " +
             assertions.length +
-            ')</b>';
-          test.className = assertions.failures() ? 'fail' : 'pass';
+            ")</b>";
+          test.className = assertions.failures() ? "fail" : "pass";
           test.appendChild(strong);
 
-          var aList = document.createElement('ol');
-          aList.style.display = 'none';
+          var aList = document.createElement("ol");
+          aList.style.display = "none";
           test.onclick = function () {
             var d = aList.style.display;
-            aList.style.display = d == 'none' ? 'block' : 'none';
+            aList.style.display = d == "none" ? "block" : "none";
           };
           for (var i = 0; i < assertions.length; i++) {
-            var li = document.createElement('li');
+            var li = document.createElement("li");
             var a = assertions[i];
             if (a.failed()) {
               li.innerHTML =
-                (a.message || a.method || 'no message') +
-                '<pre>' +
+                (a.message || a.method || "no message") +
+                "<pre>" +
                 (a.error.stack || a.error) +
-                '</pre>';
-              li.className = 'fail';
+                "</pre>";
+              li.className = "fail";
             } else {
-              li.innerHTML = a.message || a.method || 'no message';
-              li.className = 'pass';
+              li.innerHTML = a.message || a.method || "no message";
+              li.className = "pass";
             }
             aList.appendChild(li);
           }
@@ -2016,19 +2016,19 @@ nodeunit = (function () {
           var duration = end - start;
 
           var failures = assertions.failures();
-          banner.className = failures ? 'fail' : 'pass';
+          banner.className = failures ? "fail" : "pass";
 
           result.innerHTML =
-            'Tests completed in ' +
+            "Tests completed in " +
             duration +
             ' milliseconds.<br/><span class="passed">' +
             assertions.passes() +
-            '</span> assertions of ' +
+            "</span> assertions of " +
             '<span class="all">' +
             assertions.length +
-            '<span> passed, ' +
+            "<span> passed, " +
             assertions.failures() +
-            ' failed.';
+            " failed.";
         },
       });
     };

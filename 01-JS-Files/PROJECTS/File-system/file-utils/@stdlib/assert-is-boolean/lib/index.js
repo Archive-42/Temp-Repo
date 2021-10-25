@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test if a value is a boolean.
@@ -55,15 +55,15 @@
 
 // MODULES //
 
-var setReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
-var isBoolean = require('./main.js');
-var isPrimitive = require('./primitive.js');
-var isObject = require('./object.js');
+var setReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
+var isBoolean = require("./main.js");
+var isPrimitive = require("./primitive.js");
+var isObject = require("./object.js");
 
 // MAIN //
 
-setReadOnly(isBoolean, 'isPrimitive', isPrimitive);
-setReadOnly(isBoolean, 'isObject', isObject);
+setReadOnly(isBoolean, "isPrimitive", isPrimitive);
+setReadOnly(isBoolean, "isObject", isObject);
 
 // EXPORTS //
 

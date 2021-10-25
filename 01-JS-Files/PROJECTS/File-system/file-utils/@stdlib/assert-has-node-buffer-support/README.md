@@ -39,7 +39,7 @@ npm install @stdlib/assert-has-node-buffer-support
 ## Usage
 
 ```javascript
-var hasNodeBufferSupport = require('@stdlib/assert-has-node-buffer-support');
+var hasNodeBufferSupport = require("@stdlib/assert-has-node-buffer-support");
 ```
 
 #### hasNodeBufferSupport()
@@ -62,13 +62,13 @@ var bool = hasNodeBufferSupport();
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var hasNodeBufferSupport = require('@stdlib/assert-has-node-buffer-support');
+var hasNodeBufferSupport = require("@stdlib/assert-has-node-buffer-support");
 
 var bool = hasNodeBufferSupport();
 if (bool) {
-  console.log('Environment has Buffer support.');
+  console.log("Environment has Buffer support.");
 } else {
-  console.log('Environment lacks Buffer support.');
+  console.log("Environment lacks Buffer support.");
 }
 ```
 

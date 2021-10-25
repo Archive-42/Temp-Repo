@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test if a value is a string.
@@ -56,15 +56,15 @@
 
 // MODULES //
 
-var setReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
-var isString = require('./main.js');
-var isPrimitive = require('./primitive.js');
-var isObject = require('./object.js');
+var setReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
+var isString = require("./main.js");
+var isPrimitive = require("./primitive.js");
+var isObject = require("./object.js");
 
 // MAIN //
 
-setReadOnly(isString, 'isPrimitive', isPrimitive);
-setReadOnly(isString, 'isObject', isObject);
+setReadOnly(isString, "isPrimitive", isPrimitive);
+setReadOnly(isString, "isObject", isObject);
 
 // EXPORTS //
 

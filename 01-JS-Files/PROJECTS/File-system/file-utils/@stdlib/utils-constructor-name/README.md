@@ -39,7 +39,7 @@ npm install @stdlib/utils-constructor-name
 ## Usage
 
 ```javascript
-var constructorName = require('@stdlib/utils-constructor-name');
+var constructorName = require("@stdlib/utils-constructor-name");
 ```
 
 #### constructorName( value )
@@ -47,7 +47,7 @@ var constructorName = require('@stdlib/utils-constructor-name');
 Returns the name of a value's constructor.
 
 ```javascript
-var v = constructorName('a');
+var v = constructorName("a");
 // returns 'String'
 
 v = constructorName(5);
@@ -60,55 +60,55 @@ v = constructorName(new Beep());
 // returns 'Beep'
 ```
 
-| description | value | constructor | notes |
-| --- | --- | --- | --- |
-| string | `'beep'` | `'String'` |  |
-| number | `5` | `'Number'` |  |
-| NaN | `NaN` | `'Number'` |  |
-| infinity | `+infinity`/`-infinity` | `'Number'` |  |
-| boolean | `true`/`false` | `'Boolean'` |  |
-| null | `null` | `'Null'` |  |
-| undefined | `undefined` | `'Undefined'` |  |
-| array | `['beep', 5]` | `'Array'` |  |
-| object | `{'foo': 'bar'}` | `'Object'` |  |
-| function | `function (){}` | `'Function'` |  |
-| symbol | `Symbol()` | `'Symbol'` | ES2015 |
-| regexp | `/./` | `'RegExp'` | Android 4.1+ |
-| String | `new String('beep')` | `'String'` |  |
-| Number | `new Number(5)` | `'Number'` |  |
-| Boolean | `new Boolean(false)` | `'Boolean'` |  |
-| Object | `new Object()` | `'Object'` |  |
-| Array | `new Array()` | `'Array'` |  |
-| Int8Array | `new Int8Array()` | `'Int8Array'` |  |
-| Uint8Array | `new Uint8Array()` | `'Uint8Array'` |  |
-| Uint8ClampedArray | `new Uint8ClampedArray()` | `'Uint8ClampedArray'` |  |
-| Int16Array | `new Int16Array()` | `'Int16Array'` |  |
-| Uint16Array | `new Uint16Array()` | `'Uint16Array'` |  |
-| Int32Array | `new Int32Array()` | `'Int32Array'` |  |
-| Uint32Array | `new Uint32Array()` | `'Uint32Array'` |  |
-| Float32Array | `new Float32Array()` | `'Float32Array'` |  |
-| Float64Array | `new Float64Array()` | `'Float64Array'` |  |
-| ArrayBuffer | `new ArrayBuffer()` | `'ArrayBuffer'` |  |
-| Buffer | `new Buffer()` | `'Buffer'` | Node.js |
-| Date | `new Date()` | `'Date'` |  |
-| RegExp | `new RegExp('.')` | `'RegExp'` | Android 4.1+ |
-| Function | `new Function('x', 'return x')` | `'Function'` |  |
-| Map | `new Map()` | `'Map'` | ES2015 |
-| WeakMap | `new WeakMap()` | `'WeakMap'` | ES2015 |
-| Set | `new Set()` | `'Set'` | ES2015 |
-| WeakSet | `new WeakSet()` | `'WeakSet'` | ES2015 |
-| Error | `new Error()` | `'Error'` |  |
-| TypeError | `new TypeError()` | `'TypeError'` |  |
-| SyntaxError | `new SyntaxError()` | `'SyntaxError'` |  |
-| ReferenceError | `new ReferenceError()` | `'ReferenceError'` |  |
-| URIError | `new URIError()` | `'URIError'` |  |
-| RangeError | `new RangeError()` | `'RangeError'` |  |
-| EvalError | `new EvalError()` | `'EvalError'` |  |
-| Math | `Math` | `'Math'` |  |
-| JSON | `JSON` | `'JSON'` | IE8+ |
-| arguments | `(function(){return arguments;})()` | `'Arguments'` | IE9+ |
-| custom constructor | `new Beep()` | `'Beep'` |  |
-| anonymous constructor | `new (function(){})()` | `''` |  |
+| description           | value                               | constructor           | notes        |
+| --------------------- | ----------------------------------- | --------------------- | ------------ |
+| string                | `'beep'`                            | `'String'`            |              |
+| number                | `5`                                 | `'Number'`            |              |
+| NaN                   | `NaN`                               | `'Number'`            |              |
+| infinity              | `+infinity`/`-infinity`             | `'Number'`            |              |
+| boolean               | `true`/`false`                      | `'Boolean'`           |              |
+| null                  | `null`                              | `'Null'`              |              |
+| undefined             | `undefined`                         | `'Undefined'`         |              |
+| array                 | `['beep', 5]`                       | `'Array'`             |              |
+| object                | `{'foo': 'bar'}`                    | `'Object'`            |              |
+| function              | `function (){}`                     | `'Function'`          |              |
+| symbol                | `Symbol()`                          | `'Symbol'`            | ES2015       |
+| regexp                | `/./`                               | `'RegExp'`            | Android 4.1+ |
+| String                | `new String('beep')`                | `'String'`            |              |
+| Number                | `new Number(5)`                     | `'Number'`            |              |
+| Boolean               | `new Boolean(false)`                | `'Boolean'`           |              |
+| Object                | `new Object()`                      | `'Object'`            |              |
+| Array                 | `new Array()`                       | `'Array'`             |              |
+| Int8Array             | `new Int8Array()`                   | `'Int8Array'`         |              |
+| Uint8Array            | `new Uint8Array()`                  | `'Uint8Array'`        |              |
+| Uint8ClampedArray     | `new Uint8ClampedArray()`           | `'Uint8ClampedArray'` |              |
+| Int16Array            | `new Int16Array()`                  | `'Int16Array'`        |              |
+| Uint16Array           | `new Uint16Array()`                 | `'Uint16Array'`       |              |
+| Int32Array            | `new Int32Array()`                  | `'Int32Array'`        |              |
+| Uint32Array           | `new Uint32Array()`                 | `'Uint32Array'`       |              |
+| Float32Array          | `new Float32Array()`                | `'Float32Array'`      |              |
+| Float64Array          | `new Float64Array()`                | `'Float64Array'`      |              |
+| ArrayBuffer           | `new ArrayBuffer()`                 | `'ArrayBuffer'`       |              |
+| Buffer                | `new Buffer()`                      | `'Buffer'`            | Node.js      |
+| Date                  | `new Date()`                        | `'Date'`              |              |
+| RegExp                | `new RegExp('.')`                   | `'RegExp'`            | Android 4.1+ |
+| Function              | `new Function('x', 'return x')`     | `'Function'`          |              |
+| Map                   | `new Map()`                         | `'Map'`               | ES2015       |
+| WeakMap               | `new WeakMap()`                     | `'WeakMap'`           | ES2015       |
+| Set                   | `new Set()`                         | `'Set'`               | ES2015       |
+| WeakSet               | `new WeakSet()`                     | `'WeakSet'`           | ES2015       |
+| Error                 | `new Error()`                       | `'Error'`             |              |
+| TypeError             | `new TypeError()`                   | `'TypeError'`         |              |
+| SyntaxError           | `new SyntaxError()`                 | `'SyntaxError'`       |              |
+| ReferenceError        | `new ReferenceError()`              | `'ReferenceError'`    |              |
+| URIError              | `new URIError()`                    | `'URIError'`          |              |
+| RangeError            | `new RangeError()`                  | `'RangeError'`        |              |
+| EvalError             | `new EvalError()`                   | `'EvalError'`         |              |
+| Math                  | `Math`                              | `'Math'`              |              |
+| JSON                  | `JSON`                              | `'JSON'`              | IE8+         |
+| arguments             | `(function(){return arguments;})()` | `'Arguments'`         | IE9+         |
+| custom constructor    | `new Beep()`                        | `'Beep'`              |              |
+| anonymous constructor | `new (function(){})()`              | `''`                  |              |
 
 </section>
 
@@ -146,25 +146,25 @@ v = constructorName(new Beep());
 <!-- eslint-disable no-restricted-syntax, no-buffer-constructor, func-style, func-names -->
 
 ```javascript
-var Float32Array = require('@stdlib/array-float32');
-var Float64Array = require('@stdlib/array-float64');
-var Int8Array = require('@stdlib/array-int8');
-var Int16Array = require('@stdlib/array-int16');
-var Int32Array = require('@stdlib/array-int32');
-var Uint8Array = require('@stdlib/array-uint8');
-var Uint8ClampedArray = require('@stdlib/array-uint8c');
-var Uint16Array = require('@stdlib/array-uint16');
-var Uint32Array = require('@stdlib/array-uint32');
-var ArrayBuffer = require('@stdlib/array-buffer');
-var Buffer = require('@stdlib/buffer-ctor');
-var Symbol = require('@stdlib/symbol-ctor');
-var constructorName = require('@stdlib/utils-constructor-name');
+var Float32Array = require("@stdlib/array-float32");
+var Float64Array = require("@stdlib/array-float64");
+var Int8Array = require("@stdlib/array-int8");
+var Int16Array = require("@stdlib/array-int16");
+var Int32Array = require("@stdlib/array-int32");
+var Uint8Array = require("@stdlib/array-uint8");
+var Uint8ClampedArray = require("@stdlib/array-uint8c");
+var Uint16Array = require("@stdlib/array-uint16");
+var Uint32Array = require("@stdlib/array-uint32");
+var ArrayBuffer = require("@stdlib/array-buffer");
+var Buffer = require("@stdlib/buffer-ctor");
+var Symbol = require("@stdlib/symbol-ctor");
+var constructorName = require("@stdlib/utils-constructor-name");
 
 function noop() {
   // Do nothing...
 }
 
-var v = constructorName('a');
+var v = constructorName("a");
 // returns 'String'
 
 v = constructorName(5);
@@ -212,7 +212,7 @@ v = constructorName(new Set());
 v = constructorName(new WeakSet());
 // returns 'WeakSet'
 
-v = constructorName(Symbol('beep'));
+v = constructorName(Symbol("beep"));
 // returns 'Symbol'
 
 v = constructorName(new Error());
@@ -266,7 +266,7 @@ v = constructorName(new Float64Array());
 v = constructorName(new ArrayBuffer());
 // returns 'ArrayBuffer'
 
-v = constructorName(new Buffer('beep'));
+v = constructorName(new Buffer("beep"));
 // returns 'Buffer'
 
 v = constructorName(Math);

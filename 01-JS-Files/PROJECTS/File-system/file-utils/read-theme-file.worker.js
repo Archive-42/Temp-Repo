@@ -1,23 +1,23 @@
-'use strict';
+"use strict";
 
-require('regenerator-runtime/runtime');
+require("regenerator-runtime/runtime");
 
-var _path = _interopRequireDefault(require('path'));
+var _path = _interopRequireDefault(require("path"));
 
-var _tsNode = require('ts-node');
+var _tsNode = require("ts-node");
 
-var _utils = require('@chakra-ui/utils');
+var _utils = require("@chakra-ui/utils");
 
-var _createThemeTypingsInterface = require('../command/tokens/create-theme-typings-interface');
+var _createThemeTypingsInterface = require("../command/tokens/create-theme-typings-interface");
 
-var _config = require('../command/tokens/config');
+var _config = require("../command/tokens/config");
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : { default: obj };
 }
 
 function _getRequireWildcardCache() {
-  if (typeof WeakMap !== 'function') return null;
+  if (typeof WeakMap !== "function") return null;
   var cache = new WeakMap();
   _getRequireWildcardCache = function _getRequireWildcardCache() {
     return cache;
@@ -29,7 +29,7 @@ function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
     return obj;
   }
-  if (obj === null || (typeof obj !== 'object' && typeof obj !== 'function')) {
+  if (obj === null || (typeof obj !== "object" && typeof obj !== "function")) {
     return { default: obj };
   }
   var cache = _getRequireWildcardCache();
@@ -51,7 +51,7 @@ function _interopRequireWildcard(obj) {
       }
     }
   }
-  newObj['default'] = obj;
+  newObj["default"] = obj;
   if (cache) {
     cache.set(obj, newObj);
   }
@@ -80,10 +80,10 @@ function _asyncToGenerator(fn) {
     return new Promise(function (resolve, reject) {
       var gen = fn.apply(self, args);
       function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, 'next', value);
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
       }
       function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, 'throw', err);
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
       }
       _next(undefined);
     });
@@ -107,36 +107,36 @@ function _readTheme() {
         while (1) {
           switch ((_context.prev = _context.next)) {
             case 0:
-              absoluteThemePath = _path['default'].join(
+              absoluteThemePath = _path["default"].join(
                 process.cwd(),
                 themeFilePath
               );
               (0, _tsNode.register)({
-                project: _path['default'].join(
+                project: _path["default"].join(
                   __dirname,
-                  '..',
-                  '..',
-                  'bin',
-                  'tsconfig.json'
+                  "..",
+                  "..",
+                  "bin",
+                  "tsconfig.json"
                 ),
-                dir: _path['default'].basename(absoluteThemePath),
+                dir: _path["default"].basename(absoluteThemePath),
               });
               _context.next = 4;
-              return Promise.resolve('' + absoluteThemePath).then(function (s) {
+              return Promise.resolve("" + absoluteThemePath).then(function (s) {
                 return _interopRequireWildcard(require(s));
               });
 
             case 4:
               module = _context.sent;
               return _context.abrupt(
-                'return',
-                (_module$default = module['default']) != null
+                "return",
+                (_module$default = module["default"]) != null
                   ? _module$default
                   : module.theme
               );
 
             case 6:
-            case 'end':
+            case "end":
               return _context.stop();
           }
         }
@@ -165,7 +165,7 @@ function _run() {
                 break;
               }
 
-              throw new Error('No path to theme file provided.');
+              throw new Error("No path to theme file provided.");
 
             case 3:
               _context2.next = 5;
@@ -180,7 +180,7 @@ function _run() {
               }
 
               throw new Error(
-                'Theme not found in default or named `theme` export'
+                "Theme not found in default or named `theme` export"
               );
 
             case 8:
@@ -200,7 +200,7 @@ function _run() {
               }
 
             case 12:
-            case 'end':
+            case "end":
               return _context2.stop();
           }
         }
@@ -210,7 +210,7 @@ function _run() {
   return _run.apply(this, arguments);
 }
 
-run()['catch'](function (e) {
+run()["catch"](function (e) {
   process.stderr.write(e.message);
   process.exit(1);
 });

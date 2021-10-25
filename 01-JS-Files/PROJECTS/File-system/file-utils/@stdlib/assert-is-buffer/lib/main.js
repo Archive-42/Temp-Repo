@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isObjectLike = require('@stdlib/assert-is-object-like');
+var isObjectLike = require("@stdlib/assert-is-object-like");
 
 // MAIN //
 
@@ -53,7 +53,7 @@ function isBuffer(value) {
     (value._isBuffer || // for envs missing Object.prototype.constructor (e.g., Safari 5-7)
       (value.constructor &&
         // WARNING: `typeof` is not a foolproof check, as certain envs consider RegExp and NodeList instances to be functions
-        typeof value.constructor.isBuffer === 'function' &&
+        typeof value.constructor.isBuffer === "function" &&
         value.constructor.isBuffer(value)))
   );
 }

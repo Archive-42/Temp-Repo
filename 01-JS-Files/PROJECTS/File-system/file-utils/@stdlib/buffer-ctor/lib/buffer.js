@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
-var ctor = require('buffer').Buffer; // eslint-disable-line stdlib/require-globals
+var ctor = require("buffer").Buffer; // eslint-disable-line stdlib/require-globals
 
 // EXPORTS //
 

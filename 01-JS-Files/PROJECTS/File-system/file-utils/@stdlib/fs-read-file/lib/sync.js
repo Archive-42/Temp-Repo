@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var readfileSync = require('fs').readFileSync; // eslint-disable-line no-sync
+var readfileSync = require("fs").readFileSync; // eslint-disable-line no-sync
 
 // MAIN //
 

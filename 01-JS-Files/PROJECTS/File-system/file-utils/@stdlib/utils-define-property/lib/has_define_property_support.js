@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var defineProperty = require('./define_property.js');
+var defineProperty = require("./define_property.js");
 
 // MAIN //
 
@@ -37,7 +37,7 @@ var defineProperty = require('./define_property.js');
 function hasDefinePropertySupport() {
   // Test basic support...
   try {
-    defineProperty({}, 'x', {});
+    defineProperty({}, "x", {});
     return true;
   } catch (err) {
     // eslint-disable-line no-unused-vars

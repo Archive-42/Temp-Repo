@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import hasSymbolSupport = require('./index');
+import hasSymbolSupport = require("./index");
 
 // TESTS //
 

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var resolve = require('path').resolve;
+var resolve = require("path").resolve;
 
 // MAIN //
 
@@ -31,7 +31,7 @@ var resolve = require('path').resolve;
  * @constant
  * @type {string}
  */
-var dir = resolve(__dirname, '..');
+var dir = resolve(__dirname, "..");
 
 // EXPORTS //
 

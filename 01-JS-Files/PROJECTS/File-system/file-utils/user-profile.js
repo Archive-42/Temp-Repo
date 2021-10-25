@@ -20,28 +20,28 @@
    * the `keyup` or `input` event. Input is preferred but lacks support
    * in legacy browsers.
    */
-  if ('oninput' in document.createElement('input')) {
-    inputEvent = 'input';
+  if ("oninput" in document.createElement("input")) {
+    inputEvent = "input";
   } else {
-    inputEvent = 'keyup';
+    inputEvent = "keyup";
   }
 
   function generatePassword() {
-    if (typeof zxcvbn !== 'function') {
+    if (typeof zxcvbn !== "function") {
       setTimeout(generatePassword, 50);
     } else {
-      $pass1.val($pass1.data('pw'));
-      $pass1.trigger('pwupdate').trigger('wp-check-valid-field');
-      if (1 !== parseInt($toggleButton.data('start-masked'), 10)) {
-        $pass1Wrap.addClass('show-password');
+      $pass1.val($pass1.data("pw"));
+      $pass1.trigger("pwupdate").trigger("wp-check-valid-field");
+      if (1 !== parseInt($toggleButton.data("start-masked"), 10)) {
+        $pass1Wrap.addClass("show-password");
       } else {
-        $toggleButton.trigger('click');
+        $toggleButton.trigger("click");
       }
     }
   }
 
   function bindPass1() {
-    var passStrength = $('#pass-strength-result')[0];
+    var passStrength = $("#pass-strength-result")[0];
 
     currentPass = $pass1.val();
 
@@ -49,29 +49,29 @@
 
     $pass1Text = $('<input type="text"/>')
       .attr({
-        id: 'pass1-text',
-        name: 'pass1-text',
-        autocomplete: 'off',
+        id: "pass1-text",
+        name: "pass1-text",
+        autocomplete: "off",
       })
       .addClass($pass1[0].className)
-      .data('pw', $pass1.data('pw'))
+      .data("pw", $pass1.data("pw"))
       .val($pass1.val())
       .on(inputEvent, function () {
         if ($pass1Text.val() === currentPass) {
           return;
         }
         $pass2.val($pass1Text.val());
-        $pass1.val($pass1Text.val()).trigger('pwupdate');
+        $pass1.val($pass1Text.val()).trigger("pwupdate");
         currentPass = $pass1Text.val();
       });
 
     $pass1.after($pass1Text);
 
-    if (1 === parseInt($pass1.data('reveal'), 10)) {
+    if (1 === parseInt($pass1.data("reveal"), 10)) {
       generatePassword();
     }
 
-    $pass1.on(inputEvent + ' pwupdate', function () {
+    $pass1.on(inputEvent + " pwupdate", function () {
       if ($pass1.val() === currentPass) {
         return;
       }
@@ -80,20 +80,20 @@
       if ($pass1Text.val() !== currentPass) {
         $pass1Text.val(currentPass);
       }
-      $pass1.add($pass1Text).removeClass('short bad good strong');
+      $pass1.add($pass1Text).removeClass("short bad good strong");
 
       if (passStrength.className) {
         $pass1.add($pass1Text).addClass(passStrength.className);
         if (
-          'short' === passStrength.className ||
-          'bad' === passStrength.className
+          "short" === passStrength.className ||
+          "bad" === passStrength.className
         ) {
-          if (!$weakCheckbox.prop('checked')) {
-            $submitButtons.prop('disabled', true);
+          if (!$weakCheckbox.prop("checked")) {
+            $submitButtons.prop("disabled", true);
           }
           $weakRow.show();
         } else {
-          $submitButtons.prop('disabled', false);
+          $submitButtons.prop("disabled", false);
           $weakRow.hide();
         }
       }
@@ -102,27 +102,27 @@
 
   function resetToggle() {
     $toggleButton
-      .data('toggle', 0)
+      .data("toggle", 0)
       .attr({
-        'aria-label': userProfileL10n.ariaHide,
+        "aria-label": userProfileL10n.ariaHide,
       })
-      .find('.text')
+      .find(".text")
       .text(userProfileL10n.hide)
       .end()
-      .find('.dashicons')
-      .removeClass('dashicons-visibility')
-      .addClass('dashicons-hidden');
+      .find(".dashicons")
+      .removeClass("dashicons-visibility")
+      .addClass("dashicons-hidden");
 
     $pass1Text.focus();
 
-    $pass1Label.attr('for', 'pass1-text');
+    $pass1Label.attr("for", "pass1-text");
   }
 
   function bindToggleButton() {
-    $toggleButton = $pass1Row.find('.wp-hide-pw');
-    $toggleButton.show().on('click', function () {
-      if (1 === parseInt($toggleButton.data('toggle'), 10)) {
-        $pass1Wrap.addClass('show-password');
+    $toggleButton = $pass1Row.find(".wp-hide-pw");
+    $toggleButton.show().on("click", function () {
+      if (1 === parseInt($toggleButton.data("toggle"), 10)) {
+        $pass1Wrap.addClass("show-password");
 
         resetToggle();
 
@@ -130,22 +130,22 @@
           $pass1Text[0].setSelectionRange(0, 100);
         }
       } else {
-        $pass1Wrap.removeClass('show-password');
+        $pass1Wrap.removeClass("show-password");
         $toggleButton
-          .data('toggle', 1)
+          .data("toggle", 1)
           .attr({
-            'aria-label': userProfileL10n.ariaShow,
+            "aria-label": userProfileL10n.ariaShow,
           })
-          .find('.text')
+          .find(".text")
           .text(userProfileL10n.show)
           .end()
-          .find('.dashicons')
-          .removeClass('dashicons-hidden')
-          .addClass('dashicons-visibility');
+          .find(".dashicons")
+          .removeClass("dashicons-hidden")
+          .addClass("dashicons-visibility");
 
         $pass1.focus();
 
-        $pass1Label.attr('for', 'pass1');
+        $pass1Label.attr("for", "pass1");
 
         if (!_.isUndefined($pass1[0].setSelectionRange)) {
           $pass1[0].setSelectionRange(0, 100);
@@ -157,25 +157,25 @@
   function bindPasswordForm() {
     var $passwordWrapper, $generateButton, $cancelButton;
 
-    $pass1Row = $('.user-pass1-wrap');
-    $pass1Label = $pass1Row.find('th label').attr('for', 'pass1-text');
+    $pass1Row = $(".user-pass1-wrap");
+    $pass1Label = $pass1Row.find("th label").attr("for", "pass1-text");
 
     // hide this
-    $('.user-pass2-wrap').hide();
+    $(".user-pass2-wrap").hide();
 
-    $submitButton = $('#submit').on('click', function () {
+    $submitButton = $("#submit").on("click", function () {
       updateLock = false;
     });
 
-    $submitButtons = $submitButton.add(' #createusersub');
+    $submitButtons = $submitButton.add(" #createusersub");
 
-    $weakRow = $('.pw-weak');
-    $weakCheckbox = $weakRow.find('.pw-checkbox');
+    $weakRow = $(".pw-weak");
+    $weakCheckbox = $weakRow.find(".pw-checkbox");
     $weakCheckbox.change(function () {
-      $submitButtons.prop('disabled', !$weakCheckbox.prop('checked'));
+      $submitButtons.prop("disabled", !$weakCheckbox.prop("checked"));
     });
 
-    $pass1 = $('#pass1');
+    $pass1 = $("#pass1");
     if ($pass1.length) {
       bindPass1();
     }
@@ -186,24 +186,24 @@
      * This fixes the issue by copying any changes from the hidden
      * pass2 field to the pass1 field, then running check_pass_strength.
      */
-    $pass2 = $('#pass2').on(inputEvent, function () {
+    $pass2 = $("#pass2").on(inputEvent, function () {
       if ($pass2.val().length > 0) {
         $pass1.val($pass2.val());
-        $pass2.val('');
-        currentPass = '';
-        $pass1.trigger('pwupdate');
+        $pass2.val("");
+        currentPass = "";
+        $pass1.trigger("pwupdate");
       }
     });
 
     // Disable hidden inputs to prevent autofill and submission.
-    if ($pass1.is(':hidden')) {
-      $pass1.prop('disabled', true);
-      $pass2.prop('disabled', true);
-      $pass1Text.prop('disabled', true);
+    if ($pass1.is(":hidden")) {
+      $pass1.prop("disabled", true);
+      $pass2.prop("disabled", true);
+      $pass1Text.prop("disabled", true);
     }
 
-    $passwordWrapper = $pass1Row.find('.wp-pwd');
-    $generateButton = $pass1Row.find('button.wp-generate-pw');
+    $passwordWrapper = $pass1Row.find(".wp-pwd");
+    $generateButton = $pass1Row.find("button.wp-generate-pw");
 
     bindToggleButton();
 
@@ -212,16 +212,16 @@
     }
 
     $generateButton.show();
-    $generateButton.on('click', function () {
+    $generateButton.on("click", function () {
       updateLock = true;
 
       $generateButton.hide();
       $passwordWrapper.show();
 
       // Enable the inputs when showing.
-      $pass1.attr('disabled', false);
-      $pass2.attr('disabled', false);
-      $pass1Text.attr('disabled', false);
+      $pass1.attr("disabled", false);
+      $pass2.attr("disabled", false);
+      $pass1Text.attr("disabled", false);
 
       if ($pass1Text.val().length === 0) {
         generatePassword();
@@ -235,50 +235,50 @@
       }, 0);
     });
 
-    $cancelButton = $pass1Row.find('button.wp-cancel-pw');
-    $cancelButton.on('click', function () {
+    $cancelButton = $pass1Row.find("button.wp-cancel-pw");
+    $cancelButton.on("click", function () {
       updateLock = false;
 
       // Clear any entered password.
-      $pass1Text.val('');
+      $pass1Text.val("");
 
       // Generate a new password.
-      wp.ajax.post('generate-password').done(function (data) {
-        $pass1.data('pw', data);
+      wp.ajax.post("generate-password").done(function (data) {
+        $pass1.data("pw", data);
       });
 
       $generateButton.show();
       $passwordWrapper.hide();
 
       // Disable the inputs when hiding to prevent autofill and submission.
-      $pass1.prop('disabled', true);
-      $pass2.prop('disabled', true);
-      $pass1Text.prop('disabled', true);
+      $pass1.prop("disabled", true);
+      $pass2.prop("disabled", true);
+      $pass1Text.prop("disabled", true);
 
       resetToggle();
 
       // Clear password field to prevent update
-      $pass1.val('').trigger('pwupdate');
-      $submitButtons.prop('disabled', false);
+      $pass1.val("").trigger("pwupdate");
+      $submitButtons.prop("disabled", false);
     });
 
-    $pass1Row.closest('form').on('submit', function () {
+    $pass1Row.closest("form").on("submit", function () {
       updateLock = false;
 
-      $pass1.prop('disabled', false);
-      $pass2.prop('disabled', false);
+      $pass1.prop("disabled", false);
+      $pass2.prop("disabled", false);
       $pass2.val($pass1.val());
-      $pass1Wrap.removeClass('show-password');
+      $pass1Wrap.removeClass("show-password");
     });
   }
 
   function check_pass_strength() {
-    var pass1 = $('#pass1').val(),
+    var pass1 = $("#pass1").val(),
       strength;
 
-    $('#pass-strength-result').removeClass('short bad good strong');
+    $("#pass-strength-result").removeClass("short bad good strong");
     if (!pass1) {
-      $('#pass-strength-result').html('&nbsp;');
+      $("#pass-strength-result").html("&nbsp;");
       return;
     }
 
@@ -290,19 +290,19 @@
 
     switch (strength) {
       case 2:
-        $('#pass-strength-result').addClass('bad').html(pwsL10n.bad);
+        $("#pass-strength-result").addClass("bad").html(pwsL10n.bad);
         break;
       case 3:
-        $('#pass-strength-result').addClass('good').html(pwsL10n.good);
+        $("#pass-strength-result").addClass("good").html(pwsL10n.good);
         break;
       case 4:
-        $('#pass-strength-result').addClass('strong').html(pwsL10n.strong);
+        $("#pass-strength-result").addClass("strong").html(pwsL10n.strong);
         break;
       case 5:
-        $('#pass-strength-result').addClass('short').html(pwsL10n.mismatch);
+        $("#pass-strength-result").addClass("short").html(pwsL10n.mismatch);
         break;
       default:
-        $('#pass-strength-result').addClass('short').html(pwsL10n['short']);
+        $("#pass-strength-result").addClass("short").html(pwsL10n["short"]);
     }
   }
 
@@ -311,36 +311,36 @@
       $stylesheet,
       user_id,
       current_user_id,
-      select = $('#display_name');
+      select = $("#display_name");
 
-    $('#pass1')
-      .val('')
-      .on(inputEvent + ' pwupdate', check_pass_strength);
-    $('#pass-strength-result').show();
-    $('.color-palette').click(function () {
-      $(this).siblings('input[name="admin_color"]').prop('checked', true);
+    $("#pass1")
+      .val("")
+      .on(inputEvent + " pwupdate", check_pass_strength);
+    $("#pass-strength-result").show();
+    $(".color-palette").click(function () {
+      $(this).siblings('input[name="admin_color"]').prop("checked", true);
     });
 
     if (select.length) {
-      $('#first_name, #last_name, #nickname').bind(
-        'blur.user_profile',
+      $("#first_name, #last_name, #nickname").bind(
+        "blur.user_profile",
         function () {
           var dub = [],
             inputs = {
-              display_nickname: $('#nickname').val() || '',
-              display_username: $('#user_login').val() || '',
-              display_firstname: $('#first_name').val() || '',
-              display_lastname: $('#last_name').val() || '',
+              display_nickname: $("#nickname").val() || "",
+              display_username: $("#user_login").val() || "",
+              display_firstname: $("#first_name").val() || "",
+              display_lastname: $("#last_name").val() || "",
             };
 
           if (inputs.display_firstname && inputs.display_lastname) {
             inputs.display_firstlast =
-              inputs.display_firstname + ' ' + inputs.display_lastname;
+              inputs.display_firstname + " " + inputs.display_lastname;
             inputs.display_lastfirst =
-              inputs.display_lastname + ' ' + inputs.display_firstname;
+              inputs.display_lastname + " " + inputs.display_firstname;
           }
 
-          $.each($('option', select), function (i, el) {
+          $.each($("option", select), function (i, el) {
             dub.push(el.value);
           });
 
@@ -349,11 +349,11 @@
               return;
             }
 
-            var val = value.replace(/<\/?[a-z][^>]*>/gi, '');
+            var val = value.replace(/<\/?[a-z][^>]*>/gi, "");
 
             if (inputs[id].length && $.inArray(val, dub) === -1) {
               dub.push(val);
-              $('<option />', {
+              $("<option />", {
                 text: val,
               }).appendTo(select);
             }
@@ -362,38 +362,38 @@
       );
     }
 
-    $colorpicker = $('#color-picker');
-    $stylesheet = $('#colors-css');
-    user_id = $('input#user_id').val();
+    $colorpicker = $("#color-picker");
+    $stylesheet = $("#colors-css");
+    user_id = $("input#user_id").val();
     current_user_id = $('input[name="checkuser_id"]').val();
 
-    $colorpicker.on('click.colorpicker', '.color-option', function () {
+    $colorpicker.on("click.colorpicker", ".color-option", function () {
       var colors,
         $this = $(this);
 
-      if ($this.hasClass('selected')) {
+      if ($this.hasClass("selected")) {
         return;
       }
 
-      $this.siblings('.selected').removeClass('selected');
+      $this.siblings(".selected").removeClass("selected");
       $this
-        .addClass('selected')
+        .addClass("selected")
         .find('input[type="radio"]')
-        .prop('checked', true);
+        .prop("checked", true);
 
       // Set color scheme
       if (user_id === current_user_id) {
         // Load the colors stylesheet.
         // The default color scheme won't have one, so we'll need to create an element.
         if (0 === $stylesheet.length) {
-          $stylesheet = $('<link rel="stylesheet" />').appendTo('head');
+          $stylesheet = $('<link rel="stylesheet" />').appendTo("head");
         }
-        $stylesheet.attr('href', $this.children('.css_url').val());
+        $stylesheet.attr("href", $this.children(".css_url").val());
 
         // repaint icons
-        if (typeof wp !== 'undefined' && wp.svgPainter) {
+        if (typeof wp !== "undefined" && wp.svgPainter) {
           try {
-            colors = $.parseJSON($this.children('.icon_colors').val());
+            colors = $.parseJSON($this.children(".icon_colors").val());
           } catch (error) {}
 
           if (colors) {
@@ -404,12 +404,12 @@
 
         // update user option
         $.post(ajaxurl, {
-          action: 'save-user-color-scheme',
+          action: "save-user-color-scheme",
           color_scheme: $this.children('input[name="admin_color"]').val(),
-          nonce: $('#color-nonce').val(),
+          nonce: $("#color-nonce").val(),
         }).done(function (response) {
           if (response.success) {
-            $('body')
+            $("body")
               .removeClass(response.data.previousScheme)
               .addClass(response.data.currentScheme);
           }
@@ -420,29 +420,29 @@
     bindPasswordForm();
   });
 
-  $('#destroy-sessions').on('click', function (e) {
+  $("#destroy-sessions").on("click", function (e) {
     var $this = $(this);
 
     wp.ajax
-      .post('destroy-sessions', {
-        nonce: $('#_wpnonce').val(),
-        user_id: $('#user_id').val(),
+      .post("destroy-sessions", {
+        nonce: $("#_wpnonce").val(),
+        user_id: $("#user_id").val(),
       })
       .done(function (response) {
-        $this.prop('disabled', true);
-        $this.siblings('.notice').remove();
+        $this.prop("disabled", true);
+        $this.siblings(".notice").remove();
         $this.before(
           '<div class="notice notice-success inline"><p>' +
             response.message +
-            '</p></div>'
+            "</p></div>"
         );
       })
       .fail(function (response) {
-        $this.siblings('.notice').remove();
+        $this.siblings(".notice").remove();
         $this.before(
           '<div class="notice notice-error inline"><p>' +
             response.message +
-            '</p></div>'
+            "</p></div>"
         );
       });
 
@@ -452,7 +452,7 @@
   window.generatePassword = generatePassword;
 
   /* Warn the user if password was generated but not saved */
-  $(window).on('beforeunload', function () {
+  $(window).on("beforeunload", function () {
     if (true === updateLock) {
       return userProfileL10n.warn;
     }

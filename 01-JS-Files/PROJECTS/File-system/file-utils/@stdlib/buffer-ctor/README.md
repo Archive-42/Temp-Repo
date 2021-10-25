@@ -49,7 +49,7 @@ npm install @stdlib/buffer-ctor
 ## Usage
 
 ```javascript
-var Buffer = require('@stdlib/buffer-ctor');
+var Buffer = require("@stdlib/buffer-ctor");
 ```
 
 #### Buffer( size )
@@ -93,7 +93,7 @@ Returns a [`Buffer`][node-buffer] containing a provided `string`.
 <!-- eslint-disable stdlib/require-globals, no-buffer-constructor -->
 
 ```javascript
-var b = new Buffer('beep boop');
+var b = new Buffer("beep boop");
 // returns <Buffer>
 ```
 
@@ -132,13 +132,13 @@ TODO: add methods
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var ctor = require('@stdlib/buffer-ctor');
+var ctor = require("@stdlib/buffer-ctor");
 
 var b;
 var i;
 
 // Allocate uninitialized memory:
-if (typeof ctor.alloc === 'function') {
+if (typeof ctor.alloc === "function") {
   b = ctor.alloc(10);
 } else {
   b = new ctor(10);

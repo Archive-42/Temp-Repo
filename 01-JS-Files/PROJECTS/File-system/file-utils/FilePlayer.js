@@ -1,37 +1,37 @@
-'use strict';
+"use strict";
 
 function _typeof(obj) {
-  '@babel/helpers - typeof';
-  if (typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol') {
+  "@babel/helpers - typeof";
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
     _typeof = function _typeof(obj) {
       return typeof obj;
     };
   } else {
     _typeof = function _typeof(obj) {
       return obj &&
-        typeof Symbol === 'function' &&
+        typeof Symbol === "function" &&
         obj.constructor === Symbol &&
         obj !== Symbol.prototype
-        ? 'symbol'
+        ? "symbol"
         : typeof obj;
     };
   }
   return _typeof(obj);
 }
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true,
 });
-exports['default'] = void 0;
+exports["default"] = void 0;
 
-var _react = _interopRequireWildcard(require('react'));
+var _react = _interopRequireWildcard(require("react"));
 
-var _utils = require('../utils');
+var _utils = require("../utils");
 
-var _patterns = require('../patterns');
+var _patterns = require("../patterns");
 
 function _getRequireWildcardCache() {
-  if (typeof WeakMap !== 'function') return null;
+  if (typeof WeakMap !== "function") return null;
   var cache = new WeakMap();
   _getRequireWildcardCache = function _getRequireWildcardCache() {
     return cache;
@@ -45,7 +45,7 @@ function _interopRequireWildcard(obj) {
   }
   if (
     obj === null ||
-    (_typeof(obj) !== 'object' && typeof obj !== 'function')
+    (_typeof(obj) !== "object" && typeof obj !== "function")
   ) {
     return { default: obj };
   }
@@ -68,7 +68,7 @@ function _interopRequireWildcard(obj) {
       }
     }
   }
-  newObj['default'] = obj;
+  newObj["default"] = obj;
   if (cache) {
     cache.set(obj, newObj);
   }
@@ -94,7 +94,7 @@ function _extends() {
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
+    throw new TypeError("Cannot call a class as a function");
   }
 }
 
@@ -103,7 +103,7 @@ function _defineProperties(target, props) {
     var descriptor = props[i];
     descriptor.enumerable = descriptor.enumerable || false;
     descriptor.configurable = true;
-    if ('value' in descriptor) descriptor.writable = true;
+    if ("value" in descriptor) descriptor.writable = true;
     Object.defineProperty(target, descriptor.key, descriptor);
   }
 }
@@ -115,8 +115,8 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 function _inherits(subClass, superClass) {
-  if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError('Super expression must either be null or a function');
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
   }
   subClass.prototype = Object.create(superClass && superClass.prototype, {
     constructor: { value: subClass, writable: true, configurable: true },
@@ -150,7 +150,7 @@ function _createSuper(Derived) {
 }
 
 function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === 'object' || typeof call === 'function')) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
   }
   return _assertThisInitialized(self);
@@ -166,9 +166,9 @@ function _assertThisInitialized(self) {
 }
 
 function _isNativeReflectConstruct() {
-  if (typeof Reflect === 'undefined' || !Reflect.construct) return false;
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
   if (Reflect.construct.sham) return false;
-  if (typeof Proxy === 'function') return true;
+  if (typeof Proxy === "function") return true;
   try {
     Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
     return true;
@@ -200,27 +200,27 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var HAS_NAVIGATOR = typeof navigator !== 'undefined';
+var HAS_NAVIGATOR = typeof navigator !== "undefined";
 var IS_IPAD_PRO =
   HAS_NAVIGATOR &&
-  navigator.platform === 'MacIntel' &&
+  navigator.platform === "MacIntel" &&
   navigator.maxTouchPoints > 1;
 var IS_IOS =
   HAS_NAVIGATOR &&
   (/iPad|iPhone|iPod/.test(navigator.userAgent) || IS_IPAD_PRO) &&
   !window.MSStream;
-var HLS_SDK_URL = 'https://cdn.jsdelivr.net/npm/hls.js@VERSION/dist/hls.min.js';
-var HLS_GLOBAL = 'Hls';
+var HLS_SDK_URL = "https://cdn.jsdelivr.net/npm/hls.js@VERSION/dist/hls.min.js";
+var HLS_GLOBAL = "Hls";
 var DASH_SDK_URL =
-  'https://cdnjs.cloudflare.com/ajax/libs/dashjs/VERSION/dash.all.min.js';
-var DASH_GLOBAL = 'dashjs';
-var FLV_SDK_URL = 'https://cdn.jsdelivr.net/npm/flv.js@VERSION/dist/flv.min.js';
-var FLV_GLOBAL = 'flvjs';
+  "https://cdnjs.cloudflare.com/ajax/libs/dashjs/VERSION/dash.all.min.js";
+var DASH_GLOBAL = "dashjs";
+var FLV_SDK_URL = "https://cdn.jsdelivr.net/npm/flv.js@VERSION/dist/flv.min.js";
+var FLV_GLOBAL = "flvjs";
 var MATCH_DROPBOX_URL = /www\.dropbox\.com\/.+/;
 var MATCH_CLOUDFLARE_STREAM =
   /https:\/\/watch\.cloudflarestream\.com\/([a-z0-9]+)/;
 var REPLACE_CLOUDFLARE_STREAM =
-  'https://videodelivery.net/{id}/manifest/video.m3u8';
+  "https://videodelivery.net/{id}/manifest/video.m3u8";
 
 var FilePlayer = /*#__PURE__*/ (function (_Component) {
   _inherits(FilePlayer, _Component);
@@ -242,19 +242,19 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
 
     _this = _super.call.apply(_super, [this].concat(_args));
 
-    _defineProperty(_assertThisInitialized(_this), 'onReady', function () {
+    _defineProperty(_assertThisInitialized(_this), "onReady", function () {
       var _this$props;
 
       return (_this$props = _this.props).onReady.apply(_this$props, arguments);
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'onPlay', function () {
+    _defineProperty(_assertThisInitialized(_this), "onPlay", function () {
       var _this$props2;
 
       return (_this$props2 = _this.props).onPlay.apply(_this$props2, arguments);
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'onBuffer', function () {
+    _defineProperty(_assertThisInitialized(_this), "onBuffer", function () {
       var _this$props3;
 
       return (_this$props3 = _this.props).onBuffer.apply(
@@ -263,7 +263,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       );
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'onBufferEnd', function () {
+    _defineProperty(_assertThisInitialized(_this), "onBufferEnd", function () {
       var _this$props4;
 
       return (_this$props4 = _this.props).onBufferEnd.apply(
@@ -272,7 +272,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       );
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'onPause', function () {
+    _defineProperty(_assertThisInitialized(_this), "onPause", function () {
       var _this$props5;
 
       return (_this$props5 = _this.props).onPause.apply(
@@ -281,7 +281,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       );
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'onEnded', function () {
+    _defineProperty(_assertThisInitialized(_this), "onEnded", function () {
       var _this$props6;
 
       return (_this$props6 = _this.props).onEnded.apply(
@@ -290,7 +290,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       );
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'onError', function () {
+    _defineProperty(_assertThisInitialized(_this), "onError", function () {
       var _this$props7;
 
       return (_this$props7 = _this.props).onError.apply(
@@ -299,7 +299,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       );
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'onEnablePIP', function () {
+    _defineProperty(_assertThisInitialized(_this), "onEnablePIP", function () {
       var _this$props8;
 
       return (_this$props8 = _this.props).onEnablePIP.apply(
@@ -310,7 +310,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
 
     _defineProperty(
       _assertThisInitialized(_this),
-      'onDisablePIP',
+      "onDisablePIP",
       function (e) {
         var _this$props9 = _this.props,
           onDisablePIP = _this$props9.onDisablePIP,
@@ -325,7 +325,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
 
     _defineProperty(
       _assertThisInitialized(_this),
-      'onPresentationModeChange',
+      "onPresentationModeChange",
       function (e) {
         if (
           _this.player &&
@@ -333,40 +333,40 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
         ) {
           var webkitPresentationMode = _this.player.webkitPresentationMode;
 
-          if (webkitPresentationMode === 'picture-in-picture') {
+          if (webkitPresentationMode === "picture-in-picture") {
             _this.onEnablePIP(e);
-          } else if (webkitPresentationMode === 'inline') {
+          } else if (webkitPresentationMode === "inline") {
             _this.onDisablePIP(e);
           }
         }
       }
     );
 
-    _defineProperty(_assertThisInitialized(_this), 'onSeek', function (e) {
+    _defineProperty(_assertThisInitialized(_this), "onSeek", function (e) {
       _this.props.onSeek(e.target.currentTime);
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'mute', function () {
+    _defineProperty(_assertThisInitialized(_this), "mute", function () {
       _this.player.muted = true;
     });
 
-    _defineProperty(_assertThisInitialized(_this), 'unmute', function () {
+    _defineProperty(_assertThisInitialized(_this), "unmute", function () {
       _this.player.muted = false;
     });
 
     _defineProperty(
       _assertThisInitialized(_this),
-      'renderSourceElement',
+      "renderSourceElement",
       function (source, index) {
-        if (typeof source === 'string') {
-          return /*#__PURE__*/ _react['default'].createElement('source', {
+        if (typeof source === "string") {
+          return /*#__PURE__*/ _react["default"].createElement("source", {
             key: index,
             src: source,
           });
         }
 
-        return /*#__PURE__*/ _react['default'].createElement(
-          'source',
+        return /*#__PURE__*/ _react["default"].createElement(
+          "source",
           _extends(
             {
               key: index,
@@ -379,10 +379,10 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
 
     _defineProperty(
       _assertThisInitialized(_this),
-      'renderTrack',
+      "renderTrack",
       function (track, index) {
-        return /*#__PURE__*/ _react['default'].createElement(
-          'track',
+        return /*#__PURE__*/ _react["default"].createElement(
+          "track",
           _extends(
             {
               key: index,
@@ -393,7 +393,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       }
     );
 
-    _defineProperty(_assertThisInitialized(_this), 'ref', function (player) {
+    _defineProperty(_assertThisInitialized(_this), "ref", function (player) {
       if (_this.player) {
         // Store previous player to be used by removeListeners()
         _this.prevPlayer = _this.player;
@@ -407,7 +407,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
 
   _createClass(FilePlayer, [
     {
-      key: 'componentDidMount',
+      key: "componentDidMount",
       value: function componentDidMount() {
         this.props.onMount && this.props.onMount(this);
         this.addListeners(this.player);
@@ -418,7 +418,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'componentDidUpdate',
+      key: "componentDidUpdate",
       value: function componentDidUpdate(prevProps) {
         if (
           this.shouldUseAudio(this.props) !== this.shouldUseAudio(prevProps)
@@ -436,7 +436,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'componentWillUnmount',
+      key: "componentWillUnmount",
       value: function componentWillUnmount() {
         this.removeListeners(this.player);
 
@@ -446,63 +446,63 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'addListeners',
+      key: "addListeners",
       value: function addListeners(player) {
         var _this$props10 = this.props,
           url = _this$props10.url,
           playsinline = _this$props10.playsinline;
-        player.addEventListener('play', this.onPlay);
-        player.addEventListener('waiting', this.onBuffer);
-        player.addEventListener('playing', this.onBufferEnd);
-        player.addEventListener('pause', this.onPause);
-        player.addEventListener('seeked', this.onSeek);
-        player.addEventListener('ended', this.onEnded);
-        player.addEventListener('error', this.onError);
-        player.addEventListener('enterpictureinpicture', this.onEnablePIP);
-        player.addEventListener('leavepictureinpicture', this.onDisablePIP);
+        player.addEventListener("play", this.onPlay);
+        player.addEventListener("waiting", this.onBuffer);
+        player.addEventListener("playing", this.onBufferEnd);
+        player.addEventListener("pause", this.onPause);
+        player.addEventListener("seeked", this.onSeek);
+        player.addEventListener("ended", this.onEnded);
+        player.addEventListener("error", this.onError);
+        player.addEventListener("enterpictureinpicture", this.onEnablePIP);
+        player.addEventListener("leavepictureinpicture", this.onDisablePIP);
         player.addEventListener(
-          'webkitpresentationmodechanged',
+          "webkitpresentationmodechanged",
           this.onPresentationModeChange
         );
 
         if (!this.shouldUseHLS(url)) {
           // onReady is handled by hls.js
-          player.addEventListener('canplay', this.onReady);
+          player.addEventListener("canplay", this.onReady);
         }
 
         if (playsinline) {
-          player.setAttribute('playsinline', '');
-          player.setAttribute('webkit-playsinline', '');
-          player.setAttribute('x5-playsinline', '');
+          player.setAttribute("playsinline", "");
+          player.setAttribute("webkit-playsinline", "");
+          player.setAttribute("x5-playsinline", "");
         }
       },
     },
     {
-      key: 'removeListeners',
+      key: "removeListeners",
       value: function removeListeners(player, url) {
-        player.removeEventListener('canplay', this.onReady);
-        player.removeEventListener('play', this.onPlay);
-        player.removeEventListener('waiting', this.onBuffer);
-        player.removeEventListener('playing', this.onBufferEnd);
-        player.removeEventListener('pause', this.onPause);
-        player.removeEventListener('seeked', this.onSeek);
-        player.removeEventListener('ended', this.onEnded);
-        player.removeEventListener('error', this.onError);
-        player.removeEventListener('enterpictureinpicture', this.onEnablePIP);
-        player.removeEventListener('leavepictureinpicture', this.onDisablePIP);
+        player.removeEventListener("canplay", this.onReady);
+        player.removeEventListener("play", this.onPlay);
+        player.removeEventListener("waiting", this.onBuffer);
+        player.removeEventListener("playing", this.onBufferEnd);
+        player.removeEventListener("pause", this.onPause);
+        player.removeEventListener("seeked", this.onSeek);
+        player.removeEventListener("ended", this.onEnded);
+        player.removeEventListener("error", this.onError);
+        player.removeEventListener("enterpictureinpicture", this.onEnablePIP);
+        player.removeEventListener("leavepictureinpicture", this.onDisablePIP);
         player.removeEventListener(
-          'webkitpresentationmodechanged',
+          "webkitpresentationmodechanged",
           this.onPresentationModeChange
         );
 
         if (!this.shouldUseHLS(url)) {
           // onReady is handled by hls.js
-          player.removeEventListener('canplay', this.onReady);
+          player.removeEventListener("canplay", this.onReady);
         }
       }, // Proxy methods to prevent listener leaks
     },
     {
-      key: 'shouldUseAudio',
+      key: "shouldUseAudio",
       value: function shouldUseAudio(props) {
         if (props.config.forceVideo) {
           return false;
@@ -518,7 +518,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'shouldUseHLS',
+      key: "shouldUseHLS",
       value: function shouldUseHLS(url) {
         if (this.props.config.forceHLS) {
           return true;
@@ -535,7 +535,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'shouldUseDASH',
+      key: "shouldUseDASH",
       value: function shouldUseDASH(url) {
         return (
           _patterns.DASH_EXTENSIONS.test(url) || this.props.config.forceDASH
@@ -543,13 +543,13 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'shouldUseFLV',
+      key: "shouldUseFLV",
       value: function shouldUseFLV(url) {
         return _patterns.FLV_EXTENSIONS.test(url) || this.props.config.forceFLV;
       },
     },
     {
-      key: 'load',
+      key: "load",
       value: function load(url) {
         var _this2 = this;
 
@@ -569,7 +569,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
 
         if (this.shouldUseHLS(url)) {
           (0, _utils.getSDK)(
-            HLS_SDK_URL.replace('VERSION', hlsVersion),
+            HLS_SDK_URL.replace("VERSION", hlsVersion),
             HLS_GLOBAL
           ).then(function (Hls) {
             _this2.hls = new Hls(hlsOptions);
@@ -586,7 +586,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
               var id = url.match(MATCH_CLOUDFLARE_STREAM)[1];
 
               _this2.hls.loadSource(
-                REPLACE_CLOUDFLARE_STREAM.replace('{id}', id)
+                REPLACE_CLOUDFLARE_STREAM.replace("{id}", id)
               );
             } else {
               _this2.hls.loadSource(url);
@@ -600,14 +600,14 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
 
         if (this.shouldUseDASH(url)) {
           (0, _utils.getSDK)(
-            DASH_SDK_URL.replace('VERSION', dashVersion),
+            DASH_SDK_URL.replace("VERSION", dashVersion),
             DASH_GLOBAL
           ).then(function (dashjs) {
             _this2.dash = dashjs.MediaPlayer().create();
 
             _this2.dash.initialize(_this2.player, url, _this2.props.playing);
 
-            _this2.dash.on('error', _this2.props.onError);
+            _this2.dash.on("error", _this2.props.onError);
 
             if (parseInt(dashVersion) < 3) {
               _this2.dash.getDebug().setLogToBrowserConsole(false);
@@ -625,11 +625,11 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
 
         if (this.shouldUseFLV(url)) {
           (0, _utils.getSDK)(
-            FLV_SDK_URL.replace('VERSION', flvVersion),
+            FLV_SDK_URL.replace("VERSION", flvVersion),
             FLV_GLOBAL
           ).then(function (flvjs) {
             _this2.flv = flvjs.createPlayer({
-              type: 'flv',
+              type: "flv",
               url: url,
             });
 
@@ -657,25 +657,25 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'play',
+      key: "play",
       value: function play() {
         var promise = this.player.play();
 
         if (promise) {
-          promise['catch'](this.props.onError);
+          promise["catch"](this.props.onError);
         }
       },
     },
     {
-      key: 'pause',
+      key: "pause",
       value: function pause() {
         this.player.pause();
       },
     },
     {
-      key: 'stop',
+      key: "stop",
       value: function stop() {
-        this.player.removeAttribute('src');
+        this.player.removeAttribute("src");
 
         if (this.dash) {
           this.dash.reset();
@@ -683,19 +683,19 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'seekTo',
+      key: "seekTo",
       value: function seekTo(seconds) {
         this.player.currentTime = seconds;
       },
     },
     {
-      key: 'setVolume',
+      key: "setVolume",
       value: function setVolume(fraction) {
         this.player.volume = fraction;
       },
     },
     {
-      key: 'enablePIP',
+      key: "enablePIP",
       value: function enablePIP() {
         if (
           this.player.requestPictureInPicture &&
@@ -704,14 +704,14 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
           this.player.requestPictureInPicture();
         } else if (
           (0, _utils.supportsWebKitPresentationMode)(this.player) &&
-          this.player.webkitPresentationMode !== 'picture-in-picture'
+          this.player.webkitPresentationMode !== "picture-in-picture"
         ) {
-          this.player.webkitSetPresentationMode('picture-in-picture');
+          this.player.webkitSetPresentationMode("picture-in-picture");
         }
       },
     },
     {
-      key: 'disablePIP',
+      key: "disablePIP",
       value: function disablePIP() {
         if (
           document.exitPictureInPicture &&
@@ -720,20 +720,20 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
           document.exitPictureInPicture();
         } else if (
           (0, _utils.supportsWebKitPresentationMode)(this.player) &&
-          this.player.webkitPresentationMode !== 'inline'
+          this.player.webkitPresentationMode !== "inline"
         ) {
-          this.player.webkitSetPresentationMode('inline');
+          this.player.webkitSetPresentationMode("inline");
         }
       },
     },
     {
-      key: 'setPlaybackRate',
+      key: "setPlaybackRate",
       value: function setPlaybackRate(rate) {
         this.player.playbackRate = rate;
       },
     },
     {
-      key: 'getDuration',
+      key: "getDuration",
       value: function getDuration() {
         if (!this.player) return null;
         var _this$player = this.player,
@@ -749,14 +749,14 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'getCurrentTime',
+      key: "getCurrentTime",
       value: function getCurrentTime() {
         if (!this.player) return null;
         return this.player.currentTime;
       },
     },
     {
-      key: 'getSecondsLoaded',
+      key: "getSecondsLoaded",
       value: function getSecondsLoaded() {
         if (!this.player) return null;
         var buffered = this.player.buffered;
@@ -776,7 +776,7 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
       },
     },
     {
-      key: 'getSource',
+      key: "getSource",
       value: function getSource(url) {
         var useHLS = this.shouldUseHLS(url);
         var useDASH = this.shouldUseDASH(url);
@@ -793,14 +793,14 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
         }
 
         if (MATCH_DROPBOX_URL.test(url)) {
-          return url.replace('www.dropbox.com', 'dl.dropboxusercontent.com');
+          return url.replace("www.dropbox.com", "dl.dropboxusercontent.com");
         }
 
         return url;
       },
     },
     {
-      key: 'render',
+      key: "render",
       value: function render() {
         var _this$props11 = this.props,
           url = _this$props11.url,
@@ -812,19 +812,19 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
           width = _this$props11.width,
           height = _this$props11.height;
         var useAudio = this.shouldUseAudio(this.props);
-        var Element = useAudio ? 'audio' : 'video';
+        var Element = useAudio ? "audio" : "video";
         var style = {
-          width: width === 'auto' ? width : '100%',
-          height: height === 'auto' ? height : '100%',
+          width: width === "auto" ? width : "100%",
+          height: height === "auto" ? height : "100%",
         };
-        return /*#__PURE__*/ _react['default'].createElement(
+        return /*#__PURE__*/ _react["default"].createElement(
           Element,
           _extends(
             {
               ref: this.ref,
               src: this.getSource(url),
               style: style,
-              preload: 'auto',
+              preload: "auto",
               autoPlay: playing || undefined,
               controls: controls,
               muted: muted,
@@ -842,8 +842,8 @@ var FilePlayer = /*#__PURE__*/ (function (_Component) {
   return FilePlayer;
 })(_react.Component);
 
-exports['default'] = FilePlayer;
+exports["default"] = FilePlayer;
 
-_defineProperty(FilePlayer, 'displayName', 'FilePlayer');
+_defineProperty(FilePlayer, "displayName", "FilePlayer");
 
-_defineProperty(FilePlayer, 'canPlay', _patterns.canPlay.file);
+_defineProperty(FilePlayer, "canPlay", _patterns.canPlay.file);

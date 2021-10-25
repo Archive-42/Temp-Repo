@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Absolute file path for the directory containing TypeScript declarations.
@@ -31,7 +31,7 @@
 
 // MODULES //
 
-var dir = require('./main.js');
+var dir = require("./main.js");
 
 // EXPORTS //
 

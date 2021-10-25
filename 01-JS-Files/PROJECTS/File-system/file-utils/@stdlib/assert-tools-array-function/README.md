@@ -39,7 +39,7 @@ npm install @stdlib/assert-tools-array-function
 ## Usage
 
 ```javascript
-var arrayfcn = require('@stdlib/assert-tools-array-function');
+var arrayfcn = require("@stdlib/assert-tools-array-function");
 ```
 
 <a name="arrayfcn"></a>
@@ -49,7 +49,7 @@ var arrayfcn = require('@stdlib/assert-tools-array-function');
 Returns a function which tests if every element in an [`array`][mdn-array] passes a test condition. Given an input [`array`][mdn-array], the function returns `true` if all elements pass the test and `false` otherwise.
 
 ```javascript
-var isOdd = require('@stdlib/assert-is-odd');
+var isOdd = require("@stdlib/assert-is-odd");
 
 var arr1 = [1, 3, 5, 7];
 var arr2 = [3, 5, 8];
@@ -86,8 +86,8 @@ bool = f(arr2);
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var isEven = require('@stdlib/assert-is-even');
-var arrayfcn = require('@stdlib/assert-tools-array-function');
+var isEven = require("@stdlib/assert-is-even");
+var arrayfcn = require("@stdlib/assert-tools-array-function");
 
 var arr1;
 var arr2;

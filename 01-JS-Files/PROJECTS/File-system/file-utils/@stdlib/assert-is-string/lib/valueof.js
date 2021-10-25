@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // eslint-disable-next-line stdlib/no-redeclare
 var valueOf = String.prototype.valueOf; // non-generic

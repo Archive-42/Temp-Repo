@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test if a value is an array.
@@ -35,7 +35,7 @@
 
 // MODULES //
 
-var isArray = require('./main.js');
+var isArray = require("./main.js");
 
 // EXPORTS //
 

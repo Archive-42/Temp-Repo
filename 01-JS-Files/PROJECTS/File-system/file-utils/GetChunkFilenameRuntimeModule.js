@@ -2,12 +2,12 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 */
 
-'use strict';
+"use strict";
 
-const RuntimeGlobals = require('../RuntimeGlobals');
-const RuntimeModule = require('../RuntimeModule');
-const Template = require('../Template');
-const { first } = require('../util/SetHelpers');
+const RuntimeGlobals = require("../RuntimeGlobals");
+const RuntimeModule = require("../RuntimeModule");
+const Template = require("../Template");
+const { first } = require("../util/SetHelpers");
 
 /** @typedef {import("../Chunk")} Chunk */
 /** @typedef {import("../Compilation")} Compilation */
@@ -66,7 +66,7 @@ class GetChunkFilenameRuntimeModule extends RuntimeModule {
           chunkFilenames.set(chunkFilename, (set = new Set()));
         }
         set.add(c);
-        if (typeof chunkFilename === 'string') {
+        if (typeof chunkFilename === "string") {
           if (set.size < maxChunks) return;
           if (set.size === maxChunks) {
             if (chunkFilename.length < dynamicFilename.length) return;
@@ -83,12 +83,12 @@ class GetChunkFilenameRuntimeModule extends RuntimeModule {
     /** @type {string[]} */
     const includedChunksMessages = [];
     if (allChunks) {
-      includedChunksMessages.push('all chunks');
+      includedChunksMessages.push("all chunks");
       for (const c of chunk.getAllReferencedChunks()) {
         addChunk(c);
       }
     } else {
-      includedChunksMessages.push('async chunks');
+      includedChunksMessages.push("async chunks");
       for (const c of chunk.getAllAsyncChunks()) {
         addChunk(c);
       }
@@ -96,7 +96,7 @@ class GetChunkFilenameRuntimeModule extends RuntimeModule {
         .getTreeRuntimeRequirements(chunk)
         .has(RuntimeGlobals.ensureChunkIncludeEntries);
       if (includeEntries) {
-        includedChunksMessages.push('sibling chunks for the entrypoint');
+        includedChunksMessages.push("sibling chunks for the entrypoint");
         for (const c of chunkGraph.getChunkEntryDependentChunksIterable(
           chunk
         )) {
@@ -135,7 +135,7 @@ class GetChunkFilenameRuntimeModule extends RuntimeModule {
       const unquotedStringifyWithLength = (value) => (length) =>
         unquotedStringify(`${value}`.slice(0, length));
       const chunkFilenameValue =
-        typeof chunkFilename === 'function'
+        typeof chunkFilename === "function"
           ? JSON.stringify(
               chunkFilename({
                 chunk: c,
@@ -197,7 +197,7 @@ class GetChunkFilenameRuntimeModule extends RuntimeModule {
           entries++;
         }
       }
-      if (entries === 0) return 'chunkId';
+      if (entries === 0) return "chunkId";
       if (entries === 1) {
         return useId
           ? `(chunkId === ${JSON.stringify(lastKey)} ? ${JSON.stringify(
@@ -249,14 +249,14 @@ class GetChunkFilenameRuntimeModule extends RuntimeModule {
 
     return Template.asString([
       `// This function allow to reference ${includedChunksMessages.join(
-        ' and '
+        " and "
       )}`,
       `${global} = ${runtimeTemplate.basicFunction(
-        'chunkId',
+        "chunkId",
 
         staticUrls.size > 0
           ? [
-              '// return url for filenames not based on template',
+              "// return url for filenames not based on template",
               // it minimizes to `x===1?"...":x===2?"...":"..."`
               Template.asString(
                 Array.from(staticUrls, ([url, ids]) => {
@@ -266,14 +266,14 @@ class GetChunkFilenameRuntimeModule extends RuntimeModule {
                       : `{${Array.from(
                           ids,
                           (id) => `${JSON.stringify(id)}:1`
-                        ).join(',')}}[chunkId]`;
+                        ).join(",")}}[chunkId]`;
                   return `if (${condition}) return ${url};`;
                 })
               ),
-              '// return url for filenames based on template',
+              "// return url for filenames based on template",
               `return ${url};`,
             ]
-          : ['// return url for filenames based on template', `return ${url};`]
+          : ["// return url for filenames based on template", `return ${url};`]
       )};`,
     ]);
   }

@@ -3,7 +3,7 @@
 	Author Tobias Koppers @sokra
 */
 
-'use strict';
+"use strict";
 
 /** @typedef {import("./Resolver")} Resolver */
 /** @typedef {import("./Resolver").ResolveStepHook} ResolveStepHook */
@@ -27,7 +27,7 @@ module.exports = class FileExistsPlugin {
     const fs = resolver.fileSystem;
     resolver
       .getHook(this.source)
-      .tapAsync('FileExistsPlugin', (request, resolveContext, callback) => {
+      .tapAsync("FileExistsPlugin", (request, resolveContext, callback) => {
         const file = request.path;
         if (!file) return callback();
         fs.stat(file, (err, stat) => {
@@ -40,7 +40,7 @@ module.exports = class FileExistsPlugin {
           if (!stat.isFile()) {
             if (resolveContext.missingDependencies)
               resolveContext.missingDependencies.add(file);
-            if (resolveContext.log) resolveContext.log(file + ' is not a file');
+            if (resolveContext.log) resolveContext.log(file + " is not a file");
             return callback();
           }
           if (resolveContext.fileDependencies)
@@ -48,7 +48,7 @@ module.exports = class FileExistsPlugin {
           resolver.doResolve(
             target,
             request,
-            'existing file: ' + file,
+            "existing file: " + file,
             resolveContext,
             callback
           );

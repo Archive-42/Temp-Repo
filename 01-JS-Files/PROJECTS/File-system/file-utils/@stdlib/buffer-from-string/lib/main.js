@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isString = require('@stdlib/assert-is-string').isPrimitive;
-var Buffer = require('@stdlib/buffer-ctor');
+var isString = require("@stdlib/assert-is-string").isPrimitive;
+var Buffer = require("@stdlib/buffer-ctor");
 
 // MAIN //
 
@@ -42,20 +42,20 @@ var Buffer = require('@stdlib/buffer-ctor');
 function fromString(str, encoding) {
   if (!isString(str)) {
     throw new TypeError(
-      'invalid argument. First argument must be a string. Value: `' + str + '`'
+      "invalid argument. First argument must be a string. Value: `" + str + "`"
     );
   }
   if (arguments.length > 1) {
     if (!isString(encoding)) {
       throw new TypeError(
-        'invalid argument. Second argument must be a string. Value: `' +
+        "invalid argument. Second argument must be a string. Value: `" +
           encoding +
-          '`'
+          "`"
       );
     }
     return Buffer.from(str, encoding);
   }
-  return Buffer.from(str, 'utf8');
+  return Buffer.from(str, "utf8");
 }
 
 // EXPORTS //

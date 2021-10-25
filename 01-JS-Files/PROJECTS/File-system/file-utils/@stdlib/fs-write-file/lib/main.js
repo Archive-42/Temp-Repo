@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var write = require('fs').writeFile;
+var write = require("fs").writeFile;
 
 // MAIN //
 

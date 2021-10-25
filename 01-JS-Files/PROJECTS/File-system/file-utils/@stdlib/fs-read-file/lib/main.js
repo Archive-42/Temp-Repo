@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var readfile = require('fs').readFile;
+var readfile = require("fs").readFile;
 
 // MAIN //
 

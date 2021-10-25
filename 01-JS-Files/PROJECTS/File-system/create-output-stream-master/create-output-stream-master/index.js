@@ -1,6 +1,6 @@
-var path = require('path');
-var _fs = require('fs');
-var mkdir = require('mkdirp');
+var path = require("path");
+var _fs = require("fs");
+var mkdir = require("mkdirp");
 
 function createOutputStream(file, options) {
   var dirExists = false;
@@ -29,7 +29,7 @@ function createOutputStream(file, options) {
     mkdir(dir, function (err) {
       if (err) {
         ws.destroy();
-        ws.emit('error', err);
+        ws.emit("error", err);
         return;
       }
       dirExists = true;

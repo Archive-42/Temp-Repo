@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test for native `Symbol` support.
@@ -32,7 +32,7 @@
 
 // MODULES //
 
-var hasSymbolSupport = require('./main.js');
+var hasSymbolSupport = require("./main.js");
 
 // EXPORTS //
 

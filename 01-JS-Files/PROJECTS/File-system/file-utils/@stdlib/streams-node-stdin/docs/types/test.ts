@@ -18,7 +18,7 @@
 
 // tslint:disable: no-unused-expression
 
-import stdin = require('./index');
+import stdin = require("./index");
 
 // TESTS //
 

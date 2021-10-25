@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isBuffer = require('@stdlib/assert-is-buffer');
-var GlobalBuffer = require('./buffer.js');
+var isBuffer = require("@stdlib/assert-is-buffer");
+var GlobalBuffer = require("./buffer.js");
 
 // MAIN //
 
@@ -38,12 +38,12 @@ function hasNodeBufferSupport() {
   var bool;
   var b;
 
-  if (typeof GlobalBuffer !== 'function') {
+  if (typeof GlobalBuffer !== "function") {
     return false;
   }
   // Test basic support...
   try {
-    if (typeof GlobalBuffer.from === 'function') {
+    if (typeof GlobalBuffer.from === "function") {
       b = GlobalBuffer.from([1, 2, 3, 4]);
     } else {
       b = new GlobalBuffer([1, 2, 3, 4]); // Note: this is deprecated behavior starting in Node v6 (see https://nodejs.org/api/buffer.html#buffer_new_buffer_array)

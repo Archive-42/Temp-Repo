@@ -39,7 +39,7 @@ npm install @stdlib/assert-is-array
 ## Usage
 
 ```javascript
-var isArray = require('@stdlib/assert-is-array');
+var isArray = require("@stdlib/assert-is-array");
 ```
 
 #### isArray( value )
@@ -62,7 +62,7 @@ var bool = isArray([]);
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var isArray = require('@stdlib/assert-is-array');
+var isArray = require("@stdlib/assert-is-array");
 
 var bool = isArray([1, 2, 3, 4]);
 // returns true

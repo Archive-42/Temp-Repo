@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import hasNodeBufferSupport = require('./index');
+import hasNodeBufferSupport = require("./index");
 
 // TESTS //
 

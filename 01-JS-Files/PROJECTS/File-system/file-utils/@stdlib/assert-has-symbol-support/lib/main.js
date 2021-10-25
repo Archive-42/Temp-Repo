@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
@@ -30,7 +30,7 @@
  * // returns <boolean>
  */
 function hasSymbolSupport() {
-  return typeof Symbol === 'function' && typeof Symbol('foo') === 'symbol';
+  return typeof Symbol === "function" && typeof Symbol("foo") === "symbol";
 }
 
 // EXPORTS //

@@ -39,7 +39,7 @@ npm install @stdlib/fs-write-file
 ## Usage
 
 ```javascript
-var writeFile = require('@stdlib/fs-write-file');
+var writeFile = require("@stdlib/fs-write-file");
 ```
 
 #### writeFile( file, data\[, options], clbk )
@@ -47,11 +47,11 @@ var writeFile = require('@stdlib/fs-write-file');
 Asynchronously write `data` to a `file`.
 
 ```javascript
-var join = require('path').join;
+var join = require("path").join;
 
-var fpath = join(__dirname, 'examples', 'fixtures', 'file.txt');
+var fpath = join(__dirname, "examples", "fixtures", "file.txt");
 
-writeFile(fpath, 'beep boop\n', onWrite);
+writeFile(fpath, "beep boop\n", onWrite);
 
 function onWrite(error) {
   if (error) {
@@ -63,12 +63,12 @@ function onWrite(error) {
 The `data` argument may be either a `string` or a [`Buffer`][@stdlib/buffer/ctor].
 
 ```javascript
-var join = require('path').join;
-var string2buffer = require('@stdlib/buffer-from-string');
+var join = require("path").join;
+var string2buffer = require("@stdlib/buffer-from-string");
 
-var fpath = join(__dirname, 'examples', 'fixtures', 'file.txt');
+var fpath = join(__dirname, "examples", "fixtures", "file.txt");
 
-writeFile(fpath, string2buffer('beep boop\n'), onWrite);
+writeFile(fpath, string2buffer("beep boop\n"), onWrite);
 
 function onWrite(error) {
   if (error) {
@@ -84,11 +84,11 @@ The function accepts the same `options` and has the same defaults as [`fs.writeF
 Synchronously writes `data` to a `file`.
 
 ```javascript
-var join = require('path').join;
+var join = require("path").join;
 
-var fpath = join(__dirname, 'examples', 'fixtures', 'file.txt');
+var fpath = join(__dirname, "examples", "fixtures", "file.txt");
 
-var err = writeFile.sync(fpath, 'beep boop\n');
+var err = writeFile.sync(fpath, "beep boop\n");
 if (err instanceof Error) {
   throw err;
 }
@@ -109,11 +109,11 @@ The function accepts the same `options` and has the same defaults as [`fs.writeF
   <!-- run-disable -->
 
   ```javascript
-  var fs = require('fs');
+  var fs = require("fs");
 
   // Check for directory path existence to prevent an error being thrown...
-  if (fs.existsSync('/path/to')) {
-    fs.writeFileSync('/path/to/file.txt', 'beep boop\n');
+  if (fs.existsSync("/path/to")) {
+    fs.writeFileSync("/path/to/file.txt", "beep boop\n");
   }
   ```
 
@@ -122,10 +122,10 @@ The function accepts the same `options` and has the same defaults as [`fs.writeF
   <!-- run-disable -->
 
   ```javascript
-  var writeFile = require('@stdlib/fs-write-file');
+  var writeFile = require("@stdlib/fs-write-file");
 
   // Explicitly handle the error...
-  var err = writeFile.sync('/path/to/file.txt', 'beep boop\n');
+  var err = writeFile.sync("/path/to/file.txt", "beep boop\n");
   if (err instanceof Error) {
     // You choose what to do...
     throw err;
@@ -143,26 +143,26 @@ The function accepts the same `options` and has the same defaults as [`fs.writeF
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var join = require('path').join;
-var writeFile = require('@stdlib/fs-write-file');
+var join = require("path").join;
+var writeFile = require("@stdlib/fs-write-file");
 
-var fpath = join(__dirname, 'examples', 'fixtures', 'file.txt');
+var fpath = join(__dirname, "examples", "fixtures", "file.txt");
 
 // Synchronously write data to a file:
-var err = writeFile.sync(fpath, 'beep boop\n', 'utf8');
+var err = writeFile.sync(fpath, "beep boop\n", "utf8");
 // returns null
 
 console.log(err instanceof Error);
 // => false
 
 // Asynchronously write data to a file:
-writeFile(fpath, 'beep boop\n', onWrite);
+writeFile(fpath, "beep boop\n", onWrite);
 
 function onWrite(error) {
   if (error) {
-    console.error('Error: %s', error.message);
+    console.error("Error: %s", error.message);
   }
-  console.log('Success!');
+  console.log("Success!");
 }
 ```
 

@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-import isBoolean = require('./index');
+import isBoolean = require("./index");
 
 // TESTS //
 
 // The function returns a boolean...
 {
-  isBoolean('beep'); // $ExpectType boolean
+  isBoolean("beep"); // $ExpectType boolean
   isBoolean(true); // $ExpectType boolean
 }
 

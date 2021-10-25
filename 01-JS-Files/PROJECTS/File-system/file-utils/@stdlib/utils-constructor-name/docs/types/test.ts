@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import constructorName = require('./index');
+import constructorName = require("./index");
 
 // TESTS //
 

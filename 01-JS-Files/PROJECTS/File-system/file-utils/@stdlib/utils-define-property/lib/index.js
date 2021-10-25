@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Define (or modify) an object property.
@@ -38,9 +38,9 @@
 
 // MODULES //
 
-var hasDefinePropertySupport = require('./has_define_property_support.js');
-var builtin = require('./builtin.js');
-var polyfill = require('./polyfill.js');
+var hasDefinePropertySupport = require("./has_define_property_support.js");
+var builtin = require("./builtin.js");
+var polyfill = require("./polyfill.js");
 
 // MAIN //
 

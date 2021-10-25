@@ -18,12 +18,12 @@
 
 // FIXME: remove this stub and create a stdlib equivalent of update-notifier
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var setReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
-var noop = require('@stdlib/utils-noop');
+var setReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
+var noop = require("@stdlib/utils-noop");
 
 // MAIN //
 
@@ -52,7 +52,7 @@ function Notifier() {
  * @memberof Notifier.prototype
  * @type {Function}
  */
-setReadOnly(Notifier.prototype, 'notify', noop);
+setReadOnly(Notifier.prototype, "notify", noop);
 
 // EXPORTS //
 

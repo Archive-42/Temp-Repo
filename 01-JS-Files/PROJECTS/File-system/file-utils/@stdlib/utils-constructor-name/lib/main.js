@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var nativeClass = require('@stdlib/utils-native-class');
-var RE = require('@stdlib/regexp-function-name').REGEXP;
-var isBuffer = require('@stdlib/assert-is-buffer');
+var nativeClass = require("@stdlib/utils-native-class");
+var RE = require("@stdlib/regexp-function-name").REGEXP;
+var isBuffer = require("@stdlib/assert-is-buffer");
 
 // MAIN //
 
@@ -57,9 +57,9 @@ function constructorName(v) {
   var name;
   var ctor;
   name = nativeClass(v).slice(8, -1);
-  if ((name === 'Object' || name === 'Error') && v.constructor) {
+  if ((name === "Object" || name === "Error") && v.constructor) {
     ctor = v.constructor;
-    if (typeof ctor.name === 'string') {
+    if (typeof ctor.name === "string") {
       return ctor.name;
     }
     match = RE.exec(ctor.toString());
@@ -68,7 +68,7 @@ function constructorName(v) {
     }
   }
   if (isBuffer(v)) {
-    return 'Buffer';
+    return "Buffer";
   }
   return name;
 }

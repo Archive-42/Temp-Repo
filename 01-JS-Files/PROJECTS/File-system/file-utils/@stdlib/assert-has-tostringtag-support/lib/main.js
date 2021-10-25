@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var hasSymbols = require('@stdlib/assert-has-symbol-support');
+var hasSymbols = require("@stdlib/assert-has-symbol-support");
 
 // VARIABLES //
 
@@ -38,7 +38,7 @@ var FLG = hasSymbols();
  * // returns <boolean>
  */
 function hasToStringTagSupport() {
-  return FLG && typeof Symbol.toStringTag === 'symbol';
+  return FLG && typeof Symbol.toStringTag === "symbol";
 }
 
 // EXPORTS //

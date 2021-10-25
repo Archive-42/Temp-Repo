@@ -3,7 +3,7 @@
 	Author Tobias Koppers @sokra
 */
 
-'use strict';
+"use strict";
 
 /** @typedef {import("./Resolver")} Resolver */
 /** @typedef {import("./Resolver").ResolveStepHook} ResolveStepHook */
@@ -28,7 +28,7 @@ module.exports = class UseFilePlugin {
     const target = resolver.ensureHook(this.target);
     resolver
       .getHook(this.source)
-      .tapAsync('UseFilePlugin', (request, resolveContext, callback) => {
+      .tapAsync("UseFilePlugin", (request, resolveContext, callback) => {
         const filePath = resolver.join(request.path, this.filename);
         const obj = {
           ...request,
@@ -40,7 +40,7 @@ module.exports = class UseFilePlugin {
         resolver.doResolve(
           target,
           obj,
-          'using path: ' + filePath,
+          "using path: " + filePath,
           resolveContext,
           callback
         );

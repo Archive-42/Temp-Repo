@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import isObjectLike = require('./index');
+import isObjectLike = require("./index");
 
 // TESTS //
 

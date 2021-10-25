@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var toString = require('./tostring.js'); // eslint-disable-line stdlib/no-redeclare
+var toString = require("./tostring.js"); // eslint-disable-line stdlib/no-redeclare
 
 // MAIN //
 

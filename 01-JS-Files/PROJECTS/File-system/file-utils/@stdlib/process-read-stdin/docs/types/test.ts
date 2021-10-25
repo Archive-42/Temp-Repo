@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import stdin = require('./index');
+import stdin = require("./index");
 
 const onRead = (error: Error | null, data: string | Buffer) => {
   if (error || !data) {
@@ -29,7 +29,7 @@ const onRead = (error: Error | null, data: string | Buffer) => {
 // The function does not have a return value...
 {
   stdin(onRead); // $ExpectType void
-  stdin('utf-8', onRead); // $ExpectType void
+  stdin("utf-8", onRead); // $ExpectType void
 }
 
 // The compiler throws an error if the function is provided an `encoding` argument which is not a string or null...
@@ -45,7 +45,7 @@ const onRead = (error: Error | null, data: string | Buffer) => {
 
 // The compiler throws an error if the function is provided a last argument which is not a function with the expected signature...
 {
-  stdin('abc'); // $ExpectError
+  stdin("abc"); // $ExpectError
   stdin(1); // $ExpectError
   stdin(false); // $ExpectError
   stdin(true); // $ExpectError
@@ -55,15 +55,15 @@ const onRead = (error: Error | null, data: string | Buffer) => {
   stdin({}); // $ExpectError
   stdin((x: number): number => x); // $ExpectError
 
-  stdin('utf-8', 'abc'); // $ExpectError
-  stdin('utf-8', 1); // $ExpectError
-  stdin('utf-8', false); // $ExpectError
-  stdin('utf-8', true); // $ExpectError
-  stdin('utf-8', null); // $ExpectError
-  stdin('utf-8', undefined); // $ExpectError
-  stdin('utf-8', []); // $ExpectError
-  stdin('utf-8', {}); // $ExpectError
-  stdin('utf-8', (x: number): number => x); // $ExpectError
+  stdin("utf-8", "abc"); // $ExpectError
+  stdin("utf-8", 1); // $ExpectError
+  stdin("utf-8", false); // $ExpectError
+  stdin("utf-8", true); // $ExpectError
+  stdin("utf-8", null); // $ExpectError
+  stdin("utf-8", undefined); // $ExpectError
+  stdin("utf-8", []); // $ExpectError
+  stdin("utf-8", {}); // $ExpectError
+  stdin("utf-8", (x: number): number => x); // $ExpectError
 }
 
 // The compiler throws an error if the function is provided an unsupported number of arguments...

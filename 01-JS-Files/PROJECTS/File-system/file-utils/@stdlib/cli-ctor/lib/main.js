@@ -18,18 +18,18 @@
 
 /* eslint-disable stdlib/jsdoc-doctest, no-restricted-syntax */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var parseArgs = require('minimist'); // TODO: replace with stdlib equivalent
-var defaults = require('./defaults.json');
-var isInteger = require('./is_integer.js');
-var validate = require('./validate.js');
-var proc = require('./process.js');
-var log = require('./console.js');
-var exitCode = require('./exit_code.js');
-var notifier = require('./notifier.js');
+var parseArgs = require("minimist"); // TODO: replace with stdlib equivalent
+var defaults = require("./defaults.json");
+var isInteger = require("./is_integer.js");
+var validate = require("./validate.js");
+var proc = require("./process.js");
+var log = require("./console.js");
+var exitCode = require("./exit_code.js");
+var notifier = require("./notifier.js");
 
 // VARIABLES //
 
@@ -136,8 +136,8 @@ function CLI(options) {
   self = this;
 
   // Force the process to exit if an error is encountered when writing to `stdout` or `stderr`:
-  proc.stdout.on('error', proc.exit);
-  proc.stderr.on('error', proc.exit);
+  proc.stdout.on("error", proc.exit);
+  proc.stderr.on("error", proc.exit);
 
   /**
    * Returns parsed command-line arguments.
@@ -153,7 +153,7 @@ function CLI(options) {
    * var args = cli.args();
    * // returns <Array>
    */
-  setReadOnly(this, 'args', getArgs);
+  setReadOnly(this, "args", getArgs);
 
   /**
    * Returns parsed command-line flags.
@@ -169,7 +169,7 @@ function CLI(options) {
    * var flags = cli.flags();
    * // returns <Object>
    */
-  setReadOnly(this, 'flags', getFlags);
+  setReadOnly(this, "flags", getFlags);
 
   /**
    * Prints usage information and exits the process.
@@ -187,7 +187,7 @@ function CLI(options) {
    * cli.help();
    * // => 'Usage: beep [options] <boop>'
    */
-  setReadOnly(this, 'help', help);
+  setReadOnly(this, "help", help);
 
   /**
    * Prints the command-line interface version and exits the process.
@@ -205,11 +205,11 @@ function CLI(options) {
    * cli.version();
    * // => '#.#.#'
    */
-  setReadOnly(this, 'version', version);
+  setReadOnly(this, "version", version);
 
   // Check whether to set the process title...
   if (opts.title === true && opts.pkg) {
-    if (typeof opts.pkg.bin === 'object' && opts.pkg.bin !== null) {
+    if (typeof opts.pkg.bin === "object" && opts.pkg.bin !== null) {
       keys = objectKeys(opts.pkg.bin);
 
       // Note: we don't have a way of knowing which command name in the `bin` hash was invoked; thus, we assume the first entry.
@@ -331,16 +331,16 @@ function CLI(options) {
  * // Gracefully exit:
  * cli.close();
  */
-setReadOnly(CLI.prototype, 'close', function close(code) {
+setReadOnly(CLI.prototype, "close", function close(code) {
   if (arguments.length === 0) {
     exitCode(proc, 0);
     return;
   }
-  if (typeof code !== 'number' || !isInteger(code) || code < 0) {
+  if (typeof code !== "number" || !isInteger(code) || code < 0) {
     throw new TypeError(
-      'invalid argument. Must provide a nonnegative integer. Value: `' +
+      "invalid argument. Must provide a nonnegative integer. Value: `" +
         code +
-        '`.'
+        "`."
     );
   }
   exitCode(proc, code);
@@ -373,28 +373,28 @@ setReadOnly(CLI.prototype, 'close', function close(code) {
  * // Exit the process:
  * cli.error( err, 0 );
  */
-setReadOnly(CLI.prototype, 'error', function onError(error, code) {
+setReadOnly(CLI.prototype, "error", function onError(error, code) {
   var c;
   if (!(error instanceof Error)) {
     throw new TypeError(
-      'invalid argument. First argument must be an error object. Value: `' +
+      "invalid argument. First argument must be an error object. Value: `" +
         error +
-        '`.'
+        "`."
     );
   }
   if (arguments.length > 1) {
-    if (typeof code !== 'number' || !isInteger(code) || code < 0) {
+    if (typeof code !== "number" || !isInteger(code) || code < 0) {
       throw new TypeError(
-        'invalid argument. Second argument must be a nonnegative integer. Value: `' +
+        "invalid argument. Second argument must be a nonnegative integer. Value: `" +
           code +
-          '`.'
+          "`."
       );
     }
     c = code;
   } else {
     c = 1;
   }
-  log.error('Error: %s', error.message);
+  log.error("Error: %s", error.message);
   exitCode(proc, c);
 });
 
@@ -414,15 +414,15 @@ setReadOnly(CLI.prototype, 'error', function onError(error, code) {
  * // Forcefully exit:
  * cli.exit();
  */
-setReadOnly(CLI.prototype, 'exit', function exit(code) {
+setReadOnly(CLI.prototype, "exit", function exit(code) {
   if (arguments.length === 0) {
     return proc.exit(0);
   }
-  if (typeof code !== 'number' || !isInteger(code) || code < 0) {
+  if (typeof code !== "number" || !isInteger(code) || code < 0) {
     throw new TypeError(
-      'invalid argument. Must provide a nonnegative integer. Value: `' +
+      "invalid argument. Must provide a nonnegative integer. Value: `" +
         code +
-        '`.'
+        "`."
     );
   }
   proc.exit(code);

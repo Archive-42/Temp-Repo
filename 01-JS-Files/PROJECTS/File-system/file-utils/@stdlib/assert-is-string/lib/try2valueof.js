@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var valueOf = require('./valueof.js'); // eslint-disable-line stdlib/no-redeclare
+var valueOf = require("./valueof.js"); // eslint-disable-line stdlib/no-redeclare
 
 // MAIN //
 

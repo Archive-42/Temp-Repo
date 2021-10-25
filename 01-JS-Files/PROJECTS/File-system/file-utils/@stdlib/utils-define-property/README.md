@@ -39,7 +39,7 @@ npm install @stdlib/utils-define-property
 ## Usage
 
 ```javascript
-var defineProperty = require('@stdlib/utils-define-property');
+var defineProperty = require("@stdlib/utils-define-property");
 ```
 
 #### defineProperty( obj, prop, descriptor )
@@ -49,12 +49,12 @@ var defineProperty = require('@stdlib/utils-define-property');
 ```javascript
 var obj = {};
 
-defineProperty(obj, 'foo', {
-  value: 'bar',
+defineProperty(obj, "foo", {
+  value: "bar",
   writable: false,
 });
 
-obj.foo = 'boop';
+obj.foo = "boop";
 // throws <Error>
 ```
 
@@ -88,24 +88,24 @@ A property `descriptor` has the following optional properties:
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var defineProperty = require('@stdlib/utils-define-property');
+var defineProperty = require("@stdlib/utils-define-property");
 
 function Foo(name) {
   if (!(this instanceof Foo)) {
     return new Foo(name);
   }
-  defineProperty(this, 'name', {
+  defineProperty(this, "name", {
     value: name,
     configurable: true,
   });
   return this;
 }
 
-var foo = new Foo('beep');
+var foo = new Foo("beep");
 
 try {
   delete foo.name;
-  console.log('`name` property successfully deleted.');
+  console.log("`name` property successfully deleted.");
 } catch (err) {
   console.error(err.message);
 }

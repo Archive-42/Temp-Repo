@@ -13,7 +13,7 @@
  * https://github.com/flowtype/flow-typed
  */
 
-declare module 'file-loader' {
+declare module "file-loader" {
   declare module.exports: any;
 }
 
@@ -22,18 +22,18 @@ declare module 'file-loader' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'file-loader/dist/cjs' {
+declare module "file-loader/dist/cjs" {
   declare module.exports: any;
 }
 
-declare module 'file-loader/dist/index' {
+declare module "file-loader/dist/index" {
   declare module.exports: any;
 }
 
 // Filename aliases
-declare module 'file-loader/dist/cjs.js' {
-  declare module.exports: $Exports<'file-loader/dist/cjs'>;
+declare module "file-loader/dist/cjs.js" {
+  declare module.exports: $Exports<"file-loader/dist/cjs">;
 }
-declare module 'file-loader/dist/index.js' {
-  declare module.exports: $Exports<'file-loader/dist/index'>;
+declare module "file-loader/dist/index.js" {
+  declare module.exports: $Exports<"file-loader/dist/index">;
 }

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isArray = require('@stdlib/assert-is-array');
+var isArray = require("@stdlib/assert-is-array");
 
 // MAIN //
 
@@ -46,9 +46,9 @@ var isArray = require('@stdlib/assert-is-array');
  * // returns false
  */
 function arrayfcn(predicate) {
-  if (typeof predicate !== 'function') {
+  if (typeof predicate !== "function") {
     throw new TypeError(
-      'invalid argument. Must provide a function. Value: `' + predicate + '`.'
+      "invalid argument. Must provide a function. Value: `" + predicate + "`."
     );
   }
   return every;

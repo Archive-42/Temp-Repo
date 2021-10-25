@@ -1,6 +1,6 @@
 const FileSystem = function () {
   this.m = new Map();
-  this.m.set('', 1);
+  this.m.set("", 1);
 };
 
 /**
@@ -10,7 +10,7 @@ const FileSystem = function () {
  */
 FileSystem.prototype.createPath = function (path, value) {
   if (this.m.has(path)) return false;
-  const p = path.slice(0, path.lastIndexOf('/'));
+  const p = path.slice(0, path.lastIndexOf("/"));
   if (!this.m.has(p)) return false;
   this.m.set(path, value);
   return true;
@@ -50,8 +50,8 @@ const FileSystem = function () {
  * @return {boolean}
  */
 FileSystem.prototype.createPath = function (path, value) {
-  if (path == null || path === '') return;
-  const arr = path.split('/').filter((e) => e !== '/' && e !== '');
+  if (path == null || path === "") return;
+  const arr = path.split("/").filter((e) => e !== "/" && e !== "");
   let cur = this.r;
   for (let i = 0, len = arr.length; i < len; i++) {
     if (i !== len - 1 && !cur.children.has(arr[i])) return false;
@@ -67,7 +67,7 @@ FileSystem.prototype.createPath = function (path, value) {
  * @return {number}
  */
 FileSystem.prototype.get = function (path) {
-  const arr = path.split('/').filter((e) => e !== '/' && e !== '');
+  const arr = path.split("/").filter((e) => e !== "/" && e !== "");
   let cur = this.r;
   for (let i = 0, len = arr.length; i < len; i++) {
     if (!cur.children.has(arr[i])) return -1;

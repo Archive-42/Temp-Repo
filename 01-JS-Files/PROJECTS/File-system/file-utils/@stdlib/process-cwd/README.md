@@ -39,7 +39,7 @@ npm install @stdlib/process-cwd
 ## Usage
 
 ```javascript
-var cwd = require('@stdlib/process-cwd');
+var cwd = require("@stdlib/process-cwd");
 ```
 
 #### cwd()
@@ -72,8 +72,8 @@ var dir = cwd();
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var PATH_SEP = require('@stdlib/constants-path-sep');
-var cwd = require('@stdlib/process-cwd');
+var PATH_SEP = require("@stdlib/constants-path-sep");
+var cwd = require("@stdlib/process-cwd");
 
 var parts = cwd().split(PATH_SEP);
 console.log(parts);

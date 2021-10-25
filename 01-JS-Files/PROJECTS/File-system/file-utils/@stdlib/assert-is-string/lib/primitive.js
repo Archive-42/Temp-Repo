@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Tests if a value is a string primitive.
@@ -33,7 +33,7 @@
  * // returns false
  */
 function isString(value) {
-  return typeof value === 'string';
+  return typeof value === "string";
 }
 
 // EXPORTS //

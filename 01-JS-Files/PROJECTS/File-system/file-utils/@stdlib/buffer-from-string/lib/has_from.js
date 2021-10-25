@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isFunction = require('@stdlib/assert-is-function');
-var Buffer = require('@stdlib/buffer-ctor');
+var isFunction = require("@stdlib/assert-is-function");
+var Buffer = require("@stdlib/buffer-ctor");
 
 // MAIN //
 

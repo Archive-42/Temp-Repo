@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Read the entire contents of a file.
@@ -46,13 +46,13 @@
 
 // MODULES //
 
-var setReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
-var readFile = require('./main.js');
-var sync = require('./sync.js');
+var setReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
+var readFile = require("./main.js");
+var sync = require("./sync.js");
 
 // MAIN //
 
-setReadOnly(readFile, 'sync', sync);
+setReadOnly(readFile, "sync", sync);
 
 // EXPORTS //
 

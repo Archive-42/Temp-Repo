@@ -1,5 +1,5 @@
-var path = require('path');
-var fs = require('../../utils/fs');
+var path = require("path");
+var fs = require("../../utils/fs");
 
 /**
     Write a file to the output folder

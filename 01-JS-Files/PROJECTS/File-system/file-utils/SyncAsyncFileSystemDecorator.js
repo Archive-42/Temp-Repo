@@ -3,7 +3,7 @@
 	Author Tobias Koppers @sokra
 */
 
-'use strict';
+"use strict";
 
 /** @typedef {import("./Resolver").FileSystem} FileSystem */
 /** @typedef {import("./Resolver").SyncFileSystem} SyncFileSystem */

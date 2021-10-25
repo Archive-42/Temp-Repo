@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test if a value is a function.
@@ -36,7 +36,7 @@
 
 // MODULES //
 
-var isFunction = require('./main.js');
+var isFunction = require("./main.js");
 
 // EXPORTS //
 

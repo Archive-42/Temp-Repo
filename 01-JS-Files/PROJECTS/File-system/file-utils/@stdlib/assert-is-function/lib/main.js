@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var typeOf = require('@stdlib/utils-type-of');
+var typeOf = require("@stdlib/utils-type-of");
 
 // MAIN //
 
@@ -40,7 +40,7 @@ var typeOf = require('@stdlib/utils-type-of');
  */
 function isFunction(value) {
   // Note: cannot use `typeof` directly, as various browser engines incorrectly return `'function'` when operating on non-function objects, such as regular expressions and NodeLists.
-  return typeOf(value) === 'function';
+  return typeOf(value) === "function";
 }
 
 // EXPORTS //

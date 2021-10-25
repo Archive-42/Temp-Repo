@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test if a value is a Buffer instance.
@@ -35,7 +35,7 @@
 
 // MODULES //
 
-var isBuffer = require('./main.js');
+var isBuffer = require("./main.js");
 
 // EXPORTS //
 

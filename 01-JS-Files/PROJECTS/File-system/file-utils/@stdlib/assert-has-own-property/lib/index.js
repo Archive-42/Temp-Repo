@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test whether an object has a specified property.
@@ -39,7 +39,7 @@
 
 // MODULES //
 
-var hasOwnProp = require('./main.js');
+var hasOwnProp = require("./main.js");
 
 // EXPORTS //
 

@@ -49,7 +49,7 @@ npm install @stdlib/cli-ctor
 ## Usage
 
 ```javascript
-var CLI = require('@stdlib/cli-ctor');
+var CLI = require("@stdlib/cli-ctor");
 ```
 
 #### CLI( \[options] )
@@ -75,7 +75,7 @@ To provide package meta data, such as the package `name` and `version`, set the 
 
 ```javascript
 var opts = {
-  pkg: require('./package.json'),
+  pkg: require("./package.json"),
 };
 
 var cli = new CLI(opts);
@@ -87,10 +87,10 @@ To specify a particular command-line interface version (overriding package meta 
 ```javascript
 var opts = {
   pkg: {
-    name: 'beep',
-    version: '1.1.1',
+    name: "beep",
+    version: "1.1.1",
   },
-  version: '1.1.1-beta',
+  version: "1.1.1-beta",
 };
 
 var cli = new CLI(opts);
@@ -103,10 +103,10 @@ cli.version();
 By default, an instance sets the process title to either the first key in `pkg.bin` or to `pkg.name`. To explicitly set the process title, set the `title` option.
 
 ```javascript
-var proc = require('process');
+var proc = require("process");
 
 var opts = {
-  title: 'beep-boop',
+  title: "beep-boop",
 };
 
 var cli = new CLI(opts);
@@ -133,8 +133,8 @@ When the command-line flag `--help` is set, a command-line interface instance pr
 
 ```javascript
 var opts = {
-  help: 'Usage: boop [options] <beep>',
-  argv: ['/usr/local/bin/node', 'foo.js', '--help'],
+  help: "Usage: boop [options] <beep>",
+  argv: ["/usr/local/bin/node", "foo.js", "--help"],
 };
 
 var cli = new CLI(opts);
@@ -145,7 +145,7 @@ By default, an instance resolves command-line arguments and flags via `process.a
 
 ```javascript
 var opts = {
-  argv: ['/usr/local/bin/node', 'foo.js', 'a', 'b', 'c'],
+  argv: ["/usr/local/bin/node", "foo.js", "a", "b", "c"],
 };
 
 var cli = new CLI(opts);
@@ -159,15 +159,15 @@ To specify command-line argument parser options, such as command-line flag types
 ```javascript
 var opts = {
   options: {
-    boolean: ['help', 'version'],
-    string: ['output'],
+    boolean: ["help", "version"],
+    string: ["output"],
     alias: {
-      help: ['h'],
-      version: ['V'],
-      output: ['o'],
+      help: ["h"],
+      version: ["V"],
+      output: ["o"],
     },
   },
-  argv: ['/usr/local/bin/node', 'foo.js', '-o=bar.js'],
+  argv: ["/usr/local/bin/node", "foo.js", "-o=bar.js"],
 };
 
 var cli = new CLI(opts);
@@ -234,7 +234,7 @@ var cli = new CLI();
 // ...
 
 // Create a new error object:
-var err = new Error('invalid argument');
+var err = new Error("invalid argument");
 
 // Exit due to the error:
 cli.error(err);
@@ -250,7 +250,7 @@ var cli = new CLI();
 // ...
 
 // Create a new error object:
-var err = new Error('invalid argument');
+var err = new Error("invalid argument");
 
 // Exit due to the error:
 cli.error(err, 2);
@@ -288,7 +288,7 @@ Returns a list of command-line arguments.
 
 ```javascript
 var cli = new CLI({
-  argv: ['/usr/local/bin/node', 'foo.js', 'a', '--b', 'c', 'd'],
+  argv: ["/usr/local/bin/node", "foo.js", "a", "--b", "c", "d"],
 });
 
 var args = cli.args();
@@ -302,14 +302,14 @@ Returns command-line flags.
 ```javascript
 var cli = new CLI({
   argv: [
-    '/usr/local/bin/node',
-    'foo.js',
-    'a',
-    '--b',
-    'c',
-    '-def',
-    '--g=h',
-    'i',
+    "/usr/local/bin/node",
+    "foo.js",
+    "a",
+    "--b",
+    "c",
+    "-def",
+    "--g=h",
+    "i",
   ],
 });
 
@@ -323,7 +323,7 @@ Prints help text to `stderr` and then exits the calling process.
 
 ```javascript
 var cli = new CLI({
-  help: 'Usage: beep [options] <boop>',
+  help: "Usage: beep [options] <boop>",
 });
 
 cli.help();
@@ -338,7 +338,7 @@ Prints the command-line interface version to `stderr` and then exits the calling
 
 ```javascript
 var cli = new CLI({
-  version: '1.1.1',
+  version: "1.1.1",
 });
 
 cli.version();
@@ -375,24 +375,24 @@ cli.version();
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var join = require('path').join;
-var readFileSync = require('@stdlib/fs-read-file').sync;
-var CLI = require('@stdlib/cli-ctor');
-var main = require('./examples/fixtures/main.js');
+var join = require("path").join;
+var readFileSync = require("@stdlib/fs-read-file").sync;
+var CLI = require("@stdlib/cli-ctor");
+var main = require("./examples/fixtures/main.js");
 
 // Load help text:
 var fopts = {
-  encoding: 'utf8',
+  encoding: "utf8",
 };
 var help = readFileSync(
-  join(__dirname, 'examples', 'fixtures', 'usage.txt'),
+  join(__dirname, "examples", "fixtures", "usage.txt"),
   fopts
 );
 
 // Set the command-line interface options:
 var opts = {
-  pkg: require('./package.json'),
-  options: require('./examples/fixtures/opts.json'),
+  pkg: require("./package.json"),
+  options: require("./examples/fixtures/opts.json"),
   help: help,
   title: true,
   updates: true,
@@ -402,7 +402,7 @@ var opts = {
 var cli = new CLI(opts);
 
 // Run main:
-main('beep');
+main("beep");
 
 // Close:
 cli.close(0);

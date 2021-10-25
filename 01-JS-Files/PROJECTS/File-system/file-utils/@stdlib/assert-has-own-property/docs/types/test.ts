@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import hasOwnProp = require('./index');
+import hasOwnProp = require("./index");
 
 // TESTS //
 
@@ -25,13 +25,13 @@ import hasOwnProp = require('./index');
   const obj = {
     boop: true,
   };
-  hasOwnProp(obj, 'boop'); // $ExpectType boolean
-  hasOwnProp(obj, 'beep'); // $ExpectType boolean
+  hasOwnProp(obj, "boop"); // $ExpectType boolean
+  hasOwnProp(obj, "beep"); // $ExpectType boolean
 }
 
 // The compiler throws an error if the function is provided an unsupported number of arguments...
 {
   hasOwnProp(); // $ExpectError
   hasOwnProp({}); // $ExpectError
-  hasOwnProp({}, 'beep', 123); // $ExpectError
+  hasOwnProp({}, "beep", 123); // $ExpectError
 }

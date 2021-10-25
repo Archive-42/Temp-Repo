@@ -3,10 +3,10 @@
 	Author Tobias Koppers @sokra
 */
 
-'use strict';
+"use strict";
 
-const { URL, fileURLToPath } = require('url');
-const { NormalModule } = require('..');
+const { URL, fileURLToPath } = require("url");
+const { NormalModule } = require("..");
 
 /** @typedef {import("../Compiler")} Compiler */
 
@@ -18,11 +18,11 @@ class FileUriPlugin {
    */
   apply(compiler) {
     compiler.hooks.compilation.tap(
-      'FileUriPlugin',
+      "FileUriPlugin",
       (compilation, { normalModuleFactory }) => {
         normalModuleFactory.hooks.resolveForScheme
-          .for('file')
-          .tap('FileUriPlugin', (resourceData) => {
+          .for("file")
+          .tap("FileUriPlugin", (resourceData) => {
             const url = new URL(resourceData.resource);
             const path = fileURLToPath(url);
             const query = url.search;
@@ -36,7 +36,7 @@ class FileUriPlugin {
         const hooks = NormalModule.getCompilationHooks(compilation);
         hooks.readResource
           .for(undefined)
-          .tapAsync('FileUriPlugin', (loaderContext, callback) => {
+          .tapAsync("FileUriPlugin", (loaderContext, callback) => {
             const { resourcePath } = loaderContext;
             loaderContext.addDependency(resourcePath);
             loaderContext.fs.readFile(resourcePath, callback);

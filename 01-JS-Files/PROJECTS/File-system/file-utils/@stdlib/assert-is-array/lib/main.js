@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var nativeClass = require('@stdlib/utils-native-class');
+var nativeClass = require("@stdlib/utils-native-class");
 
 // VARIABLES //
 
@@ -43,7 +43,7 @@ var f;
  * // returns false
  */
 function isArray(value) {
-  return nativeClass(value) === '[object Array]';
+  return nativeClass(value) === "[object Array]";
 }
 
 // MAIN //

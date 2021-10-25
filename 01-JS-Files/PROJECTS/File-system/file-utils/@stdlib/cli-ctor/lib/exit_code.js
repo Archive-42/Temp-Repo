@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var proc = require('./process.js');
+var proc = require("./process.js");
 
 // VARIABLES //
 
@@ -41,7 +41,7 @@ function exitCode(proc, code) {
   var v;
 
   // Handle old Node.js versions lacking `process.exitCode` support...
-  v = NODE_VERSION.split('.');
+  v = NODE_VERSION.split(".");
   v[0] = parseInt(v[0], 10);
   v[1] = parseInt(v[1], 10);
 

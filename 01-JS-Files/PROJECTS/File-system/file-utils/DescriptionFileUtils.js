@@ -3,9 +3,9 @@
 	Author Tobias Koppers @sokra
 */
 
-'use strict';
+"use strict";
 
-const forEachBail = require('./forEachBail');
+const forEachBail = require("./forEachBail");
 
 /** @typedef {import("./Resolver")} Resolver */
 /** @typedef {import("./Resolver").ResolveContext} ResolveContext */
@@ -51,7 +51,7 @@ function loadDescriptionFile(
         if (resolver.fileSystem.readJson) {
           resolver.fileSystem.readJson(descriptionFilePath, (err, content) => {
             if (err) {
-              if (typeof err.code !== 'undefined') {
+              if (typeof err.code !== "undefined") {
                 if (resolveContext.missingDependencies) {
                   resolveContext.missingDependencies.add(descriptionFilePath);
                 }
@@ -87,7 +87,7 @@ function loadDescriptionFile(
                 return onJson(e);
               }
             } else {
-              return onJson(new Error('No content in file'));
+              return onJson(new Error("No content in file"));
             }
 
             onJson(null, json);
@@ -98,11 +98,11 @@ function loadDescriptionFile(
           if (err) {
             if (resolveContext.log)
               resolveContext.log(
-                descriptionFilePath + ' (directory description file): ' + err
+                descriptionFilePath + " (directory description file): " + err
               );
             else
               err.message =
-                descriptionFilePath + ' (directory description file): ' + err;
+                descriptionFilePath + " (directory description file): " + err;
             return callback(err);
           }
           callback(null, {
@@ -140,7 +140,7 @@ function getField(content, field) {
   if (Array.isArray(field)) {
     let current = content;
     for (let j = 0; j < field.length; j++) {
-      if (current === null || typeof current !== 'object') {
+      if (current === null || typeof current !== "object") {
         current = null;
         break;
       }
@@ -157,9 +157,9 @@ function getField(content, field) {
  * @returns {string|null} parent directory or null
  */
 function cdUp(directory) {
-  if (directory === '/') return null;
-  const i = directory.lastIndexOf('/'),
-    j = directory.lastIndexOf('\\');
+  if (directory === "/") return null;
+  const i = directory.lastIndexOf("/"),
+    j = directory.lastIndexOf("\\");
   const p = i < 0 ? j : j < 0 ? i : i < j ? j : i;
   if (p < 0) return null;
   return directory.substr(0, p || 1);

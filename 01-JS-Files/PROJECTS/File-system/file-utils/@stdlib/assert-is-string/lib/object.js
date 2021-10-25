@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var hasToStringTag = require('@stdlib/assert-has-tostringtag-support');
-var nativeClass = require('@stdlib/utils-native-class');
-var test = require('./try2valueof.js');
+var hasToStringTag = require("@stdlib/assert-has-tostringtag-support");
+var nativeClass = require("@stdlib/utils-native-class");
+var test = require("./try2valueof.js");
 
 // VARIABLES //
 
@@ -45,14 +45,14 @@ var FLG = hasToStringTag();
  * // returns false
  */
 function isString(value) {
-  if (typeof value === 'object') {
+  if (typeof value === "object") {
     if (value instanceof String) {
       return true;
     }
     if (FLG) {
       return test(value);
     }
-    return nativeClass(value) === '[object String]';
+    return nativeClass(value) === "[object String]";
   }
   return false;
 }

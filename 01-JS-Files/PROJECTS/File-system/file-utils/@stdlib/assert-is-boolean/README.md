@@ -39,7 +39,7 @@ npm install @stdlib/assert-is-boolean
 ### Usage
 
 ```javascript
-var isBoolean = require('@stdlib/assert-is-boolean');
+var isBoolean = require("@stdlib/assert-is-boolean");
 ```
 
 #### isBoolean( value )
@@ -106,7 +106,7 @@ bool = isBoolean.isObject(new Boolean(false));
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var isBoolean = require('@stdlib/assert-is-boolean');
+var isBoolean = require("@stdlib/assert-is-boolean");
 
 var bool = isBoolean(false);
 // returns true
@@ -114,7 +114,7 @@ var bool = isBoolean(false);
 bool = isBoolean(new Boolean(false));
 // returns true
 
-bool = isBoolean('true');
+bool = isBoolean("true");
 // returns false
 
 bool = isBoolean(null);

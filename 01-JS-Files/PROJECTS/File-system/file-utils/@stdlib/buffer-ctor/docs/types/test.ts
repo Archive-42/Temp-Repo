@@ -20,7 +20,7 @@
 // tslint:disable:no-unused-expression
 // tslint:disable:deprecation
 
-import Buffer = require('./index');
+import Buffer = require("./index");
 
 // TESTS //
 

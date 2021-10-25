@@ -39,7 +39,7 @@ npm install @stdlib/streams-node-stdin
 ## Usage
 
 ```javascript
-var stdin = require('@stdlib/streams-node-stdin');
+var stdin = require("@stdlib/streams-node-stdin");
 ```
 
 #### stdin
@@ -49,15 +49,15 @@ var stdin = require('@stdlib/streams-node-stdin');
 <!-- run-disable -->
 
 ```javascript
-var string2buffer = require('@stdlib/buffer-from-string');
-var Buffer = require('@stdlib/buffer-ctor');
+var string2buffer = require("@stdlib/buffer-from-string");
+var Buffer = require("@stdlib/buffer-ctor");
 
 var data = [];
 var len = 0;
 
-stdin.on('readable', onReadable);
-stdin.on('error', onError);
-stdin.on('end', onEnd);
+stdin.on("readable", onReadable);
+stdin.on("error", onError);
+stdin.on("end", onEnd);
 
 function onReadable() {
   var chunk;
@@ -66,7 +66,7 @@ function onReadable() {
     if (chunk === null) {
       break;
     }
-    if (typeof chunk === 'string') {
+    if (typeof chunk === "string") {
       chunk = string2buffer(chunk);
     }
     data.push(chunk);
@@ -100,21 +100,21 @@ function onEnd() {
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var proc = require('process');
-var stdin = require('@stdlib/streams-node-stdin');
-var stdout = require('@stdlib/streams-node-stdout');
+var proc = require("process");
+var stdin = require("@stdlib/streams-node-stdin");
+var stdout = require("@stdlib/streams-node-stdout");
 
 // Set the encoding:
-stdin.setEncoding('utf8');
+stdin.setEncoding("utf8");
 
 // Create an echo stream:
 stdin.pipe(stdout);
 
 // Push data to `stdin`:
-stdin.push('beep');
-stdin.push(' ');
-stdin.push('boop');
-stdin.push('\n');
+stdin.push("beep");
+stdin.push(" ");
+stdin.push("boop");
+stdin.push("\n");
 
 // End the stream:
 stdin.push(null);

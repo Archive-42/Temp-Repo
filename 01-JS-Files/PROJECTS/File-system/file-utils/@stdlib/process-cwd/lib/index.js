@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Return the current working directory of the process.
@@ -32,7 +32,7 @@
 
 // MODULES //
 
-var cwd = require('./main.js');
+var cwd = require("./main.js");
 
 // EXPORTS //
 

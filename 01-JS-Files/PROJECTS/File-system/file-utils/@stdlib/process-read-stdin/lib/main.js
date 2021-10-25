@@ -16,16 +16,16 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isFunction = require('@stdlib/assert-is-function');
-var isString = require('@stdlib/assert-is-string').isPrimitive;
-var Buffer = require('@stdlib/buffer-ctor');
-var string2buffer = require('@stdlib/buffer-from-string');
-var stream = require('@stdlib/streams-node-stdin');
-var nextTick = require('@stdlib/utils-next-tick');
+var isFunction = require("@stdlib/assert-is-function");
+var isString = require("@stdlib/assert-is-string").isPrimitive;
+var Buffer = require("@stdlib/buffer-ctor");
+var string2buffer = require("@stdlib/buffer-from-string");
+var stream = require("@stdlib/streams-node-stdin");
+var nextTick = require("@stdlib/utils-next-tick");
 
 // MAIN //
 
@@ -72,18 +72,18 @@ function stdin() {
     enc = arguments[0];
     if (!isString(enc)) {
       throw new TypeError(
-        'invalid argument. Encoding argument must be a string. Value: `' +
+        "invalid argument. Encoding argument must be a string. Value: `" +
           enc +
-          '`.'
+          "`."
       );
     }
     clbk = arguments[1];
   }
   if (!isFunction(clbk)) {
     throw new TypeError(
-      'invalid argument. Callback argument must be a function. Value: `' +
+      "invalid argument. Callback argument must be a function. Value: `" +
         clbk +
-        '`.'
+        "`."
     );
   }
   if (enc) {
@@ -96,9 +96,9 @@ function stdin() {
   data = [];
   len = 0;
 
-  stream.on('readable', onReadable);
-  stream.on('error', onError);
-  stream.on('end', onEnd);
+  stream.on("readable", onReadable);
+  stream.on("error", onError);
+  stream.on("end", onEnd);
 
   /**
    * Callback invoked after the next tick.
@@ -108,9 +108,9 @@ function stdin() {
    */
   function onTick() {
     if (enc) {
-      return clbk(null, '');
+      return clbk(null, "");
     }
-    clbk(null, string2buffer(''));
+    clbk(null, string2buffer(""));
   }
 
   /**
@@ -125,7 +125,7 @@ function stdin() {
       if (chunk === null) {
         break;
       }
-      if (typeof chunk === 'string') {
+      if (typeof chunk === "string") {
         chunk = string2buffer(chunk);
       }
       data.push(chunk);
@@ -152,7 +152,7 @@ function stdin() {
   function onEnd() {
     if (enc) {
       // Return a string...
-      return clbk(null, data.join(''));
+      return clbk(null, data.join(""));
     }
     // Return a buffer...
     clbk(null, Buffer.concat(data, len));

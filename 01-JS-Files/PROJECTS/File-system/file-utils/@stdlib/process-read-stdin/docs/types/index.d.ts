@@ -20,7 +20,7 @@
 
 /// <reference types="node"/>
 
-import { Buffer } from 'buffer';
+import { Buffer } from "buffer";
 
 /**
  * Callback invoked upon reading all data from `stdin`.

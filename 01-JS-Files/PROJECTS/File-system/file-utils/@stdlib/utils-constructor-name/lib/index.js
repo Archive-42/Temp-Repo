@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Determine the name of a value's constructor.
@@ -38,7 +38,7 @@
 
 // MODULES //
 
-var constructorName = require('./main.js');
+var constructorName = require("./main.js");
 
 // EXPORTS //
 

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import reFunctionName = require('./index');
+import reFunctionName = require("./index");
 
 // TESTS //
 

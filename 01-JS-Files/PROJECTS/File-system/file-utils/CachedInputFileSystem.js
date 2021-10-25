@@ -3,9 +3,9 @@
 	Author Tobias Koppers @sokra
 */
 
-'use strict';
+"use strict";
 
-const nextTick = require('process').nextTick;
+const nextTick = require("process").nextTick;
 
 /** @typedef {import("./Resolver").FileSystem} FileSystem */
 /** @typedef {import("./Resolver").SyncFileSystem} SyncFileSystem */
@@ -18,7 +18,7 @@ const dirname = (path) => {
     if (c === 47 || c === 92) break;
     idx--;
   }
-  if (idx < 0) return '';
+  if (idx < 0) return "";
   return path.slice(0, idx);
 };
 
@@ -54,7 +54,7 @@ class OperationMergerBackend {
 
     this.provide = this._provider
       ? (path, options, callback) => {
-          if (typeof options === 'function') {
+          if (typeof options === "function") {
             callback = options;
             options = undefined;
           }
@@ -66,8 +66,8 @@ class OperationMergerBackend {
               callback
             );
           }
-          if (typeof path !== 'string') {
-            callback(new TypeError('path must be a string'));
+          if (typeof path !== "string") {
+            callback(new TypeError("path must be a string"));
             return;
           }
           let callbacks = this._activeAsyncOperations.get(path);
@@ -152,12 +152,12 @@ class CacheBackend {
   }
 
   provide(path, options, callback) {
-    if (typeof options === 'function') {
+    if (typeof options === "function") {
       callback = options;
       options = undefined;
     }
-    if (typeof path !== 'string') {
-      callback(new TypeError('path must be a string'));
+    if (typeof path !== "string") {
+      callback(new TypeError("path must be a string"));
       return;
     }
     if (options) {
@@ -202,8 +202,8 @@ class CacheBackend {
   }
 
   provideSync(path, options) {
-    if (typeof path !== 'string') {
-      throw new TypeError('path must be a string');
+    if (typeof path !== "string") {
+      throw new TypeError("path must be a string");
     }
     if (options) {
       return this._syncProvider.call(this._providerContext, path, options);
@@ -252,7 +252,7 @@ class CacheBackend {
         }
         this._enterIdleMode();
       }
-    } else if (typeof what === 'string') {
+    } else if (typeof what === "string") {
       for (let [key, data] of this._data) {
         if (key.startsWith(what)) {
           this._data.delete(key);
@@ -281,7 +281,7 @@ class CacheBackend {
   purgeParent(what) {
     if (!what) {
       this.purge();
-    } else if (typeof what === 'string') {
+    } else if (typeof what === "string") {
       this.purge(dirname(what));
     } else {
       const set = new Set();
@@ -434,10 +434,10 @@ module.exports = class CachedInputFileSystem {
             this.readFile(path, (err, buffer) => {
               if (err) return callback(err);
               if (!buffer || buffer.length === 0)
-                return callback(new Error('No file content'));
+                return callback(new Error("No file content"));
               let data;
               try {
-                data = JSON.parse(buffer.toString('utf-8'));
+                data = JSON.parse(buffer.toString("utf-8"));
               } catch (e) {
                 return callback(e);
               }
@@ -448,7 +448,7 @@ module.exports = class CachedInputFileSystem {
         (this.readFileSync &&
           ((path) => {
             const buffer = this.readFileSync(path);
-            const data = JSON.parse(buffer.toString('utf-8'));
+            const data = JSON.parse(buffer.toString("utf-8"));
             return data;
           })),
       this.fileSystem

@@ -19,7 +19,7 @@ if (window.jQuery)
       if (this.length == 0) return this; // quick fail
 
       // Handle API methods
-      if (typeof arguments[0] == 'string') {
+      if (typeof arguments[0] == "string") {
         // Perform API methods on individual elements
         if (this.length > 1) {
           var args = arguments;
@@ -46,9 +46,9 @@ if (window.jQuery)
       // Empty Element Fix!!!
       // this code will automatically intercept native form submissions
       // and disable empty file elements
-      $('form')
-        .not('MultiFile-intercepted')
-        .addClass('MultiFile-intercepted')
+      $("form")
+        .not("MultiFile-intercepted")
+        .addClass("MultiFile-intercepted")
         .submit($.fn.MultiFile.disableEmpty);
 
       //### http://plugins.jquery.com/node/1363
@@ -62,8 +62,8 @@ if (window.jQuery)
       }
 
       // loop through each matched element
-      this.not('.MultiFile-applied')
-        .addClass('MultiFile-applied')
+      this.not(".MultiFile-applied")
+        .addClass("MultiFile-applied")
         .each(function () {
           //#####################################################################
           // MAIN PLUGIN FUNCTIONALITY - START
@@ -83,7 +83,7 @@ if (window.jQuery)
           //===
 
           //# USE CONFIGURATION
-          if (typeof options == 'number') options = { max: options };
+          if (typeof options == "number") options = { max: options };
           var o = $.extend(
             {},
             $.fn.MultiFile.options,
@@ -97,24 +97,24 @@ if (window.jQuery)
           );
           // limit number of files that can be selected?
           if (!(o.max > 0) /*IsNull(MultiFile.max)*/) {
-            o.max = MultiFile.E.attr('maxlength');
+            o.max = MultiFile.E.attr("maxlength");
             if (!(o.max > 0) /*IsNull(MultiFile.max)*/) {
               o.max = (String(
                 MultiFile.e.className.match(/\b(max|limit)\-([0-9]+)\b/gi) || [
-                  '',
+                  "",
                 ]
-              ).match(/[0-9]+/gi) || [''])[0];
+              ).match(/[0-9]+/gi) || [""])[0];
               if (!(o.max > 0)) o.max = -1;
               else o.max = String(o.max).match(/[0-9]+/gi)[0];
             }
           }
           o.max = new Number(o.max);
           // limit extensions?
-          o.accept = o.accept || MultiFile.E.attr('accept') || '';
+          o.accept = o.accept || MultiFile.E.attr("accept") || "";
           if (!o.accept) {
             o.accept =
-              MultiFile.e.className.match(/\b(accept\-[\w\|]+)\b/gi) || '';
-            o.accept = new String(o.accept).replace(/^(accept|ext)\-/i, '');
+              MultiFile.e.className.match(/\b(accept\-[\w\|]+)\b/gi) || "";
+            o.accept = new String(o.accept).replace(/^(accept|ext)\-/i, "");
           }
 
           //===
@@ -135,13 +135,13 @@ if (window.jQuery)
             n: 0, // How many elements are currently selected?
             slaves: [],
             files: [],
-            instanceKey: MultiFile.e.id || 'MultiFile' + String(group_count), // Instance Key?
+            instanceKey: MultiFile.e.id || "MultiFile" + String(group_count), // Instance Key?
             generateID: function (z) {
-              return MultiFile.instanceKey + (z > 0 ? '_F' + String(z) : '');
+              return MultiFile.instanceKey + (z > 0 ? "_F" + String(z) : "");
             },
             trigger: function (event, element) {
               var handler = MultiFile[event],
-                value = $(element).attr('value');
+                value = $(element).attr("value");
               if (handler) {
                 var returnValue = handler(element, value, MultiFile);
                 if (returnValue != null) return returnValue;
@@ -156,27 +156,27 @@ if (window.jQuery)
           // - thanks to John-Paul Bader: http://smyck.de/2006/08/11/javascript-dynamic-regular-expresions/
           if (String(MultiFile.accept).length > 1) {
             MultiFile.accept = MultiFile.accept
-              .replace(/\W+/g, '|')
-              .replace(/^\W|\W$/g, '');
+              .replace(/\W+/g, "|")
+              .replace(/^\W|\W$/g, "");
             MultiFile.rxAccept = new RegExp(
-              '\\.(' + (MultiFile.accept ? MultiFile.accept : '') + ')$',
-              'gi'
+              "\\.(" + (MultiFile.accept ? MultiFile.accept : "") + ")$",
+              "gi"
             );
           }
 
           //===
 
           // Create wrapper to hold our file list
-          MultiFile.wrapID = MultiFile.instanceKey + '_wrap'; // Wrapper ID?
+          MultiFile.wrapID = MultiFile.instanceKey + "_wrap"; // Wrapper ID?
           MultiFile.E.wrap(
             '<div class="MultiFile-wrap" id="' + MultiFile.wrapID + '"></div>'
           );
-          MultiFile.wrapper = $('#' + MultiFile.wrapID + '');
+          MultiFile.wrapper = $("#" + MultiFile.wrapID + "");
 
           //===
 
           // MultiFile MUST have a name - default: file1[], file2[], file3[]
-          MultiFile.e.name = MultiFile.e.name || 'file' + group_count + '[]';
+          MultiFile.e.name = MultiFile.e.name || "file" + group_count + "[]";
 
           //===
 
@@ -189,7 +189,7 @@ if (window.jQuery)
                 MultiFile.wrapID +
                 '_list"></div>'
             );
-            MultiFile.list = $('#' + MultiFile.wrapID + '_list');
+            MultiFile.list = $("#" + MultiFile.wrapID + "_list");
           }
           MultiFile.list = $(MultiFile.list);
 
@@ -206,7 +206,7 @@ if (window.jQuery)
 
             // BUG FIX: http://plugins.jquery.com/node/1495
             // Clear identifying properties from clones
-            if (slave_count > 0) slave.id = slave.name = '';
+            if (slave_count > 0) slave.id = slave.name = "";
 
             // Define element's ID and name (upload components need this!)
             //slave.id = slave.id || MultiFile.generateID(slave_count);
@@ -219,11 +219,11 @@ if (window.jQuery)
               MultiFile.namePattern
                 /*master name*/ .replace(
                   /\$name/gi,
-                  $(MultiFile.clone).attr('name')
+                  $(MultiFile.clone).attr("name")
                 )
                 /*master id  */ .replace(
                   /\$id/gi,
-                  $(MultiFile.clone).attr('id')
+                  $(MultiFile.clone).attr("id")
                 )
                 /*group count*/ .replace(/\$g/gi, group_count) //(group_count>0?group_count:''))
                 /*slave count*/ .replace(/\$i/gi, slave_count) //(slave_count>0?slave_count:''))
@@ -242,10 +242,10 @@ if (window.jQuery)
             slave = $(slave);
 
             // Clear value
-            slave.val('').attr('value', '')[0].value = '';
+            slave.val("").attr("value", "")[0].value = "";
 
             // Stop plugin initializing on slaves
-            slave.addClass('MultiFile-applied');
+            slave.addClass("MultiFile-applied");
 
             // Triggered when a file is selected
             slave.change(function () {
@@ -255,19 +255,19 @@ if (window.jQuery)
               $(this).blur();
 
               //# Trigger Event! onFileSelect
-              if (!MultiFile.trigger('onFileSelect', this, MultiFile))
+              if (!MultiFile.trigger("onFileSelect", this, MultiFile))
                 return false;
               //# End Event!
 
               //# Retrive value of selected file from element
-              var ERROR = '',
-                v = String(this.value || '' /*.attr('value)*/);
+              var ERROR = "",
+                v = String(this.value || "" /*.attr('value)*/);
 
               // check extension
               if (MultiFile.accept && v && !v.match(MultiFile.rxAccept))
                 //{
                 ERROR = MultiFile.STRING.denied.replace(
-                  '$ext',
+                  "$ext",
                   String(v.match(/\.\w{1,4}$/gi))
                 );
               //}
@@ -281,7 +281,7 @@ if (window.jQuery)
                     //console.log(MultiFile.slaves[f],MultiFile.slaves[f].value);
                     //{
                     ERROR = MultiFile.STRING.duplicate.replace(
-                      '$file',
+                      "$file",
                       v.match(/[^\/\\]+$/gi)
                     );
               //};
@@ -293,10 +293,10 @@ if (window.jQuery)
               //# Let's remember which input we've generated so
               // we can disable the empty ones before submission
               // See: http://plugins.jquery.com/node/1495
-              newEle.addClass('MultiFile');
+              newEle.addClass("MultiFile");
 
               // Handle error
-              if (ERROR != '') {
+              if (ERROR != "") {
                 // Handle error
                 MultiFile.error(ERROR);
 
@@ -310,7 +310,7 @@ if (window.jQuery)
               }
 
               // Hide this element (NB: display:none is evil!)
-              $(this).css({ position: 'absolute', top: '-3000px' });
+              $(this).css({ position: "absolute", top: "-3000px" });
 
               // Add new element to the form
               slave.after(newEle);
@@ -322,13 +322,13 @@ if (window.jQuery)
               MultiFile.addSlave(newEle[0], slave_count + 1);
 
               //# Trigger Event! afterFileSelect
-              if (!MultiFile.trigger('afterFileSelect', this, MultiFile))
+              if (!MultiFile.trigger("afterFileSelect", this, MultiFile))
                 return false;
               //# End Event!
             }); // slave.change()
 
             // Save control to element
-            $(slave).data('MultiFile', MultiFile);
+            $(slave).data("MultiFile", MultiFile);
           }; // MultiFile.addSlave
           // Bind a new element
 
@@ -337,37 +337,37 @@ if (window.jQuery)
             //if(window.console) console.log('MultiFile.addToList',slave_count);
 
             //# Trigger Event! onFileAppend
-            if (!MultiFile.trigger('onFileAppend', slave, MultiFile))
+            if (!MultiFile.trigger("onFileAppend", slave, MultiFile))
               return false;
             //# End Event!
 
             // Create label elements
             var r = $('<div class="MultiFile-label"></div>'),
-              v = String(slave.value || '' /*.attr('value)*/),
+              v = String(slave.value || "" /*.attr('value)*/),
               a = $(
                 '<span class="MultiFile-title" title="' +
-                  MultiFile.STRING.selected.replace('$file', v) +
+                  MultiFile.STRING.selected.replace("$file", v) +
                   '">' +
                   MultiFile.STRING.file.replace(
-                    '$file',
+                    "$file",
                     v.match(/[^\/\\]+$/gi)[0]
                   ) +
-                  '</span>'
+                  "</span>"
               ),
               b = $(
                 '<a class="MultiFile-remove" href="#' +
                   MultiFile.wrapID +
                   '">' +
                   MultiFile.STRING.remove +
-                  '</a>'
+                  "</a>"
               );
 
             // Insert label
-            MultiFile.list.append(r.append(b, ' ', a));
+            MultiFile.list.append(r.append(b, " ", a));
 
             b.click(function () {
               //# Trigger Event! onFileRemove
-              if (!MultiFile.trigger('onFileRemove', slave, MultiFile))
+              if (!MultiFile.trigger("onFileRemove", slave, MultiFile))
                 return false;
               //# End Event!
 
@@ -380,12 +380,12 @@ if (window.jQuery)
               $(this).parent().remove();
 
               // Show most current element again (move into view) and clear selection
-              $(MultiFile.current).css({ position: '', top: '' });
-              $(MultiFile.current).reset().val('').attr('value', '')[0].value =
-                '';
+              $(MultiFile.current).css({ position: "", top: "" });
+              $(MultiFile.current).reset().val("").attr("value", "")[0].value =
+                "";
 
               //# Trigger Event! afterFileRemove
-              if (!MultiFile.trigger('afterFileRemove', slave, MultiFile))
+              if (!MultiFile.trigger("afterFileRemove", slave, MultiFile))
                 return false;
               //# End Event!
 
@@ -393,7 +393,7 @@ if (window.jQuery)
             });
 
             //# Trigger Event! afterFileAppend
-            if (!MultiFile.trigger('afterFileAppend', slave, MultiFile))
+            if (!MultiFile.trigger("afterFileAppend", slave, MultiFile))
               return false;
             //# End Event!
           }; // MultiFile.addToList
@@ -407,7 +407,7 @@ if (window.jQuery)
           MultiFile.n++;
 
           // Save control to element
-          MultiFile.E.data('MultiFile', MultiFile);
+          MultiFile.E.data("MultiFile", MultiFile);
 
           //#####################################################################
           // MAIN PLUGIN FUNCTIONALITY - END
@@ -434,9 +434,9 @@ if (window.jQuery)
        * @example $.fn.MultiFile.reset();
        */
       reset: function () {
-        var settings = $(this).data('MultiFile');
+        var settings = $(this).data("MultiFile");
         //if(settings) settings.wrapper.find('a.MultiFile-remove').click();
-        if (settings) settings.list.find('a.MultiFile-remove').click();
+        if (settings) settings.list.find("a.MultiFile-remove").click();
         return $(this);
       },
 
@@ -455,10 +455,10 @@ if (window.jQuery)
        * @param String class (optional) A string specifying a class to be applied to all affected elements - Default: 'mfD'.
        */
       disableEmpty: function (klass) {
-        klass = (typeof klass == 'string' ? klass : '') || 'mfD';
+        klass = (typeof klass == "string" ? klass : "") || "mfD";
         var o = [];
-        $('input:file.MultiFile').each(function () {
-          if ($(this).val() == '') o[o.length] = this;
+        $("input:file.MultiFile").each(function () {
+          if ($(this).val() == "") o[o.length] = this;
         });
         return $(o)
           .each(function () {
@@ -481,8 +481,8 @@ if (window.jQuery)
        * @param String klass (optional) A string specifying the class that was used to mark affected elements - Default: 'mfD'.
        */
       reEnableEmpty: function (klass) {
-        klass = (typeof klass == 'string' ? klass : '') || 'mfD';
-        return $('input:file.' + klass)
+        klass = (typeof klass == "string" ? klass : "") || "mfD";
+        return $("input:file." + klass)
           .removeClass(klass)
           .each(function () {
             this.disabled = false;
@@ -504,8 +504,8 @@ if (window.jQuery)
       intercept: function (methods, context, args) {
         var method, value;
         args = args || [];
-        if (args.constructor.toString().indexOf('Array') < 0) args = [args];
-        if (typeof methods == 'function') {
+        if (args.constructor.toString().indexOf("Array") < 0) args = [args];
+        if (typeof methods == "function") {
           $.fn.MultiFile.disableEmpty();
           value = methods.apply(context || window, args);
           //SEE-http://code.google.com/p/jquery-multifile-plugin/issues/detail?id=27
@@ -514,10 +514,10 @@ if (window.jQuery)
           }, 1000);
           return value;
         }
-        if (methods.constructor.toString().indexOf('Array') < 0)
+        if (methods.constructor.toString().indexOf("Array") < 0)
           methods = [methods];
         for (var i = 0; i < methods.length; i++) {
-          method = methods[i] + ''; // make sure that we have a STRING
+          method = methods[i] + ""; // make sure that we have a STRING
           if (method)
             (function (method) {
               // make sure that method is ISOLATED for the interception
@@ -549,29 +549,29 @@ if (window.jQuery)
 	*/
     $.fn.MultiFile.options = {
       //$.extend($.fn.MultiFile, { options: {
-      accept: '', // accepted file extensions
+      accept: "", // accepted file extensions
       max: -1, // maximum number of selectable files
 
       // name to use for newly created elements
-      namePattern: '$name', // same name by default (which creates an array)
+      namePattern: "$name", // same name by default (which creates an array)
 
       // STRING: collection lets you show messages in different languages
       STRING: {
-        remove: 'x',
-        denied: 'You cannot select a $ext file.\nTry again...',
-        file: '$file',
-        selected: 'File selected: $file',
-        duplicate: 'This file has already been selected:\n$file',
+        remove: "x",
+        denied: "You cannot select a $ext file.\nTry again...",
+        file: "$file",
+        selected: "File selected: $file",
+        duplicate: "This file has already been selected:\n$file",
       },
 
       // name of methods that should be automcatically intercepted so the plugin can disable
       // extra file elements that are empty before execution and automatically re-enable them afterwards
       autoIntercept: [
-        'submit',
-        'ajaxSubmit',
-        'ajaxForm',
-        'validate',
-        'valid' /* array of methods to intercept */,
+        "submit",
+        "ajaxSubmit",
+        "ajaxForm",
+        "validate",
+        "valid" /* array of methods to intercept */,
       ],
 
       // error handling function
@@ -621,7 +621,7 @@ if (window.jQuery)
 	*/
     $(function () {
       //$("input:file.multi").MultiFile();
-      $('input[type=file].multi').MultiFile();
+      $("input[type=file].multi").MultiFile();
     });
 
     /*# AVOID COLLISIONS #*/

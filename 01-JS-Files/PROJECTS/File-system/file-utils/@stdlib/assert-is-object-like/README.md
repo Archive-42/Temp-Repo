@@ -39,7 +39,7 @@ npm install @stdlib/assert-is-object-like
 ## Usage
 
 ```javascript
-var isObjectLike = require('@stdlib/assert-is-object-like');
+var isObjectLike = require("@stdlib/assert-is-object-like");
 ```
 
 #### isObjectLike( value )
@@ -65,7 +65,7 @@ Tests if a `value` is an `array` of object-like values.
 var bool = isObjectLike.isObjectLikeArray([{}, []]);
 // returns true
 
-bool = isObjectLike.isObjectLikeArray([{}, '3.0']);
+bool = isObjectLike.isObjectLikeArray([{}, "3.0"]);
 // returns false
 
 bool = isObjectLike.isObjectLikeArray([]);
@@ -83,7 +83,7 @@ bool = isObjectLike.isObjectLikeArray([]);
 - Return values are the same as would be obtained using the built-in [`typeof`][type-of] operator **except** that `null` is **not** considered an `object`.
 
   ```javascript
-  var bool = typeof null === 'object';
+  var bool = typeof null === "object";
   // returns true
 
   bool = isObjectLike(null);
@@ -103,9 +103,9 @@ bool = isObjectLike.isObjectLikeArray([]);
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var Int8Array = require('@stdlib/array-int8');
-var ArrayBuffer = require('@stdlib/array-buffer');
-var isObjectLike = require('@stdlib/assert-is-object-like');
+var Int8Array = require("@stdlib/array-int8");
+var ArrayBuffer = require("@stdlib/array-buffer");
+var isObjectLike = require("@stdlib/assert-is-object-like");
 
 var bool = isObjectLike({});
 // returns true
@@ -131,7 +131,7 @@ bool = isObjectLike(new Int8Array());
 bool = isObjectLike(new ArrayBuffer());
 // returns true
 
-bool = isObjectLike('a');
+bool = isObjectLike("a");
 // returns false
 
 bool = isObjectLike(5);

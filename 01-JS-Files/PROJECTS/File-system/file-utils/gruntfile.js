@@ -1,98 +1,98 @@
 /* jshint node:true */
-var path = require('path');
-var saucelabsBrowsers = require(path.resolve('test', 'saucelabs-browsers.js'));
+var path = require("path");
+var saucelabsBrowsers = require(path.resolve("test", "saucelabs-browsers.js"));
 
 var sourceFiles = [
-  'Gruntfile.js',
-  'src/*.js',
-  'src/**/*.js',
-  'test/**/test.*.js',
+  "Gruntfile.js",
+  "src/*.js",
+  "src/**/*.js",
+  "test/**/test.*.js",
 ];
 
 module.exports = exports = function (grunt) {
-  'use strict';
+  "use strict";
 
   var BANNER =
-    '/*!\n' +
-    '    localForage -- Offline Storage, Improved\n' +
-    '    Version ' +
-    grunt.file.readJSON('package.json').version +
-    '\n' +
-    '    https://localforage.github.io/localForage\n' +
-    '    (c) 2013-2017 Mozilla, Apache License 2.0\n' +
-    '*/\n';
+    "/*!\n" +
+    "    localForage -- Offline Storage, Improved\n" +
+    "    Version " +
+    grunt.file.readJSON("package.json").version +
+    "\n" +
+    "    https://localforage.github.io/localForage\n" +
+    "    (c) 2013-2017 Mozilla, Apache License 2.0\n" +
+    "*/\n";
 
   var babelModuleIdProvider = function getModuleId(moduleName) {
     var files = {
-      'src/localforage': 'localforage',
-      'src/utils/serializer': 'localforageSerializer',
-      'src/drivers/indexeddb': 'asyncStorage',
-      'src/drivers/localstorage': 'localStorageWrapper',
-      'src/drivers/websql': 'webSQLStorage',
+      "src/localforage": "localforage",
+      "src/utils/serializer": "localforageSerializer",
+      "src/drivers/indexeddb": "asyncStorage",
+      "src/drivers/localstorage": "localStorageWrapper",
+      "src/drivers/websql": "webSQLStorage",
     };
 
-    return files[moduleName] || moduleName.replace('src/', '');
+    return files[moduleName] || moduleName.replace("src/", "");
   };
 
   grunt.initConfig({
     babel: {
       options: {
         babelrc: false,
-        extends: path.resolve('.babelrc-umd'),
+        extends: path.resolve(".babelrc-umd"),
         moduleIds: true,
         getModuleId: babelModuleIdProvider,
       },
       dist: {
         files: {
-          'build/es5src/localforage.js': 'src/localforage.js',
-          'build/es5src/utils/serializer.js': 'src/utils/serializer.js',
-          'build/es5src/drivers/indexeddb.js': 'src/drivers/indexeddb.js',
-          'build/es5src/drivers/localstorage.js': 'src/drivers/localstorage.js',
-          'build/es5src/drivers/websql.js': 'src/drivers/websql.js',
+          "build/es5src/localforage.js": "src/localforage.js",
+          "build/es5src/utils/serializer.js": "src/utils/serializer.js",
+          "build/es5src/drivers/indexeddb.js": "src/drivers/indexeddb.js",
+          "build/es5src/drivers/localstorage.js": "src/drivers/localstorage.js",
+          "build/es5src/drivers/websql.js": "src/drivers/websql.js",
         },
       },
     },
     browserify: {
       package_bundling_test: {
-        src: 'test/runner.browserify.js',
-        dest: 'test/localforage.browserify.js',
+        src: "test/runner.browserify.js",
+        dest: "test/localforage.browserify.js",
       },
       main: {
         files: {
-          'dist/localforage.js': 'src/localforage.js',
+          "dist/localforage.js": "src/localforage.js",
         },
         options: {
           browserifyOptions: {
-            standalone: 'localforage',
+            standalone: "localforage",
           },
-          transform: ['rollupify', 'babelify'],
-          plugin: ['bundle-collapser/plugin', 'browserify-derequire'],
+          transform: ["rollupify", "babelify"],
+          plugin: ["bundle-collapser/plugin", "browserify-derequire"],
         },
       },
       no_promises: {
         files: {
-          'dist/localforage.nopromises.js': 'src/localforage.js',
+          "dist/localforage.nopromises.js": "src/localforage.js",
         },
         options: {
           browserifyOptions: {
-            standalone: 'localforage',
+            standalone: "localforage",
           },
-          transform: ['rollupify', 'babelify'],
-          plugin: ['bundle-collapser/plugin', 'browserify-derequire'],
-          exclude: ['lie/polyfill'],
+          transform: ["rollupify", "babelify"],
+          plugin: ["bundle-collapser/plugin", "browserify-derequire"],
+          exclude: ["lie/polyfill"],
         },
       },
     },
     concat: {
       options: {
-        separator: '',
+        separator: "",
       },
       localforage: {
         // just to add the BANNER
         // without adding an extra grunt module
         files: {
-          'dist/localforage.js': ['dist/localforage.js'],
-          'dist/localforage.nopromises.js': ['dist/localforage.nopromises.js'],
+          "dist/localforage.js": ["dist/localforage.js"],
+          "dist/localforage.nopromises.js": ["dist/localforage.nopromises.js"],
         },
         options: {
           banner: BANNER,
@@ -102,18 +102,18 @@ module.exports = exports = function (grunt) {
     connect: {
       test: {
         options: {
-          base: '.',
-          hostname: '*',
+          base: ".",
+          hostname: "*",
           port: 9999,
           middleware: function (connect) {
             return [
               function (req, res, next) {
-                res.setHeader('Access-Control-Allow-Origin', '*');
-                res.setHeader('Access-Control-Allow-Methods', '*');
+                res.setHeader("Access-Control-Allow-Origin", "*");
+                res.setHeader("Access-Control-Allow-Methods", "*");
 
                 return next();
               },
-              connect.static(require('path').resolve('.')),
+              connect.static(require("path").resolve(".")),
             ];
           },
         },
@@ -123,16 +123,16 @@ module.exports = exports = function (grunt) {
       dist: {
         files: [
           {
-            src: ['dist/localforage.js'],
-            dest: 'dist/localforage.js',
+            src: ["dist/localforage.js"],
+            dest: "dist/localforage.js",
           },
         ],
       },
       nopromises: {
         files: [
           {
-            src: ['dist/localforage.nopromises.js'],
-            dest: 'dist/localforage.nopromises.js',
+            src: ["dist/localforage.nopromises.js"],
+            dest: "dist/localforage.nopromises.js",
           },
         ],
       },
@@ -142,7 +142,7 @@ module.exports = exports = function (grunt) {
     },
     jshint: {
       options: {
-        jshintrc: '.jshintrc',
+        jshintrc: ".jshintrc",
       },
       source: sourceFiles,
     },
@@ -150,37 +150,37 @@ module.exports = exports = function (grunt) {
       unit: {
         options: {
           urls: [
-            'http://localhost:9999/test/test.main.html',
-            'http://localhost:9999/test/test.min.html',
-            'http://localhost:9999/test/test.callwhenready.html',
-            'http://localhost:9999/test/test.customdriver.html',
-            'http://localhost:9999/test/test.faultydriver.html',
-            'http://localhost:9999/test/test.nodriver.html',
-            'http://localhost:9999/test/test.browserify.html',
-            'http://localhost:9999/test/test.require.html',
-            'http://localhost:9999/test/test.webpack.html',
+            "http://localhost:9999/test/test.main.html",
+            "http://localhost:9999/test/test.min.html",
+            "http://localhost:9999/test/test.callwhenready.html",
+            "http://localhost:9999/test/test.customdriver.html",
+            "http://localhost:9999/test/test.faultydriver.html",
+            "http://localhost:9999/test/test.nodriver.html",
+            "http://localhost:9999/test/test.browserify.html",
+            "http://localhost:9999/test/test.require.html",
+            "http://localhost:9999/test/test.webpack.html",
           ],
         },
       },
     },
-    'saucelabs-mocha': {
+    "saucelabs-mocha": {
       all: {
         options: {
           username: process.env.SAUCE_USERNAME,
           key: process.env.SAUCE_ACCESS_KEY,
-          urls: ['http://localhost:9999/test/test.main.html'],
+          urls: ["http://localhost:9999/test/test.main.html"],
           tunnelTimeout: 5,
           build: process.env.TRAVIS_JOB_ID,
           concurrency: 3,
           browsers: saucelabsBrowsers,
-          testname: 'localForage Tests',
+          testname: "localForage Tests",
         },
       },
     },
     ts: {
       typing_tests: {
         tsconfig: {
-          tsconfig: 'typing-tests',
+          tsconfig: "typing-tests",
           passThrough: true,
         },
       },
@@ -188,9 +188,9 @@ module.exports = exports = function (grunt) {
     uglify: {
       localforage: {
         files: {
-          'dist/localforage.min.js': ['dist/localforage.js'],
-          'dist/localforage.nopromises.min.js': [
-            'dist/localforage.nopromises.js',
+          "dist/localforage.min.js": ["dist/localforage.js"],
+          "dist/localforage.nopromises.min.js": [
+            "dist/localforage.nopromises.js",
           ],
         },
         options: {
@@ -200,57 +200,57 @@ module.exports = exports = function (grunt) {
     },
     watch: {
       build: {
-        files: ['src/*.js', 'src/**/*.js'],
-        tasks: ['build'],
+        files: ["src/*.js", "src/**/*.js"],
+        tasks: ["build"],
       },
       /*jshint scripturl:true */
-      'mocha:unit': {
-        files: ['dist/localforage.js', 'test/runner.js', 'test/test.*.*'],
+      "mocha:unit": {
+        files: ["dist/localforage.js", "test/runner.js", "test/test.*.*"],
         tasks: [
-          'jshint',
-          'jscs',
-          'browserify:package_bundling_test',
-          'webpack:package_bundling_test',
-          'mocha:unit',
+          "jshint",
+          "jscs",
+          "browserify:package_bundling_test",
+          "webpack:package_bundling_test",
+          "mocha:unit",
         ],
       },
     },
     webpack: {
       package_bundling_test: {
-        entry: './test/runner.webpack.js',
+        entry: "./test/runner.webpack.js",
         output: {
-          path: 'test/',
-          filename: 'localforage.webpack.js',
+          path: "test/",
+          filename: "localforage.webpack.js",
         },
       },
     },
   });
 
-  require('load-grunt-tasks')(grunt);
+  require("load-grunt-tasks")(grunt);
 
-  grunt.registerTask('default', ['build', 'connect', 'watch']);
-  grunt.registerTask('build', [
-    'browserify:main',
-    'browserify:no_promises',
-    'concat',
-    'es3_safe_recast',
-    'uglify',
+  grunt.registerTask("default", ["build", "connect", "watch"]);
+  grunt.registerTask("build", [
+    "browserify:main",
+    "browserify:no_promises",
+    "concat",
+    "es3_safe_recast",
+    "uglify",
   ]);
-  grunt.registerTask('serve', ['build', 'connect:test', 'watch']);
+  grunt.registerTask("serve", ["build", "connect:test", "watch"]);
 
   // These are the test tasks we run regardless of Sauce Labs credentials.
   var testTasks = [
-    'build',
-    'babel',
-    'jshint',
-    'jscs',
-    'ts:typing_tests',
-    'browserify:package_bundling_test',
-    'webpack:package_bundling_test',
-    'connect:test',
-    'mocha',
+    "build",
+    "babel",
+    "jshint",
+    "jscs",
+    "ts:typing_tests",
+    "browserify:package_bundling_test",
+    "webpack:package_bundling_test",
+    "connect:test",
+    "mocha",
   ];
-  grunt.registerTask('test:local', testTasks.slice());
+  grunt.registerTask("test:local", testTasks.slice());
 
   // Run tests using Sauce Labs if we are on Travis or have locally
   // available Sauce Labs credentials. Use `grunt test:local` to skip
@@ -260,5 +260,5 @@ module.exports = exports = function (grunt) {
   //     testTasks.push('saucelabs-mocha');
   // }
 
-  grunt.registerTask('test', testTasks);
+  grunt.registerTask("test", testTasks);
 };

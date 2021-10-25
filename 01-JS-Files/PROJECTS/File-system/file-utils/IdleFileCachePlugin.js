@@ -3,10 +3,10 @@
 	Author Tobias Koppers @sokra
 */
 
-'use strict';
+"use strict";
 
-const Cache = require('../Cache');
-const ProgressPlugin = require('../ProgressPlugin');
+const Cache = require("../Cache");
+const ProgressPlugin = require("../ProgressPlugin");
 
 /** @typedef {import("../Compiler")} Compiler */
 
@@ -54,7 +54,7 @@ class IdleFileCachePlugin {
     const pendingIdleTasks = new Map();
 
     compiler.cache.hooks.store.tap(
-      { name: 'IdleFileCachePlugin', stage: Cache.STAGE_DISK },
+      { name: "IdleFileCachePlugin", stage: Cache.STAGE_DISK },
       (identifier, etag, data) => {
         pendingIdleTasks.set(identifier, () =>
           strategy.store(identifier, etag, data)
@@ -63,7 +63,7 @@ class IdleFileCachePlugin {
     );
 
     compiler.cache.hooks.get.tapPromise(
-      { name: 'IdleFileCachePlugin', stage: Cache.STAGE_DISK },
+      { name: "IdleFileCachePlugin", stage: Cache.STAGE_DISK },
       (identifier, etag, gotHandlers) => {
         const restore = () =>
           strategy.restore(identifier, etag).then((cacheEntry) => {
@@ -90,7 +90,7 @@ class IdleFileCachePlugin {
     );
 
     compiler.cache.hooks.storeBuildDependencies.tap(
-      { name: 'IdleFileCachePlugin', stage: Cache.STAGE_DISK },
+      { name: "IdleFileCachePlugin", stage: Cache.STAGE_DISK },
       (dependencies) => {
         pendingIdleTasks.set(BUILD_DEPENDENCIES_KEY, () =>
           strategy.storeBuildDependencies(dependencies)
@@ -99,7 +99,7 @@ class IdleFileCachePlugin {
     );
 
     compiler.cache.hooks.shutdown.tapPromise(
-      { name: 'IdleFileCachePlugin', stage: Cache.STAGE_DISK },
+      { name: "IdleFileCachePlugin", stage: Cache.STAGE_DISK },
       () => {
         if (idleTimer) {
           clearTimeout(idleTimer);
@@ -108,7 +108,7 @@ class IdleFileCachePlugin {
         isIdle = false;
         const reportProgress = ProgressPlugin.getReporter(compiler);
         const jobs = Array.from(pendingIdleTasks.values());
-        if (reportProgress) reportProgress(0, 'process pending cache items');
+        if (reportProgress) reportProgress(0, "process pending cache items");
         const promises = jobs.map((fn) => fn());
         pendingIdleTasks.clear();
         promises.push(currentIdlePromise);
@@ -163,7 +163,7 @@ class IdleFileCachePlugin {
           })
           .catch((err) => {
             const logger = compiler.getInfrastructureLogger(
-              'IdleFileCachePlugin'
+              "IdleFileCachePlugin"
             );
             logger.warn(`Background tasks during idle failed: ${err.message}`);
             logger.debug(err.stack);
@@ -173,12 +173,12 @@ class IdleFileCachePlugin {
     };
     let idleTimer = undefined;
     compiler.cache.hooks.beginIdle.tap(
-      { name: 'IdleFileCachePlugin', stage: Cache.STAGE_DISK },
+      { name: "IdleFileCachePlugin", stage: Cache.STAGE_DISK },
       () => {
         const isLargeChange = timeSpendInBuild > avgTimeSpendInStore * 2;
         if (isInitialStore && idleTimeoutForInitialStore < idleTimeout) {
           compiler
-            .getInfrastructureLogger('IdleFileCachePlugin')
+            .getInfrastructureLogger("IdleFileCachePlugin")
             .log(
               `Initial cache was generated and cache will be persisted in ${
                 idleTimeoutForInitialStore / 1000
@@ -189,7 +189,7 @@ class IdleFileCachePlugin {
           idleTimeoutAfterLargeChanges < idleTimeout
         ) {
           compiler
-            .getInfrastructureLogger('IdleFileCachePlugin')
+            .getInfrastructureLogger("IdleFileCachePlugin")
             .log(
               `Spend ${Math.round(timeSpendInBuild) / 1000}s in build and ${
                 Math.round(avgTimeSpendInStore) / 1000
@@ -207,7 +207,7 @@ class IdleFileCachePlugin {
       }
     );
     compiler.cache.hooks.endIdle.tap(
-      { name: 'IdleFileCachePlugin', stage: Cache.STAGE_DISK },
+      { name: "IdleFileCachePlugin", stage: Cache.STAGE_DISK },
       () => {
         if (idleTimer) {
           clearTimeout(idleTimer);
@@ -216,7 +216,7 @@ class IdleFileCachePlugin {
         isIdle = false;
       }
     );
-    compiler.hooks.done.tap('IdleFileCachePlugin', (stats) => {
+    compiler.hooks.done.tap("IdleFileCachePlugin", (stats) => {
       // 10% build overhead is ignored, as it's not cacheable
       timeSpendInBuild *= 0.9;
       timeSpendInBuild += stats.endTime - stats.startTime;

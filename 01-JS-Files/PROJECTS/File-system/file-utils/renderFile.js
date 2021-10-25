@@ -1,6 +1,6 @@
-var Promise = require('../utils/promise');
-var error = require('../utils/error');
-var render = require('./render');
+var Promise = require("../utils/promise");
+var error = require("../utils/error");
+var render = require("./render");
 
 /**
  * Render a template
@@ -28,7 +28,7 @@ function renderTemplateFile(engine, filePath, context) {
     })
     .then(function (result) {
       if (!result) {
-        throw error.TemplateError(new Error('Not found'), {
+        throw error.TemplateError(new Error("Not found"), {
           filename: filePath,
         });
       }

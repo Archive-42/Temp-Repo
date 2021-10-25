@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Tests if a value is object-like.
@@ -37,7 +37,7 @@
  * // returns false
  */
 function isObjectLike(value) {
-  return value !== null && typeof value === 'object';
+  return value !== null && typeof value === "object";
 }
 
 // EXPORTS //

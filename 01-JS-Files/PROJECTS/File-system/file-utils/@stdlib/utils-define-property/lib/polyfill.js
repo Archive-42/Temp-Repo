@@ -18,7 +18,7 @@
 
 /* eslint-disable no-underscore-dangle, no-proto */
 
-'use strict';
+"use strict";
 
 // VARIABLES //
 
@@ -69,28 +69,28 @@ function defineProperty(obj, prop, descriptor) {
   var hasSet;
 
   if (
-    typeof obj !== 'object' ||
+    typeof obj !== "object" ||
     obj === null ||
-    toStr.call(obj) === '[object Array]'
+    toStr.call(obj) === "[object Array]"
   ) {
     throw new TypeError(
-      'invalid argument. First argument must be an object. Value: `' +
+      "invalid argument. First argument must be an object. Value: `" +
         obj +
-        '`.'
+        "`."
     );
   }
   if (
-    typeof descriptor !== 'object' ||
+    typeof descriptor !== "object" ||
     descriptor === null ||
-    toStr.call(descriptor) === '[object Array]'
+    toStr.call(descriptor) === "[object Array]"
   ) {
     throw new TypeError(
-      'invalid argument. Property descriptor must be an object. Value: `' +
+      "invalid argument. Property descriptor must be an object. Value: `" +
         descriptor +
-        '`.'
+        "`."
     );
   }
-  hasValue = 'value' in descriptor;
+  hasValue = "value" in descriptor;
   if (hasValue) {
     if (lookupGetter.call(obj, prop) || lookupSetter.call(obj, prop)) {
       // Override `__proto__` to avoid touching inherited accessors:
@@ -107,12 +107,12 @@ function defineProperty(obj, prop, descriptor) {
       obj[prop] = descriptor.value;
     }
   }
-  hasGet = 'get' in descriptor;
-  hasSet = 'set' in descriptor;
+  hasGet = "get" in descriptor;
+  hasSet = "set" in descriptor;
 
   if (hasValue && (hasGet || hasSet)) {
     throw new Error(
-      'invalid argument. Cannot specify one or more accessors and a value or writable attribute in the property descriptor.'
+      "invalid argument. Cannot specify one or more accessors and a value or writable attribute in the property descriptor."
     );
   }
 

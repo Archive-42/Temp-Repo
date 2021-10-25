@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
 var main =
-  typeof Object.defineProperty === 'function' ? Object.defineProperty : null;
+  typeof Object.defineProperty === "function" ? Object.defineProperty : null;
 
 // EXPORTS //
 

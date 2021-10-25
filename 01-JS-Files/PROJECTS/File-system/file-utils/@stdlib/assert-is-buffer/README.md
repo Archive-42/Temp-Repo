@@ -39,7 +39,7 @@ npm install @stdlib/assert-is-buffer
 ## Usage
 
 ```javascript
-var isBuffer = require('@stdlib/assert-is-buffer');
+var isBuffer = require("@stdlib/assert-is-buffer");
 ```
 
 #### isBuffer( value )
@@ -51,7 +51,7 @@ Tests if a `value` is a [`Buffer`][node-buffer] object.
 <!-- eslint-disable no-buffer-constructor -->
 
 ```javascript
-var Buffer = require('@stdlib/buffer-ctor');
+var Buffer = require("@stdlib/buffer-ctor");
 
 var value = new Buffer([1, 2, 3, 4]);
 
@@ -84,14 +84,14 @@ var bool = isBuffer(value);
 <!-- eslint-disable no-buffer-constructor, no-restricted-syntax, no-empty-function -->
 
 ```javascript
-var Int8Array = require('@stdlib/array-int8');
-var Buffer = require('@stdlib/buffer-ctor');
-var isBuffer = require('@stdlib/assert-is-buffer');
+var Int8Array = require("@stdlib/array-int8");
+var Buffer = require("@stdlib/buffer-ctor");
+var isBuffer = require("@stdlib/assert-is-buffer");
 
 var bool = isBuffer(new Buffer([1, 2, 3, 4]));
 // returns true
 
-bool = isBuffer(new Buffer('beep'));
+bool = isBuffer(new Buffer("beep"));
 // returns true
 
 bool = isBuffer([]);
@@ -112,7 +112,7 @@ bool = isBuffer(null);
 bool = isBuffer(void 0);
 // returns false
 
-bool = isBuffer('beep');
+bool = isBuffer("beep");
 // returns false
 
 bool = isBuffer(5);

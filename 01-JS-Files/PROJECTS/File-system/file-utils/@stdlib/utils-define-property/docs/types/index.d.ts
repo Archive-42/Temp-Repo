@@ -20,7 +20,7 @@
 
 /// <reference types="@stdlib/types"/>
 
-import { PropertyName, PropertyDescriptor } from '@stdlib/types/object';
+import { PropertyName, PropertyDescriptor } from "@stdlib/types/object";
 
 /**
  * Defines (or modifies) an object property.

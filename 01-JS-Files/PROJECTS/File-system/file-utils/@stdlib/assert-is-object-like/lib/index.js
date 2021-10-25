@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test if a value is object-like.
@@ -47,13 +47,13 @@
 
 // MODULES //
 
-var setReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
-var arrayfun = require('@stdlib/assert-tools-array-function');
-var isObjectLike = require('./main.js');
+var setReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
+var arrayfun = require("@stdlib/assert-tools-array-function");
+var isObjectLike = require("./main.js");
 
 // MAIN //
 
-setReadOnly(isObjectLike, 'isObjectLikeArray', arrayfun(isObjectLike));
+setReadOnly(isObjectLike, "isObjectLikeArray", arrayfun(isObjectLike));
 
 // EXPORTS //
 

@@ -39,7 +39,7 @@ npm install @stdlib/assert-is-string
 ## Usage
 
 ```javascript
-var isString = require('@stdlib/assert-is-string');
+var isString = require("@stdlib/assert-is-string");
 ```
 
 #### isString( value )
@@ -49,10 +49,10 @@ Tests if a value is a `string`.
 <!-- eslint-disable no-new-wrappers -->
 
 ```javascript
-var bool = isString('beep');
+var bool = isString("beep");
 // returns true
 
-bool = isString(new String('beep'));
+bool = isString(new String("beep"));
 // returns true
 ```
 
@@ -63,10 +63,10 @@ Tests if a `value` is a primitive `string`.
 <!-- eslint-disable no-new-wrappers -->
 
 ```javascript
-var bool = isString.isPrimitive('beep');
+var bool = isString.isPrimitive("beep");
 // returns true
 
-bool = isString.isPrimitive(new String('boop'));
+bool = isString.isPrimitive(new String("boop"));
 // returns false
 ```
 
@@ -77,10 +77,10 @@ Tests if a `value` is a `String` object.
 <!-- eslint-disable no-new-wrappers -->
 
 ```javascript
-var bool = isString.isObject('beep');
+var bool = isString.isObject("beep");
 // returns false
 
-bool = isString.isObject(new String('boop'));
+bool = isString.isObject(new String("boop"));
 // returns true
 ```
 
@@ -97,12 +97,12 @@ bool = isString.isObject(new String('boop'));
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var isString = require('@stdlib/assert-is-string');
+var isString = require("@stdlib/assert-is-string");
 
-var bool = isString('beep');
+var bool = isString("beep");
 // returns true
 
-bool = isString(new String('beep'));
+bool = isString(new String("beep"));
 // returns true
 
 bool = isString(5);

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isFunction = require('@stdlib/assert-is-function');
+var isFunction = require("@stdlib/assert-is-function");
 
 // MAIN //
 
@@ -45,9 +45,9 @@ function stdin() {
   var clbk = arguments[arguments.length - 1];
   if (!isFunction(clbk)) {
     throw new TypeError(
-      'invalid argument. Callback argument must be a function. Value: `' +
+      "invalid argument. Callback argument must be a function. Value: `" +
         clbk +
-        '`.'
+        "`."
     );
   }
   setTimeout(onTimeout, 0);
@@ -60,7 +60,7 @@ function stdin() {
   function onTimeout() {
     clbk(
       new Error(
-        'invalid operation. The environment does not support reading from `stdin`.'
+        "invalid operation. The environment does not support reading from `stdin`."
       )
     );
   }

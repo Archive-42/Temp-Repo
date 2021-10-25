@@ -39,7 +39,7 @@ npm install @stdlib/process-read-stdin
 ## Usage
 
 ```javascript
-var stdin = require('@stdlib/process-read-stdin');
+var stdin = require("@stdlib/process-read-stdin");
 ```
 
 #### stdin( \[encoding,] clbk )
@@ -51,7 +51,7 @@ Reads data from [`stdin`][@stdlib/streams/node/stdin].
 ```javascript
 function onRead(error, data) {
   if (error) {
-    return console.error('Error: %s', error.message);
+    return console.error("Error: %s", error.message);
   }
   console.log(data.toString());
   // => '...'
@@ -67,13 +67,13 @@ By default, returned `data` is a [`Buffer`][buffer]. To return a `string` of a s
 ```javascript
 function onRead(error, data) {
   if (error) {
-    return console.error('Error: %s', error.message);
+    return console.error("Error: %s", error.message);
   }
   console.log(data);
   // => '...'
 }
 
-stdin('utf8', onRead);
+stdin("utf8", onRead);
 ```
 
 When a file's calling Node.js process is running in a [TTY][tty] context (i.e., no [`stdin`][@stdlib/streams/node/stdin]), `data` will either be an empty [`Buffer`][buffer] (no encoding provided) or an empty `string` (encoding provided).
@@ -81,11 +81,11 @@ When a file's calling Node.js process is running in a [TTY][tty] context (i.e., 
 <!-- run-disable -->
 
 ```javascript
-var stream = require('@stdlib/streams-node-stdin');
+var stream = require("@stdlib/streams-node-stdin");
 
 function onRead(error, data) {
   if (error) {
-    return console.error('Error: %s', error.message);
+    return console.error("Error: %s", error.message);
   }
   console.log(data);
   // => ''
@@ -93,7 +93,7 @@ function onRead(error, data) {
 
 stream.isTTY = true;
 
-stdin('utf8', onRead);
+stdin("utf8", onRead);
 ```
 
 </section>
@@ -109,13 +109,13 @@ stdin('utf8', onRead);
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var string2buffer = require('@stdlib/buffer-from-string');
-var stream = require('@stdlib/streams-node-stdin');
-var stdin = require('@stdlib/process-read-stdin');
+var string2buffer = require("@stdlib/buffer-from-string");
+var stream = require("@stdlib/streams-node-stdin");
+var stdin = require("@stdlib/process-read-stdin");
 
 function onRead(error, data) {
   if (error) {
-    console.error('Error: %s', error.message);
+    console.error("Error: %s", error.message);
   } else {
     console.log(data.toString());
     // => 'beep boop'
@@ -129,9 +129,9 @@ stream.isTTY = false;
 stdin(onRead);
 
 // Push some data to `stdin`:
-stream.push(string2buffer('beep'));
-stream.push(string2buffer(' '));
-stream.push(string2buffer('boop'));
+stream.push(string2buffer("beep"));
+stream.push(string2buffer(" "));
+stream.push(string2buffer("boop"));
 
 // End the stream:
 stream.push(null);

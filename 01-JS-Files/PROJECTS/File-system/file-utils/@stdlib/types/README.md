@@ -51,7 +51,7 @@ npm install @stdlib/types
 ```typescript
 /// <reference types="@stdlib/types"/>
 
-import { ArrayLike } from '@stdlib/types/array';
+import { ArrayLike } from "@stdlib/types/array";
 
 function sum(x: ArrayLike): number {
   let s = 0.0;
@@ -67,13 +67,13 @@ Type declarations are organized as modules. For example, to use iterator type de
 ```typescript
 /// <reference types="@stdlib/types"/>
 
-import { Iterator } from '@stdlib/types/iter';
+import { Iterator } from "@stdlib/types/iter";
 
 function sum(iter: Iterator): number {
   let s = 0.0;
   while (true) {
     let v = iter.next();
-    if (typeof v.value === 'number') {
+    if (typeof v.value === "number") {
       s += v.value;
     }
     if (v.done) {

@@ -18,7 +18,7 @@
 
 /* tslint:disable:no-unused-expression */
 
-import CLI = require('./index');
+import CLI = require("./index");
 
 // TESTS //
 
@@ -31,7 +31,7 @@ import CLI = require('./index');
 // The compiler throws an error if the constructor function is provided an argument that is not an options object...
 {
   new CLI(123); // $ExpectError
-  new CLI('abc'); // $ExpectError
+  new CLI("abc"); // $ExpectError
   new CLI(null); // $ExpectError
   new CLI(true); // $ExpectError
   new CLI(false); // $ExpectError
@@ -72,7 +72,7 @@ import CLI = require('./index');
 // The compiler throws an error if the function is provided a `updates` option which is not a boolean...
 {
   new CLI({ updates: 123 }); // $ExpectError
-  new CLI({ updates: 'abc' }); // $ExpectError
+  new CLI({ updates: "abc" }); // $ExpectError
   new CLI({ updates: null }); // $ExpectError
   new CLI({ updates: [] }); // $ExpectError
   new CLI({ updates: {} }); // $ExpectError
@@ -81,7 +81,7 @@ import CLI = require('./index');
 
 // The compiler throws an error if the function is provided an `argv` option which is not an array...
 {
-  new CLI({ argv: 'abc' }); // $ExpectError
+  new CLI({ argv: "abc" }); // $ExpectError
   new CLI({ argv: 123 }); // $ExpectError
   new CLI({ argv: true }); // $ExpectError
   new CLI({ argv: false }); // $ExpectError
@@ -91,7 +91,7 @@ import CLI = require('./index');
 
 // The compiler throws an error if the function is provided a `options` option which is not an options object...
 {
-  new CLI({ options: 'abc' }); // $ExpectError
+  new CLI({ options: "abc" }); // $ExpectError
   new CLI({ options: 123 }); // $ExpectError
   new CLI({ options: true }); // $ExpectError
   new CLI({ options: false }); // $ExpectError

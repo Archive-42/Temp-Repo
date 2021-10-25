@@ -39,7 +39,7 @@ npm install @stdlib/assert-has-tostringtag-support
 ## Usage
 
 ```javascript
-var hasToStringTagSupport = require('@stdlib/assert-has-tostringtag-support');
+var hasToStringTagSupport = require("@stdlib/assert-has-tostringtag-support");
 ```
 
 #### hasToStringTagSupport()
@@ -62,13 +62,13 @@ var bool = hasToStringTagSupport();
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var hasToStringTagSupport = require('@stdlib/assert-has-tostringtag-support');
+var hasToStringTagSupport = require("@stdlib/assert-has-tostringtag-support");
 
 var bool = hasToStringTagSupport();
 if (bool) {
-  console.log('Environment has `toStringTag` support.');
+  console.log("Environment has `toStringTag` support.");
 } else {
-  console.log('Environment lacks `toStringTag` support.');
+  console.log("Environment lacks `toStringTag` support.");
 }
 ```
 

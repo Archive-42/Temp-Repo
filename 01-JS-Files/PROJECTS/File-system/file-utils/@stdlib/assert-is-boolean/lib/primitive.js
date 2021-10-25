@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Tests if a value is a boolean primitive.
@@ -37,7 +37,7 @@
  * // returns false
  */
 function isBoolean(value) {
-  return typeof value === 'boolean';
+  return typeof value === "boolean";
 }
 
 // EXPORTS //

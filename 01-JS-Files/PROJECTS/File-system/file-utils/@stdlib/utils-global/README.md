@@ -49,7 +49,7 @@ npm install @stdlib/utils-global
 ## Usage
 
 ```javascript
-var getGlobal = require('@stdlib/utils-global');
+var getGlobal = require("@stdlib/utils-global");
 ```
 
 #### getGlobal( \[codegen] )
@@ -89,7 +89,7 @@ var g = getGlobal(true);
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var getGlobal = require('@stdlib/utils-global');
+var getGlobal = require("@stdlib/utils-global");
 
 // Resolve the global object:
 var g = getGlobal();

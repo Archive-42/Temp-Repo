@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import isArray = require('./index');
+import isArray = require("./index");
 
 // TESTS //
 

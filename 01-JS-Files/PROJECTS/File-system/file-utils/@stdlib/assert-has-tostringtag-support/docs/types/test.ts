@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import hasToStringTagSupport = require('./index');
+import hasToStringTagSupport = require("./index");
 
 // TESTS //
 

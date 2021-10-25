@@ -16,14 +16,14 @@
  * limitations under the License.
  */
 
-import fromString = require('./index');
+import fromString = require("./index");
 
 // TESTS //
 
 // The function returns a buffer...
 {
-  fromString('beep boop'); // $ExpectType Buffer
-  fromString('beep boop', 'utf-8'); // $ExpectType Buffer
+  fromString("beep boop"); // $ExpectType Buffer
+  fromString("beep boop", "utf-8"); // $ExpectType Buffer
 }
 
 // The compiler throws an error if the function is provided a first argument which is not a string...
@@ -39,17 +39,17 @@ import fromString = require('./index');
 
 // The compiler throws an error if the function is provided a second argument which is not a string...
 {
-  fromString('beep boop', 123); // $ExpectError
-  fromString('beep boop', false); // $ExpectError
-  fromString('beep boop', true); // $ExpectError
-  fromString('beep boop', null); // $ExpectError
-  fromString('beep boop', {}); // $ExpectError
-  fromString('beep boop', []); // $ExpectError
-  fromString('beep boop', (x: number): number => x); // $ExpectError
+  fromString("beep boop", 123); // $ExpectError
+  fromString("beep boop", false); // $ExpectError
+  fromString("beep boop", true); // $ExpectError
+  fromString("beep boop", null); // $ExpectError
+  fromString("beep boop", {}); // $ExpectError
+  fromString("beep boop", []); // $ExpectError
+  fromString("beep boop", (x: number): number => x); // $ExpectError
 }
 
 // The compiler throws an error if the function is provided an invalid number of arguments...
 {
   fromString(); // $ExpectError
-  fromString('beep boop', 'utf-8', 3); // $ExpectError
+  fromString("beep boop", "utf-8", 3); // $ExpectError
 }

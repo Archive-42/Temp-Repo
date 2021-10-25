@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import isBuffer = require('./index');
+import isBuffer = require("./index");
 
 // TESTS //
 

@@ -20,7 +20,7 @@
 
 /// <reference types="@stdlib/types"/>
 
-import { PropertyName } from '@stdlib/types/object';
+import { PropertyName } from "@stdlib/types/object";
 
 /**
  * Defines a non-enumerable read-only property.

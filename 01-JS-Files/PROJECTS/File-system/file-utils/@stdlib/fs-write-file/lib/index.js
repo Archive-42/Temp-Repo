@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Write data to a file.
@@ -45,13 +45,13 @@
 
 // MODULES //
 
-var setReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
-var writeFile = require('./main.js');
-var sync = require('./sync.js');
+var setReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
+var writeFile = require("./main.js");
+var sync = require("./sync.js");
 
 // MAIN //
 
-setReadOnly(writeFile, 'sync', sync);
+setReadOnly(writeFile, "sync", sync);
 
 // EXPORTS //
 

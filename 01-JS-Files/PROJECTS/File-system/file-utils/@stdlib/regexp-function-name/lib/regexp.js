@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var reFunctionName = require('./main.js');
+var reFunctionName = require("./main.js");
 
 // MAIN //
 

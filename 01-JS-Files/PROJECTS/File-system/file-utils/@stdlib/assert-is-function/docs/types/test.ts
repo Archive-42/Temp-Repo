@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import isFunction = require('./index');
+import isFunction = require("./index");
 
 // TESTS //
 

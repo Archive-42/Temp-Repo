@@ -31,7 +31,7 @@
  *
  * const x: ArrayLike = [ 1, 2, 3 ];
  */
-declare module '@stdlib/types/array' {
+declare module "@stdlib/types/array" {
   /**
    * An array-like value.
    *
@@ -113,7 +113,7 @@ declare module '@stdlib/types/array' {
  *     'next': () => { return { 'value': 0, 'done': false }; }
  * };
  */
-declare module '@stdlib/types/iter' {
+declare module "@stdlib/types/iter" {
   /**
    * Interface describing an iterator protocol-compliant object.
    *
@@ -236,26 +236,26 @@ declare module '@stdlib/types/iter' {
  *     }
  * };
  */
-declare module '@stdlib/types/ndarray' {
-  import { ArrayLike } from '@stdlib/types/array';
+declare module "@stdlib/types/ndarray" {
+  import { ArrayLike } from "@stdlib/types/array";
 
   /**
    * Data type.
    */
   type DataType =
-    | 'float64'
-    | 'float32'
-    | 'int32'
-    | 'int16'
-    | 'int8'
-    | 'uint32'
-    | 'uint16'
-    | 'uint8'
-    | 'uint8c'
-    | 'complex64'
-    | 'complex128'
-    | 'binary'
-    | 'generic'; // tslint:disable-line:max-line-length
+    | "float64"
+    | "float32"
+    | "int32"
+    | "int16"
+    | "int8"
+    | "uint32"
+    | "uint16"
+    | "uint8"
+    | "uint8c"
+    | "complex64"
+    | "complex128"
+    | "binary"
+    | "generic"; // tslint:disable-line:max-line-length
 
   /**
    * Array order.
@@ -264,7 +264,7 @@ declare module '@stdlib/types/ndarray' {
    *
    * -   The array order is either row-major (C-style) or column-major (Fortran-style).
    */
-  type Order = 'row-major' | 'column-major';
+  type Order = "row-major" | "column-major";
 
   /**
    * Array index mode.
@@ -277,7 +277,7 @@ declare module '@stdlib/types/ndarray' {
    *     -   `wrap`: specifies that a function should wrap around an index using modulo arithmetic.
    *     -   `clamp`: specifies that a function should set an index less than zero to zero (minimum index) and set an index greater than a maximum index value to the maximum possible index.
    */
-  type Mode = 'throw' | 'clamp' | 'wrap';
+  type Mode = "throw" | "clamp" | "wrap";
 
   /**
    * Interface describing an ndarray.
@@ -427,8 +427,8 @@ declare module '@stdlib/types/ndarray' {
  *     'value': 'beep'
  * };
  */
-declare module '@stdlib/types/object' {
-  import { ArrayLike, TypedArray } from '@stdlib/types/array';
+declare module "@stdlib/types/object" {
+  import { ArrayLike, TypedArray } from "@stdlib/types/array";
 
   /**
    * Interface describing a data property descriptor object.
@@ -568,8 +568,8 @@ declare module '@stdlib/types/object' {
  *
  * const rand: PRNG = () => 3.14;
  */
-declare module '@stdlib/types/random' {
-  import { ArrayLike } from '@stdlib/types/array';
+declare module "@stdlib/types/random" {
+  import { ArrayLike } from "@stdlib/types/array";
 
   /**
    * A pseudorandom number generator (PRNG).

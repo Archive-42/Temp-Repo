@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import arrayfcn = require('./index');
+import arrayfcn = require("./index");
 
 // TESTS //
 
@@ -33,7 +33,7 @@ import arrayfcn = require('./index');
   arrayfcn(3); // $ExpectError
   arrayfcn([]); // $ExpectError
   arrayfcn({}); // $ExpectError
-  arrayfcn('abc'); // $ExpectError
+  arrayfcn("abc"); // $ExpectError
 }
 
 // The compiler throws an error if the function is provided an unsupported number of arguments...

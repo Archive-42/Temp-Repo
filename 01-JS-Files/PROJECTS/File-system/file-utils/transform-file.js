@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true,
 });
 exports.transformFileAsync =
@@ -9,7 +9,7 @@ exports.transformFileAsync =
     void 0;
 
 function _gensync() {
-  const data = _interopRequireDefault(require('gensync'));
+  const data = _interopRequireDefault(require("gensync"));
 
   _gensync = function () {
     return data;
@@ -18,14 +18,14 @@ function _gensync() {
   return data;
 }
 
-var _config = _interopRequireDefault(require('./config'));
+var _config = _interopRequireDefault(require("./config"));
 
-var _transformation = require('./transformation');
+var _transformation = require("./transformation");
 
-var fs = _interopRequireWildcard(require('./gensync-utils/fs'));
+var fs = _interopRequireWildcard(require("./gensync-utils/fs"));
 
 function _getRequireWildcardCache() {
-  if (typeof WeakMap !== 'function') return null;
+  if (typeof WeakMap !== "function") return null;
   var cache = new WeakMap();
   _getRequireWildcardCache = function () {
     return cache;
@@ -37,7 +37,7 @@ function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
     return obj;
   }
-  if (obj === null || (typeof obj !== 'object' && typeof obj !== 'function')) {
+  if (obj === null || (typeof obj !== "object" && typeof obj !== "function")) {
     return { default: obj };
   }
   var cache = _getRequireWildcardCache();
@@ -77,7 +77,7 @@ const transformFileRunner = (0, _gensync().default)(function* (filename, opts) {
   });
   const config = yield* (0, _config.default)(options);
   if (config === null) return null;
-  const code = yield* fs.readFile(filename, 'utf8');
+  const code = yield* fs.readFile(filename, "utf8");
   return yield* (0, _transformation.run)(config, code);
 });
 const transformFile = transformFileRunner.errback;

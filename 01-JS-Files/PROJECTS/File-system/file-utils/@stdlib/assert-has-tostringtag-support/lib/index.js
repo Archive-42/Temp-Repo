@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test for native `toStringTag` support.
@@ -32,7 +32,7 @@
 
 // MODULES //
 
-var hasToStringTagSupport = require('./main.js');
+var hasToStringTagSupport = require("./main.js");
 
 // EXPORTS //
 

@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var writeFile = require('fs').writeFileSync; // eslint-disable-line no-sync
+var writeFile = require("fs").writeFileSync; // eslint-disable-line no-sync
 
 // MAIN //
 

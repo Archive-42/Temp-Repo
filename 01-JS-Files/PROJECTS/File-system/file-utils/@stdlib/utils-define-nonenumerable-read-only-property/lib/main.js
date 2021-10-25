@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var defineProperty = require('@stdlib/utils-define-property');
+var defineProperty = require("@stdlib/utils-define-property");
 
 // MAIN //
 

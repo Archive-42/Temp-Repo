@@ -49,7 +49,7 @@ npm install @stdlib/buffer-from-string
 ## Usage
 
 ```javascript
-var string2buffer = require('@stdlib/buffer-from-string');
+var string2buffer = require("@stdlib/buffer-from-string");
 ```
 
 #### string2buffer( str\[, encoding] )
@@ -57,14 +57,14 @@ var string2buffer = require('@stdlib/buffer-from-string');
 Allocates a [buffer][@stdlib/buffer/ctor] containing a provided `string`.
 
 ```javascript
-var buf = string2buffer('beep boop');
+var buf = string2buffer("beep boop");
 // returns <Buffer>
 ```
 
 The default character encoding is `utf8`. To specify an alternative encoding, provide an `encoding` argument.
 
 ```javascript
-var buf = string2buffer('7468697320697320612074c3a97374', 'hex');
+var buf = string2buffer("7468697320697320612074c3a97374", "hex");
 // returns <Buffer>
 ```
 
@@ -98,12 +98,12 @@ The following `encodings` are supported:
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var randu = require('@stdlib/random-base-randu');
-var randint = require('@stdlib/random-base-discrete-uniform');
-var string2buffer = require('@stdlib/buffer-from-string');
+var randu = require("@stdlib/random-base-randu");
+var randint = require("@stdlib/random-base-discrete-uniform");
+var string2buffer = require("@stdlib/buffer-from-string");
 
 // Create a buffer from a string:
-var buf = string2buffer('beep boop bop');
+var buf = string2buffer("beep boop bop");
 console.log(buf.toString());
 
 // Generate random strings...

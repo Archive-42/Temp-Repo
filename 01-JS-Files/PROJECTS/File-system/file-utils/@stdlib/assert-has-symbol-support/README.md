@@ -39,7 +39,7 @@ npm install @stdlib/assert-has-symbol-support
 ## Usage
 
 ```javascript
-var hasSymbolSupport = require('@stdlib/assert-has-symbol-support');
+var hasSymbolSupport = require("@stdlib/assert-has-symbol-support");
 ```
 
 #### hasSymbolSupport()
@@ -62,13 +62,13 @@ var bool = hasSymbolSupport();
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var hasSymbolSupport = require('@stdlib/assert-has-symbol-support');
+var hasSymbolSupport = require("@stdlib/assert-has-symbol-support");
 
 var bool = hasSymbolSupport();
 if (bool) {
-  console.log('Environment has Symbol support.');
+  console.log("Environment has Symbol support.");
 } else {
-  console.log('Environment lacks Symbol support.');
+  console.log("Environment lacks Symbol support.");
 }
 ```
 

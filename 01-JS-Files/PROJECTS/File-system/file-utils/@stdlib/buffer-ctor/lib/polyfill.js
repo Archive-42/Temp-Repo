@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // TODO: write (browser) polyfill
 
@@ -28,7 +28,7 @@
  * @throws {Error} not implemented
  */
 function polyfill() {
-  throw new Error('not implemented');
+  throw new Error("not implemented");
 }
 
 // EXPORTS //

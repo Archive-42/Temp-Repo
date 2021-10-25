@@ -2,21 +2,21 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 */
 
-'use strict';
+"use strict";
 
-const { constants } = require('buffer');
-const { pipeline } = require('stream');
+const { constants } = require("buffer");
+const { pipeline } = require("stream");
 const {
   createBrotliCompress,
   createBrotliDecompress,
   createGzip,
   createGunzip,
   constants: zConstants,
-} = require('zlib');
-const createHash = require('../util/createHash');
-const { dirname, join, mkdirp } = require('../util/fs');
-const memoize = require('../util/memoize');
-const SerializerMiddleware = require('./SerializerMiddleware');
+} = require("zlib");
+const createHash = require("../util/createHash");
+const { dirname, join, mkdirp } = require("../util/fs");
+const memoize = require("../util/memoize");
+const SerializerMiddleware = require("./SerializerMiddleware");
 
 /** @typedef {typeof import("../util/Hash")} Hash */
 /** @typedef {import("../util/fs").IntermediateFileSystem} IntermediateFileSystem */
@@ -49,7 +49,7 @@ const VERSION = 0x01637077;
 const hashForName = (buffers, hashFunction) => {
   const hash = createHash(hashFunction);
   for (const buf of buffers) hash.update(buf);
-  return /** @type {string} */ (hash.digest('hex'));
+  return /** @type {string} */ (hash.digest("hex"));
 };
 
 const COMPRESSION_CHUNK_SIZE = 100 * 1024 * 1024;
@@ -96,7 +96,7 @@ const serialize = async (
   data,
   name,
   writeFile,
-  hashFunction = 'md4'
+  hashFunction = "md4"
 ) => {
   /** @type {(Buffer[] | Buffer | SerializeResult | Promise<SerializeResult>)[]} */
   const processedData = [];
@@ -105,9 +105,9 @@ const serialize = async (
   /** @type {Buffer[]} */
   let lastBuffers = undefined;
   for (const item of await data) {
-    if (typeof item === 'function') {
+    if (typeof item === "function") {
       if (!SerializerMiddleware.isLazy(item))
-        throw new Error('Unexpected function');
+        throw new Error("Unexpected function");
       if (!SerializerMiddleware.isLazy(item, middleware)) {
         throw new Error(
           "Unexpected lazy value with non-this target (can't pass through lazy values)"
@@ -116,7 +116,7 @@ const serialize = async (
       lastBuffers = undefined;
       const serializedInfo = SerializerMiddleware.getLazySerializedValue(item);
       if (serializedInfo) {
-        if (typeof serializedInfo === 'function') {
+        if (typeof serializedInfo === "function") {
           throw new Error(
             "Unexpected lazy value with non-this target (can't pass through lazy values)"
           );
@@ -142,7 +142,7 @@ const serialize = async (
           );
         } else {
           throw new Error(
-            'Unexpected falsy value returned by lazy value function'
+            "Unexpected falsy value returned by lazy value function"
           );
         }
       }
@@ -154,7 +154,7 @@ const serialize = async (
         processedData.push(lastBuffers);
       }
     } else {
-      throw new Error('Unexpected falsy value in items array');
+      throw new Error("Unexpected falsy value in items array");
     }
   }
   /** @type {Promise<any>[]} */
@@ -192,7 +192,7 @@ const serialize = async (
     } else if (item) {
       lengths.push(-item.length);
     } else {
-      throw new Error('Unexpected falsy value in resolved data ' + item);
+      throw new Error("Unexpected falsy value in resolved data " + item);
     }
   }
   const header = Buffer.allocUnsafe(8 + lengths.length * 4);
@@ -233,12 +233,12 @@ const serialize = async (
  */
 const deserialize = async (middleware, name, readFile) => {
   const contents = await readFile(name);
-  if (contents.length === 0) throw new Error('Empty file ' + name);
+  if (contents.length === 0) throw new Error("Empty file " + name);
   let contentsIndex = 0;
   let contentItem = contents[0];
   let contentItemLength = contentItem.length;
   let contentPosition = 0;
-  if (contentItemLength === 0) throw new Error('Empty file ' + name);
+  if (contentItemLength === 0) throw new Error("Empty file " + name);
   const nextContent = () => {
     contentsIndex++;
     contentItem = contents[contentsIndex];
@@ -266,7 +266,7 @@ const deserialize = async (middleware, name, readFile) => {
           lengthFromNext -= l;
         }
       }
-      if (lengthFromNext > 0) throw new Error('Unexpected end of data');
+      if (lengthFromNext > 0) throw new Error("Unexpected end of data");
       contentItem = Buffer.concat(buffers, n);
       contentItemLength = n;
       contentPosition = 0;
@@ -302,7 +302,7 @@ const deserialize = async (middleware, name, readFile) => {
   };
   const version = readUInt32LE();
   if (version !== VERSION) {
-    throw new Error('Invalid file version');
+    throw new Error("Invalid file version");
   }
   const sectionCount = readUInt32LE();
   const lengths = [];
@@ -403,7 +403,7 @@ class FileMiddleware extends SerializerMiddleware {
    * @param {IntermediateFileSystem} fs filesystem
    * @param {string | Hash} hashFunction hash function to use
    */
-  constructor(fs, hashFunction = 'md4') {
+  constructor(fs, hashFunction = "md4") {
     super();
     this.fs = fs;
     this._hashFunction = hashFunction;
@@ -414,7 +414,7 @@ class FileMiddleware extends SerializerMiddleware {
    * @returns {SerializedType|Promise<SerializedType>} serialized data
    */
   serialize(data, context) {
-    const { filename, extension = '' } = context;
+    const { filename, extension = "" } = context;
     return new Promise((resolve, reject) => {
       mkdirp(this.fs, dirname(this.fs, filename), (err) => {
         if (err) return reject(err);
@@ -427,14 +427,14 @@ class FileMiddleware extends SerializerMiddleware {
             ? join(this.fs, filename, `../${name}${extension}`)
             : filename;
           await new Promise((resolve, reject) => {
-            let stream = this.fs.createWriteStream(file + '_');
+            let stream = this.fs.createWriteStream(file + "_");
             let compression;
-            if (file.endsWith('.gz')) {
+            if (file.endsWith(".gz")) {
               compression = createGzip({
                 chunkSize: COMPRESSION_CHUNK_SIZE,
                 level: zConstants.Z_BEST_SPEED,
               });
-            } else if (file.endsWith('.br')) {
+            } else if (file.endsWith(".br")) {
               compression = createBrotliCompress({
                 chunkSize: COMPRESSION_CHUNK_SIZE,
                 params: {
@@ -451,10 +451,10 @@ class FileMiddleware extends SerializerMiddleware {
             if (compression) {
               pipeline(compression, stream, reject);
               stream = compression;
-              stream.on('finish', () => resolve());
+              stream.on("finish", () => resolve());
             } else {
-              stream.on('error', (err) => reject(err));
-              stream.on('finish', () => resolve());
+              stream.on("error", (err) => reject(err));
+              stream.on("finish", () => resolve());
             }
             for (const b of content) stream.write(b);
             stream.end();
@@ -469,7 +469,7 @@ class FileMiddleware extends SerializerMiddleware {
 
               // Rename the index file to disallow access during inconsistent file state
               await new Promise((resolve) =>
-                this.fs.rename(filename, filename + '.old', (err) => {
+                this.fs.rename(filename, filename + ".old", (err) => {
                   resolve();
                 })
               );
@@ -480,7 +480,7 @@ class FileMiddleware extends SerializerMiddleware {
                   allWrittenFiles,
                   (file) =>
                     new Promise((resolve, reject) => {
-                      this.fs.rename(file + '_', file, (err) => {
+                      this.fs.rename(file + "_", file, (err) => {
                         if (err) return reject(err);
                         resolve();
                       });
@@ -490,7 +490,7 @@ class FileMiddleware extends SerializerMiddleware {
 
               // As final step automatically update the index file to have a consistent pack again
               await new Promise((resolve) => {
-                this.fs.rename(filename + '_', filename, (err) => {
+                this.fs.rename(filename + "_", filename, (err) => {
                   if (err) return reject(err);
                   resolve();
                 });
@@ -509,7 +509,7 @@ class FileMiddleware extends SerializerMiddleware {
    * @returns {DeserializedType|Promise<DeserializedType>} deserialized data
    */
   deserialize(data, context) {
-    const { filename, extension = '' } = context;
+    const { filename, extension = "" } = context;
     const readFile = (name) =>
       new Promise((resolve, reject) => {
         const file = name
@@ -525,11 +525,11 @@ class FileMiddleware extends SerializerMiddleware {
           let currentBufferUsed;
           const buf = [];
           let decompression;
-          if (file.endsWith('.gz')) {
+          if (file.endsWith(".gz")) {
             decompression = createGunzip({
               chunkSize: DECOMPRESSION_CHUNK_SIZE,
             });
-          } else if (file.endsWith('.br')) {
+          } else if (file.endsWith(".br")) {
             decompression = createBrotliDecompress({
               chunkSize: DECOMPRESSION_CHUNK_SIZE,
             });
@@ -543,16 +543,16 @@ class FileMiddleware extends SerializerMiddleware {
                   newReject = rj;
                 }),
                 new Promise((resolve, reject) => {
-                  decompression.on('data', (chunk) => buf.push(chunk));
-                  decompression.on('end', () => resolve());
-                  decompression.on('error', (err) => reject(err));
+                  decompression.on("data", (chunk) => buf.push(chunk));
+                  decompression.on("end", () => resolve());
+                  decompression.on("error", (err) => reject(err));
                 }),
               ]).then(() => buf)
             );
             resolve = newResolve;
             reject = newReject;
           }
-          this.fs.open(file, 'r', (err, fd) => {
+          this.fs.open(file, "r", (err, fd) => {
             if (err) {
               reject(err);
               return;

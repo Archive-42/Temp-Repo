@@ -39,7 +39,7 @@ npm install @stdlib/utils-define-nonenumerable-read-only-property
 ## Usage
 
 ```javascript
-var setNonEnumerableReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
+var setNonEnumerableReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
 ```
 
 #### setNonEnumerableReadOnly( obj, prop, value )
@@ -51,9 +51,9 @@ var setNonEnumerableReadOnly = require('@stdlib/utils-define-nonenumerable-read-
 ```javascript
 var obj = {};
 
-setNonEnumerableReadOnly(obj, 'foo', 'bar');
+setNonEnumerableReadOnly(obj, "foo", "bar");
 
-obj.foo = 'boop';
+obj.foo = "boop";
 // throws <Error>
 ```
 
@@ -78,20 +78,20 @@ obj.foo = 'boop';
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var setNonEnumerableReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
+var setNonEnumerableReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
 
 function Foo(name) {
   if (!(this instanceof Foo)) {
     return new Foo(name);
   }
-  setNonEnumerableReadOnly(this, 'name', name);
+  setNonEnumerableReadOnly(this, "name", name);
   return this;
 }
 
-var foo = new Foo('beep');
+var foo = new Foo("beep");
 
 try {
-  foo.name = 'boop';
+  foo.name = "boop";
 } catch (err) {
   console.error(err.message);
 }

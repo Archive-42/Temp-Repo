@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Regular expression to capture everything that is not a space immediately after the `function` keyword and before the first left parenthesis.
@@ -46,13 +46,13 @@
 
 // MODULES //
 
-var setReadOnly = require('@stdlib/utils-define-nonenumerable-read-only-property');
-var reFunctionName = require('./main.js');
-var REGEXP = require('./regexp.js');
+var setReadOnly = require("@stdlib/utils-define-nonenumerable-read-only-property");
+var reFunctionName = require("./main.js");
+var REGEXP = require("./regexp.js");
 
 // MAIN //
 
-setReadOnly(reFunctionName, 'REGEXP', REGEXP);
+setReadOnly(reFunctionName, "REGEXP", REGEXP);
 
 // EXPORTS //
 

@@ -16,29 +16,29 @@
  * limitations under the License.
  */
 
-import setNonEnumerableReadOnly = require('./index');
+import setNonEnumerableReadOnly = require("./index");
 
 // TESTS //
 
 // The function returns `undefined`...
 {
-  setNonEnumerableReadOnly({}, 'foo', 'bar'); // $ExpectType void
+  setNonEnumerableReadOnly({}, "foo", "bar"); // $ExpectType void
 }
 
 // The compiler throws an error if the function is provided a second argument which is not a valid property name...
 {
-  setNonEnumerableReadOnly({}, true, 'bar'); // $ExpectError
-  setNonEnumerableReadOnly({}, false, 'bar'); // $ExpectError
-  setNonEnumerableReadOnly({}, null, 'bar'); // $ExpectError
-  setNonEnumerableReadOnly({}, undefined, 'bar'); // $ExpectError
-  setNonEnumerableReadOnly({}, [], 'bar'); // $ExpectError
-  setNonEnumerableReadOnly({}, {}, 'bar'); // $ExpectError
-  setNonEnumerableReadOnly({}, (x: number): number => x, 'bar'); // $ExpectError
+  setNonEnumerableReadOnly({}, true, "bar"); // $ExpectError
+  setNonEnumerableReadOnly({}, false, "bar"); // $ExpectError
+  setNonEnumerableReadOnly({}, null, "bar"); // $ExpectError
+  setNonEnumerableReadOnly({}, undefined, "bar"); // $ExpectError
+  setNonEnumerableReadOnly({}, [], "bar"); // $ExpectError
+  setNonEnumerableReadOnly({}, {}, "bar"); // $ExpectError
+  setNonEnumerableReadOnly({}, (x: number): number => x, "bar"); // $ExpectError
 }
 
 // The compiler throws an error if the function is provided insufficient arguments...
 {
   setNonEnumerableReadOnly(); // $ExpectError
   setNonEnumerableReadOnly({}); // $ExpectError
-  setNonEnumerableReadOnly({}, 'foo'); // $ExpectError
+  setNonEnumerableReadOnly({}, "foo"); // $ExpectError
 }

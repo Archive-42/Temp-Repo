@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Read data from `stdin`.
@@ -39,7 +39,7 @@
 
 // MODULES //
 
-var stdin = require('./main.js');
+var stdin = require("./main.js");
 
 // EXPORTS //
 

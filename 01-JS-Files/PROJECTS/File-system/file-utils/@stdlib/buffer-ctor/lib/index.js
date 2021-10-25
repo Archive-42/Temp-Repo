@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Buffer constructor.
@@ -32,9 +32,9 @@
 
 // MODULES //
 
-var hasNodeBufferSupport = require('@stdlib/assert-has-node-buffer-support');
-var main = require('./buffer.js');
-var polyfill = require('./polyfill.js');
+var hasNodeBufferSupport = require("@stdlib/assert-has-node-buffer-support");
+var main = require("./buffer.js");
+var polyfill = require("./polyfill.js");
 
 // MAIN //
 

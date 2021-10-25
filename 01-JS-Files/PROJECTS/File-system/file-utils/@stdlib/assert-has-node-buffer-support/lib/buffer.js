@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
-var main = typeof Buffer === 'function' ? Buffer : null; // eslint-disable-line stdlib/require-globals
+var main = typeof Buffer === "function" ? Buffer : null; // eslint-disable-line stdlib/require-globals
 
 // EXPORTS //
 

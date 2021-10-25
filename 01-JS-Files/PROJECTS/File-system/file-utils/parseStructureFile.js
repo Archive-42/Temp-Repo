@@ -1,6 +1,6 @@
-var Promise = require('../utils/promise');
-var error = require('../utils/error');
-var lookupStructureFile = require('./lookupStructureFile');
+var Promise = require("../utils/promise");
+var error = require("../utils/error");
+var lookupStructureFile = require("./lookupStructureFile");
 
 /**
     Parse a ParsableFile using a specific method
@@ -25,13 +25,13 @@ function parseFile(fs, file, type) {
   return fs
     .readAsString(filepath)
     .then(function (content) {
-      if (type === 'readme') {
+      if (type === "readme") {
         return parser.parseReadme(content);
-      } else if (type === 'glossary') {
+      } else if (type === "glossary") {
         return parser.parseGlossary(content);
-      } else if (type === 'summary') {
+      } else if (type === "summary") {
         return parser.parseSummary(content);
-      } else if (type === 'langs') {
+      } else if (type === "langs") {
         return parser.parseLanguages(content);
       } else {
         throw new Error('Parsing invalid type "' + type + '"');

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import cwd = require('./index');
+import cwd = require("./index");
 
 // TESTS //
 

@@ -2,11 +2,11 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 */
 
-'use strict';
+"use strict";
 
-const RuntimeGlobals = require('../RuntimeGlobals');
-const RuntimeModule = require('../RuntimeModule');
-const Template = require('../Template');
+const RuntimeGlobals = require("../RuntimeGlobals");
+const RuntimeModule = require("../RuntimeModule");
+const Template = require("../Template");
 
 /** @typedef {import("../Compilation")} Compilation */
 

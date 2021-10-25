@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Define a non-enumerable read-only property.
@@ -39,7 +39,7 @@
 
 // MODULES //
 
-var setNonEnumerableReadOnly = require('./main.js');
+var setNonEnumerableReadOnly = require("./main.js");
 
 // EXPORTS //
 

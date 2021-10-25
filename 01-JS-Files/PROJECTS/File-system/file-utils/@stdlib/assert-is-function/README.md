@@ -39,7 +39,7 @@ npm install @stdlib/assert-is-function
 ## Usage
 
 ```javascript
-var isFunction = require('@stdlib/assert-is-function');
+var isFunction = require("@stdlib/assert-is-function");
 ```
 
 #### isFunction( value )
@@ -48,7 +48,7 @@ Tests if a `value` is a `function`.
 
 ```javascript
 function beep() {
-  console.log('beep');
+  console.log("beep");
 }
 
 var bool = isFunction(beep);
@@ -68,12 +68,12 @@ var bool = isFunction(beep);
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var isFunction = require('@stdlib/assert-is-function');
+var isFunction = require("@stdlib/assert-is-function");
 
 var bool = isFunction(function foo() {});
 // returns true
 
-bool = isFunction('beep');
+bool = isFunction("beep");
 // returns false
 
 bool = isFunction(5);

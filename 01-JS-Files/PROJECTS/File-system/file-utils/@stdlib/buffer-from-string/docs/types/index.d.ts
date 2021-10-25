@@ -20,7 +20,7 @@
 
 /// <reference types="node"/>
 
-import { Buffer } from 'buffer';
+import { Buffer } from "buffer";
 
 /**
  * Allocates a buffer containing a provided string.

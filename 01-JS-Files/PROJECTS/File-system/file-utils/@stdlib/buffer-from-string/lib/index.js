@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Allocate a buffer containing a provided string.
@@ -32,9 +32,9 @@
 
 // MODULES //
 
-var hasFrom = require('./has_from.js');
-var main = require('./main.js');
-var polyfill = require('./polyfill.js');
+var hasFrom = require("./has_from.js");
+var main = require("./main.js");
+var polyfill = require("./polyfill.js");
 
 // MAIN //
 

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Test for native `Buffer` support.
@@ -32,7 +32,7 @@
 
 // MODULES //
 
-var hasNodeBufferSupport = require('./main.js');
+var hasNodeBufferSupport = require("./main.js");
 
 // EXPORTS //
 

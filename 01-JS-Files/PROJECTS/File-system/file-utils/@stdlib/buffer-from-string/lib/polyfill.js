@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isString = require('@stdlib/assert-is-string').isPrimitive;
-var Buffer = require('@stdlib/buffer-ctor');
+var isString = require("@stdlib/assert-is-string").isPrimitive;
+var Buffer = require("@stdlib/buffer-ctor");
 
 // MAIN //
 
@@ -42,20 +42,20 @@ var Buffer = require('@stdlib/buffer-ctor');
 function fromString(str, encoding) {
   if (!isString(str)) {
     throw new TypeError(
-      'invalid argument. First argument must be a string. Value: `' + str + '`'
+      "invalid argument. First argument must be a string. Value: `" + str + "`"
     );
   }
   if (arguments.length > 1) {
     if (!isString(encoding)) {
       throw new TypeError(
-        'invalid argument. Second argument must be a string. Value: `' +
+        "invalid argument. Second argument must be a string. Value: `" +
           encoding +
-          '`'
+          "`"
       );
     }
     return new Buffer(str, encoding); // eslint-disable-line no-buffer-constructor
   }
-  return new Buffer(str, 'utf8'); // eslint-disable-line no-buffer-constructor
+  return new Buffer(str, "utf8"); // eslint-disable-line no-buffer-constructor
 }
 
 // EXPORTS //

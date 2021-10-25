@@ -39,7 +39,7 @@ npm install @stdlib/fs-read-file
 ## Usage
 
 ```javascript
-var readFile = require('@stdlib/fs-read-file');
+var readFile = require("@stdlib/fs-read-file");
 ```
 
 #### readFile( file\[, options], clbk )
@@ -84,9 +84,9 @@ The function accepts the same `options` and has the same defaults as [`fs.readFi
 - The difference between this API and [`fs.readFileSync()`][node-fs] is that [`fs.readFileSync()`][node-fs] will throw if an `error` is encountered (e.g., if given a non-existent `path`) and this API will return an `error`. Hence, the following anti-pattern
 
   ```javascript
-  var fs = require('fs');
+  var fs = require("fs");
 
-  var file = '/path/to/file.js';
+  var file = "/path/to/file.js";
 
   // Check for existence to prevent an error being thrown...
   if (fs.existsSync(file)) {
@@ -97,9 +97,9 @@ The function accepts the same `options` and has the same defaults as [`fs.readFi
   can be replaced by an approach which addresses existence via `error` handling.
 
   ```javascript
-  var readFile = require('@stdlib/fs-read-file');
+  var readFile = require("@stdlib/fs-read-file");
 
-  var file = '/path/to/file.js';
+  var file = "/path/to/file.js";
 
   // Explicitly handle the error...
   file = readFile.sync(file);
@@ -120,18 +120,18 @@ The function accepts the same `options` and has the same defaults as [`fs.readFi
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var readFile = require('@stdlib/fs-read-file');
+var readFile = require("@stdlib/fs-read-file");
 
 /* Sync */
 
-var file = readFile.sync(__filename, 'utf8');
+var file = readFile.sync(__filename, "utf8");
 // returns <string>
 
 console.log(file instanceof Error);
 // => false
 
-file = readFile.sync('beepboop', {
-  encoding: 'utf8',
+file = readFile.sync("beepboop", {
+  encoding: "utf8",
 });
 // returns <Error>
 
@@ -141,12 +141,12 @@ console.log(file instanceof Error);
 /* Async */
 
 readFile(__filename, onFile);
-readFile('beepboop', onFile);
+readFile("beepboop", onFile);
 
 function onFile(error, data) {
   if (error) {
-    if (error.code === 'ENOENT') {
-      console.error('File does not exist.');
+    if (error.code === "ENOENT") {
+      console.error("File does not exist.");
     } else {
       throw error;
     }

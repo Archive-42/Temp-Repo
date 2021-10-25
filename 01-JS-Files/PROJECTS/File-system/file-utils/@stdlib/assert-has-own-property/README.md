@@ -39,7 +39,7 @@ npm install @stdlib/assert-has-own-property
 ## Usage
 
 ```javascript
-var hasOwnProp = require('@stdlib/assert-has-own-property');
+var hasOwnProp = require("@stdlib/assert-has-own-property");
 ```
 
 #### hasOwnProp( value, property )
@@ -48,13 +48,13 @@ Returns a `boolean` indicating if a `value` has a specified `property`.
 
 ```javascript
 var value = {
-  beep: 'boop',
+  beep: "boop",
 };
 
-var bool = hasOwnProp(value, 'beep');
+var bool = hasOwnProp(value, "beep");
 // returns true
 
-bool = hasOwnProp(value, 'bap');
+bool = hasOwnProp(value, "bap");
 // returns false
 ```
 
@@ -69,17 +69,17 @@ bool = hasOwnProp(value, 'bap');
 - In contrast to the native [Object.prototype.hasOwnProperty][mdn-object-has-own-property], this function does **not** throw when provided `null` or `undefined`. Instead, the function returns `false`.
 
   ```javascript
-  var bool = hasOwnProp(null, 'a');
+  var bool = hasOwnProp(null, "a");
   // returns false
 
-  bool = hasOwnProp(void 0, 'a');
+  bool = hasOwnProp(void 0, "a");
   // returns false
   ```
 
 - Value arguments other than `null` or `undefined` are coerced to `objects`.
 
   ```javascript
-  var bool = hasOwnProp('beep', 'length');
+  var bool = hasOwnProp("beep", "length");
   // returns true
   ```
 
@@ -93,7 +93,7 @@ bool = hasOwnProp(value, 'bap');
   // returns true
 
   value = {
-    '[object Object]': false,
+    "[object Object]": false,
   };
   bool = hasOwnProp(value, {});
   // returns true
@@ -112,30 +112,30 @@ bool = hasOwnProp(value, 'bap');
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var hasOwnProp = require('@stdlib/assert-has-own-property');
+var hasOwnProp = require("@stdlib/assert-has-own-property");
 
-var bool = hasOwnProp({ a: 'b' }, 'a');
+var bool = hasOwnProp({ a: "b" }, "a");
 // returns true
 
-bool = hasOwnProp({ a: 'b' }, 'c');
+bool = hasOwnProp({ a: "b" }, "c");
 // returns false
 
-bool = hasOwnProp({ a: 'b' }, null);
+bool = hasOwnProp({ a: "b" }, null);
 // returns false
 
-bool = hasOwnProp({}, 'hasOwnProperty');
+bool = hasOwnProp({}, "hasOwnProperty");
 // returns false
 
-bool = hasOwnProp(null, 'a');
+bool = hasOwnProp(null, "a");
 // returns false
 
-bool = hasOwnProp(void 0, 'a');
+bool = hasOwnProp(void 0, "a");
 // returns false
 
 bool = hasOwnProp({ null: false }, null);
 // returns true
 
-bool = hasOwnProp({ '[object Object]': false }, {});
+bool = hasOwnProp({ "[object Object]": false }, {});
 // returns true
 ```
 

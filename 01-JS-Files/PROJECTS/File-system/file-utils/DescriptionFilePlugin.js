@@ -3,9 +3,9 @@
 	Author Tobias Koppers @sokra
 */
 
-'use strict';
+"use strict";
 
-const DescriptionFileUtils = require('./DescriptionFileUtils');
+const DescriptionFileUtils = require("./DescriptionFileUtils");
 
 /** @typedef {import("./Resolver")} Resolver */
 /** @typedef {import("./Resolver").ResolveStepHook} ResolveStepHook */
@@ -33,7 +33,7 @@ module.exports = class DescriptionFilePlugin {
     resolver
       .getHook(this.source)
       .tapAsync(
-        'DescriptionFilePlugin',
+        "DescriptionFilePlugin",
         (request, resolveContext, callback) => {
           const path = request.path;
           if (!path) return callback();
@@ -65,7 +65,7 @@ module.exports = class DescriptionFilePlugin {
                 return callback();
               }
               const relativePath =
-                '.' + path.substr(result.directory.length).replace(/\\/g, '/');
+                "." + path.substr(result.directory.length).replace(/\\/g, "/");
               const obj = {
                 ...request,
                 descriptionFilePath: result.path,
@@ -76,11 +76,11 @@ module.exports = class DescriptionFilePlugin {
               resolver.doResolve(
                 target,
                 obj,
-                'using description file: ' +
+                "using description file: " +
                   result.path +
-                  ' (relative path: ' +
+                  " (relative path: " +
                   relativePath +
-                  ')',
+                  ")",
                 resolveContext,
                 (err, result) => {
                   if (err) return callback(err);

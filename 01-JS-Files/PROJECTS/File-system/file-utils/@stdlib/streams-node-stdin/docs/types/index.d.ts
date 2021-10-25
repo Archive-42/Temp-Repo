@@ -20,7 +20,7 @@
 
 /// <reference types="node"/>
 
-import { stdin } from 'process';
+import { stdin } from "process";
 
 // EXPORTS //
 

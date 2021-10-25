@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Command-line interface (CLI).
@@ -46,7 +46,7 @@
 
 // MODULES //
 
-var CLI = require('./main.js');
+var CLI = require("./main.js");
 
 // EXPORTS //
 

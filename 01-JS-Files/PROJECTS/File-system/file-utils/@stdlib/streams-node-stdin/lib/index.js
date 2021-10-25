@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Standard input.
@@ -33,7 +33,7 @@
 
 // MODULES //
 
-var stdin = require('./stdin.js');
+var stdin = require("./stdin.js");
 
 // EXPORTS //
 

@@ -16,12 +16,12 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isPrimitive = require('./primitive.js');
-var isObject = require('./object.js');
+var isPrimitive = require("./primitive.js");
+var isObject = require("./object.js");
 
 // MAIN //
 

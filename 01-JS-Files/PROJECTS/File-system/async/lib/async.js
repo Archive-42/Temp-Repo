@@ -6,7 +6,7 @@
   var root = this,
     previous_async = root.async;
 
-  if (typeof module !== 'undefined' && module.exports) {
+  if (typeof module !== "undefined" && module.exports) {
     module.exports = async;
   } else {
     root.async = async;
@@ -65,7 +65,7 @@
   //// exported async module functions ////
 
   //// nextTick implementation with browser-compatible fallback ////
-  if (typeof process === 'undefined' || !process.nextTick) {
+  if (typeof process === "undefined" || !process.nextTick) {
     async.nextTick = function (fn) {
       setTimeout(fn, 0);
     };
@@ -640,7 +640,7 @@
         _forEach(data, function (task) {
           q.tasks.push({
             data: task,
-            callback: typeof callback === 'function' ? callback : null,
+            callback: typeof callback === "function" ? callback : null,
           });
           if (q.saturated && q.tasks.length == concurrency) {
             q.saturated();
@@ -681,7 +681,7 @@
         args.concat([
           function (err) {
             var args = Array.prototype.slice.call(arguments, 1);
-            if (typeof console !== 'undefined') {
+            if (typeof console !== "undefined") {
               if (err) {
                 if (console.error) {
                   console.error(err);
@@ -697,8 +697,8 @@
       );
     };
   };
-  async.log = _console_fn('log');
-  async.dir = _console_fn('dir');
+  async.log = _console_fn("log");
+  async.dir = _console_fn("dir");
   /*async.info = _console_fn('info');
     async.warn = _console_fn('warn');
     async.error = _console_fn('error');*/

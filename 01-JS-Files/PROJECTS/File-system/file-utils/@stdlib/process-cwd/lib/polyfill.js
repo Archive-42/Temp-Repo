@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
@@ -31,7 +31,7 @@
  * // returns '/'
  */
 function cwd() {
-  return '/';
+  return "/";
 }
 
 // EXPORTS //

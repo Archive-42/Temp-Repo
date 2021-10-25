@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Return a function which tests if every element in an array passes a test condition.
@@ -41,7 +41,7 @@
 
 // MODULES //
 
-var arrayfcn = require('./arrayfcn.js');
+var arrayfcn = require("./arrayfcn.js");
 
 // EXPORTS //
 

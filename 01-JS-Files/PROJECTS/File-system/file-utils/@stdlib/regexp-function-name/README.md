@@ -39,7 +39,7 @@ npm install @stdlib/regexp-function-name
 ## Usage
 
 ```javascript
-var reFunctionName = require('@stdlib/regexp-function-name');
+var reFunctionName = require("@stdlib/regexp-function-name");
 ```
 
 #### reFunctionName
@@ -48,7 +48,7 @@ Returns a [regular expression][regexp] to capture a `function` name.
 
 ```javascript
 function beep() {
-  return 'boop';
+  return "boop";
 }
 
 var RE_FUNCTION_NAME = reFunctionName();
@@ -80,8 +80,8 @@ var str = reFunctionName.REGEXP.exec(Math.sqrt.toString())[1];
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var Int8Array = require('@stdlib/array-int8');
-var reFunctionName = require('@stdlib/regexp-function-name');
+var Int8Array = require("@stdlib/array-int8");
+var reFunctionName = require("@stdlib/regexp-function-name");
 var RE_FUNCTION_NAME = reFunctionName();
 
 function fname(fcn) {
