@@ -13,7 +13,7 @@ export default {
     subscriptions = new CompositeDisposable();
 
     subscriptions.add(
-      atom.workspace.observeTextEditors(editor => {
+      atom.workspace.observeTextEditors((editor) => {
         const editorElement = atom.views.getView(editor);
         const diffView = new GitDiffView(editor, editorElement);
 
@@ -48,5 +48,5 @@ export default {
 
     subscriptions.dispose();
     subscriptions = null;
-  }
+  },
 };

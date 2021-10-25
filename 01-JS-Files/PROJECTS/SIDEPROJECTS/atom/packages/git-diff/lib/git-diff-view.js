@@ -99,7 +99,7 @@ export default class GitDiffView {
       this._repoSubs = new CompositeDisposable(
         this.repository.onDidDestroy(subscribeToRepository),
         this.repository.onDidChangeStatuses(scheduleUpdate),
-        this.repository.onDidChangeStatus(changedPath => {
+        this.repository.onDidChangeStatus((changedPath) => {
           if (changedPath === this.editorPath) scheduleUpdate();
         }),
         this.editor.onDidStopChanging(scheduleUpdate),
@@ -258,9 +258,15 @@ export default class GitDiffView {
   }
 
   markRange(startRow, endRow, klass) {
-    const marker = this.editor.markBufferRange([[startRow, 0], [endRow, 0]], {
-      invalidate: 'never'
-    });
+    const marker = this.editor.markBufferRange(
+      [
+        [startRow, 0],
+        [endRow, 0],
+      ],
+      {
+        invalidate: 'never',
+      }
+    );
     this.editor.decorateMarker(marker, { type: 'line-number', class: klass });
     return marker;
   }

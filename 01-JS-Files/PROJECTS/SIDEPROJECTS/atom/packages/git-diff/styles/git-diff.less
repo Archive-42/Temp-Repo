@@ -1,17 +1,17 @@
-@import "syntax-variables";
-@import "octicon-utf-codes";
-@import "octicon-mixins";
+@import 'syntax-variables';
+@import 'octicon-utf-codes';
+@import 'octicon-mixins';
 
 atom-text-editor {
   .gutter .line-number {
     &.git-line-modified {
       border-left: 2px solid @syntax-color-modified;
-      padding-left: ~"calc(0.5em - 2px)";
+      padding-left: ~'calc(0.5em - 2px)';
     }
 
     &.git-line-added {
       border-left: 2px solid @syntax-color-added;
-      padding-left: ~"calc(0.5em - 2px)";
+      padding-left: ~'calc(0.5em - 2px)';
     }
 
     @size: 4px;
@@ -21,7 +21,7 @@ atom-text-editor {
       left: 0;
       height: 0;
       width: 0;
-      content: "";
+      content: '';
       border: solid transparent;
       border-left-color: @syntax-color-removed;
       border-width: @size;
@@ -42,14 +42,14 @@ atom-text-editor {
 
     &:before {
       .octicon-font();
-      content: "";
+      content: '';
       display: inline-block;
       position: absolute;
-      top: .2em;
-      left: .4em;
+      top: 0.2em;
+      left: 0.4em;
       height: 0px; // make sure it doesnt affect the gutter line height.
       width: 1em;
-      font-size: .75em;
+      font-size: 0.75em;
     }
 
     &.git-line-modified:before {
