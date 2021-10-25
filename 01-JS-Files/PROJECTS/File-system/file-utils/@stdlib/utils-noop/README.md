@@ -39,7 +39,7 @@ npm install @stdlib/utils-noop
 ## Usage
 
 ```javascript
-var noop = require('@stdlib/utils-noop');
+var noop = require("@stdlib/utils-noop");
 ```
 
 #### noop()
@@ -62,7 +62,7 @@ noop();
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var noop = require('@stdlib/utils-noop');
+var noop = require("@stdlib/utils-noop");
 
 function foo(next) {
   // Do something...

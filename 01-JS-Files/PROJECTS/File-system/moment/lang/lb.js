@@ -7,50 +7,50 @@
 // and "eifelerRegelAppliesToNumber" methods are meant for
 
 (function (factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['moment'], factory); // AMD
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('../moment')); // Node
+  if (typeof define === "function" && define.amd) {
+    define(["moment"], factory); // AMD
+  } else if (typeof exports === "object") {
+    module.exports = factory(require("../moment")); // Node
   } else {
     factory(window.moment); // Browser global
   }
 })(function (moment) {
   function processRelativeTime(number, withoutSuffix, key, isFuture) {
     var format = {
-      m: ['eng Minutt', 'enger Minutt'],
-      h: ['eng Stonn', 'enger Stonn'],
-      d: ['een Dag', 'engem Dag'],
-      dd: [number + ' Deeg', number + ' Deeg'],
-      M: ['ee Mount', 'engem Mount'],
-      MM: [number + ' Méint', number + ' Méint'],
-      y: ['ee Joer', 'engem Joer'],
-      yy: [number + ' Joer', number + ' Joer'],
+      m: ["eng Minutt", "enger Minutt"],
+      h: ["eng Stonn", "enger Stonn"],
+      d: ["een Dag", "engem Dag"],
+      dd: [number + " Deeg", number + " Deeg"],
+      M: ["ee Mount", "engem Mount"],
+      MM: [number + " Méint", number + " Méint"],
+      y: ["ee Joer", "engem Joer"],
+      yy: [number + " Joer", number + " Joer"],
     };
     return withoutSuffix ? format[key][0] : format[key][1];
   }
 
   function processFutureTime(string) {
-    var number = string.substr(0, string.indexOf(' '));
+    var number = string.substr(0, string.indexOf(" "));
     if (eifelerRegelAppliesToNumber(number)) {
-      return 'a ' + string;
+      return "a " + string;
     }
-    return 'an ' + string;
+    return "an " + string;
   }
 
   function processPastTime(string) {
-    var number = string.substr(0, string.indexOf(' '));
+    var number = string.substr(0, string.indexOf(" "));
     if (eifelerRegelAppliesToNumber(number)) {
-      return 'viru ' + string;
+      return "viru " + string;
     }
-    return 'virun ' + string;
+    return "virun " + string;
   }
 
   function processLastWeek(string1) {
-    var weekday = this.format('d');
+    var weekday = this.format("d");
     if (eifelerRegelAppliesToWeekday(weekday)) {
-      return '[Leschte] dddd [um] LT';
+      return "[Leschte] dddd [um] LT";
     }
-    return '[Leschten] dddd [um] LT';
+    return "[Leschten] dddd [um] LT";
   }
 
   /**
@@ -117,42 +117,42 @@
     }
   }
 
-  return moment.lang('lb', {
+  return moment.lang("lb", {
     months:
-      'Januar_Februar_Mäerz_Abrëll_Mee_Juni_Juli_August_September_Oktober_November_Dezember'.split(
-        '_'
+      "Januar_Februar_Mäerz_Abrëll_Mee_Juni_Juli_August_September_Oktober_November_Dezember".split(
+        "_"
       ),
     monthsShort:
-      'Jan._Febr._Mrz._Abr._Mee_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
+      "Jan._Febr._Mrz._Abr._Mee_Jun._Jul._Aug._Sept._Okt._Nov._Dez.".split("_"),
     weekdays:
-      'Sonndeg_Méindeg_Dënschdeg_Mëttwoch_Donneschdeg_Freideg_Samschdeg'.split(
-        '_'
+      "Sonndeg_Méindeg_Dënschdeg_Mëttwoch_Donneschdeg_Freideg_Samschdeg".split(
+        "_"
       ),
-    weekdaysShort: 'So._Mé._Dë._Më._Do._Fr._Sa.'.split('_'),
-    weekdaysMin: 'So_Mé_Dë_Më_Do_Fr_Sa'.split('_'),
+    weekdaysShort: "So._Mé._Dë._Më._Do._Fr._Sa.".split("_"),
+    weekdaysMin: "So_Mé_Dë_Më_Do_Fr_Sa".split("_"),
     longDateFormat: {
-      LT: 'H:mm [Auer]',
-      L: 'DD.MM.YYYY',
-      LL: 'D. MMMM YYYY',
-      LLL: 'D. MMMM YYYY LT',
-      LLLL: 'dddd, D. MMMM YYYY LT',
+      LT: "H:mm [Auer]",
+      L: "DD.MM.YYYY",
+      LL: "D. MMMM YYYY",
+      LLL: "D. MMMM YYYY LT",
+      LLLL: "dddd, D. MMMM YYYY LT",
     },
     calendar: {
-      sameDay: '[Haut um] LT',
-      sameElse: 'L',
-      nextDay: '[Muer um] LT',
-      nextWeek: 'dddd [um] LT',
-      lastDay: '[Gëschter um] LT',
+      sameDay: "[Haut um] LT",
+      sameElse: "L",
+      nextDay: "[Muer um] LT",
+      nextWeek: "dddd [um] LT",
+      lastDay: "[Gëschter um] LT",
       lastWeek: processLastWeek,
     },
     relativeTime: {
       future: processFutureTime,
       past: processPastTime,
-      s: 'e puer Sekonnen',
+      s: "e puer Sekonnen",
       m: processRelativeTime,
-      mm: '%d Minutten',
+      mm: "%d Minutten",
       h: processRelativeTime,
-      hh: '%d Stonnen',
+      hh: "%d Stonnen",
       d: processRelativeTime,
       dd: processRelativeTime,
       M: processRelativeTime,
@@ -160,7 +160,7 @@
       y: processRelativeTime,
       yy: processRelativeTime,
     },
-    ordinal: '%d.',
+    ordinal: "%d.",
     week: {
       dow: 1, // Monday is the first day of the week.
       doy: 4, // The week that contains Jan 4th is the first week of the year.

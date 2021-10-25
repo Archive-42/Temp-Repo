@@ -1,7 +1,7 @@
-var https = require('https'),
-  zlib = require('zlib'),
-  path = require('path'),
-  fs = require('fs');
+var https = require("https"),
+  zlib = require("zlib"),
+  path = require("path"),
+  fs = require("fs");
 
 var count = 0;
 var resolved = 0;
@@ -18,9 +18,9 @@ function check() {
 }
 
 function makeBar(length) {
-  var i = '';
+  var i = "";
   while (i.length < length) {
-    i += '=';
+    i += "=";
   }
   return i;
 }
@@ -43,29 +43,29 @@ function display() {
   var i;
   for (i = 0; i < count; i++) {
     console.log(
-      outputs[i].version + ' ' + outputs[i].gzip + ' ' + outputs[i].original
+      outputs[i].version + " " + outputs[i].gzip + " " + outputs[i].original
     );
-    console.log('gzip ' + outputs[i].bargraph);
-    console.log('orig ' + outputs[i].bargraph2);
+    console.log("gzip " + outputs[i].bargraph);
+    console.log("orig " + outputs[i].bargraph2);
   }
   done();
 }
 
 function getSizeAtVersion(version, path) {
-  var data = '',
+  var data = "",
     op = {},
     req = https.request(
       {
-        host: 'raw.github.com',
+        host: "raw.github.com",
         port: 443,
-        path: '/timrwood/moment/' + version + path,
+        path: "/timrwood/moment/" + version + path,
       },
       function (res) {
-        res.setEncoding('utf8');
-        res.on('data', function (chunk) {
+        res.setEncoding("utf8");
+        res.on("data", function (chunk) {
           data += chunk;
         });
-        res.on('end', function (e) {
+        res.on("end", function (e) {
           zlib.gzip(data, function (error, result) {
             op.version = version;
             op.gzip = result.length;
@@ -77,8 +77,8 @@ function getSizeAtVersion(version, path) {
       }
     );
 
-  req.on('error', function (e) {
-    console.log('problem with request: ' + e.message);
+  req.on("error", function (e) {
+    console.log("problem with request: " + e.message);
   });
   req.end();
   count++;
@@ -86,15 +86,15 @@ function getSizeAtVersion(version, path) {
 }
 
 function getRemote() {
-  var old_versions = '1.0.1 1.1.0 1.1.1 1.1.2 1.2.0 1.3.0 1.4.0'.split(' '),
-    new_versions = '1.5.0 1.5.1 1.6.0 1.6.1 1.7.0 1.7.1'.split(' '),
+  var old_versions = "1.0.1 1.1.0 1.1.1 1.1.2 1.2.0 1.3.0 1.4.0".split(" "),
+    new_versions = "1.5.0 1.5.1 1.6.0 1.6.1 1.7.0 1.7.1".split(" "),
     i;
 
   for (i = 0; i < old_versions.length; i++) {
-    getSizeAtVersion(old_versions[i], '/moment.min.js');
+    getSizeAtVersion(old_versions[i], "/moment.min.js");
   }
   for (i = 0; i < new_versions.length; i++) {
-    getSizeAtVersion(new_versions[i], '/min/moment.min.js');
+    getSizeAtVersion(new_versions[i], "/min/moment.min.js");
   }
 }
 
@@ -103,14 +103,14 @@ function getLocal() {
   var op = {};
   outputs.push(op);
   fs.readFile(
-    path.normalize(__dirname + '/../min/moment.min.js'),
-    'utf8',
+    path.normalize(__dirname + "/../min/moment.min.js"),
+    "utf8",
     function (err, data) {
       if (err) {
         throw err;
       }
       zlib.gzip(data, function (error, result) {
-        op.version = '.next';
+        op.version = ".next";
         op.gzip = result.length;
         op.original = data.length;
         resolved++;
@@ -122,8 +122,8 @@ function getLocal() {
 
 module.exports = function (grunt) {
   grunt.registerTask(
-    'history',
-    'Check the codebase filesize over different releases.',
+    "history",
+    "Check the codebase filesize over different releases.",
     function () {
       done = this.async();
       getRemote();

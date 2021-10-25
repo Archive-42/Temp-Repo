@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var ctorName = require('@stdlib/utils-constructor-name');
+var ctorName = require("@stdlib/utils-constructor-name");
 
 // MAIN //
 

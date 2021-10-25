@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 module.exports = function () {
   var str = [].map
     .call(arguments, function (str) {
@@ -7,10 +7,10 @@ module.exports = function () {
     .filter(function (str) {
       return str.length;
     })
-    .join('-');
+    .join("-");
 
   if (!str.length) {
-    return '';
+    return "";
   }
 
   if (str.length === 1 || !/[_.\- ]+/.test(str)) {
@@ -25,7 +25,7 @@ module.exports = function () {
   }
 
   return str
-    .replace(/^[_.\- ]+/, '')
+    .replace(/^[_.\- ]+/, "")
     .toLowerCase()
     .replace(/[_.\- ]+(\w|$)/g, function (m, p1) {
       return p1.toUpperCase();

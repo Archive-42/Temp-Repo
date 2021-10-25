@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
-var obj = typeof global === 'object' ? global : null;
+var obj = typeof global === "object" ? global : null;
 
 // EXPORTS //
 

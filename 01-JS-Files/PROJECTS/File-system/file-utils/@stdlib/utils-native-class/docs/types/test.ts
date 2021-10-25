@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-import nativeClass = require('./index');
+import nativeClass = require("./index");
 
 // TESTS //
 
 // The function returns a string...
 {
-  nativeClass('abc'); // $ExpectType string
+  nativeClass("abc"); // $ExpectType string
 }
 
 // The function does not compile if not provided one argument...

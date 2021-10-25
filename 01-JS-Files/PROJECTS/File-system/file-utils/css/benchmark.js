@@ -1,7 +1,7 @@
-var css = require('./'),
-  fs = require('fs'),
+var css = require("./"),
+  fs = require("fs"),
   read = fs.readFileSync,
-  str = read('examples/ui.css', 'utf8');
+  str = read("examples/ui.css", "utf8");
 
 var n = 5000;
 var ops = 200;
@@ -15,7 +15,7 @@ while (n--) {
     var ms = t[1] / 1000 / 1000;
     var persec = (ops * (1000 / ms)) | 0;
     results.push(persec);
-    process.stdout.write('\r  [' + persec + ' ops/s] [' + n + ']');
+    process.stdout.write("\r  [" + persec + " ops/s] [" + n + "]");
     t = process.hrtime();
   }
 }
@@ -31,5 +31,5 @@ function mean(arr) {
 }
 
 console.log();
-console.log('   avg: %d ops/s', mean(results));
-console.log('  size: %d kb', (str.length / 1024).toFixed(2));
+console.log("   avg: %d ops/s", mean(results));
+console.log("  size: %d kb", (str.length / 1024).toFixed(2));

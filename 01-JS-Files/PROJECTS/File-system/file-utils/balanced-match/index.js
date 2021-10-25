@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 module.exports = balanced;
 function balanced(a, b, str) {
   if (a instanceof RegExp) a = maybeMatch(a, str);

@@ -23,7 +23,7 @@ This library allows you to do the same thing in your Node.js application, using 
 All methods automatically detect the platform to use, unless `platform` is defined on the [options](#options).
 
 ```js
-const increment = require('add-filename-increment');
+const increment = require("add-filename-increment");
 ```
 
 ## API
@@ -41,11 +41,11 @@ The main export is a function that adds a trailing increment to the `stem` (base
 **Example**
 
 ```js
-console.log(increment('foo/bar.txt', { platform: 'darwin' }));
+console.log(increment("foo/bar.txt", { platform: "darwin" }));
 //=> foo/bar copy.txt
-console.log(increment('foo/bar.txt', { platform: 'linux' }));
+console.log(increment("foo/bar.txt", { platform: "linux" }));
 //=> foo/bar (copy).txt
-console.log(increment('foo/bar.txt', { platform: 'win32' }));
+console.log(increment("foo/bar.txt", { platform: "win32" }));
 //=> foo/bar (2).txt
 ```
 
@@ -62,11 +62,11 @@ Add a trailing increment to the given `filepath`.
 **Example**
 
 ```js
-console.log(increment.path('foo/bar.txt', { platform: 'darwin' }));
+console.log(increment.path("foo/bar.txt", { platform: "darwin" }));
 //=> foo/bar copy.txt
-console.log(increment.path('foo/bar.txt', { platform: 'linux' }));
+console.log(increment.path("foo/bar.txt", { platform: "linux" }));
 //=> foo/bar (copy).txt
-console.log(increment.path('foo/bar.txt', { platform: 'win32' }));
+console.log(increment.path("foo/bar.txt", { platform: "win32" }));
 //=> foo/bar (2).txt
 ```
 
@@ -83,11 +83,11 @@ Add a trailing increment to the `file.base` of the given file object.
 **Example**
 
 ```js
-console.log(increment.file({ path: 'foo/bar.txt' }, { platform: 'darwin' }));
+console.log(increment.file({ path: "foo/bar.txt" }, { platform: "darwin" }));
 //=> { path: 'foo/bar copy.txt', base: 'bar copy.txt' }
-console.log(increment.file({ path: 'foo/bar.txt' }, { platform: 'linux' }));
+console.log(increment.file({ path: "foo/bar.txt" }, { platform: "linux" }));
 //=> { path: 'foo/bar (copy).txt', base: 'bar (copy).txt' }
-console.log(increment.file({ path: 'foo/bar.txt' }, { platform: 'win32' }));
+console.log(increment.file({ path: "foo/bar.txt" }, { platform: "win32" }));
 //=> { path: 'foo/bar (2).txt', base: 'bar (2).txt' }
 ```
 
@@ -103,7 +103,7 @@ Returns an ordinal-suffix for the given number. This is used when creating incre
 **Example**
 
 ```js
-const { ordinal } = require('add-filename-increment');
+const { ordinal } = require("add-filename-increment");
 console.log(ordinal(1)); //=> 'st'
 console.log(ordinal(2)); //=> 'nd'
 console.log(ordinal(3)); //=> 'rd'
@@ -122,7 +122,7 @@ Returns an ordinal for the given number.
 **Example**
 
 ```js
-const { toOrdinal } = require('add-filename-increment');
+const { toOrdinal } = require("add-filename-increment");
 console.log(toOrdinal(1)); //=> '1st'
 console.log(toOrdinal(2)); //=> '2nd'
 console.log(toOrdinal(3)); //=> '3rd'
@@ -173,10 +173,10 @@ If you use an operating system with different conventions, and you would like fo
 
 When a file is copied or moved, and the destination file path already exists, Linux uses the following conventions for incrementing the file name.
 
-| **Source path** | **Destination path** | **Type** | **Directory<sup>1</sup>** |
-| --- | --- | --- | --- |
-| `foo.txt` | `foo (copy).txt`, `foo (another copy).txt`, `foo (3rd copy).txt`, ... | file | Same directory as source |
-| `foo` | `foo (copy)`, `foo (another copy)`, `foo (3rd copy)`, ... | directory | Same directory as source |
+| **Source path** | **Destination path**                                                  | **Type**  | **Directory<sup>1</sup>** |
+| --------------- | --------------------------------------------------------------------- | --------- | ------------------------- |
+| `foo.txt`       | `foo (copy).txt`, `foo (another copy).txt`, `foo (3rd copy).txt`, ... | file      | Same directory as source  |
+| `foo`           | `foo (copy)`, `foo (another copy)`, `foo (3rd copy)`, ...             | directory | Same directory as source  |
 
 <small><sup>1</sup> _On Linux, when a file or folder is copied or moved to a different directory and another file or folder with the same name exists in that directory, you are prompted to choose a new name for the file or folder, or to cancel or skip the operation._ </small>
 
@@ -184,11 +184,11 @@ When a file is copied or moved, and the destination file path already exists, Li
 
 When a file is copied or moved, and the destination file path already exists, MacOS uses the following conventions for incrementing the file name.
 
-| **Source path** | **Destination path** | **Type** | **Directory<sup>1</sup>** |
-| --- | --- | --- | --- |
-| `foo.txt` | `foo copy.txt`, `foo copy 2.txt`, ... | file | Same directory as source |
-| `foo.txt` | `foo 2.txt`, `foo 3.txt`, ... | file | Different directory than source |
-| `foo` | `foo copy`, `foo copy 2`, ... | directory | Same directory as source |
+| **Source path** | **Destination path**                  | **Type**  | **Directory<sup>1</sup>**       |
+| --------------- | ------------------------------------- | --------- | ------------------------------- |
+| `foo.txt`       | `foo copy.txt`, `foo copy 2.txt`, ... | file      | Same directory as source        |
+| `foo.txt`       | `foo 2.txt`, `foo 3.txt`, ...         | file      | Different directory than source |
+| `foo`           | `foo copy`, `foo copy 2`, ...         | directory | Same directory as source        |
 
 <small><sup>1</sup> _MacOS uses different conventions for incrementing file names when the source file is copied, moved or renamed to a different directory, versus when the file is copied into the same directory._ </small>
 
@@ -196,13 +196,13 @@ When a file is copied or moved, and the destination file path already exists, Ma
 
 When a file is copied or moved, and the destination file path already exists, Windows uses the following conventions for incrementing the file name.
 
-| **Source path** | **Destination path** | **Type** | **Directory<sup>1</sup>** |
-| --- | --- | --- | --- |
-| `foo.txt` | `foo - Copy.txt` | file | Same directory as source |
-| `foo.txt` | `foo (2).txt` | file | Different directory than source |
-| `foo (2).txt` | `foo (3).txt` | file | Different directory than source |
-| `foo` | `foo - Copy` | directory | Same directory as source |
-| `foo - Copy` | `foo - Copy (2)` | directory | Same directory as source |
+| **Source path** | **Destination path** | **Type**  | **Directory<sup>1</sup>**       |
+| --------------- | -------------------- | --------- | ------------------------------- |
+| `foo.txt`       | `foo - Copy.txt`     | file      | Same directory as source        |
+| `foo.txt`       | `foo (2).txt`        | file      | Different directory than source |
+| `foo (2).txt`   | `foo (3).txt`        | file      | Different directory than source |
+| `foo`           | `foo - Copy`         | directory | Same directory as source        |
+| `foo - Copy`    | `foo - Copy (2)`     | directory | Same directory as source        |
 
 <small><sup>1</sup> _Windows uses different conventions for incrementing file names when the source file is copied, moved or renamed to a different directory, versus when the file is copied into the same directory. Also, when a folder is copied to a new directory, and the new directory already has a folder with the same name, Windows just merges the folders automatically._ </small>
 
@@ -245,7 +245,7 @@ $ npm install -g verbose/verb#dev verb-generate-readme && verb
 
 You might also be interested in these projects:
 
-- [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A replacement and faster alternative to minimatch and multimatch. | [homepage](https://github.com/micromatch/micromatch 'Glob matching for javascript/node.js. A replacement and faster alternative to minimatch and multimatch.')
+- [micromatch](https://www.npmjs.com/package/micromatch): Glob matching for javascript/node.js. A replacement and faster alternative to minimatch and multimatch. | [homepage](https://github.com/micromatch/micromatch "Glob matching for javascript/node.js. A replacement and faster alternative to minimatch and multimatch.")
 - [strip-filename-increment](https://www.npmjs.com/package/strip-filename-increment): Operating systems commonly add a trailing increment, or the word 'copy', or something similar to… [more](https://github.com/jonschlinkert/strip-filename-increment) | [homepage](https://github.com/jonschlinkert/strip-filename-increment "Operating systems commonly add a trailing increment, or the word 'copy', or something similar to duplicate files. This strips those increments. Tested on Windows, MacOS, and Linux.")
 - [write](https://www.npmjs.com/package/write): Write data to a file, replacing the file if it already exists and creating any… [more](https://github.com/jonschlinkert/write) | [homepage](https://github.com/jonschlinkert/write "Write data to a file, replacing the file if it already exists and creating any intermediate directories if they don't already exist. Thin wrapper around node's native fs methods.")
 

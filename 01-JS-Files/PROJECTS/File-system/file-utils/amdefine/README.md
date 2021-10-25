@@ -17,8 +17,8 @@ Then run `npm install` to get amdefine into your project.
 **2)** At the top of each module that uses define(), place this code:
 
 ```javascript
-if (typeof define !== 'function') {
-  var define = require('amdefine')(module);
+if (typeof define !== "function") {
+  var define = require("amdefine")(module);
 }
 ```
 
@@ -51,7 +51,7 @@ npm has a lot of weaknesses for front-end use (installed layout is not great, sh
 Just require it in your top level app module (for example index.js, server.js):
 
 ```javascript
-require('amdefine/intercept');
+require("amdefine/intercept");
 ```
 
 The module does not return a value, so no need to assign the result to a local variable.
@@ -68,14 +68,14 @@ It is best if you use the anonymous forms of define() in your module:
 
 ```javascript
 define(function (require) {
-  var dependency = require('dependency');
+  var dependency = require("dependency");
 });
 ```
 
 or
 
 ```javascript
-define(['dependency'], function (dependency) {});
+define(["dependency"], function (dependency) {});
 ```
 
 ## RequireJS optimizer integration. <a name="optimizer"></name>
@@ -88,8 +88,8 @@ If you want to support Node 0.4, then add `require` as the second parameter to a
 
 ```javascript
 //Only if you want Node 0.4. If using 0.5 or later, use the above snippet.
-if (typeof define !== 'function') {
-  var define = require('amdefine')(module, require);
+if (typeof define !== "function") {
+  var define = require("amdefine")(module, require);
 }
 ```
 
@@ -103,7 +103,7 @@ The exception: calling AMD's callback-style require() from inside a factory func
 
 ```javascript
 define(function (require) {
-  require(['a'], function (a) {
+  require(["a"], function (a) {
     //'a' is loaded synchronously, but
     //this callback is called on process.nextTick().
   });

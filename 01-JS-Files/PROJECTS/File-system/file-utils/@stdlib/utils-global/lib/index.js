@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Return the global object.
@@ -32,7 +32,7 @@
 
 // MODULES //
 
-var getGlobal = require('./main.js');
+var getGlobal = require("./main.js");
 
 // EXPORTS //
 

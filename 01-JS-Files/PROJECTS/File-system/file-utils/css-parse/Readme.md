@@ -7,7 +7,7 @@ CSS parser.
 js:
 
 ```js
-var parse = require('css-parse');
+var parse = require("css-parse");
 parse('tobi { name: "tobi" }');
 ```
 

@@ -1,2 +1,2 @@
-exports.parse = require('css-parse');
-exports.stringify = require('css-stringify');
+exports.parse = require("css-parse");
+exports.stringify = require("css-stringify");

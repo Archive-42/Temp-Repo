@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const path = require('path');
-const strip = require('strip-filename-increment');
-const ordinals = ['th', 'st', 'nd', 'rd'];
+const fs = require("fs");
+const path = require("path");
+const strip = require("strip-filename-increment");
+const ordinals = ["th", "st", "nd", "rd"];
 
 const ordinal = (n) => {
   if (isNaN(n)) {
-    throw new TypeError('expected a number');
+    throw new TypeError("expected a number");
   }
   return ordinals[((n % 100) - 20) % 10] || ordinals[n % 100] || ordinals[0];
 };
@@ -52,7 +52,7 @@ const format = {
  */
 
 const increment = (...args) => {
-  return typeof args[0] === 'string'
+  return typeof args[0] === "string"
     ? increment.path(...args)
     : increment.file(...args);
 };
@@ -98,7 +98,7 @@ increment.path = (filepath, options = {}) => {
  */
 
 increment.file = (file, options = {}) => {
-  if (typeof file === 'string') {
+  if (typeof file === "string") {
     let temp = file;
     file = path.parse(file);
     file.path = temp;
@@ -120,7 +120,7 @@ increment.file = (file, options = {}) => {
   let { start = 1, platform = process.platform } = options;
   let fn = options.increment || format[platform] || format.default;
 
-  if (start === 1 && (platform === 'win32' || platform === 'windows')) {
+  if (start === 1 && (platform === "win32" || platform === "windows")) {
     if (!options.increment) {
       start++;
     }

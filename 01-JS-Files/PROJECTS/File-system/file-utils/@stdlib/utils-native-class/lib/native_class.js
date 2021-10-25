@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var toStr = require('./tostring.js');
+var toStr = require("./tostring.js");
 
 // MAIN //
 

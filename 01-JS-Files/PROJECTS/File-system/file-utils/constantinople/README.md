@@ -11,7 +11,7 @@ Determine whether a JavaScript expression evaluates to a constant (using UglifyJ
 ## Usage
 
 ```js
-var isConstant = require('constantinople');
+var isConstant = require("constantinople");
 
 if (isConstant('"foo" + 5')) {
   console.dir(isConstant.toConstant('"foo" + 5'));

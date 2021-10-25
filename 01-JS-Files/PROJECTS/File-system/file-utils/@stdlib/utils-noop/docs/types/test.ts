@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import noop = require('./index');
+import noop = require("./index");
 
 // TESTS //
 

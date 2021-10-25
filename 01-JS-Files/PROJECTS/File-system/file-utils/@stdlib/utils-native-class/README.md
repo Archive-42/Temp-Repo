@@ -39,7 +39,7 @@ npm install @stdlib/utils-native-class
 ## Usage
 
 ```javascript
-var nativeClass = require('@stdlib/utils-native-class');
+var nativeClass = require("@stdlib/utils-native-class");
 ```
 
 #### nativeClass( value )
@@ -47,7 +47,7 @@ var nativeClass = require('@stdlib/utils-native-class');
 Returns a `string` value indicating a [specification defined][object-to-string] classification of an `object`.
 
 ```javascript
-var str = nativeClass('a');
+var str = nativeClass("a");
 // returns '[object String]'
 
 str = nativeClass(5);
@@ -81,7 +81,7 @@ str = nativeClass(new Beep());
   // returns '[object Object]'
 
   // Mask the default description:
-  o[Symbol.toStringTag] = 'Boolean';
+  o[Symbol.toStringTag] = "Boolean";
 
   str = toStr.call(o);
   // returns '[object Boolean]'
@@ -102,20 +102,20 @@ str = nativeClass(new Beep());
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var Float32Array = require('@stdlib/array-float32');
-var Float64Array = require('@stdlib/array-float64');
-var Int8Array = require('@stdlib/array-int8');
-var Int16Array = require('@stdlib/array-int16');
-var Int32Array = require('@stdlib/array-int32');
-var Uint8Array = require('@stdlib/array-uint8');
-var Uint8ClampedArray = require('@stdlib/array-uint8c');
-var Uint16Array = require('@stdlib/array-uint16');
-var Uint32Array = require('@stdlib/array-uint32');
-var ArrayBuffer = require('@stdlib/array-buffer');
-var Symbol = require('@stdlib/symbol-ctor');
-var nativeClass = require('@stdlib/utils-native-class');
+var Float32Array = require("@stdlib/array-float32");
+var Float64Array = require("@stdlib/array-float64");
+var Int8Array = require("@stdlib/array-int8");
+var Int16Array = require("@stdlib/array-int16");
+var Int32Array = require("@stdlib/array-int32");
+var Uint8Array = require("@stdlib/array-uint8");
+var Uint8ClampedArray = require("@stdlib/array-uint8c");
+var Uint16Array = require("@stdlib/array-uint16");
+var Uint32Array = require("@stdlib/array-uint32");
+var ArrayBuffer = require("@stdlib/array-buffer");
+var Symbol = require("@stdlib/symbol-ctor");
+var nativeClass = require("@stdlib/utils-native-class");
 
-var str = nativeClass('a');
+var str = nativeClass("a");
 // returns '[object String]'
 
 str = nativeClass(5);
@@ -163,7 +163,7 @@ str = nativeClass(new Set());
 str = nativeClass(new WeakSet());
 // returns '[object WeakSet]'
 
-str = nativeClass(Symbol('beep'));
+str = nativeClass(Symbol("beep"));
 // returns '[object Symbol]'
 
 str = nativeClass(new Error());

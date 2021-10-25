@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import nextTick = require('./index');
+import nextTick = require("./index");
 
 // TESTS //
 
@@ -30,7 +30,7 @@ import nextTick = require('./index');
 
 // The compiler throws an error if the function is provided a first argument which is not a function...
 {
-  nextTick('5'); // $ExpectError
+  nextTick("5"); // $ExpectError
   nextTick(5); // $ExpectError
   nextTick(true); // $ExpectError
   nextTick(false); // $ExpectError

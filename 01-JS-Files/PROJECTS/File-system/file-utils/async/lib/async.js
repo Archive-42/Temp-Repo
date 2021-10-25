@@ -18,7 +18,7 @@
   function only_once(fn) {
     var called = false;
     return function () {
-      if (called) throw new Error('Callback was already called.');
+      if (called) throw new Error("Callback was already called.");
       called = true;
       fn.apply(root, arguments);
     };
@@ -72,8 +72,8 @@
   //// exported async module functions ////
 
   //// nextTick implementation with browser-compatible fallback ////
-  if (typeof process === 'undefined' || !process.nextTick) {
-    if (typeof setImmediate === 'function') {
+  if (typeof process === "undefined" || !process.nextTick) {
+    if (typeof setImmediate === "function") {
       async.nextTick = function (fn) {
         // not a direct alias for IE10 compatibility
         setImmediate(fn);
@@ -87,7 +87,7 @@
     }
   } else {
     async.nextTick = process.nextTick;
-    if (typeof setImmediate !== 'undefined') {
+    if (typeof setImmediate !== "undefined") {
       async.setImmediate = function (fn) {
         // not a direct alias for IE10 compatibility
         setImmediate(fn);
@@ -512,7 +512,7 @@
     callback = callback || function () {};
     if (tasks.constructor !== Array) {
       var err = new Error(
-        'First argument to waterfall must be an array of functions'
+        "First argument to waterfall must be an array of functions"
       );
       return callback(err);
     }
@@ -735,7 +735,7 @@
       _each(data, function (task) {
         var item = {
           data: task,
-          callback: typeof callback === 'function' ? callback : null,
+          callback: typeof callback === "function" ? callback : null,
         };
 
         if (pos) {
@@ -812,7 +812,7 @@
         _each(data, function (task) {
           tasks.push({
             data: task,
-            callback: typeof callback === 'function' ? callback : null,
+            callback: typeof callback === "function" ? callback : null,
           });
           if (cargo.saturated && tasks.length === payload) {
             cargo.saturated();
@@ -828,7 +828,7 @@
         }
 
         var ts =
-          typeof payload === 'number'
+          typeof payload === "number"
             ? tasks.splice(0, payload)
             : tasks.splice(0);
 
@@ -869,7 +869,7 @@
         args.concat([
           function (err) {
             var args = Array.prototype.slice.call(arguments, 1);
-            if (typeof console !== 'undefined') {
+            if (typeof console !== "undefined") {
               if (err) {
                 if (console.error) {
                   console.error(err);
@@ -885,8 +885,8 @@
       );
     };
   };
-  async.log = _console_fn('log');
-  async.dir = _console_fn('dir');
+  async.log = _console_fn("log");
+  async.dir = _console_fn("dir");
   /*async.info = _console_fn('info');
     async.warn = _console_fn('warn');
     async.error = _console_fn('error');*/
@@ -1016,13 +1016,13 @@
   };
 
   // AMD / RequireJS
-  if (typeof define !== 'undefined' && define.amd) {
+  if (typeof define !== "undefined" && define.amd) {
     define([], function () {
       return async;
     });
   }
   // Node.js
-  else if (typeof module !== 'undefined' && module.exports) {
+  else if (typeof module !== "undefined" && module.exports) {
     module.exports = async;
   }
   // included directly via <script> tag

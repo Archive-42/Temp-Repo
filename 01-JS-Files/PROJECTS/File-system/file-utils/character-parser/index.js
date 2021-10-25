@@ -8,7 +8,7 @@ function parse(src, state, options) {
   var index = start;
   while (index < end) {
     if (state.roundDepth < 0 || state.curlyDepth < 0 || state.squareDepth < 0) {
-      throw new SyntaxError('Mismatched Bracket: ' + src[index - 1]);
+      throw new SyntaxError("Mismatched Bracket: " + src[index - 1]);
     }
     exports.parseChar(src[index++], state);
   }
@@ -28,7 +28,7 @@ function parseMax(src, options) {
   ) {
     if (index >= src.length) {
       throw new Error(
-        'The end of the string was reached with no closing bracket found.'
+        "The end of the string was reached with no closing bracket found."
       );
     }
     exports.parseChar(src[index++], state);
@@ -68,22 +68,22 @@ function parseUntil(src, delimiter, options) {
 exports.parseChar = parseChar;
 function parseChar(character, state) {
   if (character.length !== 1)
-    throw new Error('Character must be a string of length 1');
+    throw new Error("Character must be a string of length 1");
   state = state || exports.defaultState();
   var wasComment = state.blockComment || state.lineComment;
-  var lastChar = state.history ? state.history[0] : '';
+  var lastChar = state.history ? state.history[0] : "";
   if (state.lineComment) {
-    if (character === '\n') {
+    if (character === "\n") {
       state.lineComment = false;
     }
   } else if (state.blockComment) {
-    if (state.lastChar === '*' && character === '/') {
+    if (state.lastChar === "*" && character === "/") {
       state.blockComment = false;
     }
   } else if (state.singleQuote) {
     if (character === "'" && !state.escaped) {
       state.singleQuote = false;
-    } else if (character === '\\' && !state.escaped) {
+    } else if (character === "\\" && !state.escaped) {
       state.escaped = true;
     } else {
       state.escaped = false;
@@ -91,42 +91,42 @@ function parseChar(character, state) {
   } else if (state.doubleQuote) {
     if (character === '"' && !state.escaped) {
       state.doubleQuote = false;
-    } else if (character === '\\' && !state.escaped) {
+    } else if (character === "\\" && !state.escaped) {
       state.escaped = true;
     } else {
       state.escaped = false;
     }
   } else if (state.regexp) {
-    if (character === '/' && !state.escaped) {
+    if (character === "/" && !state.escaped) {
       state.regexp = false;
-    } else if (character === '\\' && !state.escaped) {
+    } else if (character === "\\" && !state.escaped) {
       state.escaped = true;
     } else {
       state.escaped = false;
     }
-  } else if (lastChar === '/' && character === '/') {
+  } else if (lastChar === "/" && character === "/") {
     state.history = state.history.substr(1);
     state.lineComment = true;
-  } else if (lastChar === '/' && character === '*') {
+  } else if (lastChar === "/" && character === "*") {
     state.history = state.history.substr(1);
     state.blockComment = true;
-  } else if (character === '/' && isRegexp(state.history)) {
+  } else if (character === "/" && isRegexp(state.history)) {
     state.regexp = true;
   } else if (character === "'") {
     state.singleQuote = true;
   } else if (character === '"') {
     state.doubleQuote = true;
-  } else if (character === '(') {
+  } else if (character === "(") {
     state.roundDepth++;
-  } else if (character === ')') {
+  } else if (character === ")") {
     state.roundDepth--;
-  } else if (character === '{') {
+  } else if (character === "{") {
     state.curlyDepth++;
-  } else if (character === '}') {
+  } else if (character === "}") {
     state.curlyDepth--;
-  } else if (character === '[') {
+  } else if (character === "[") {
     state.squareDepth++;
-  } else if (character === ']') {
+  } else if (character === "]") {
     state.squareDepth--;
   }
   if (!state.blockComment && !state.lineComment && !wasComment)
@@ -150,7 +150,7 @@ function State() {
   this.curlyDepth = 0;
   this.squareDepth = 0;
 
-  this.history = '';
+  this.history = "";
 }
 State.prototype.isString = function () {
   return this.singleQuote || this.doubleQuote;
@@ -210,68 +210,68 @@ function isPunctuator(c) {
 exports.isKeyword = isKeyword;
 function isKeyword(id) {
   return (
-    id === 'if' ||
-    id === 'in' ||
-    id === 'do' ||
-    id === 'var' ||
-    id === 'for' ||
-    id === 'new' ||
-    id === 'try' ||
-    id === 'let' ||
-    id === 'this' ||
-    id === 'else' ||
-    id === 'case' ||
-    id === 'void' ||
-    id === 'with' ||
-    id === 'enum' ||
-    id === 'while' ||
-    id === 'break' ||
-    id === 'catch' ||
-    id === 'throw' ||
-    id === 'const' ||
-    id === 'yield' ||
-    id === 'class' ||
-    id === 'super' ||
-    id === 'return' ||
-    id === 'typeof' ||
-    id === 'delete' ||
-    id === 'switch' ||
-    id === 'export' ||
-    id === 'import' ||
-    id === 'default' ||
-    id === 'finally' ||
-    id === 'extends' ||
-    id === 'function' ||
-    id === 'continue' ||
-    id === 'debugger' ||
-    id === 'package' ||
-    id === 'private' ||
-    id === 'interface' ||
-    id === 'instanceof' ||
-    id === 'implements' ||
-    id === 'protected' ||
-    id === 'public' ||
-    id === 'static' ||
-    id === 'yield' ||
-    id === 'let'
+    id === "if" ||
+    id === "in" ||
+    id === "do" ||
+    id === "var" ||
+    id === "for" ||
+    id === "new" ||
+    id === "try" ||
+    id === "let" ||
+    id === "this" ||
+    id === "else" ||
+    id === "case" ||
+    id === "void" ||
+    id === "with" ||
+    id === "enum" ||
+    id === "while" ||
+    id === "break" ||
+    id === "catch" ||
+    id === "throw" ||
+    id === "const" ||
+    id === "yield" ||
+    id === "class" ||
+    id === "super" ||
+    id === "return" ||
+    id === "typeof" ||
+    id === "delete" ||
+    id === "switch" ||
+    id === "export" ||
+    id === "import" ||
+    id === "default" ||
+    id === "finally" ||
+    id === "extends" ||
+    id === "function" ||
+    id === "continue" ||
+    id === "debugger" ||
+    id === "package" ||
+    id === "private" ||
+    id === "interface" ||
+    id === "instanceof" ||
+    id === "implements" ||
+    id === "protected" ||
+    id === "public" ||
+    id === "static" ||
+    id === "yield" ||
+    id === "let"
   );
 }
 
 function isRegexp(history) {
   //could be start of regexp or divide sign
 
-  history = history.replace(/^\s*/, '');
+  history = history.replace(/^\s*/, "");
 
   //unless its an `if`, `while`, `for` or `with` it's a divide, so we assume it's a divide
-  if (history[0] === ')') return false;
+  if (history[0] === ")") return false;
   //unless it's a function expression, it's a regexp, so we assume it's a regexp
-  if (history[0] === '}') return true;
+  if (history[0] === "}") return true;
   //any punctuation means it's a regexp
   if (isPunctuator(history[0])) return true;
   //if the last thing was a keyword then it must be a regexp (e.g. `typeof /foo/`)
   if (
     /^\w+\b/.test(history) &&
-    isKeyword(/^\w+\b/.exec(history)[0].split('').reverse().join(''))
+    isKeyword(/^\w+\b/.exec(history)[0].split("").reverse().join(""))
   )
     return true;
 

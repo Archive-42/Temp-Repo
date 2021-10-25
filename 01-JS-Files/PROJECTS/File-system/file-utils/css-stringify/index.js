@@ -28,7 +28,7 @@ function Compiler(options) {
 Compiler.prototype.compile = function (node) {
   return node.stylesheet.rules
     .map(this.visit, this)
-    .join(this.compress ? '' : '\n\n');
+    .join(this.compress ? "" : "\n\n");
 };
 
 /**
@@ -48,7 +48,7 @@ Compiler.prototype.visit = function (node) {
  */
 
 Compiler.prototype.import = function (node) {
-  return '@import ' + node.import + ';';
+  return "@import " + node.import + ";";
 };
 
 /**
@@ -58,22 +58,22 @@ Compiler.prototype.import = function (node) {
 Compiler.prototype.media = function (node) {
   if (this.compress) {
     return (
-      '@media ' +
+      "@media " +
       node.media +
-      '{' +
-      node.rules.map(this.visit, this).join('') +
-      '}'
+      "{" +
+      node.rules.map(this.visit, this).join("") +
+      "}"
     );
   }
 
   return (
-    '@media ' +
+    "@media " +
     node.media +
-    ' {\n' +
+    " {\n" +
     this.indent(1) +
-    node.rules.map(this.visit, this).join('\n\n') +
+    node.rules.map(this.visit, this).join("\n\n") +
     this.indent(-1) +
-    '\n}'
+    "\n}"
   );
 };
 
@@ -83,10 +83,10 @@ Compiler.prototype.media = function (node) {
 
 Compiler.prototype.charset = function (node) {
   if (this.compress) {
-    return '@charset ' + node.charset + ';';
+    return "@charset " + node.charset + ";";
   }
 
-  return '@charset ' + node.charset + ';\n';
+  return "@charset " + node.charset + ";\n";
 };
 
 /**
@@ -96,26 +96,26 @@ Compiler.prototype.charset = function (node) {
 Compiler.prototype.keyframes = function (node) {
   if (this.compress) {
     return (
-      '@' +
-      (node.vendor || '') +
-      'keyframes ' +
+      "@" +
+      (node.vendor || "") +
+      "keyframes " +
       node.name +
-      '{' +
-      node.keyframes.map(this.keyframe, this).join('') +
-      '}'
+      "{" +
+      node.keyframes.map(this.keyframe, this).join("") +
+      "}"
     );
   }
 
   return (
-    '@' +
-    (node.vendor || '') +
-    'keyframes ' +
+    "@" +
+    (node.vendor || "") +
+    "keyframes " +
     node.name +
-    ' {\n' +
+    " {\n" +
     this.indent(1) +
-    node.keyframes.map(this.keyframe, this).join('\n') +
+    node.keyframes.map(this.keyframe, this).join("\n") +
     this.indent(-1) +
-    '}'
+    "}"
   );
 };
 
@@ -126,23 +126,23 @@ Compiler.prototype.keyframes = function (node) {
 Compiler.prototype.keyframe = function (node) {
   if (this.compress) {
     return (
-      node.values.join(',') +
-      '{' +
-      node.declarations.map(this.declaration, this).join(';') +
-      '}'
+      node.values.join(",") +
+      "{" +
+      node.declarations.map(this.declaration, this).join(";") +
+      "}"
     );
   }
 
   return (
     this.indent() +
-    node.values.join(', ') +
-    ' {\n' +
+    node.values.join(", ") +
+    " {\n" +
     this.indent(1) +
-    node.declarations.map(this.declaration, this).join(';\n') +
+    node.declarations.map(this.declaration, this).join(";\n") +
     this.indent(-1) +
-    '\n' +
+    "\n" +
     this.indent() +
-    '}\n'
+    "}\n"
   );
 };
 
@@ -155,10 +155,10 @@ Compiler.prototype.rule = function (node) {
 
   if (this.compress) {
     return (
-      node.selectors.join(',') +
-      '{' +
-      node.declarations.map(this.declaration, this).join(';') +
-      '}'
+      node.selectors.join(",") +
+      "{" +
+      node.declarations.map(this.declaration, this).join(";") +
+      "}"
     );
   }
 
@@ -167,14 +167,14 @@ Compiler.prototype.rule = function (node) {
       .map(function (s) {
         return indent + s;
       })
-      .join(',\n') +
-    ' {\n' +
+      .join(",\n") +
+    " {\n" +
     this.indent(1) +
-    node.declarations.map(this.declaration, this).join(';\n') +
+    node.declarations.map(this.declaration, this).join(";\n") +
     this.indent(-1) +
-    '\n' +
+    "\n" +
     this.indent() +
-    '}'
+    "}"
   );
 };
 
@@ -184,10 +184,10 @@ Compiler.prototype.rule = function (node) {
 
 Compiler.prototype.declaration = function (node) {
   if (this.compress) {
-    return node.property + ':' + node.value;
+    return node.property + ":" + node.value;
   }
 
-  return this.indent() + node.property + ': ' + node.value;
+  return this.indent() + node.property + ": " + node.value;
 };
 
 /**
@@ -199,8 +199,8 @@ Compiler.prototype.indent = function (level) {
 
   if (null != level) {
     this.level += level;
-    return '';
+    return "";
   }
 
-  return Array(this.level).join(this.indentation || '  ');
+  return Array(this.level).join(this.indentation || "  ");
 };

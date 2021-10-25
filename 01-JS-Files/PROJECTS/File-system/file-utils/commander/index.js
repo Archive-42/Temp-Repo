@@ -2,11 +2,11 @@
  * Module dependencies.
  */
 
-var EventEmitter = require('events').EventEmitter;
-var spawn = require('child_process').spawn;
-var fs = require('fs');
+var EventEmitter = require("events").EventEmitter;
+var spawn = require("child_process").spawn;
+var fs = require("fs");
 var exists = fs.existsSync;
-var path = require('path');
+var path = require("path");
 var dirname = path.dirname;
 var basename = path.basename;
 
@@ -38,13 +38,13 @@ exports.Option = Option;
 
 function Option(flags, description) {
   this.flags = flags;
-  this.required = ~flags.indexOf('<');
-  this.optional = ~flags.indexOf('[');
-  this.bool = !~flags.indexOf('-no-');
+  this.required = ~flags.indexOf("<");
+  this.optional = ~flags.indexOf("[");
+  this.bool = !~flags.indexOf("-no-");
   flags = flags.split(/[ ,|]+/);
   if (flags.length > 1 && !/^[[<]/.test(flags[1])) this.short = flags.shift();
   this.long = flags.shift();
-  this.description = description || '';
+  this.description = description || "";
 }
 
 /**
@@ -55,7 +55,7 @@ function Option(flags, description) {
  */
 
 Option.prototype.name = function () {
-  return this.long.replace('--', '').replace('no-', '');
+  return this.long.replace("--", "").replace("no-", "");
 };
 
 /**
@@ -161,7 +161,7 @@ Command.prototype.command = function (name, desc) {
  */
 
 Command.prototype.addImplicitHelpCommand = function () {
-  this.command('help [cmd]', 'display help for [cmd]');
+  this.command("help [cmd]", "display help for [cmd]");
 };
 
 /**
@@ -179,10 +179,10 @@ Command.prototype.parseExpectedArgs = function (args) {
   var self = this;
   args.forEach(function (arg) {
     switch (arg[0]) {
-      case '<':
+      case "<":
         self._args.push({ required: true, name: arg.slice(1, -1) });
         break;
-      case '[':
+      case "[":
         self._args.push({ required: false, name: arg.slice(1, -1) });
         break;
     }
@@ -303,7 +303,7 @@ Command.prototype.option = function (flags, description, fn, defaultValue) {
     name = camelcase(oname);
 
   // default as 3rd arg
-  if ('function' != typeof fn) (defaultValue = fn), (fn = null);
+  if ("function" != typeof fn) (defaultValue = fn), (fn = null);
 
   // preassign default value only for --no-*, [optional], or <required>
   if (false == option.bool || option.optional || option.required) {
@@ -323,7 +323,7 @@ Command.prototype.option = function (flags, description, fn, defaultValue) {
     if (null != val && fn) val = fn(val);
 
     // unassigned or bool
-    if ('boolean' == typeof self[name] || 'undefined' == typeof self[name]) {
+    if ("boolean" == typeof self[name] || "undefined" == typeof self[name]) {
       // if no value, bool true, and we have a default, then use it!
       if (null == val) {
         self[name] = option.bool ? defaultValue || true : false;
@@ -384,30 +384,30 @@ Command.prototype.executeSubCommand = function (argv, args, unknown) {
   args = args.concat(unknown);
 
   if (!args.length) this.help();
-  if ('help' == args[0] && 1 == args.length) this.help();
+  if ("help" == args[0] && 1 == args.length) this.help();
 
   // <cmd> --help
-  if ('help' == args[0]) {
+  if ("help" == args[0]) {
     args[0] = args[1];
-    args[1] = '--help';
+    args[1] = "--help";
   }
 
   // executable
   var dir = dirname(argv[1]);
-  var bin = basename(argv[1]) + '-' + args[0];
+  var bin = basename(argv[1]) + "-" + args[0];
 
   // check for ./<bin> first
   var local = path.join(dir, bin);
 
   // run it
   args = args.slice(1);
-  var proc = spawn(local, args, { stdio: 'inherit', customFds: [0, 1, 2] });
-  proc.on('error', function (err) {
-    if (err.code == 'ENOENT') {
-      console.error('\n  %s(1) does not exist, try --help\n', bin);
-    } else if (err.code == 'EACCES') {
+  var proc = spawn(local, args, { stdio: "inherit", customFds: [0, 1, 2] });
+  proc.on("error", function (err) {
+    if (err.code == "ENOENT") {
+      console.error("\n  %s(1) does not exist, try --help\n", bin);
+    } else if (err.code == "EACCES") {
       console.error(
-        '\n  %s(1) not executable. try chmod or run with root\n',
+        "\n  %s(1) not executable. try chmod or run with root\n",
         bin
       );
     }
@@ -433,14 +433,14 @@ Command.prototype.normalize = function (args) {
 
   for (var i = 0, len = args.length; i < len; ++i) {
     arg = args[i];
-    if (arg.length > 1 && '-' == arg[0] && '-' != arg[1]) {
+    if (arg.length > 1 && "-" == arg[0] && "-" != arg[1]) {
       arg
         .slice(1)
-        .split('')
+        .split("")
         .forEach(function (c) {
-          ret.push('-' + c);
+          ret.push("-" + c);
         });
-    } else if (/^--/.test(arg) && ~(index = arg.indexOf('='))) {
+    } else if (/^--/.test(arg) && ~(index = arg.indexOf("="))) {
       ret.push(arg.slice(0, index), arg.slice(index + 1));
     } else {
       ret.push(arg);
@@ -472,7 +472,7 @@ Command.prototype.parseArgs = function (args, unknown) {
     if (this.listeners(name).length) {
       this.emit(args.shift(), args, unknown);
     } else {
-      this.emit('*', args);
+      this.emit("*", args);
     }
   } else {
     outputHelpIfNecessary(this, unknown);
@@ -526,7 +526,7 @@ Command.prototype.parseOptions = function (argv) {
     arg = argv[i];
 
     // literal args after --
-    if ('--' == arg) {
+    if ("--" == arg) {
       literal = true;
       continue;
     }
@@ -545,13 +545,13 @@ Command.prototype.parseOptions = function (argv) {
       if (option.required) {
         arg = argv[++i];
         if (null == arg) return this.optionMissingArgument(option);
-        if ('-' == arg[0] && '-' != arg)
+        if ("-" == arg[0] && "-" != arg)
           return this.optionMissingArgument(option, arg);
         this.emit(option.name(), arg);
         // optional arg
       } else if (option.optional) {
         arg = argv[i + 1];
-        if (null == arg || ('-' == arg[0] && '-' != arg)) {
+        if (null == arg || ("-" == arg[0] && "-" != arg)) {
           arg = null;
         } else {
           ++i;
@@ -565,13 +565,13 @@ Command.prototype.parseOptions = function (argv) {
     }
 
     // looks like an option
-    if (arg.length > 1 && '-' == arg[0]) {
+    if (arg.length > 1 && "-" == arg[0]) {
       unknownOptions.push(arg);
 
       // If the next argument looks like it might be
       // an argument for this option, we pass it on.
       // If it isn't, then it'll simply be ignored
-      if (argv[i + 1] && '-' != argv[i + 1][0]) {
+      if (argv[i + 1] && "-" != argv[i + 1][0]) {
         unknownOptions.push(argv[++i]);
       }
       continue;
@@ -650,9 +650,9 @@ Command.prototype.unknownOption = function (flag) {
 Command.prototype.version = function (str, flags) {
   if (0 == arguments.length) return this._version;
   this._version = str;
-  flags = flags || '-V, --version';
-  this.option(flags, 'output the version number');
-  this.on('version', function () {
+  flags = flags || "-V, --version";
+  this.option(flags, "output the version number");
+  this.on("version", function () {
     console.log(str);
     process.exit(0);
   });
@@ -683,14 +683,14 @@ Command.prototype.description = function (str) {
 
 Command.prototype.usage = function (str) {
   var args = this._args.map(function (arg) {
-    return arg.required ? '<' + arg.name + '>' : '[' + arg.name + ']';
+    return arg.required ? "<" + arg.name + ">" : "[" + arg.name + "]";
   });
 
   var usage =
-    '[options' +
-    (this.commands.length ? '] [command' : '') +
-    ']' +
-    (this._args.length ? ' ' + args : '');
+    "[options" +
+    (this.commands.length ? "] [command" : "") +
+    "]" +
+    (this._args.length ? " " + args : "");
 
   if (0 == arguments.length) return this._usage || usage;
   this._usage = str;
@@ -722,13 +722,13 @@ Command.prototype.optionHelp = function () {
   var width = this.largestOptionLength();
 
   // Prepend the help information
-  return [pad('-h, --help', width) + '  ' + 'output usage information']
+  return [pad("-h, --help", width) + "  " + "output usage information"]
     .concat(
       this.options.map(function (option) {
-        return pad(option.flags, width) + '  ' + option.description;
+        return pad(option.flags, width) + "  " + option.description;
       })
     )
-    .join('\n');
+    .join("\n");
 };
 
 /**
@@ -739,30 +739,30 @@ Command.prototype.optionHelp = function () {
  */
 
 Command.prototype.commandHelp = function () {
-  if (!this.commands.length) return '';
+  if (!this.commands.length) return "";
   return [
-    '',
-    '  Commands:',
-    '',
+    "",
+    "  Commands:",
+    "",
     this.commands
       .map(function (cmd) {
         var args = cmd._args
           .map(function (arg) {
-            return arg.required ? '<' + arg.name + '>' : '[' + arg.name + ']';
+            return arg.required ? "<" + arg.name + ">" : "[" + arg.name + "]";
           })
-          .join(' ');
+          .join(" ");
 
         return (
           pad(
-            cmd._name + (cmd.options.length ? ' [options]' : '') + ' ' + args,
+            cmd._name + (cmd.options.length ? " [options]" : "") + " " + args,
             22
-          ) + (cmd.description() ? ' ' + cmd.description() : '')
+          ) + (cmd.description() ? " " + cmd.description() : "")
         );
       })
-      .join('\n')
-      .replace(/^/gm, '    '),
-    '',
-  ].join('\n');
+      .join("\n")
+      .replace(/^/gm, "    "),
+    "",
+  ].join("\n");
 };
 
 /**
@@ -774,15 +774,15 @@ Command.prototype.commandHelp = function () {
 
 Command.prototype.helpInformation = function () {
   return [
-    '',
-    '  Usage: ' + this._name + ' ' + this.usage(),
-    '' + this.commandHelp(),
-    '  Options:',
-    '',
-    '' + this.optionHelp().replace(/^/gm, '    '),
-    '',
-    '',
-  ].join('\n');
+    "",
+    "  Usage: " + this._name + " " + this.usage(),
+    "" + this.commandHelp(),
+    "  Options:",
+    "",
+    "" + this.optionHelp().replace(/^/gm, "    "),
+    "",
+    "",
+  ].join("\n");
 };
 
 /**
@@ -793,7 +793,7 @@ Command.prototype.helpInformation = function () {
 
 Command.prototype.outputHelp = function () {
   process.stdout.write(this.helpInformation());
-  this.emit('--help');
+  this.emit("--help");
 };
 
 /**
@@ -816,7 +816,7 @@ Command.prototype.help = function () {
  */
 
 function camelcase(flag) {
-  return flag.split('-').reduce(function (str, word) {
+  return flag.split("-").reduce(function (str, word) {
     return str + word[0].toUpperCase() + word.slice(1);
   });
 }
@@ -832,7 +832,7 @@ function camelcase(flag) {
 
 function pad(str, width) {
   var len = Math.max(0, width - str.length);
-  return str + Array(len + 1).join(' ');
+  return str + Array(len + 1).join(" ");
 }
 
 /**
@@ -846,7 +846,7 @@ function pad(str, width) {
 function outputHelpIfNecessary(cmd, options) {
   options = options || [];
   for (var i = 0; i < options.length; i++) {
-    if (options[i] == '--help' || options[i] == '-h') {
+    if (options[i] == "--help" || options[i] == "-h") {
       cmd.outputHelp();
       process.exit(0);
     }

@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var RE = require('./fixtures/re.js');
-var nodeList = require('./fixtures/nodelist.js');
-var typedarray = require('./fixtures/typedarray.js');
+var RE = require("./fixtures/re.js");
+var nodeList = require("./fixtures/nodelist.js");
+var typedarray = require("./fixtures/typedarray.js");
 
 // MAIN //
 
@@ -35,11 +35,11 @@ var typedarray = require('./fixtures/typedarray.js');
 function check() {
   if (
     // Chrome 1-12 returns 'function' for regular expression instances (see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/typeof):
-    typeof RE === 'function' ||
+    typeof RE === "function" ||
     // Safari 8 returns 'object' for typed array and weak map constructors (underscore #1929):
-    typeof typedarray === 'object' ||
+    typeof typedarray === "object" ||
     // PhantomJS 1.9 returns 'function' for `NodeList` instances (underscore #2236):
-    typeof nodeList === 'function'
+    typeof nodeList === "function"
   ) {
     return true;
   }

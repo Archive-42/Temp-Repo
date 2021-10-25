@@ -11,24 +11,24 @@ $ npm install --save camelcase
 ## Usage
 
 ```js
-var camelCase = require('camelcase');
+var camelCase = require("camelcase");
 
-camelCase('foo-bar');
+camelCase("foo-bar");
 //=> fooBar
 
-camelCase('foo_bar');
+camelCase("foo_bar");
 //=> fooBar
 
-camelCase('Foo-Bar');
+camelCase("Foo-Bar");
 //=> fooBar
 
-camelCase('--foo.bar');
+camelCase("--foo.bar");
 //=> fooBar
 
-camelCase('__foo__bar__');
+camelCase("__foo__bar__");
 //=> fooBar
 
-camelCase('foo bar');
+camelCase("foo bar");
 //=> fooBar
 
 console.log(process.argv[3]);
@@ -36,10 +36,10 @@ console.log(process.argv[3]);
 camelCase(process.argv[3]);
 //=> fooBar
 
-camelCase('foo', 'bar');
+camelCase("foo", "bar");
 //=> fooBar
 
-camelCase('__foo__', '--bar');
+camelCase("__foo__", "--bar");
 //=> fooBar
 ```
 

@@ -1,4 +1,4 @@
-var moment = require('../../moment');
+var moment = require("../../moment");
 
 exports.invalid = {
   invalid: function (test) {
@@ -9,20 +9,20 @@ exports.invalid = {
     test.done();
   },
 
-  'invalid with existing flag': function (test) {
-    var m = moment.invalid({ invalidMonth: 'whatchamacallit' });
+  "invalid with existing flag": function (test) {
+    var m = moment.invalid({ invalidMonth: "whatchamacallit" });
     test.equals(m.isValid(), false);
     test.equals(m.parsingFlags().userInvalidated, false);
-    test.equals(m.parsingFlags().invalidMonth, 'whatchamacallit');
+    test.equals(m.parsingFlags().invalidMonth, "whatchamacallit");
     test.ok(isNaN(m.valueOf()));
     test.done();
   },
 
-  'invalid with custom flag': function (test) {
-    var m = moment.invalid({ tooBusyWith: 'reiculating splines' });
+  "invalid with custom flag": function (test) {
+    var m = moment.invalid({ tooBusyWith: "reiculating splines" });
     test.equals(m.isValid(), false);
     test.equals(m.parsingFlags().userInvalidated, false);
-    test.equals(m.parsingFlags().tooBusyWith, 'reiculating splines');
+    test.equals(m.parsingFlags().tooBusyWith, "reiculating splines");
     test.ok(isNaN(m.valueOf()));
     test.done();
   },

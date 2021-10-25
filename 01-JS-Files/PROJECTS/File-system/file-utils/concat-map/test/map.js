@@ -1,7 +1,7 @@
-var concatMap = require('../');
-var test = require('tape');
+var concatMap = require("../");
+var test = require("tape");
 
-test('empty or not', function (t) {
+test("empty or not", function (t) {
   var xs = [1, 2, 3, 4, 5, 6];
   var ixes = [];
   var ys = concatMap(xs, function (x, ix) {
@@ -13,26 +13,26 @@ test('empty or not', function (t) {
   t.end();
 });
 
-test('always something', function (t) {
-  var xs = ['a', 'b', 'c', 'd'];
+test("always something", function (t) {
+  var xs = ["a", "b", "c", "d"];
   var ys = concatMap(xs, function (x) {
-    return x === 'b' ? ['B', 'B', 'B'] : [x];
+    return x === "b" ? ["B", "B", "B"] : [x];
   });
-  t.same(ys, ['a', 'B', 'B', 'B', 'c', 'd']);
+  t.same(ys, ["a", "B", "B", "B", "c", "d"]);
   t.end();
 });
 
-test('scalars', function (t) {
-  var xs = ['a', 'b', 'c', 'd'];
+test("scalars", function (t) {
+  var xs = ["a", "b", "c", "d"];
   var ys = concatMap(xs, function (x) {
-    return x === 'b' ? ['B', 'B', 'B'] : x;
+    return x === "b" ? ["B", "B", "B"] : x;
   });
-  t.same(ys, ['a', 'B', 'B', 'B', 'c', 'd']);
+  t.same(ys, ["a", "B", "B", "B", "c", "d"]);
   t.end();
 });
 
-test('undefs', function (t) {
-  var xs = ['a', 'b', 'c', 'd'];
+test("undefs", function (t) {
+  var xs = ["a", "b", "c", "d"];
   var ys = concatMap(xs, function () {});
   t.same(ys, [undefined, undefined, undefined, undefined]);
   t.end();

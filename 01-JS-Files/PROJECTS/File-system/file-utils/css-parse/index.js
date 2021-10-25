@@ -32,7 +32,7 @@ module.exports = function (css) {
     var rules = [];
     whitespace();
     comments();
-    while (css[0] != '}' && (node = atrule() || rule())) {
+    while (css[0] != "}" && (node = atrule() || rule())) {
       comments();
       rules.push(node);
     }
@@ -71,9 +71,9 @@ module.exports = function (css) {
    */
 
   function comment() {
-    if ('/' == css[0] && '*' == css[1]) {
+    if ("/" == css[0] && "*" == css[1]) {
       var i = 2;
-      while ('*' != css[i] || '/' != css[i + 1]) ++i;
+      while ("*" != css[i] || "/" != css[i + 1]) ++i;
       i += 2;
       css = css.slice(i);
       whitespace();
@@ -193,7 +193,7 @@ module.exports = function (css) {
    */
 
   function atimport() {
-    return _atrule('import');
+    return _atrule("import");
   }
 
   /**
@@ -201,7 +201,7 @@ module.exports = function (css) {
    */
 
   function atcharset() {
-    return _atrule('charset');
+    return _atrule("charset");
   }
 
   /**
@@ -209,7 +209,7 @@ module.exports = function (css) {
    */
 
   function _atrule(name) {
-    var m = match(new RegExp('^@' + name + ' *([^;\\n]+);\\s*'));
+    var m = match(new RegExp("^@" + name + " *([^;\\n]+);\\s*"));
     if (!m) return;
     var ret = {};
     ret[name] = m[1].trim();

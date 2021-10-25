@@ -16,15 +16,15 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var isBoolean = require('@stdlib/assert-is-boolean').isPrimitive;
-var getThis = require('./codegen.js');
-var Self = require('./self.js');
-var Win = require('./window.js');
-var Global = require('./global.js');
+var isBoolean = require("@stdlib/assert-is-boolean").isPrimitive;
+var getThis = require("./codegen.js");
+var Self = require("./self.js");
+var Win = require("./window.js");
+var Global = require("./global.js");
 
 // MAIN //
 
@@ -48,9 +48,9 @@ function getGlobal(codegen) {
   if (arguments.length) {
     if (!isBoolean(codegen)) {
       throw new TypeError(
-        'invalid argument. Must provide a boolean primitive. Value: `' +
+        "invalid argument. Must provide a boolean primitive. Value: `" +
           codegen +
-          '`.'
+          "`."
       );
     }
     if (codegen) {
@@ -71,7 +71,7 @@ function getGlobal(codegen) {
     return Global;
   }
   // Case: unknown
-  throw new Error('unexpected error. Unable to resolve global object.');
+  throw new Error("unexpected error. Unable to resolve global object.");
 }
 
 // EXPORTS //

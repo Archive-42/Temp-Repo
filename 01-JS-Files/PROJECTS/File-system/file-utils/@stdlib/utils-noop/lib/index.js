@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * No operation.
@@ -32,7 +32,7 @@
 
 // MODULES //
 
-var noop = require('./noop.js');
+var noop = require("./noop.js");
 
 // EXPORTS //
 

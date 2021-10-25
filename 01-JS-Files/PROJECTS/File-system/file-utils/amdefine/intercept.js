@@ -1,8 +1,8 @@
 /*jshint node: true */
 var inserted,
-  Module = require('module'),
-  fs = require('fs'),
-  existingExtFn = Module._extensions['.js'],
+  Module = require("module"),
+  fs = require("fs"),
+  existingExtFn = Module._extensions[".js"],
   amdefineRegExp = /amdefine\.js/;
 
 inserted =
@@ -21,7 +21,7 @@ function stripBOM(content) {
 
 //Also adapted from the node/lib/module.js source:
 function intercept(module, filename) {
-  var content = stripBOM(fs.readFileSync(filename, 'utf8'));
+  var content = stripBOM(fs.readFileSync(filename, "utf8"));
 
   if (!amdefineRegExp.test(module.id)) {
     content = inserted + content;
@@ -30,8 +30,8 @@ function intercept(module, filename) {
   module._compile(content, filename);
 }
 
-intercept._id = 'amdefine/intercept';
+intercept._id = "amdefine/intercept";
 
 if (!existingExtFn._id || existingExtFn._id !== intercept._id) {
-  Module._extensions['.js'] = intercept;
+  Module._extensions[".js"] = intercept;
 }

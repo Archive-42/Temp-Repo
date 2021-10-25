@@ -39,7 +39,7 @@ npm install @stdlib/utils-next-tick
 ## Usage
 
 ```javascript
-var nextTick = require('@stdlib/utils-next-tick');
+var nextTick = require("@stdlib/utils-next-tick");
 ```
 
 #### nextTick( clbk\[, ...args] )
@@ -48,7 +48,7 @@ Adds a callback to the "next tick queue".
 
 ```javascript
 function beep() {
-  console.log('boop');
+  console.log("boop");
 }
 
 nextTick(beep);
@@ -74,10 +74,10 @@ nextTick(beep);
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var nextTick = require('@stdlib/utils-next-tick');
+var nextTick = require("@stdlib/utils-next-tick");
 
 function beep(x, y, z) {
-  console.log('boop: %d %d %d', x, y, z);
+  console.log("boop: %d %d %d", x, y, z);
 }
 
 nextTick(beep, 1, 2, 3);

@@ -19,25 +19,25 @@ Options with commander are defined with the `.option()` method, also serving as 
  * Module dependencies.
  */
 
-var program = require('commander');
+var program = require("commander");
 
 program
-  .version('0.0.1')
-  .option('-p, --peppers', 'Add peppers')
-  .option('-P, --pineapple', 'Add pineapple')
-  .option('-b, --bbq', 'Add bbq sauce')
+  .version("0.0.1")
+  .option("-p, --peppers", "Add peppers")
+  .option("-P, --pineapple", "Add pineapple")
+  .option("-b, --bbq", "Add bbq sauce")
   .option(
-    '-c, --cheese [type]',
-    'Add the specified type of cheese [marble]',
-    'marble'
+    "-c, --cheese [type]",
+    "Add the specified type of cheese [marble]",
+    "marble"
   )
   .parse(process.argv);
 
-console.log('you ordered a pizza with:');
-if (program.peppers) console.log('  - peppers');
-if (program.pineapple) console.log('  - pineapple');
-if (program.bbq) console.log('  - bbq');
-console.log('  - %s cheese', program.cheese);
+console.log("you ordered a pizza with:");
+if (program.peppers) console.log("  - peppers");
+if (program.pineapple) console.log("  - pineapple");
+if (program.bbq) console.log("  - bbq");
+console.log("  - %s cheese", program.cheese);
 ```
 
 Short flags may be passed as a single arg, for example `-abc` is equivalent to `-a -b -c`. Multi-word options such as "--template-engine" are camel-cased, becoming `program.templateEngine` etc.
@@ -66,30 +66,30 @@ The help information is auto-generated based on the information commander alread
 
 ```js
 function range(val) {
-  return val.split('..').map(Number);
+  return val.split("..").map(Number);
 }
 
 function list(val) {
-  return val.split(',');
+  return val.split(",");
 }
 
 program
-  .version('0.0.1')
-  .usage('[options] <file ...>')
-  .option('-i, --integer <n>', 'An integer argument', parseInt)
-  .option('-f, --float <n>', 'A float argument', parseFloat)
-  .option('-r, --range <a>..<b>', 'A range', range)
-  .option('-l, --list <items>', 'A list', list)
-  .option('-o, --optional [value]', 'An optional value')
+  .version("0.0.1")
+  .usage("[options] <file ...>")
+  .option("-i, --integer <n>", "An integer argument", parseInt)
+  .option("-f, --float <n>", "A float argument", parseFloat)
+  .option("-r, --range <a>..<b>", "A range", range)
+  .option("-l, --list <items>", "A list", list)
+  .option("-o, --optional [value]", "An optional value")
   .parse(process.argv);
 
-console.log(' int: %j', program.integer);
-console.log(' float: %j', program.float);
-console.log(' optional: %j', program.optional);
+console.log(" int: %j", program.integer);
+console.log(" float: %j", program.float);
+console.log(" optional: %j", program.optional);
 program.range = program.range || [];
-console.log(' range: %j..%j', program.range[0], program.range[1]);
-console.log(' list: %j', program.list);
-console.log(' args: %j', program.args);
+console.log(" range: %j..%j", program.range[0], program.range[1]);
+console.log(" list: %j", program.list);
+console.log(" args: %j", program.args);
 ```
 
 ## Custom help
@@ -103,32 +103,32 @@ You can display arbitrary `-h, --help` information by listening for "--help". Co
  * Module dependencies.
  */
 
-var program = require('../');
+var program = require("../");
 
 function list(val) {
-  return val.split(',').map(Number);
+  return val.split(",").map(Number);
 }
 
 program
-  .version('0.0.1')
-  .option('-f, --foo', 'enable some foo')
-  .option('-b, --bar', 'enable some bar')
-  .option('-B, --baz', 'enable some baz');
+  .version("0.0.1")
+  .option("-f, --foo", "enable some foo")
+  .option("-b, --bar", "enable some bar")
+  .option("-B, --baz", "enable some baz");
 
 // must be before .parse() since
 // node's emit() is immediate
 
-program.on('--help', function () {
-  console.log('  Examples:');
-  console.log('');
-  console.log('    $ custom-help --help');
-  console.log('    $ custom-help -h');
-  console.log('');
+program.on("--help", function () {
+  console.log("  Examples:");
+  console.log("");
+  console.log("    $ custom-help --help");
+  console.log("    $ custom-help -h");
+  console.log("");
 });
 
 program.parse(process.argv);
 
-console.log('stuff');
+console.log("stuff");
 ```
 
 yielding the following help output:

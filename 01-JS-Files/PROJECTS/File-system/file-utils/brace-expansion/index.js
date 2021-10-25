@@ -1,13 +1,13 @@
-var concatMap = require('concat-map');
-var balanced = require('balanced-match');
+var concatMap = require("concat-map");
+var balanced = require("balanced-match");
 
 module.exports = expandTop;
 
-var escSlash = '\0SLASH' + Math.random() + '\0';
-var escOpen = '\0OPEN' + Math.random() + '\0';
-var escClose = '\0CLOSE' + Math.random() + '\0';
-var escComma = '\0COMMA' + Math.random() + '\0';
-var escPeriod = '\0PERIOD' + Math.random() + '\0';
+var escSlash = "\0SLASH" + Math.random() + "\0";
+var escOpen = "\0OPEN" + Math.random() + "\0";
+var escClose = "\0CLOSE" + Math.random() + "\0";
+var escComma = "\0COMMA" + Math.random() + "\0";
+var escPeriod = "\0PERIOD" + Math.random() + "\0";
 
 function numeric(str) {
   return parseInt(str, 10) == str ? parseInt(str, 10) : str.charCodeAt(0);
@@ -15,49 +15,49 @@ function numeric(str) {
 
 function escapeBraces(str) {
   return str
-    .split('\\\\')
+    .split("\\\\")
     .join(escSlash)
-    .split('\\{')
+    .split("\\{")
     .join(escOpen)
-    .split('\\}')
+    .split("\\}")
     .join(escClose)
-    .split('\\,')
+    .split("\\,")
     .join(escComma)
-    .split('\\.')
+    .split("\\.")
     .join(escPeriod);
 }
 
 function unescapeBraces(str) {
   return str
     .split(escSlash)
-    .join('\\')
+    .join("\\")
     .split(escOpen)
-    .join('{')
+    .join("{")
     .split(escClose)
-    .join('}')
+    .join("}")
     .split(escComma)
-    .join(',')
+    .join(",")
     .split(escPeriod)
-    .join('.');
+    .join(".");
 }
 
 // Basically just str.split(","), but handling cases
 // where we have nested braced sections, which should be
 // treated as individual members, like {a,{b,c},d}
 function parseCommaParts(str) {
-  if (!str) return [''];
+  if (!str) return [""];
 
   var parts = [];
-  var m = balanced('{', '}', str);
+  var m = balanced("{", "}", str);
 
-  if (!m) return str.split(',');
+  if (!m) return str.split(",");
 
   var pre = m.pre;
   var body = m.body;
   var post = m.post;
-  var p = pre.split(',');
+  var p = pre.split(",");
 
-  p[p.length - 1] += '{' + body + '}';
+  p[p.length - 1] += "{" + body + "}";
   var postParts = parseCommaParts(post);
   if (post.length) {
     p[p.length - 1] += postParts.shift();
@@ -78,8 +78,8 @@ function expandTop(str) {
   // but a{},b}c will be expanded to [a}c,abc].
   // One could argue that this is a bug in Bash, but since the goal of
   // this module is to match Bash's rules, we escape a leading {}
-  if (str.substr(0, 2) === '{}') {
-    str = '\\{\\}' + str.substr(2);
+  if (str.substr(0, 2) === "{}") {
+    str = "\\{\\}" + str.substr(2);
   }
 
   return expand(escapeBraces(str), true).map(unescapeBraces);
@@ -90,7 +90,7 @@ function identity(e) {
 }
 
 function embrace(str) {
-  return '{' + str + '}';
+  return "{" + str + "}";
 }
 function isPadded(el) {
   return /^-?0\d/.test(el);
@@ -106,17 +106,17 @@ function gte(i, y) {
 function expand(str, isTop) {
   var expansions = [];
 
-  var m = balanced('{', '}', str);
+  var m = balanced("{", "}", str);
   if (!m || /\$$/.test(m.pre)) return [str];
 
   var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
   var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
   var isSequence = isNumericSequence || isAlphaSequence;
-  var isOptions = m.body.indexOf(',') >= 0;
+  var isOptions = m.body.indexOf(",") >= 0;
   if (!isSequence && !isOptions) {
     // {a},b}
     if (m.post.match(/,.*\}/)) {
-      str = m.pre + '{' + m.body + escClose + m.post;
+      str = m.pre + "{" + m.body + escClose + m.post;
       return expand(str);
     }
     return [str];
@@ -131,7 +131,7 @@ function expand(str, isTop) {
       // x{{a,b}}y ==> x{a}y x{b}y
       n = expand(n[0], false).map(embrace);
       if (n.length === 1) {
-        var post = m.post.length ? expand(m.post, false) : [''];
+        var post = m.post.length ? expand(m.post, false) : [""];
         return post.map(function (p) {
           return m.pre + n[0] + p;
         });
@@ -144,7 +144,7 @@ function expand(str, isTop) {
 
   // no need to expand pre, since it is guaranteed to be free of brace-sets
   var pre = m.pre;
-  var post = m.post.length ? expand(m.post, false) : [''];
+  var post = m.post.length ? expand(m.post, false) : [""];
 
   var N;
 
@@ -167,14 +167,14 @@ function expand(str, isTop) {
       var c;
       if (isAlphaSequence) {
         c = String.fromCharCode(i);
-        if (c === '\\') c = '';
+        if (c === "\\") c = "";
       } else {
         c = String(i);
         if (pad) {
           var need = width - c.length;
           if (need > 0) {
-            var z = new Array(need + 1).join('0');
-            if (i < 0) c = '-' + z + c.slice(1);
+            var z = new Array(need + 1).join("0");
+            if (i < 0) c = "-" + z + c.slice(1);
             else c = z + c;
           }
         }

@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Add a callback to the "next tick queue".
@@ -35,7 +35,7 @@
 
 // MODULES //
 
-var nextTick = require('./main.js');
+var nextTick = require("./main.js");
 
 // EXPORTS //
 

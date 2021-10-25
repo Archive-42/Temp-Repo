@@ -223,7 +223,7 @@ Note, that since this function applies the iterator to each item in parallel the
 **Example**
 
 ```js
-async.map(['file1', 'file2', 'file3'], fs.stat, function (err, results) {
+async.map(["file1", "file2", "file3"], fs.stat, function (err, results) {
   // results is now an array of stats for each file
 });
 ```
@@ -255,7 +255,7 @@ Note that the items are not processed in batches, so there is no guarantee that 
 
 ```js
 async.mapLimit(
-  ['file1', 'file2', 'file3'],
+  ["file1", "file2", "file3"],
   1,
   fs.stat,
   function (err, results) {
@@ -282,7 +282,7 @@ Returns a new array of all the values which pass an async truth test. _The callb
 **Example**
 
 ```js
-async.filter(['file1', 'file2', 'file3'], fs.exists, function (results) {
+async.filter(["file1", "file2", "file3"], fs.exists, function (results) {
   // results now equals an array of the existing files
 });
 ```
@@ -371,7 +371,7 @@ If order within the original array is important then look at detectSeries.
 **Example**
 
 ```js
-async.detect(['file1', 'file2', 'file3'], fs.exists, function (result) {
+async.detect(["file1", "file2", "file3"], fs.exists, function (result) {
   // result now equals the first file in the list that exists
 });
 ```
@@ -400,7 +400,7 @@ Sorts a list by the results of running each value through an async iterator.
 
 ```js
 async.sortBy(
-  ['file1', 'file2', 'file3'],
+  ["file1", "file2", "file3"],
   function (file, callback) {
     fs.stat(file, function (err, stats) {
       callback(err, stats.mtime);
@@ -431,7 +431,7 @@ Returns true if at least one element in the array satisfies an async test. _The 
 **Example**
 
 ```js
-async.some(['file1', 'file2', 'file3'], fs.exists, function (result) {
+async.some(["file1", "file2", "file3"], fs.exists, function (result) {
   // if result is true then at least one of the files exists
 });
 ```
@@ -454,7 +454,7 @@ Returns true if every element in the array satisfies an async test. _The callbac
 **Example**
 
 ```js
-async.every(['file1', 'file2', 'file3'], fs.exists, function (result) {
+async.every(["file1", "file2", "file3"], fs.exists, function (result) {
   // if result is true then every file exists
 });
 ```
@@ -475,7 +475,7 @@ Applies an iterator to each item in a list, concatenating the results. Returns t
 **Example**
 
 ```js
-async.concat(['dir1', 'dir2', 'dir3'], fs.readdir, function (err, files) {
+async.concat(["dir1", "dir2", "dir3"], fs.readdir, function (err, files) {
   // files is now a list of filenames that exist in the 3 directories
 });
 ```
@@ -508,11 +508,11 @@ async.series(
   [
     function (callback) {
       // do some stuff ...
-      callback(null, 'one');
+      callback(null, "one");
     },
     function (callback) {
       // do some more stuff ...
-      callback(null, 'two');
+      callback(null, "two");
     },
   ],
   // optional callback
@@ -562,12 +562,12 @@ async.parallel(
   [
     function (callback) {
       setTimeout(function () {
-        callback(null, 'one');
+        callback(null, "one");
       }, 200);
     },
     function (callback) {
       setTimeout(function () {
-        callback(null, 'two');
+        callback(null, "two");
       }, 100);
     },
   ],
@@ -693,14 +693,14 @@ Runs an array of functions in series, each passing their results to the next in 
 async.waterfall(
   [
     function (callback) {
-      callback(null, 'one', 'two');
+      callback(null, "one", "two");
     },
     function (arg1, arg2, callback) {
-      callback(null, 'three');
+      callback(null, "three");
     },
     function (arg1, callback) {
       // arg1 now equals 'three'
-      callback(null, 'done');
+      callback(null, "done");
     },
   ],
   function (err, result) {
@@ -760,7 +760,7 @@ Applies the provided arguments to each function in the array, calling the callba
 **Example**
 
 ```js
-async.applyEach([enableSearch, updateSchema], 'bucket', callback);
+async.applyEach([enableSearch, updateSchema], "bucket", callback);
 
 // partial application example:
 async.each(buckets, async.applyEach([enableSearch, updateSchema]), callback);
@@ -803,34 +803,34 @@ The queue object returned by this function has the following properties and meth
 // create a queue object with concurrency 2
 
 var q = async.queue(function (task, callback) {
-  console.log('hello ' + task.name);
+  console.log("hello " + task.name);
   callback();
 }, 2);
 
 // assign a callback
 q.drain = function () {
-  console.log('all items have been processed');
+  console.log("all items have been processed");
 };
 
 // add some items to the queue
 
-q.push({ name: 'foo' }, function (err) {
-  console.log('finished processing foo');
+q.push({ name: "foo" }, function (err) {
+  console.log("finished processing foo");
 });
-q.push({ name: 'bar' }, function (err) {
-  console.log('finished processing bar');
+q.push({ name: "bar" }, function (err) {
+  console.log("finished processing bar");
 });
 
 // add some items to the queue (batch-wise)
 
-q.push([{ name: 'baz' }, { name: 'bay' }, { name: 'bax' }], function (err) {
-  console.log('finished processing bar');
+q.push([{ name: "baz" }, { name: "bay" }, { name: "bax" }], function (err) {
+  console.log("finished processing bar");
 });
 
 // add some items to the front of the queue
 
-q.unshift({ name: 'bar' }, function (err) {
-  console.log('finished processing bar');
+q.unshift({ name: "bar" }, function (err) {
+  console.log("finished processing bar");
 });
 ```
 
@@ -864,21 +864,21 @@ The cargo object returned by this function has the following properties and meth
 
 var cargo = async.cargo(function (tasks, callback) {
   for (var i = 0; i < tasks.length; i++) {
-    console.log('hello ' + tasks[i].name);
+    console.log("hello " + tasks[i].name);
   }
   callback();
 }, 2);
 
 // add some items
 
-cargo.push({ name: 'foo' }, function (err) {
-  console.log('finished processing foo');
+cargo.push({ name: "foo" }, function (err) {
+  console.log("finished processing foo");
 });
-cargo.push({ name: 'bar' }, function (err) {
-  console.log('finished processing bar');
+cargo.push({ name: "bar" }, function (err) {
+  console.log("finished processing bar");
 });
-cargo.push({ name: 'baz' }, function (err) {
-  console.log('finished processing baz');
+cargo.push({ name: "baz" }, function (err) {
+  console.log("finished processing baz");
 });
 ```
 
@@ -894,7 +894,7 @@ Note, all functions are called with a results object as a second argument, so it
 ```js
 async.auto(
   {
-    readData: async.apply(fs.readFile, 'data.txt', 'utf-8'),
+    readData: async.apply(fs.readFile, "data.txt", "utf-8"),
   },
   callback
 );
@@ -903,7 +903,7 @@ async.auto(
 will have the effect of calling readFile with the results object as the last argument, which will fail:
 
 ```js
-fs.readFile('data.txt', 'utf-8', cb, {});
+fs.readFile("data.txt", "utf-8", cb, {});
 ```
 
 Instead, wrap the call to readFile in a function which does not forward the results object:
@@ -912,7 +912,7 @@ Instead, wrap the call to readFile in a function which does not forward the resu
 async.auto(
   {
     readData: function (cb, results) {
-      fs.readFile('data.txt', 'utf-8', cb);
+      fs.readFile("data.txt", "utf-8", cb);
     },
   },
   callback
@@ -936,8 +936,8 @@ async.auto({
     // this is run at the same time as getting the data
   },
   write_file: [
-    'get_data',
-    'make_folder',
+    "get_data",
+    "make_folder",
     function (callback) {
       // once there is some data and the directory exists,
       // write the data to a file in the directory
@@ -945,7 +945,7 @@ async.auto({
     },
   ],
   email_link: [
-    'write_file',
+    "write_file",
     function (callback, results) {
       // once the file is written let's email a link to it...
       // results.write_file contains the filename returned by write_file.
@@ -1034,18 +1034,18 @@ Creates a continuation function with some arguments already applied, a useful sh
 // using apply
 
 async.parallel([
-  async.apply(fs.writeFile, 'testfile1', 'test1'),
-  async.apply(fs.writeFile, 'testfile2', 'test2'),
+  async.apply(fs.writeFile, "testfile1", "test1"),
+  async.apply(fs.writeFile, "testfile2", "test2"),
 ]);
 
 // the same process without using apply
 
 async.parallel([
   function (callback) {
-    fs.writeFile('testfile1', 'test1', callback);
+    fs.writeFile("testfile1", "test1", callback);
   },
   function (callback) {
-    fs.writeFile('testfile2', 'test2', callback);
+    fs.writeFile("testfile2", "test2", callback);
   },
 ]);
 ```
@@ -1078,10 +1078,10 @@ This is used internally for browser-compatibility purposes.
 ```js
 var call_order = [];
 async.nextTick(function () {
-  call_order.push('two');
+  call_order.push("two");
   // call_order now equals ['one','two']
 });
-call_order.push('one');
+call_order.push("one");
 ```
 
 <a name="times" />
@@ -1100,7 +1100,7 @@ Calls the callback n times and accumulates results in the same manner you would 
 // Pretend this is some complicated async factory
 var createUser = function (id, callback) {
   callback(null, {
-    id: 'user' + id,
+    id: "user" + id,
   });
 };
 // generate 5 users
@@ -1146,7 +1146,7 @@ var slow_fn = function (name, callback) {
 var fn = async.memoize(slow_fn);
 
 // fn can now be used as if it were slow_fn
-fn('some name', function () {
+fn("some name", function () {
   // callback
 });
 ```
@@ -1175,14 +1175,14 @@ Logs the result of an async function to the console. Only works in node.js or in
 ```js
 var hello = function (name, callback) {
   setTimeout(function () {
-    callback(null, 'hello ' + name);
+    callback(null, "hello " + name);
   }, 1000);
 };
 ```
 
 ```js
-node > async.log(hello, 'world');
-('hello world');
+node > async.log(hello, "world");
+("hello world");
 ```
 
 ---
@@ -1208,9 +1208,9 @@ var hello = function (name, callback) {
 ```
 
 ```js
-node > async.dir(hello, 'world');
+node > async.dir(hello, "world");
 {
-  hello: 'world';
+  hello: "world";
 }
 ```
 

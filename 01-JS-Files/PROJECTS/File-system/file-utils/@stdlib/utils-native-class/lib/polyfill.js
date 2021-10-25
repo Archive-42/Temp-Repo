@@ -16,13 +16,13 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var hasOwnProp = require('@stdlib/assert-has-own-property');
-var toStringTag = require('./tostringtag.js');
-var toStr = require('./tostring.js');
+var hasOwnProp = require("@stdlib/assert-has-own-property");
+var toStringTag = require("./tostringtag.js");
+var toStr = require("./tostring.js");
 
 // MAIN //
 

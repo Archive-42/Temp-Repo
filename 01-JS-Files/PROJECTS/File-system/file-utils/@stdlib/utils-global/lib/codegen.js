@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
@@ -27,7 +27,7 @@
  * @returns {Object} global object
  */
 function getGlobal() {
-  return new Function('return this;')(); // eslint-disable-line no-new-func
+  return new Function("return this;")(); // eslint-disable-line no-new-func
 }
 
 // EXPORTS //

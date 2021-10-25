@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
-var obj = typeof self === 'object' ? self : null;
+var obj = typeof self === "object" ? self : null;
 
 // EXPORTS //
 

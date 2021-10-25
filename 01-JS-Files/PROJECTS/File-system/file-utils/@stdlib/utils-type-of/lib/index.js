@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Determine a value's type.
@@ -35,9 +35,9 @@
 
 // MODULES //
 
-var usePolyfill = require('./check.js');
-var typeOf = require('./typeof.js');
-var polyfill = require('./polyfill.js');
+var usePolyfill = require("./check.js");
+var typeOf = require("./typeof.js");
+var polyfill = require("./polyfill.js");
 
 // MAIN //
 

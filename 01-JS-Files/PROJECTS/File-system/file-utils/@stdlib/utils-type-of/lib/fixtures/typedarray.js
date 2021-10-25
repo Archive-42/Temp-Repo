@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 var typedarray = Int8Array; // eslint-disable-line stdlib/require-globals
 

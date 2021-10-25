@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MAIN //
 
-var toStrTag = typeof Symbol === 'function' ? Symbol.toStringTag : '';
+var toStrTag = typeof Symbol === "function" ? Symbol.toStringTag : "";
 
 // EXPORTS //
 

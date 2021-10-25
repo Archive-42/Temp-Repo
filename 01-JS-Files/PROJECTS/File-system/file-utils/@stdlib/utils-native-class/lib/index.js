@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 /**
  * Return a string value indicating a specification defined classification of an object.
@@ -41,9 +41,9 @@
 
 // MODULES //
 
-var hasToStringTag = require('@stdlib/assert-has-tostringtag-support');
-var builtin = require('./native_class.js');
-var polyfill = require('./polyfill.js');
+var hasToStringTag = require("@stdlib/assert-has-tostringtag-support");
+var builtin = require("./native_class.js");
+var polyfill = require("./polyfill.js");
 
 // MAIN //
 

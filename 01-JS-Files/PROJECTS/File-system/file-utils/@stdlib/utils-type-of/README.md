@@ -39,7 +39,7 @@ npm install @stdlib/utils-type-of
 ## Usage
 
 ```javascript
-var typeOf = require('@stdlib/utils-type-of');
+var typeOf = require("@stdlib/utils-type-of");
 ```
 
 #### typeOf( value )
@@ -47,62 +47,62 @@ var typeOf = require('@stdlib/utils-type-of');
 Returns a value's type.
 
 ```javascript
-var str = typeOf('a');
+var str = typeOf("a");
 // returns 'string'
 
 str = typeOf(5);
 // returns 'number'
 ```
 
-| description | value | type | notes |
-| --- | --- | --- | --- |
-| string | `'beep'` | `'string'` |  |
-| number | `5` | `'number'` |  |
-| NaN | `NaN` | `'number'` |  |
-| infinity | `+infinity`/`-infinity` | `'number'` |  |
-| boolean | `true`/`false` | `'boolean'` |  |
-| null | `null` | `'null'` |  |
-| undefined | `undefined` | `'undefined'` |  |
-| array | `['beep', 5]` | `'array'` |  |
-| object | `{'foo': 'bar'}` | `'object'` |  |
-| function | `function (){}` | `'function'` |  |
-| symbol | `Symbol()` | `'symbol'` | ES2015 |
-| regexp | `/./` | `'regexp'` | Android 4.1+ |
-| String | `new String('beep')` | `'string'` |  |
-| Number | `new Number(5)` | `'number'` |  |
-| Boolean | `new Boolean(false)` | `'boolean'` |  |
-| Object | `new Object()` | `'object'` |  |
-| Array | `new Array()` | `'array'` |  |
-| Int8Array | `new Int8Array()` | `'int8array'` |  |
-| Uint8Array | `new Uint8Array()` | `'uint8array'` |  |
-| Uint8ClampedArray | `new Uint8ClampedArray()` | `'uint8clampedarray'` |  |
-| Int16Array | `new Int16Array()` | `'int16array'` |  |
-| Uint16Array | `new Uint16Array()` | `'uint16array'` |  |
-| Int32Array | `new Int32Array()` | `'int32array'` |  |
-| Uint32Array | `new Uint32Array()` | `'uint32array'` |  |
-| Float32Array | `new Float32Array()` | `'float32array'` |  |
-| Float64Array | `new Float64Array()` | `'float64array'` |  |
-| ArrayBuffer | `new ArrayBuffer()` | `'arraybuffer'` |  |
-| Buffer | `new Buffer()` | `'buffer'` | Node.js |
-| Date | `new Date()` | `'date'` |  |
-| RegExp | `new RegExp('.')` | `'regexp'` | Android 4.1+ |
-| Function | `new Function('x', 'return x')` | `'function'` |  |
-| Map | `new Map()` | `'map'` | ES2015 |
-| WeakMap | `new WeakMap()` | `'weakmap'` | ES2015 |
-| Set | `new Set()` | `'set'` | ES2015 |
-| WeakSet | `new WeakSet()` | `'weakset'` | ES2015 |
-| Error | `new Error()` | `'error'` |  |
-| TypeError | `new TypeError()` | `'typeerror'` |  |
-| SyntaxError | `new SyntaxError()` | `'syntaxerror'` |  |
-| ReferenceError | `new ReferenceError()` | `'referenceerror'` |  |
-| URIError | `new URIError()` | `'urierror'` |  |
-| RangeError | `new RangeError()` | `'rangeerror'` |  |
-| EvalError | `new EvalError()` | `'evalerror'` |  |
-| Math | `Math` | `'math'` |  |
-| JSON | `JSON` | `'json'` | IE8+ |
-| arguments | `(function(){return arguments;})()` | `'arguments'` | IE9+ |
-| custom constructor | `new Beep()` | `'beep'` |  |
-| anonymous constructor | `new (function(){})()` | `''` |  |
+| description           | value                               | type                  | notes        |
+| --------------------- | ----------------------------------- | --------------------- | ------------ |
+| string                | `'beep'`                            | `'string'`            |              |
+| number                | `5`                                 | `'number'`            |              |
+| NaN                   | `NaN`                               | `'number'`            |              |
+| infinity              | `+infinity`/`-infinity`             | `'number'`            |              |
+| boolean               | `true`/`false`                      | `'boolean'`           |              |
+| null                  | `null`                              | `'null'`              |              |
+| undefined             | `undefined`                         | `'undefined'`         |              |
+| array                 | `['beep', 5]`                       | `'array'`             |              |
+| object                | `{'foo': 'bar'}`                    | `'object'`            |              |
+| function              | `function (){}`                     | `'function'`          |              |
+| symbol                | `Symbol()`                          | `'symbol'`            | ES2015       |
+| regexp                | `/./`                               | `'regexp'`            | Android 4.1+ |
+| String                | `new String('beep')`                | `'string'`            |              |
+| Number                | `new Number(5)`                     | `'number'`            |              |
+| Boolean               | `new Boolean(false)`                | `'boolean'`           |              |
+| Object                | `new Object()`                      | `'object'`            |              |
+| Array                 | `new Array()`                       | `'array'`             |              |
+| Int8Array             | `new Int8Array()`                   | `'int8array'`         |              |
+| Uint8Array            | `new Uint8Array()`                  | `'uint8array'`        |              |
+| Uint8ClampedArray     | `new Uint8ClampedArray()`           | `'uint8clampedarray'` |              |
+| Int16Array            | `new Int16Array()`                  | `'int16array'`        |              |
+| Uint16Array           | `new Uint16Array()`                 | `'uint16array'`       |              |
+| Int32Array            | `new Int32Array()`                  | `'int32array'`        |              |
+| Uint32Array           | `new Uint32Array()`                 | `'uint32array'`       |              |
+| Float32Array          | `new Float32Array()`                | `'float32array'`      |              |
+| Float64Array          | `new Float64Array()`                | `'float64array'`      |              |
+| ArrayBuffer           | `new ArrayBuffer()`                 | `'arraybuffer'`       |              |
+| Buffer                | `new Buffer()`                      | `'buffer'`            | Node.js      |
+| Date                  | `new Date()`                        | `'date'`              |              |
+| RegExp                | `new RegExp('.')`                   | `'regexp'`            | Android 4.1+ |
+| Function              | `new Function('x', 'return x')`     | `'function'`          |              |
+| Map                   | `new Map()`                         | `'map'`               | ES2015       |
+| WeakMap               | `new WeakMap()`                     | `'weakmap'`           | ES2015       |
+| Set                   | `new Set()`                         | `'set'`               | ES2015       |
+| WeakSet               | `new WeakSet()`                     | `'weakset'`           | ES2015       |
+| Error                 | `new Error()`                       | `'error'`             |              |
+| TypeError             | `new TypeError()`                   | `'typeerror'`         |              |
+| SyntaxError           | `new SyntaxError()`                 | `'syntaxerror'`       |              |
+| ReferenceError        | `new ReferenceError()`              | `'referenceerror'`    |              |
+| URIError              | `new URIError()`                    | `'urierror'`          |              |
+| RangeError            | `new RangeError()`                  | `'rangeerror'`        |              |
+| EvalError             | `new EvalError()`                   | `'evalerror'`         |              |
+| Math                  | `Math`                              | `'math'`              |              |
+| JSON                  | `JSON`                              | `'json'`              | IE8+         |
+| arguments             | `(function(){return arguments;})()` | `'arguments'`         | IE9+         |
+| custom constructor    | `new Beep()`                        | `'beep'`              |              |
+| anonymous constructor | `new (function(){})()`              | `''`                  |              |
 
 </section>
 
@@ -117,20 +117,20 @@ str = typeOf(5);
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var Float32Array = require('@stdlib/array-float32');
-var Float64Array = require('@stdlib/array-float64');
-var Int8Array = require('@stdlib/array-int8');
-var Int16Array = require('@stdlib/array-int16');
-var Int32Array = require('@stdlib/array-int32');
-var Uint8Array = require('@stdlib/array-uint8');
-var Uint8ClampedArray = require('@stdlib/array-uint8c');
-var Uint16Array = require('@stdlib/array-uint16');
-var Uint32Array = require('@stdlib/array-uint32');
-var ArrayBuffer = require('@stdlib/array-buffer');
-var Symbol = require('@stdlib/symbol-ctor');
-var typeOf = require('@stdlib/utils-type-of');
+var Float32Array = require("@stdlib/array-float32");
+var Float64Array = require("@stdlib/array-float64");
+var Int8Array = require("@stdlib/array-int8");
+var Int16Array = require("@stdlib/array-int16");
+var Int32Array = require("@stdlib/array-int32");
+var Uint8Array = require("@stdlib/array-uint8");
+var Uint8ClampedArray = require("@stdlib/array-uint8c");
+var Uint16Array = require("@stdlib/array-uint16");
+var Uint32Array = require("@stdlib/array-uint32");
+var ArrayBuffer = require("@stdlib/array-buffer");
+var Symbol = require("@stdlib/symbol-ctor");
+var typeOf = require("@stdlib/utils-type-of");
 
-var str = typeOf('a');
+var str = typeOf("a");
 // returns 'string'
 
 str = typeOf(5);
@@ -175,28 +175,28 @@ str = typeOf(new Set());
 str = typeOf(new WeakSet());
 // returns 'weakset'
 
-str = typeOf(Symbol('beep'));
+str = typeOf(Symbol("beep"));
 // returns 'symbol'
 
-str = typeOf(new Error('beep'));
+str = typeOf(new Error("beep"));
 // returns 'error'
 
-str = typeOf(new TypeError('beep'));
+str = typeOf(new TypeError("beep"));
 // returns 'typeerror'
 
-str = typeOf(new SyntaxError('beep'));
+str = typeOf(new SyntaxError("beep"));
 // returns 'syntaxerror'
 
-str = typeOf(new ReferenceError('beep'));
+str = typeOf(new ReferenceError("beep"));
 // returns 'referenceerror'
 
-str = typeOf(new URIError('beep'));
+str = typeOf(new URIError("beep"));
 // returns 'urierror'
 
-str = typeOf(new EvalError('beep'));
+str = typeOf(new EvalError("beep"));
 // returns 'evalerror'
 
-str = typeOf(new RangeError('beep'));
+str = typeOf(new RangeError("beep"));
 // returns 'rangeerror'
 
 str = typeOf(new Date());

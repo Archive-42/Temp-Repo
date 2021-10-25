@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var getGlobal = require('@stdlib/utils-global');
+var getGlobal = require("@stdlib/utils-global");
 
 // MAIN //
 

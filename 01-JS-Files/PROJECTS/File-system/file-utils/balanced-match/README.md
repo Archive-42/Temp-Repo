@@ -11,11 +11,11 @@ Match balanced string pairs, like `{` and `}` or `<b>` and `</b>`. Supports regu
 Get the first matching pair of braces:
 
 ```js
-var balanced = require('balanced-match');
+var balanced = require("balanced-match");
 
-console.log(balanced('{', '}', 'pre{in{nested}}post'));
-console.log(balanced('{', '}', 'pre{first}between{second}post'));
-console.log(balanced(/\s+\{\s+/, /\s+\}\s+/, 'pre  {   in{nest}   }  post'));
+console.log(balanced("{", "}", "pre{in{nested}}post"));
+console.log(balanced("{", "}", "pre{first}between{second}post"));
+console.log(balanced(/\s+\{\s+/, /\s+\}\s+/, "pre  {   in{nest}   }  post"));
 ```
 
 The matches are:

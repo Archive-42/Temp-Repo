@@ -1,11 +1,11 @@
-var fs = require('fs');
+var fs = require("fs");
 
 module.exports = function (grunt) {
-  var ZONE_TAB = '/usr/share/zoneinfo/zone.tab';
+  var ZONE_TAB = "/usr/share/zoneinfo/zone.tab";
 
   grunt.registerTask(
-    'zones',
-    'Run the unit tests in different timezones.',
+    "zones",
+    "Run the unit tests in different timezones.",
     function () {
       var done = this.async();
 
@@ -29,7 +29,7 @@ module.exports = function (grunt) {
   );
 
   function getAllTimezones(callback) {
-    fs.readFile(ZONE_TAB, 'ascii', function (err, content) {
+    fs.readFile(ZONE_TAB, "ascii", function (err, content) {
       if (err != null) {
         callback(err);
       }
@@ -43,24 +43,24 @@ module.exports = function (grunt) {
           })
           // country code TAB coordinates TAB timezone
           .map(function (line) {
-            return line.split('\t')[2];
+            return line.split("\t")[2];
           })
       );
     });
   }
 
   function runTestsInZone(zone, next) {
-    grunt.log.ok('Running tests in zone ' + zone);
+    grunt.log.ok("Running tests in zone " + zone);
     grunt.util.spawn(
       {
-        cmd: 'grunt',
+        cmd: "grunt",
         opts: {
           env: {
             PATH: process.env.PATH,
             TZ: zone,
           },
         },
-        args: ['--no-color', 'nodeunit'],
+        args: ["--no-color", "nodeunit"],
       },
       function (err, result, code) {
         if (code !== 0) {
@@ -71,9 +71,9 @@ module.exports = function (grunt) {
                 return /^(>>|Warning:|$)/.test(line);
               })
               .map(function (line) {
-                return line.substr(0, 3) === '>> ' ? line.substr(3) : line;
+                return line.substr(0, 3) === ">> " ? line.substr(3) : line;
               })
-              .join('\n')
+              .join("\n")
           );
         }
         next();

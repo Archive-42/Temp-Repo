@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var ctorName = require('@stdlib/utils-constructor-name');
+var ctorName = require("@stdlib/utils-constructor-name");
 
 // NOTES //
 
@@ -57,12 +57,12 @@ function typeOf(v) {
 
   // Address `typeof null` => `object` (see http://wiki.ecmascript.org/doku.php?id=harmony:typeof_null):
   if (v === null) {
-    return 'null';
+    return "null";
   }
   type = typeof v;
 
   // If the `typeof` operator returned something other than `object`, we are done. Otherwise, we need to check for an internal class name or search for a constructor.
-  if (type === 'object') {
+  if (type === "object") {
     return ctorName(v).toLowerCase();
   }
   return type;

@@ -11,5 +11,5 @@ module.exports = function (xs, fn) {
 var isArray =
   Array.isArray ||
   function (xs) {
-    return Object.prototype.toString.call(xs) === '[object Array]';
+    return Object.prototype.toString.call(xs) === "[object Array]";
   };

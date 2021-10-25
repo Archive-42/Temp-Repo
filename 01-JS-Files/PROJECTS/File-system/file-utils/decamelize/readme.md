@@ -11,12 +11,12 @@ $ npm install --save decamelize
 ## Usage
 
 ```js
-const decamelize = require('decamelize');
+const decamelize = require("decamelize");
 
-decamelize('unicornRainbow');
+decamelize("unicornRainbow");
 //=> 'unicorn_rainbow'
 
-decamelize('unicornRainbow', '-');
+decamelize("unicornRainbow", "-");
 //=> 'unicorn-rainbow'
 ```
 

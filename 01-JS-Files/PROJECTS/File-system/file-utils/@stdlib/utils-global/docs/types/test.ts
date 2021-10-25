@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import getGlobal = require('./index');
+import getGlobal = require("./index");
 
 // TESTS //
 
@@ -29,7 +29,7 @@ import getGlobal = require('./index');
 
 // The compiler throws an error if the function is provided a value other than a boolean...
 {
-  getGlobal('abc'); // $ExpectError
+  getGlobal("abc"); // $ExpectError
   getGlobal(5); // $ExpectError
   getGlobal([]); // $ExpectError
   getGlobal({}); // $ExpectError

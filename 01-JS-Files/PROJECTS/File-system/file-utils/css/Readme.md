@@ -11,7 +11,7 @@ CSS parser / stringifier using [css-parse](https://github.com/visionmedia/css-pa
 js:
 
 ```js
-var css = require('css');
+var css = require("css");
 var obj = css.parse('tobi { name: "tobi" }');
 css.stringify(obj);
 ```

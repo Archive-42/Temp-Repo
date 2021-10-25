@@ -16,11 +16,11 @@
  * limitations under the License.
  */
 
-'use strict';
+"use strict";
 
 // MODULES //
 
-var proc = require('process');
+var proc = require("process");
 
 // MAIN //
 

@@ -3,143 +3,143 @@
 // author : Robert Sedovšek : https://github.com/sedovsek
 
 (function (factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['moment'], factory); // AMD
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('../moment')); // Node
+  if (typeof define === "function" && define.amd) {
+    define(["moment"], factory); // AMD
+  } else if (typeof exports === "object") {
+    module.exports = factory(require("../moment")); // Node
   } else {
     factory(window.moment); // Browser global
   }
 })(function (moment) {
   function translate(number, withoutSuffix, key) {
-    var result = number + ' ';
+    var result = number + " ";
     switch (key) {
-      case 'm':
-        return withoutSuffix ? 'ena minuta' : 'eno minuto';
-      case 'mm':
+      case "m":
+        return withoutSuffix ? "ena minuta" : "eno minuto";
+      case "mm":
         if (number === 1) {
-          result += 'minuta';
+          result += "minuta";
         } else if (number === 2) {
-          result += 'minuti';
+          result += "minuti";
         } else if (number === 3 || number === 4) {
-          result += 'minute';
+          result += "minute";
         } else {
-          result += 'minut';
+          result += "minut";
         }
         return result;
-      case 'h':
-        return withoutSuffix ? 'ena ura' : 'eno uro';
-      case 'hh':
+      case "h":
+        return withoutSuffix ? "ena ura" : "eno uro";
+      case "hh":
         if (number === 1) {
-          result += 'ura';
+          result += "ura";
         } else if (number === 2) {
-          result += 'uri';
+          result += "uri";
         } else if (number === 3 || number === 4) {
-          result += 'ure';
+          result += "ure";
         } else {
-          result += 'ur';
+          result += "ur";
         }
         return result;
-      case 'dd':
+      case "dd":
         if (number === 1) {
-          result += 'dan';
+          result += "dan";
         } else {
-          result += 'dni';
+          result += "dni";
         }
         return result;
-      case 'MM':
+      case "MM":
         if (number === 1) {
-          result += 'mesec';
+          result += "mesec";
         } else if (number === 2) {
-          result += 'meseca';
+          result += "meseca";
         } else if (number === 3 || number === 4) {
-          result += 'mesece';
+          result += "mesece";
         } else {
-          result += 'mesecev';
+          result += "mesecev";
         }
         return result;
-      case 'yy':
+      case "yy":
         if (number === 1) {
-          result += 'leto';
+          result += "leto";
         } else if (number === 2) {
-          result += 'leti';
+          result += "leti";
         } else if (number === 3 || number === 4) {
-          result += 'leta';
+          result += "leta";
         } else {
-          result += 'let';
+          result += "let";
         }
         return result;
     }
   }
 
-  return moment.lang('sl', {
+  return moment.lang("sl", {
     months:
-      'januar_februar_marec_april_maj_junij_julij_avgust_september_oktober_november_december'.split(
-        '_'
+      "januar_februar_marec_april_maj_junij_julij_avgust_september_oktober_november_december".split(
+        "_"
       ),
     monthsShort:
-      'jan._feb._mar._apr._maj._jun._jul._avg._sep._okt._nov._dec.'.split('_'),
-    weekdays: 'nedelja_ponedeljek_torek_sreda_četrtek_petek_sobota'.split('_'),
-    weekdaysShort: 'ned._pon._tor._sre._čet._pet._sob.'.split('_'),
-    weekdaysMin: 'ne_po_to_sr_če_pe_so'.split('_'),
+      "jan._feb._mar._apr._maj._jun._jul._avg._sep._okt._nov._dec.".split("_"),
+    weekdays: "nedelja_ponedeljek_torek_sreda_četrtek_petek_sobota".split("_"),
+    weekdaysShort: "ned._pon._tor._sre._čet._pet._sob.".split("_"),
+    weekdaysMin: "ne_po_to_sr_če_pe_so".split("_"),
     longDateFormat: {
-      LT: 'H:mm',
-      L: 'DD. MM. YYYY',
-      LL: 'D. MMMM YYYY',
-      LLL: 'D. MMMM YYYY LT',
-      LLLL: 'dddd, D. MMMM YYYY LT',
+      LT: "H:mm",
+      L: "DD. MM. YYYY",
+      LL: "D. MMMM YYYY",
+      LLL: "D. MMMM YYYY LT",
+      LLLL: "dddd, D. MMMM YYYY LT",
     },
     calendar: {
-      sameDay: '[danes ob] LT',
-      nextDay: '[jutri ob] LT',
+      sameDay: "[danes ob] LT",
+      nextDay: "[jutri ob] LT",
 
       nextWeek: function () {
         switch (this.day()) {
           case 0:
-            return '[v] [nedeljo] [ob] LT';
+            return "[v] [nedeljo] [ob] LT";
           case 3:
-            return '[v] [sredo] [ob] LT';
+            return "[v] [sredo] [ob] LT";
           case 6:
-            return '[v] [soboto] [ob] LT';
+            return "[v] [soboto] [ob] LT";
           case 1:
           case 2:
           case 4:
           case 5:
-            return '[v] dddd [ob] LT';
+            return "[v] dddd [ob] LT";
         }
       },
-      lastDay: '[včeraj ob] LT',
+      lastDay: "[včeraj ob] LT",
       lastWeek: function () {
         switch (this.day()) {
           case 0:
           case 3:
           case 6:
-            return '[prejšnja] dddd [ob] LT';
+            return "[prejšnja] dddd [ob] LT";
           case 1:
           case 2:
           case 4:
           case 5:
-            return '[prejšnji] dddd [ob] LT';
+            return "[prejšnji] dddd [ob] LT";
         }
       },
-      sameElse: 'L',
+      sameElse: "L",
     },
     relativeTime: {
-      future: 'čez %s',
-      past: '%s nazaj',
-      s: 'nekaj sekund',
+      future: "čez %s",
+      past: "%s nazaj",
+      s: "nekaj sekund",
       m: translate,
       mm: translate,
       h: translate,
       hh: translate,
-      d: 'en dan',
+      d: "en dan",
       dd: translate,
-      M: 'en mesec',
+      M: "en mesec",
       MM: translate,
-      y: 'eno leto',
+      y: "eno leto",
       yy: translate,
     },
-    ordinal: '%d.',
+    ordinal: "%d.",
     week: {
       dow: 1, // Monday is the first day of the week.
       doy: 7, // The week that contains Jan 1st is the first week of the year.

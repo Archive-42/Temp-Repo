@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-var uglify = require('uglify-js');
+var uglify = require("uglify-js");
 
-var lastSRC = '(null)';
+var lastSRC = "(null)";
 var lastRes = true;
 
 module.exports = isConstant;
 function isConstant(src) {
-  src = '(' + src + ')';
+  src = "(" + src + ")";
   if (lastSRC === src) return lastRes;
   lastSRC = src;
   try {
@@ -21,8 +21,8 @@ isConstant.isConstant = isConstant;
 isConstant.toConstant = toConstant;
 function toConstant(src) {
   if (!isConstant(src))
-    throw new Error(JSON.stringify(src) + ' is not constant.');
-  return Function('return (' + src + ')')();
+    throw new Error(JSON.stringify(src) + " is not constant.");
+  return Function("return (" + src + ")")();
 }
 
 function detect(src) {

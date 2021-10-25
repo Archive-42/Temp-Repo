@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-import typeOf = require('./index');
+import typeOf = require("./index");
 
 // TESTS //
 
@@ -25,7 +25,7 @@ import typeOf = require('./index');
   typeOf(5); // $ExpectType string
   typeOf(false); // $ExpectType string
   typeOf(true); // $ExpectType string
-  typeOf('abc'); // $ExpectType string
+  typeOf("abc"); // $ExpectType string
   typeOf([]); // $ExpectType string
   typeOf({}); // $ExpectType string
 }

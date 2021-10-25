@@ -6,7 +6,7 @@
 
 /*jslint node: true */
 /*global module, process */
-'use strict';
+"use strict";
 
 /**
  * Creates a define for node.
@@ -19,11 +19,11 @@
  * module.
  */
 function amdefine(module, requireFn) {
-  'use strict';
+  "use strict";
   var defineCache = {},
     loaderCache = {},
     alreadyCalled = false,
-    path = require('path'),
+    path = require("path"),
     makeRequire,
     stringRequire;
 
@@ -40,11 +40,11 @@ function amdefine(module, requireFn) {
     var i, part;
     for (i = 0; ary[i]; i += 1) {
       part = ary[i];
-      if (part === '.') {
+      if (part === ".") {
         ary.splice(i, 1);
         i -= 1;
-      } else if (part === '..') {
-        if (i === 1 && (ary[2] === '..' || ary[0] === '..')) {
+      } else if (part === "..") {
+        if (i === 1 && (ary[2] === ".." || ary[0] === "..")) {
           //End of the line. Keep at least one non-dot
           //path segment at the front so it can be mapped
           //correctly to disk. Otherwise, there is likely
@@ -64,16 +64,16 @@ function amdefine(module, requireFn) {
     var baseParts;
 
     //Adjust any relative paths.
-    if (name && name.charAt(0) === '.') {
+    if (name && name.charAt(0) === ".") {
       //If have a base name, try to normalize against it,
       //otherwise, assume it is a top-level require that will
       //be relative to baseUrl in the end.
       if (baseName) {
-        baseParts = baseName.split('/');
+        baseParts = baseName.split("/");
         baseParts = baseParts.slice(0, baseParts.length - 1);
-        baseParts = baseParts.concat(name.split('/'));
+        baseParts = baseParts.concat(name.split("/"));
         trimDots(baseParts);
-        name = baseParts.join('/');
+        name = baseParts.join("/");
       }
     }
 
@@ -101,7 +101,7 @@ function amdefine(module, requireFn) {
       //to that id was it would be found on disk. But this would require
       //bootstrapping a module/require fairly deeply from node core.
       //Not sure how best to go about that yet.
-      throw new Error('amdefine does not implement load.fromText');
+      throw new Error("amdefine does not implement load.fromText");
     };
 
     return load;
@@ -109,7 +109,7 @@ function amdefine(module, requireFn) {
 
   makeRequire = function (systemRequire, exports, module, relId) {
     function amdRequire(deps, callback) {
-      if (typeof deps === 'string') {
+      if (typeof deps === "string") {
         //Synchronous, single module require('')
         return stringRequire(systemRequire, exports, module, deps, relId);
       } else {
@@ -130,7 +130,7 @@ function amdefine(module, requireFn) {
     }
 
     amdRequire.toUrl = function (filePath) {
-      if (filePath.indexOf('.') === 0) {
+      if (filePath.indexOf(".") === 0) {
         return normalize(filePath, path.dirname(module.filename));
       } else {
         return filePath;
@@ -162,7 +162,7 @@ function amdefine(module, requireFn) {
       //Only support one define call per file
       if (alreadyCalled) {
         throw new Error(
-          'amdefine with no module ID cannot be called more than once per file.'
+          "amdefine with no module ID cannot be called more than once per file."
         );
       }
       alreadyCalled = true;
@@ -184,7 +184,7 @@ function amdefine(module, requireFn) {
     }
 
     //Call the factory with the right dependencies.
-    if (typeof factory === 'function') {
+    if (typeof factory === "function") {
       result = factory.apply(m.exports, deps);
     } else {
       result = factory;
@@ -200,7 +200,7 @@ function amdefine(module, requireFn) {
 
   stringRequire = function (systemRequire, exports, module, id, relId) {
     //Split the ID by a ! so that
-    var index = id.indexOf('!'),
+    var index = id.indexOf("!"),
       originalId = id,
       prefix,
       plugin;
@@ -210,11 +210,11 @@ function amdefine(module, requireFn) {
 
       //Straight module lookup. If it is one of the special dependencies,
       //deal with it, otherwise, delegate to node.
-      if (id === 'require') {
+      if (id === "require") {
         return makeRequire(systemRequire, exports, module, relId);
-      } else if (id === 'exports') {
+      } else if (id === "exports") {
         return exports;
-      } else if (id === 'module') {
+      } else if (id === "module") {
         return module;
       } else if (loaderCache.hasOwnProperty(id)) {
         return loaderCache[id];
@@ -225,7 +225,7 @@ function amdefine(module, requireFn) {
         if (systemRequire) {
           return systemRequire(originalId);
         } else {
-          throw new Error('No module with ID: ' + id);
+          throw new Error("No module with ID: " + id);
         }
       }
     } else {
@@ -263,7 +263,7 @@ function amdefine(module, requireFn) {
       factory = deps;
       deps = id;
       id = undefined;
-    } else if (typeof id !== 'string') {
+    } else if (typeof id !== "string") {
       factory = id;
       id = deps = undefined;
     }
@@ -274,7 +274,7 @@ function amdefine(module, requireFn) {
     }
 
     if (!deps) {
-      deps = ['require', 'exports', 'module'];
+      deps = ["require", "exports", "module"];
     }
 
     //Set up properties for this module. If an ID, then use
