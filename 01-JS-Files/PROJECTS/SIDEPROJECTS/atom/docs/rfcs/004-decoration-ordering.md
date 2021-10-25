@@ -32,9 +32,9 @@ This adds another situational parameter to `TextEditor::decorationMarker()`, whi
 
 Originally I wanted to address the package coordination problem with a similar approach to [the way context menu items are ordered](https://github.com/atom/atom/pull/16661), by allowing individual decorations to specify constraints: "before this block," "after this block," "next to this block" and so forth. I ultimately chose to write up the simpler proposal because:
 
-* Block decoration collisions among packages seem much less likely than context menu collisions.
-* Constraint satisfaction problems are complex. There would be a relatively high chance of introducing bugs and performance regressions.
-* The order number approach is similar to the APIs already offered to order status bar tiles and custom gutters.
+- Block decoration collisions among packages seem much less likely than context menu collisions.
+- Constraint satisfaction problems are complex. There would be a relatively high chance of introducing bugs and performance regressions.
+- The order number approach is similar to the APIs already offered to order status bar tiles and custom gutters.
 
 The alternative to having an explicit API for this is at all is to create and destroy decorations to achieve the desired order. That's possible, but requires a great deal of bookkeeping on the package's side to accomplish, especially as decorations are added and removed and text is edited.
 

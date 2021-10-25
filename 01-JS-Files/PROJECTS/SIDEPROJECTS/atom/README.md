@@ -26,6 +26,7 @@ The [API reference](https://atom.io/docs/api) for developing packages is also do
 ## Installing
 
 ### Prerequisites
+
 - [Git](https://git-scm.com)
 
 ### macOS
@@ -49,7 +50,7 @@ Using [Chocolatey](https://chocolatey.org)? Run `cinst Atom` to install the late
 
 Atom is only available for 64-bit Linux systems.
 
-Configure your distribution's package manager to install and update Atom by following the [Linux installation instructions](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-linux) in the Flight Manual.  You will also find instructions on how to install Atom's official Linux packages without using a package repository, though you will not get automatic updates after installing Atom this way.
+Configure your distribution's package manager to install and update Atom by following the [Linux installation instructions](https://flight-manual.atom.io/getting-started/sections/installing-atom/#platform-linux) in the Flight Manual. You will also find instructions on how to install Atom's official Linux packages without using a package repository, though you will not get automatic updates after installing Atom this way.
 
 #### Archive extraction
 
@@ -68,13 +69,13 @@ repeat these steps to upgrade to future releases.
 
 ## Building
 
-* [Linux](https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/#platform-linux)
-* [macOS](https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/#platform-mac)
-* [Windows](https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/#platform-windows)
+- [Linux](https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/#platform-linux)
+- [macOS](https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/#platform-mac)
+- [Windows](https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/#platform-windows)
 
 ## Discussion
 
-* Discuss Atom on [GitHub Discussions](https://github.com/atom/atom/discussions)
+- Discuss Atom on [GitHub Discussions](https://github.com/atom/atom/discussions)
 
 ## License
 

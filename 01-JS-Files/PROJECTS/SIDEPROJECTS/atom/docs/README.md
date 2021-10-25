@@ -8,10 +8,10 @@ Most of the Atom user and developer documentation is contained in the [Atom Flig
 
 Instructions for building Atom on various platforms from source.
 
-* Moved to [the Flight Manual](https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/)
-    * Linux
-    * macOS
-    * Windows
+- Moved to [the Flight Manual](https://flight-manual.atom.io/hacking-atom/sections/hacking-on-atom-core/)
+  - Linux
+  - macOS
+  - Windows
 
 ## Other documentation
 

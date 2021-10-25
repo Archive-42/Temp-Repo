@@ -22,7 +22,7 @@ Explain the proposal as if it was already implemented and you were describing it
 
 ## Drawbacks
 
-Why should we *not* do this?
+Why should we _not_ do this?
 
 ## Rationale and alternatives
 

@@ -4,9 +4,7 @@
     "./script/node_modules/eslint-config-prettier/index.js",
     "./script/node_modules/eslint-config-prettier/standard.js"
   ],
-  "plugins": [
-    "prettier"
-  ],
+  "plugins": ["prettier"],
   "env": {
     "browser": true,
     "node": true
