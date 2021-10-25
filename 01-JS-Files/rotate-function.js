@@ -6,13 +6,13 @@
  * @param {number[]} A
  * @return {number}
  */
-var maxRotateFunction = function(A) {
-  var ans
-    , sum = 0
-    , tmp = 0
-    , len = A.length;
+var maxRotateFunction = function (A) {
+  var ans,
+    sum = 0,
+    tmp = 0,
+    len = A.length;
 
-  A.forEach(function(item, index) {
+  A.forEach(function (item, index) {
     sum += item;
     tmp += index * item;
   });

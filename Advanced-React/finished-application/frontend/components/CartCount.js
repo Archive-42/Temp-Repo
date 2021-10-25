@@ -1,5 +1,5 @@
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import styled from 'styled-components';
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import styled from "styled-components";
 
 const Dot = styled.div`
   background: var(--red);
@@ -9,7 +9,7 @@ const Dot = styled.div`
   line-height: 2rem;
   min-width: 3rem;
   margin-left: 1rem;
-  font-feature-settings: 'tnum';
+  font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
 `;
 

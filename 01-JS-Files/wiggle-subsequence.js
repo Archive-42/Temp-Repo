@@ -10,7 +10,7 @@
 // Greedy
 var ans;
 
-var wiggleMaxLength = function(nums) {
+var wiggleMaxLength = function (nums) {
   ans = 0;
 
   // 给数组增加首元素 Infinity 以及 -Infinity
@@ -31,15 +31,11 @@ function dfs(current, index, flag, len, nums) {
 
   // 需要减
   if (!flag) {
-    if (item < current)
-      dfs(item, index + 1, !flag, len + 1, nums);
-    else
-      dfs(item, index + 1, flag, len, nums);
-  } else { // 需要增
-    if (item > current)
-      dfs(item, index + 1, !flag, len + 1, nums);
-    else
-      dfs(item, index + 1, flag, len, nums);
+    if (item < current) dfs(item, index + 1, !flag, len + 1, nums);
+    else dfs(item, index + 1, flag, len, nums);
+  } else {
+    // 需要增
+    if (item > current) dfs(item, index + 1, !flag, len + 1, nums);
+    else dfs(item, index + 1, flag, len, nums);
   }
-
 }

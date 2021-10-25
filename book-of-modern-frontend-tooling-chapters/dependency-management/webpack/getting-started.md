@@ -44,11 +44,11 @@ The `src/app.js` file is the main entry point to your application. From here, we
 The `dist/` contains your distributable application. The `dist/bundle.js` file is created by webpack and is to be included by our `dist/index.html` file. In a typical webpack project, the main `index.html` is usually very simple like such:
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <script src="bundle.js"></script>
-</head>
+  <head>
+    <script src="bundle.js"></script>
+  </head>
   <body></body>
 </html>
 ```
@@ -77,7 +77,7 @@ We'll turn `src/js/alert.js` into a module by adding the contents:
 
 ```js
 module.exports = function (what) {
-  alert('Hello ' + what + '!');
+  alert("Hello " + what + "!");
 };
 ```
 
@@ -86,8 +86,8 @@ module.exports = function (what) {
 Within our application entry point `src/app.js` we can use this module with:
 
 ```js
-var yell = require('./js/alert.js');
-yell('world');
+var yell = require("./js/alert.js");
+yell("world");
 ```
 
 `require` is used to consume other modules within our application. We are prefixing the path with `./` to start looking from the current folder `app.js` resides in, `src/`, then including the `js/alert.js` file. `require` will return the part of the module that has been exported, in our case here the function within `src/js/alert.js`.
@@ -113,7 +113,7 @@ body {
 Then in your application entry point `src/app.js`, require the stylesheet prefixing the loaders in the desired order:
 
 ```js
-require('style!css!./css/style.css');
+require("style!css!./css/style.css");
 ```
 
 This statement will read the `src/css/style.css` file, transform it into a module webpack can read using the `css-loader`, and then apply it to the web page using the `style-loader`.
@@ -141,16 +141,14 @@ The `webpack.config.js` file is just like any other node module where you export
 
 ```js
 module.exports = {
-  entry: './src/app.js',
+  entry: "./src/app.js",
   output: {
-    path: './dist',
-    filename: 'bundle.js'
+    path: "./dist",
+    filename: "bundle.js",
   },
   module: {
-    loaders: [
-      { test: /\.css$/, loader: 'style!css' }
-    ]
-  }
+    loaders: [{ test: /\.css$/, loader: "style!css" }],
+  },
 };
 ```
 
@@ -165,7 +163,7 @@ Now we can update our `package.json` script to just call `webpack` as our entry 
 Then update our application entry point `src/app.js` to require our stylesheet without needing to prefix loaders:
 
 ```js
-require('./css/style.css');
+require("./css/style.css");
 ```
 
 Running `npm start` and opening the `dist/index.html` file in your web browser should render the same results.
@@ -179,8 +177,8 @@ By default, webpack is configured to resolve modules installed by npm within the
 With npm, let's install and load a module. [hash-change](https://www.npmjs.org/package/hash-change) is a simple module that notifies us when the hash in the URL has changed. Install it into the `node_modules` folder by typing: `npm install hash-change`. Then add the following to your `src/app.js`:
 
 ```js
-var yell = require('./js/alert.js');
-require('hash-change').on('change', function(hash) {
+var yell = require("./js/alert.js");
+require("hash-change").on("change", function (hash) {
   yell(hash);
 });
 ```
@@ -195,18 +193,16 @@ The third party module directories are completely customizable. You can use npm,
 
 ```js
 module.exports = {
-  entry: './src/app.js',
+  entry: "./src/app.js",
   output: {
-    path: './dist',
-    filename: 'bundle.js'
+    path: "./dist",
+    filename: "bundle.js",
   },
   module: {
-    loaders: [
-      { test: /\.css$/, loader: 'style!css' }
-    ]
+    loaders: [{ test: /\.css$/, loader: "style!css" }],
   },
   resolve: {
-    modulesDirectories: ['node_modules', 'bower_components', 'web_modules']
-  }
+    modulesDirectories: ["node_modules", "bower_components", "web_modules"],
+  },
 };
 ```

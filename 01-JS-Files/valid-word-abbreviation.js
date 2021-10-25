@@ -7,10 +7,9 @@
  * @param {string} abbr
  * @return {boolean}
  */
-var validWordAbbreviation = function(word, abbr) {
+var validWordAbbreviation = function (word, abbr) {
   // 排除孤立的 `0` 的干扰
-  if (/([^1-9]|^)0+/.test(abbr))
-    return false;
+  if (/([^1-9]|^)0+/.test(abbr)) return false;
 
   abbr = abbr.replace(/\d+/g, "[A-z]{$&}");
   abbr = "^" + abbr + "$";

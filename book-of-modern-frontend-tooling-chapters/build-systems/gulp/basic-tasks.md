@@ -17,7 +17,7 @@ $ npm install --save-dev gulp-concat
 Now that your have installed our concat plugin locally, you need to include it in our gulpfile so that you can use it in our tasks.
 
 ```js
-var concat = require('gulp-concat');
+var concat = require("gulp-concat");
 ```
 
 ### 3. Create Concat Task
@@ -25,10 +25,11 @@ var concat = require('gulp-concat');
 Now, concatenating is as simple as passing a .pipe(concat('filename')) in your tasks pipechain. Like so:
 
 ```js
-gulp.task('concat', function(){
-    gulp.src('src/js/*.js')         // Targets All JS Files In Our src/ Directory
-        .pipe(concat('all.js'))     // Creates New all.js File With Code From Target Files
-        .pipe(gulp.dest('dist'));   // Places The New File In Our dist/ Directory
+gulp.task("concat", function () {
+  gulp
+    .src("src/js/*.js") // Targets All JS Files In Our src/ Directory
+    .pipe(concat("all.js")) // Creates New all.js File With Code From Target Files
+    .pipe(gulp.dest("dist")); // Places The New File In Our dist/ Directory
 });
 ```
 
@@ -49,7 +50,7 @@ $ npm install --save-dev gulp-jshint
 ### 2. Include JSHint Plugin
 
 ```js
-var jshint = require('gulp-jshint');
+var jshint = require("gulp-jshint");
 ```
 
 ### 3. Create Lint Task
@@ -57,15 +58,15 @@ var jshint = require('gulp-jshint');
 In your gulpfile add the following code:
 
 ```js
-gulp.task('lint', function(){
-    return gulp.src('src/js/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'));
+gulp.task("lint", function () {
+  return gulp
+    .src("src/js/*.js")
+    .pipe(jshint())
+    .pipe(jshint.reporter("default"));
 });
 ```
 
 Now, when you run this task it will check for problems in your code and then send those along to the reporter that you have assigned which will output them in your command-line application. In this example, we have used the default reporter for the sake of simplicity.
-
 
 ## Minifying Your Code
 
@@ -82,7 +83,7 @@ $ npm install --save-dev gulp-uglify
 Open your gulpfile.js and add the following code to the top.
 
 ```js
-var uglify = require('gulp-uglify');
+var uglify = require("gulp-uglify");
 ```
 
 ### 3. Create Minify Task
@@ -90,10 +91,8 @@ var uglify = require('gulp-uglify');
 Now, we will write our minify task. Add the following code to your gulpfile.
 
 ```js
-gulp.task('minify', function() {
-    return gulp.src('src/js/*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
+gulp.task("minify", function () {
+  return gulp.src("src/js/*.js").pipe(uglify()).pipe(gulp.dest("dist"));
 });
 ```
 
@@ -116,16 +115,14 @@ $ npm install --save-dev gulp-sass
 Now that you have installed the plugin, you need to include it at the top of your gulpfile. In this case we're using Sass, but this applies to any of the others as well.
 
 ```js
-var sass = require('gulp-sass');
+var sass = require("gulp-sass");
 ```
 
 ### 3. Create Preprocessing Task
 
 ```js
-gulp.task('styles', function() {
-    return gulp.src('src/scss/*.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('dist'));
+gulp.task("styles", function () {
+  return gulp.src("src/scss/*.scss").pipe(sass()).pipe(gulp.dest("dist"));
 });
 ```
 
@@ -137,33 +134,34 @@ For example, we have created both a concat and a minify task separately, but in 
 
 ```js
 // Concat & Minify Scripts
-gulp.task('scripts', function() {
-    gulp.src('src/js/*.js')
-        .pipe(concat('all.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
+gulp.task("scripts", function () {
+  gulp
+    .src("src/js/*.js")
+    .pipe(concat("all.js"))
+    .pipe(uglify())
+    .pipe(gulp.dest("dist"));
 });
 ```
 
 Now our scripts task not only minifies our code but also concatenates our JS files as well. By adding a single line to our pipechain we are now able to perform two actions within the same task instead of creating two separate tasks dedicated to a single action.
 
-## Watching Our Files & Creating A Default Task 
+## Watching Our Files & Creating A Default Task
 
 Once our tasks have been created, we will need to create a couple more tasks that handle watching our files for changes and determine which tasks will run by default.
 
-Watching your files saves you time by keeping you from having to revisit your command-line every time to need to process something. It will listen for changes to your files and automatically run tasks as you continue to work. 
+Watching your files saves you time by keeping you from having to revisit your command-line every time to need to process something. It will listen for changes to your files and automatically run tasks as you continue to work.
 
 ```js
-gulp.task('watch', function() {
-    gulp.watch('src/js/*.js', ['scripts']);
-    gulp.watch('src/scss/*.scss', ['styles']);
+gulp.task("watch", function () {
+  gulp.watch("src/js/*.js", ["scripts"]);
+  gulp.watch("src/scss/*.scss", ["styles"]);
 });
 ```
 
 The default task is the task that runs when you input `gulp` in your command line tool without passing it a specific task name. This task simply references your other tasks including the watch task that you just created.
 
 ```js
-gulp.task('default', ['scripts', 'styles', 'watch']);
+gulp.task("default", ["scripts", "styles", "watch"]);
 ```
 
 As you expand your gulpfile it is wise to revisit both the watch and the default tasks to include new tasks as you create them.

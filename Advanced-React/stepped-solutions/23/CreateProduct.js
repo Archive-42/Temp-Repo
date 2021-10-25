@@ -1,10 +1,10 @@
-import useForm from '../lib/useForm';
+import useForm from "../lib/useForm";
 
 export default function CreateProduct() {
   const { inputs, handleChange, clearForm, resetForm } = useForm({
-    name: 'Nice Shoes',
+    name: "Nice Shoes",
     price: 34234,
-    description: 'These are the best shoes!',
+    description: "These are the best shoes!",
   });
   return (
     <form>

@@ -7,14 +7,14 @@ Multiple entry points are specified by supplying an array or object to the `entr
 ```js
 module.exports = {
   entry: {
-    desktop: './src/desktop.js',
-    mobile: './src/mobile.js'
+    desktop: "./src/desktop.js",
+    mobile: "./src/mobile.js",
   },
   output: {
-    path: './dist',
-    filename: '[name].bundle.js',
-    chunkFilename: '[id].common.js'
-  }
+    path: "./dist",
+    filename: "[name].bundle.js",
+    chunkFilename: "[id].common.js",
+  },
 };
 ```
 
@@ -26,11 +26,11 @@ webpack includes another directive `'[hash]'` to generate a hash name based upon
 
 ```js
 module.exports = {
-  entry: './src/main.js',
+  entry: "./src/main.js",
   output: {
-    path: './dist',
-    filename: '[hash].js'
-  }
+    path: "./dist",
+    filename: "[hash].js",
+  },
 };
 ```
 

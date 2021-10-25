@@ -6,7 +6,7 @@
  * @param {number} num
  * @return {string}
  */
-var intToRoman = function(num) {
+var intToRoman = function (num) {
   var hash = {};
 
   // 千
@@ -74,4 +74,4 @@ var intToRoman = function(num) {
   str += hash[tmp * 1];
 
   return str;
-};  
+};

@@ -11,7 +11,7 @@ var ans, res;
 
 function dfs(index, sum, candidates, target) {
   if (sum === target) {
-    var tmp = res.map(function(item) {
+    var tmp = res.map(function (item) {
       return item;
     });
 
@@ -27,12 +27,12 @@ function dfs(index, sum, candidates, target) {
   }
 }
 
-var combinationSum = function(candidates, target) {
+var combinationSum = function (candidates, target) {
   ans = [];
-  candidates.sort(function(a, b) {
+  candidates.sort(function (a, b) {
     return a - b;
   });
-  
+
   // choose the first number
   for (var i = 0, len = candidates.length; i < len; i++) {
     res = [candidates[i]];

@@ -8,9 +8,8 @@
  * @param {number} k
  * @return {number}
  */
-var longestSubstring = function(s, k) {
-  if (k === 1)
-    return s.length;
+var longestSubstring = function (s, k) {
+  if (k === 1) return s.length;
 
   let len = s.length;
   let ans = 0;
@@ -19,22 +18,18 @@ var longestSubstring = function(s, k) {
 
   for (let i = 0; i < len; i++) {
     var item = s[i];
-    if (!f[item])
-      f[item] = [i];
-    else
-      f[item].push(i);
+    if (!f[item]) f[item] = [i];
+    else f[item].push(i);
 
     num[i] = f[item].length;
   }
 
   let minn = Infinity;
-  for (let key in f)
-    minn = Math.min(minn, f[key].length);
+  for (let key in f) minn = Math.min(minn, f[key].length);
 
-  if (k <= minn)
-    return s.length;
+  if (k <= minn) return s.length;
 
-  // Ã¶¾Ù substring µÄÆðµã
+  // Ã¶ï¿½ï¿½ substring ï¿½ï¿½ï¿½ï¿½ï¿½
   for (let i = 0; i < len; i++) {
     let rightPos = i - 1;
     let hash = {};
@@ -44,9 +39,10 @@ var longestSubstring = function(s, k) {
       if (!hash[item]) {
         hash[item] = true;
 
-        let a = num[j]; // item ÊÇµÚ¼¸¸öÍ¬Àà item
-        let pos = f[item][a + k - 2]; // È·±£ substring ÖÐÓÐ k ¸ö item£¬ÖÁÉÙÐèÒªµ½´ïµÄÎ»ÖÃ
-        if (pos === undefined)  // Ã»ÓÐÕâÃ´¶à item ÔªËØÁË
+        let a = num[j]; // item ï¿½ÇµÚ¼ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ item
+        let pos = f[item][a + k - 2]; // È·ï¿½ï¿½ substring ï¿½ï¿½ï¿½ï¿½ k ï¿½ï¿½ itemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
+        if (pos === undefined)
+          // Ã»ï¿½ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ item Ôªï¿½ï¿½ï¿½ï¿½
           break;
         rightPos = Math.max(rightPos, pos);
       }

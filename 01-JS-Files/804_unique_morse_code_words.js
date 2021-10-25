@@ -29,18 +29,45 @@ words[i] will only consist of lowercase letters.
 var uniqueMorseRepresentations = function (words) {
   let transformations = {};
   const alphabet = "abcdefghijklmnopqrstuvwxyz";
-  const morse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."]
+  const morse = [
+    ".-",
+    "-...",
+    "-.-.",
+    "-..",
+    ".",
+    "..-.",
+    "--.",
+    "....",
+    "..",
+    ".---",
+    "-.-",
+    ".-..",
+    "--",
+    "-.",
+    "---",
+    ".--.",
+    "--.-",
+    ".-.",
+    "...",
+    "-",
+    "..-",
+    "...-",
+    ".--",
+    "-..-",
+    "-.--",
+    "--..",
+  ];
   for (let j = 0; j < words.length; j++) {
     let currWord = [];
     for (let i = 0; i < words[j].length; i++) {
       let alphaIdx = alphabet.indexOf(words[j][i]);
-      currWord.push(morse[alphaIdx])
+      currWord.push(morse[alphaIdx]);
     }
-    console.log(currWord.join(""))
+    console.log(currWord.join(""));
     if (!transformations[currWord.join("")]) {
-      transformations[currWord.join("")] = 1
+      transformations[currWord.join("")] = 1;
     } else {
-      transformations[currWord.join("")] += 1
+      transformations[currWord.join("")] += 1;
     }
   }
   return Object.keys(transformations).length;

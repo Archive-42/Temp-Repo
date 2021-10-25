@@ -15,7 +15,7 @@
  * @param {number} n
  * @return {ListNode}
  */
-var reverseBetween = function(head, m, n) {
+var reverseBetween = function (head, m, n) {
   var tmp = [];
 
   while (head) {
@@ -35,8 +35,7 @@ var reverseBetween = function(head, m, n) {
     tmp[b] = c;
   }
 
-  for (var i = 0, len = tmp.length; i < len - 1; i++)
-    tmp[i].next = tmp[i + 1];
+  for (var i = 0, len = tmp.length; i < len - 1; i++) tmp[i].next = tmp[i + 1];
 
   return tmp[0];
 };

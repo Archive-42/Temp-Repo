@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import styled from 'styled-components';
-import Cart from './Cart';
-import Nav from './Nav';
-import Search from './Search';
+import Link from "next/link";
+import styled from "styled-components";
+import Cart from "./Cart";
+import Nav from "./Nav";
+import Search from "./Search";
 
 const Logo = styled.h1`
   font-size: 4rem;

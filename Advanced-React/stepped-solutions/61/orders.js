@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
-import Head from 'next/head';
-import styled from 'styled-components';
-import Link from 'next/link';
-import ErrorMessage from '../components/ErrorMessage';
-import formatMoney from '../lib/formatMoney';
-import OrderItemStyles from '../components/styles/OrderItemStyles';
+import { useQuery } from "@apollo/client";
+import gql from "graphql-tag";
+import Head from "next/head";
+import styled from "styled-components";
+import Link from "next/link";
+import ErrorMessage from "../components/ErrorMessage";
+import formatMoney from "../lib/formatMoney";
+import OrderItemStyles from "../components/styles/OrderItemStyles";
 
 const USER_ORDERS_QUERY = gql`
   query USER_ORDERS_QUERY {
@@ -62,7 +62,7 @@ export default function OrdersPage() {
                   <p>{countItemsInAnOrder(order)} Items</p>
                   <p>
                     {order.items.length} Product
-                    {order.items.length === 1 ? '' : 's'}
+                    {order.items.length === 1 ? "" : "s"}
                   </p>
                   <p>{formatMoney(order.total)}</p>
                 </div>

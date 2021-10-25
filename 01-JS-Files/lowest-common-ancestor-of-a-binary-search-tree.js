@@ -2,7 +2,6 @@
 // Author : Han Zichi
 // Date   : 2016-08-31
 
-
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -16,15 +15,14 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-var lowestCommonAncestor = function(root, p, q) {
+var lowestCommonAncestor = function (root, p, q) {
   var valueA = p.val;
   var valueB = q.val;
-  var value  = root.val;
+  var value = root.val;
 
   if (valueA < value && valueB < value)
     return lowestCommonAncestor(root.left, p, q);
   else if (valueA > value && valueB > value)
     return lowestCommonAncestor(root.right, p, q);
-  else
-    return root;
+  else return root;
 };

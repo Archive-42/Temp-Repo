@@ -44,6 +44,6 @@
  * @param {string} s
  * @return {NestedInteger}
  */
-var deserialize = function(s) {
+var deserialize = function (s) {
   return eval(s);
 };

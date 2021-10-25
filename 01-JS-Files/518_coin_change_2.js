@@ -23,12 +23,12 @@ Input: amount = 10, coins = [10]
 Output: 1
 */
 
-var change = function (amount, coins, memo={}) {
-  let key = amount + '-' + coins;
+var change = function (amount, coins, memo = {}) {
+  let key = amount + "-" + coins;
   if (key in memo) return memo[key];
   if (amount === 0) return 1;
 
-  let currentCoin = coins[coins.length - 1]
+  let currentCoin = coins[coins.length - 1];
 
   let total = 0;
 
@@ -37,7 +37,7 @@ var change = function (amount, coins, memo={}) {
   }
 
   memo[key] = total;
-  return memo[key]
+  return memo[key];
 };
 
-console.log(change(5, [1, 2, 5]))
+console.log(change(5, [1, 2, 5]));

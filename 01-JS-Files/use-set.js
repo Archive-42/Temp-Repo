@@ -8,10 +8,10 @@
  * @param {number[]} nums
  * @return {number[][]}
  */
-var findSubsequences = function(nums) {
-  let len = nums.length
-    , ans = []
-    , res = [];
+var findSubsequences = function (nums) {
+  let len = nums.length,
+    ans = [],
+    res = [];
 
   let s = new Set();
 

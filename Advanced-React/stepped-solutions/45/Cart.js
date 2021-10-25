@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import CartStyles from './styles/CartStyles';
-import Supreme from './styles/Supreme';
-import formatMoney from '../lib/formatMoney';
-import { useUser } from './User';
-import calcTotalPrice from '../lib/calcTotalPrice';
+import styled from "styled-components";
+import CartStyles from "./styles/CartStyles";
+import Supreme from "./styles/Supreme";
+import formatMoney from "../lib/formatMoney";
+import { useUser } from "./User";
+import calcTotalPrice from "../lib/calcTotalPrice";
 
 const CartItemStyles = styled.li`
   padding: 1rem 0;

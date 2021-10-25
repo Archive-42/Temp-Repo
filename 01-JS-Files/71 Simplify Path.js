@@ -8,18 +8,18 @@
  * @param {string} path
  * @return {string}
  */
-var simplifyPath = function(path) {
-    var arr = path.split('/');
-    var result = [];
-    
-    for(var i = 0; i < arr.length; i++) {
-        var p = arr[i];
-        if(p === '..') {
-            result.pop();
-        } else if(p !== '' && p !== '.') {
-            result.push(p);
-        }
+var simplifyPath = function (path) {
+  var arr = path.split("/");
+  var result = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    var p = arr[i];
+    if (p === "..") {
+      result.pop();
+    } else if (p !== "" && p !== ".") {
+      result.push(p);
     }
-    
-    return '/' + result.join('/');
+  }
+
+  return "/" + result.join("/");
 };

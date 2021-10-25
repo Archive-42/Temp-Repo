@@ -9,7 +9,7 @@
  */
 
 // 如果没有任何数字，则尽量选取 1, 2, 4, 8, 16
-var minPatches = function(nums, n) {
+var minPatches = function (nums, n) {
   var sum = 0;
   var index = 0;
   var ans = 0;

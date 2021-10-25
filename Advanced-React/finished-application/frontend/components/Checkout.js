@@ -1,19 +1,19 @@
-import styled from 'styled-components';
-import { loadStripe } from '@stripe/stripe-js';
+import styled from "styled-components";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   CardElement,
   Elements,
   useElements,
   useStripe,
-} from '@stripe/react-stripe-js';
-import { useState } from 'react';
-import nProgress from 'nprogress';
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/client';
-import { Router, useRouter } from 'next/dist/client/router';
-import SickButton from './styles/SickButton';
-import { useCart } from '../lib/cartState';
-import { CURRENT_USER_QUERY } from './User';
+} from "@stripe/react-stripe-js";
+import { useState } from "react";
+import nProgress from "nprogress";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/client";
+import { Router, useRouter } from "next/dist/client/router";
+import SickButton from "./styles/SickButton";
+import { useCart } from "../lib/cartState";
+import { CURRENT_USER_QUERY } from "./User";
 
 const CheckoutFormStyles = styled.form`
   box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.04);
@@ -57,12 +57,12 @@ function CheckoutForm() {
     // 1. Stop the form from submitting and turn the loader one
     e.preventDefault();
     setLoading(true);
-    console.log('We gotta do some work..');
+    console.log("We gotta do some work..");
     // 2. Start the page transition
     nProgress.start();
     // 3. Create the payment method via stripe (Token comes back here if successful)
     const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
+      type: "card",
       card: elements.getElement(CardElement),
     });
     console.log(paymentMethod);

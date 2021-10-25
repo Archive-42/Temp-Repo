@@ -7,14 +7,13 @@
  * @param {number[][]} prerequisites
  * @return {number[]}
  */
-var findOrder = function(numCourses, prerequisites) {
+var findOrder = function (numCourses, prerequisites) {
   var map = []; // 邻接表
   var indegree = []; // 入度
 
-  for (var i = 0; i < numCourses; i++)
-    map[i] = [], indegree[i] = 0;
+  for (var i = 0; i < numCourses; i++) (map[i] = []), (indegree[i] = 0);
 
-  prerequisites.forEach(function(item) {
+  prerequisites.forEach(function (item) {
     var from = item[1];
     var to = item[0];
 
@@ -38,7 +37,7 @@ var findOrder = function(numCourses, prerequisites) {
     var from = q.shift();
     ans.push(from);
 
-    map[from].forEach(function(to) {
+    map[from].forEach(function (to) {
       if (--indegree[to] === 0) {
         q.push(to);
         finishNum++;

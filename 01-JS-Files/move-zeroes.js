@@ -2,7 +2,7 @@
 // Author : Han Zichi
 // Date   : 2015-09-20
 
-var moveZeroes = function(nums) {
+var moveZeroes = function (nums) {
   for (var i = nums.length; i--; ) {
     if (!nums[i]) {
       nums.splice(i, 1);

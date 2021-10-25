@@ -55,23 +55,23 @@ Notice each digit has it's own entry in the array.
 // note that if the number is 10 or greater, it is treated as two different digits in the array.
 // return the length of the final array.
 
-var compress = function(chars) {
+var compress = function (chars) {
   let count = 1;
   for (let i = chars.length - 2; i >= 0; i--) {
     if (chars[i] === chars[i + 1]) {
       count++;
     } else if (count > 1) {
-      chars.splice(i + 2, count - 1, ...count.toString().split(''));  
+      chars.splice(i + 2, count - 1, ...count.toString().split(""));
       count = 1;
     }
   }
 
   if (count > 10) {
-    chars.splice(1, count - 1, ...count.toString().split(''));   
+    chars.splice(1, count - 1, ...count.toString().split(""));
   }
   return chars;
 };
 
-console.log(compress(["a", "a", "b", "b", "c", "c", "c"]))
-// console.log(compress(["a"])), 
+console.log(compress(["a", "a", "b", "b", "c", "c", "c"]));
+// console.log(compress(["a"])),
 // console.log(compress(["a", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b", "b"]))

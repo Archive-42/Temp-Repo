@@ -9,18 +9,18 @@
  *   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
  * @return {boolean}
  */
-var wordBreak = function(s, wordDict) {
+var wordBreak = function (s, wordDict) {
   var len = s.length;
 
   // f[i] 为 true 表示 s[0]-s[i] 这段能被 Set 中的字符串 cut
   // 所以最后判断 f[len] 即可
-  var f = []; 
+  var f = [];
 
   var arr = [];
 
   var obj = {};
   obj.pos = 0;
-  obj.str = '';
+  obj.str = "";
 
   arr.push(obj);
 

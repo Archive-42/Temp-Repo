@@ -5,7 +5,7 @@ should start getting our hands dirty and learn how to install it on our local
 machine.
 
 Once we have it installed, we can start exploring its commands and features that
-make our lifes easier. Searching, installing, updating and deleting packages are 
+make our lifes easier. Searching, installing, updating and deleting packages are
 the most common used tasks, so we will take a look at them first.
 
 Excited to get into the world of milk and honey? Me too! Let's install Bower and
@@ -111,9 +111,9 @@ Description:
 ```
 
 As you can see, there are two ways of using the `search` command. The first possible
-way of using it, is running `bower search` with any kind of available options. 
+way of using it, is running `bower search` with any kind of available options.
 When taking a look at the list of options that can be used with this command,
-we can see that there's not really much we can chose between. The `--help` option (in 
+we can see that there's not really much we can chose between. The `--help` option (in
 short `-h`), gives us the same output as the one we get when running the
 global help for the `search` command.
 

@@ -1,30 +1,30 @@
 /* eslint-disable */
-import { KeystoneContext, SessionStore } from '@keystone-next/types';
-import { CartItem } from '../schemas/CartItem';
-import { Session } from '../types';
+import { KeystoneContext, SessionStore } from "@keystone-next/types";
+import { CartItem } from "../schemas/CartItem";
+import { Session } from "../types";
 
-import { CartItemCreateInput } from '../.keystone/schema-types';
+import { CartItemCreateInput } from "../.keystone/schema-types";
 
 async function addToCart(
   root: any,
   { productId }: { productId: string },
   context: KeystoneContext
 ): Promise<CartItemCreateInput> {
-  console.log('ADDING TO CART!');
+  console.log("ADDING TO CART!");
   // 1. Query the current user see if they are signed in
   const sesh = context.session as Session;
   if (!sesh.itemId) {
-    throw new Error('You must be logged in to do this!');
+    throw new Error("You must be logged in to do this!");
   }
   // 2. Query the current users cart
   const allCartItems = await context.lists.CartItem.findMany({
     where: { user: { id: sesh.itemId }, product: { id: productId } },
-    resolveFields: 'id,quantity'
+    resolveFields: "id,quantity",
   });
 
   const [existingCartItem] = allCartItems;
   if (existingCartItem) {
-    console.log(existingCartItem)
+    console.log(existingCartItem);
     console.log(
       `There are already ${existingCartItem.quantity}, increment by 1!`
     );
@@ -39,11 +39,11 @@ async function addToCart(
   // 4. if it isnt, create a new cart item!
   return await context.lists.CartItem.createOne({
     data: {
-      product: { connect: { id: productId }},
-      user: { connect: { id: sesh.itemId }},
+      product: { connect: { id: productId } },
+      user: { connect: { id: sesh.itemId } },
     },
     resolveFields: false,
-  })
+  });
 }
 
 export default addToCart;

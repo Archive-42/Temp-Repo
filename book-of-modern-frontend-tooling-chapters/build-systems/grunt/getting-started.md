@@ -22,6 +22,7 @@ To add Grunt to your project, just **install `grunt` locally**. Remember to setu
 $ npm init
 $ npm install grunt --save-dev
 ```
+
 The flag `--save-dev` will update your `package.json` to add Grunt as a development dependency. This is how it will look:
 
 ```json
@@ -33,7 +34,6 @@ The flag `--save-dev` will update your `package.json` to add Grunt as a developm
 }
 ```
 
-
 And that's enough `npm`! If you try to run `grunt` now, you will see an error message complaining about the lack of a `Gruntfile.js`… It's time to fix this.
 
 ## Your Gruntfile.js
@@ -44,11 +44,11 @@ Here's an example of a `Gruntfile.js` with a task that will print the version of
 
 ```js
 module.exports = function (grunt) {
-    // create 'version' custom task
-    grunt.registerTask('version', 'Shows version number', function () {
-        var pkg = grunt.file.readJSON('package.json');
-        grunt.log.writeln(pkg.name + ' version ' + pkg.version);
-    });
+  // create 'version' custom task
+  grunt.registerTask("version", "Shows version number", function () {
+    var pkg = grunt.file.readJSON("package.json");
+    grunt.log.writeln(pkg.name + " version " + pkg.version);
+  });
 };
 ```
 
@@ -75,18 +75,19 @@ In order to use a plugin, we need to load its tasks in the `Gruntfile.js`, and p
 ```js
 module.exports = function (grunt) {
   // load plugin tasks
-  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks("grunt-contrib-jshint");
 
   // tasks configuration
   grunt.initConfig({
     jshint: {
-      files: ['Gruntfile.js'], // files to run JSHint on
-      options: { // options for JShint
+      files: ["Gruntfile.js"], // files to run JSHint on
+      options: {
+        // options for JShint
         globals: {
-          module: true // allow the use of 'module' global
-        }
-      }
-    }
+          module: true, // allow the use of 'module' global
+        },
+      },
+    },
   });
 };
 ```

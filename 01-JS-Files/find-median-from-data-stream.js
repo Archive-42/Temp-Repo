@@ -7,15 +7,13 @@
 
 function binarySearch(a, target) {
   target += 1;
-  var start = 0
-    , end = a.length - 1;
+  var start = 0,
+    end = a.length - 1;
 
-  while(start <= end) {
+  while (start <= end) {
     var mid = ~~((start + end) >> 1);
-    if (a[mid] >= target)
-      end = mid - 1;
-    else 
-      start = mid + 1;
+    if (a[mid] >= target) end = mid - 1;
+    else start = mid + 1;
   }
 
   return start;
@@ -24,7 +22,7 @@ function binarySearch(a, target) {
 /**
  * @constructor
  */
-var MedianFinder = function() {
+var MedianFinder = function () {
   this.num = [];
 };
 
@@ -33,7 +31,7 @@ var MedianFinder = function() {
  * @return {void}
  * Adds a num into the data structure.
  */
-MedianFinder.prototype.addNum = function(num) {
+MedianFinder.prototype.addNum = function (num) {
   var index = binarySearch(this.num, num);
   this.num.splice(index, 0, num);
 };
@@ -42,11 +40,10 @@ MedianFinder.prototype.addNum = function(num) {
  * @return {double}
  * Return median of current data stream
  */
-MedianFinder.prototype.findMedian = function() {
+MedianFinder.prototype.findMedian = function () {
   var len = this.num.length;
 
-  if (len & 1)
-    return this.num[~~(len / 2)];
+  if (len & 1) return this.num[~~(len / 2)];
   else return (this.num[len / 2] + this.num[len / 2 - 1]) / 2;
 };
 

@@ -7,16 +7,15 @@
  * @param {number} k
  * @return {number[]}
  */
-var medianSlidingWindow = function(nums, k) {
-  let ans = []
-    , res = nums.slice(0, k);
+var medianSlidingWindow = function (nums, k) {
+  let ans = [],
+    res = nums.slice(0, k);
 
   let findMedian = () => {
-    if (k & 1)
-      return res[k >> 1];
+    if (k & 1) return res[k >> 1];
     else {
-      let a = (k >> 1) - 1
-        , b = k >> 1;
+      let a = (k >> 1) - 1,
+        b = k >> 1;
       return (res[a] + res[b]) / 2;
     }
   };
@@ -45,15 +44,13 @@ var medianSlidingWindow = function(nums, k) {
  * @return {number}          数组下标，如果没找到，该值为 -1
  */
 function binarySearch(a, target) {
-  var start = 0
-    , end = a.length - 1;
+  var start = 0,
+    end = a.length - 1;
 
   while (start <= end) {
     var mid = (start + end) >> 1;
-    if (a[mid] >= target)
-      end = mid - 1;
-    else
-      start = mid + 1;
+    if (a[mid] >= target) end = mid - 1;
+    else start = mid + 1;
   }
 
   return a[start] === target ? start : -1;
@@ -67,15 +64,13 @@ function binarySearch(a, target) {
  */
 function binarySearch2(a, target) {
   target += 1;
-  var start = 0
-    , end = a.length - 1;
+  var start = 0,
+    end = a.length - 1;
 
   while (start <= end) {
     var mid = (start + end) >> 1;
-    if (a[mid] >= target)
-      end = mid - 1;
-    else
-      start = mid + 1;
+    if (a[mid] >= target) end = mid - 1;
+    else start = mid + 1;
   }
 
   return start;

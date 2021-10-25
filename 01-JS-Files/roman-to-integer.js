@@ -6,7 +6,7 @@
  * @param {string} s
  * @return {number}
  */
-var romanToInt = function(s) {
+var romanToInt = function (s) {
   var hash = {};
   hash["I"] = 1;
   hash["X"] = 10;
@@ -26,9 +26,8 @@ var romanToInt = function(s) {
     if (nextItem > item) {
       sum += nextItem - item;
       i++;
-    } else 
-      sum += item;
-  } 
+    } else sum += item;
+  }
 
   return sum;
 };

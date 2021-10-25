@@ -30,7 +30,7 @@ Wouldn't it be better to just have a simple command to search for a package you 
 interested in, without browsing the entire web? Wouldn't it be better to just have a
 simple command to get the source of that particular package, without copying and pasting
 all that stuff from one application to another? Wouldn't it be better, if you don't have
-to care about how the source flies from the internet down to your local machine on your 
+to care about how the source flies from the internet down to your local machine on your
 hard drive?
 
 Oh yes, this would be indeed better. And you know what? **[Bower](http://bower.io/)** got you covered.
@@ -38,7 +38,7 @@ Oh yes, this would be indeed better. And you know what? **[Bower](http://bower.i
 ## A package manager for the web
 
 Bower is a package manager for the web. It offers a generic solution to make front-end
-packages installable from the command line. So searching for a package is just one 
+packages installable from the command line. So searching for a package is just one
 command away. Installing a package? Just one command away. Updating existing packages?
 You get it, right?
 
@@ -50,7 +50,7 @@ dependencies are shared between different apps and the dependency tree is flat.
 npm (Node Package Manager) is a great tool to install [Node.js](http://nodejs.org)
 modules and packages. Actually, npm has been developed for exactly that. Installing
 node packages. The reason for that is, that a node modules can have several dependencies,
-and these dependencies can have their own dependencies and so forth. It is not 
+and these dependencies can have their own dependencies and so forth. It is not
 uncommon, that some dependencies have the same dependency like other dependencies, but in
 a different version. npm is the smart tool to resolve that kind of dependency tree
 without getting conflicts.
@@ -61,4 +61,3 @@ depend on different versions, right? You actually have to decide which particula
 version to use to avoid conflicts. And that is a big difference. The dependency tree
 in front-end applications should always be flat, otherwise you would have too much
 overhead. Bower takes care of that.
-

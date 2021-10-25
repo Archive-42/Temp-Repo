@@ -9,15 +9,15 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var rightSideView = function(root) {
+var rightSideView = function (root) {
   if (!root) return [];
 
-  var ans = []
-    , tmp = [root];
+  var ans = [],
+    tmp = [root];
 
   while (tmp.length) {
-    var res = []
-      , a = [];
+    var res = [],
+      a = [];
 
     for (var i = 0, len = tmp.length; i < len; i++) {
       if (!tmp[i]) continue;
@@ -27,12 +27,11 @@ var rightSideView = function(root) {
     }
 
     tmp = a.concat();
-    if (res.length)
-      ans.push(res);
+    if (res.length) ans.push(res);
   }
 
   var a = [];
-  ans.forEach(function(item) {
+  ans.forEach(function (item) {
     a.push(item.pop());
   });
 

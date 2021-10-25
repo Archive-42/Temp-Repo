@@ -25,8 +25,8 @@ $ npm install --save-dev connect
 As before with the other plugins, assign the plugin to a variable in your gulpfile so that you can access and reference it in your tasks.
 
 ```js
-var connect = require('connect');
-var serveStatic = require('serve-static');
+var connect = require("connect");
+var serveStatic = require("serve-static");
 ```
 
 ### 3. Create Server Task
@@ -34,18 +34,19 @@ var serveStatic = require('serve-static');
 Now, let's create a basic server task that will create a web server serving static files from your project directory.
 
 ```js
-gulp.task('server', function () {
-    connect().use(serveStatic(__dirname))
-        .listen(8080)
-        .on('listening', function () {
-            console.log('Server Started - http://localhost:8080');
-        });
+gulp.task("server", function () {
+  connect()
+    .use(serveStatic(__dirname))
+    .listen(8080)
+    .on("listening", function () {
+      console.log("Server Started - http://localhost:8080");
+    });
 });
 ```
 
-In this task we call the connect module and then append a .use method that we use to pass in the `serve-static` middleware. 
+In this task we call the connect module and then append a .use method that we use to pass in the `serve-static` middleware.
 
-> The '__dirname' we have passed in tells our serve-static middleware to serve files from our base project directory.
+> The '\_\_dirname' we have passed in tells our serve-static middleware to serve files from our base project directory.
 
 Next we append a `.listen()` method with the specific port we would like to use. In the example above we are using port 8080, but you can customize this port number to whatever you would prefer. In some situations the port may already be in use by another application on your local machine, so you will need to make sure that the port is unique to avoid any conflicts.
 
@@ -70,7 +71,7 @@ $ npm install --save-dev browser-sync
 Next, assign the BrowserSync plugin to a variable in your gulpfile so that you can access and reference it in your tasks.
 
 ```js
-var browserSync = require('browser-sync');
+var browserSync = require("browser-sync");
 ```
 
 ### 3. Create BrowserSync Task
@@ -79,12 +80,12 @@ This task will start the BrowserSync server to keep all of your browsers in sync
 
 ```js
 // BrowserSync Server
-gulp.task('browser-sync', function () {
-    browserSync({
-        server: {
-            baseDir: './'
-        }
-    });
+gulp.task("browser-sync", function () {
+  browserSync({
+    server: {
+      baseDir: "./",
+    },
+  });
 });
 ```
 
@@ -93,10 +94,8 @@ gulp.task('browser-sync', function () {
 After you have started the BrowserSync server, you simply need to tell Gulp when BrowserSync should refresh the page. To do so, simply add the BrowserSync module to the tasks array and execute its reload method.
 
 ```js
-gulp.task('watch', function () {
-    gulp.watch('./src/js/*.js', ['scripts', browserSync.reload]);
-    gulp.watch('./src/css/*.css', ['styles', browserSync.reload]);
+gulp.task("watch", function () {
+  gulp.watch("./src/js/*.js", ["scripts", browserSync.reload]);
+  gulp.watch("./src/css/*.css", ["styles", browserSync.reload]);
 });
 ```
-
-

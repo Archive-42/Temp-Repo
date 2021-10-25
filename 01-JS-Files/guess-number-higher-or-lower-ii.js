@@ -6,25 +6,22 @@
  * @param {number} n
  * @return {number}
  */
-var getMoneyAmount = function(n) {
+var getMoneyAmount = function (n) {
   // ans[i][j] 表示从 [i, j] 中任取一个数字
   // 猜中这个数字至少需要花费的 money
   var ans = [];
-  for (var i = 0; i <= n; i++)
-    ans[i] = [];
+  for (var i = 0; i <= n; i++) ans[i] = [];
 
   return DP(ans, 1, n);
 };
 
 function DP(ans, from, to) {
   // 如果 from >= to
-  if (from >= to)
-    return 0;
+  if (from >= to) return 0;
 
   // 如果 ans[from][to] 已经求得
   // 直接 return
-  if (ans[from][to])
-    return ans[from][to];
+  if (ans[from][to]) return ans[from][to];
 
   // 先赋值 Infinity，便于之后的比较
   ans[from][to] = Infinity;

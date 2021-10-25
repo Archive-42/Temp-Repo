@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
 const LocalStateContext = createContext();
 const LocalStateProvider = LocalStateContext.Provider;

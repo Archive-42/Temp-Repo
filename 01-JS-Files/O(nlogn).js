@@ -6,7 +6,7 @@
  * @param {number[]} height
  * @return {number}
  */
-var maxArea = function(height) {
+var maxArea = function (height) {
   return Math.max(fn(height), fn(height.concat().reverse()));
 };
 
@@ -40,18 +40,15 @@ function fn(height) {
 
 function binarySearch(a, target) {
   target += 1;
-  var start = 0
-    , end = a.length - 1;
+  var start = 0,
+    end = a.length - 1;
 
-  while(start <= end) {
+  while (start <= end) {
     var mid = ~~((start + end) >> 1);
-    if (a[mid] >= target)
-      end = mid - 1;
-    else
-      start = mid + 1;
+    if (a[mid] >= target) end = mid - 1;
+    else start = mid + 1;
   }
 
-  if (a[start - 1] === target - 1)
-    start -= 1;
+  if (a[start - 1] === target - 1) start -= 1;
   return start;
 }

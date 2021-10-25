@@ -14,7 +14,7 @@
         Note that the head is guaranteed to be not null, so it contains at least one node.
  * @param {ListNode} head
  */
-var Solution = function(head) {
+var Solution = function (head) {
   let nums = [];
   while (head) {
     nums.push(head.val);
@@ -27,7 +27,7 @@ var Solution = function(head) {
  * Returns a random node's value.
  * @return {number}
  */
-Solution.prototype.getRandom = function() {
+Solution.prototype.getRandom = function () {
   let index = ~~(Math.random() * this.nums.length);
   return this.nums[index];
 };

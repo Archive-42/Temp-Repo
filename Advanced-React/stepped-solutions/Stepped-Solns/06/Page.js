@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import Header from './Header';
+import PropTypes from "prop-types";
+import Header from "./Header";
 
 export default function Page({ children, cool }) {
   return (

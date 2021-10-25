@@ -10,7 +10,7 @@
 
 function dfs(arr, last, num, k, sum, n) {
   if (num === k && sum === n) {
-    var tmp = arr.map(function(item) {
+    var tmp = arr.map(function (item) {
       return item;
     });
 
@@ -18,19 +18,17 @@ function dfs(arr, last, num, k, sum, n) {
     return;
   }
 
-  if (num > k || sum > n ) 
-    return;
+  if (num > k || sum > n) return;
 
-  for(var i = last + 1; i <= 9; i++) {
+  for (var i = last + 1; i <= 9; i++) {
     arr[arr.length] = i;
     dfs(arr, i, num + 1, k, sum + i, n);
     arr.pop();
   }
 }
 
-var combinationSum3 = function(k, n) {
+var combinationSum3 = function (k, n) {
   ans = [];
-  for(var i = 1; i <= 9; i++)
-    dfs([i], i, 1, k, i, n);
+  for (var i = 1; i <= 9; i++) dfs([i], i, 1, k, i, n);
   return ans;
 };

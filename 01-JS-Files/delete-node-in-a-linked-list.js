@@ -13,7 +13,7 @@
  * @param {ListNode} node
  * @return {void} Do not return anything, modify node in-place instead.
  */
-var deleteNode = function(node) {
+var deleteNode = function (node) {
   node.val = node.next.val;
   var tmp = node.next;
   node.next = node.next.next;

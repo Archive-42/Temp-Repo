@@ -7,11 +7,10 @@
  * @param {string} s
  * @return {number}
  */
-var longestPalindrome = function(s) {
+var longestPalindrome = function (s) {
   let hash = {};
 
-  for (let item of s)
-    hash[item] = ~~hash[item] + 1;
+  for (let item of s) hash[item] = ~~hash[item] + 1;
 
   let exsitsOld = false;
   let ans = 0;
@@ -19,7 +18,7 @@ var longestPalindrome = function(s) {
   for (let key in hash) {
     let cnt = hash[key];
     ans += cnt & 1 ? cnt - 1 : cnt;
-    (cnt & 1) && (exsitsOld = true);
+    cnt & 1 && (exsitsOld = true);
   }
 
   return ans + exsitsOld;

@@ -21,8 +21,8 @@ var groupAnagrams = function (strs) {
       wordMap[key] = [];
     }
 
-    wordMap[key].push(strs[i])
+    wordMap[key].push(strs[i]);
   }
 
-  return Object.values(wordMap)
+  return Object.values(wordMap);
 };

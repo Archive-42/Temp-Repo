@@ -13,7 +13,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-var largestValues = function(root) {
+var largestValues = function (root) {
   let maxn = [];
 
   let getMax = (a, b = -Number.MAX_VALUE) => Math.max(a, b);
@@ -28,4 +28,3 @@ var largestValues = function(root) {
   dfs(root, 0);
   return maxn;
 };
-

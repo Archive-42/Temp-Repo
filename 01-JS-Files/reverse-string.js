@@ -6,9 +6,8 @@
  * @param {string} s
  * @return {string}
  */
-var reverseString = function(s) {
-  if (s === null)
-    return s;
+var reverseString = function (s) {
+  if (s === null) return s;
 
-  return s.split('').reverse().join('');
+  return s.split("").reverse().join("");
 };

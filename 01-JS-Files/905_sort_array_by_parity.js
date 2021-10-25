@@ -13,7 +13,7 @@ The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
 */
 
 var sortArrayByParity = function (A) {
-  let evens = A.filter(el => el % 2 === 0)
-  let odds = A.filter(el => el % 2 !== 0)
-  return evens.concat(odds)
+  let evens = A.filter((el) => el % 2 === 0);
+  let odds = A.filter((el) => el % 2 !== 0);
+  return evens.concat(odds);
 };

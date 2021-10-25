@@ -9,7 +9,7 @@
 var ans, res, len;
 
 function dfs(index, nums) {
-  var tmp = res.map(function(item) {
+  var tmp = res.map(function (item) {
     return item;
   });
 
@@ -22,14 +22,12 @@ function dfs(index, nums) {
   }
 }
 
-var subsets = function(nums) {
-  nums.sort(function(a, b) {
+var subsets = function (nums) {
+  nums.sort(function (a, b) {
     return a - b;
   });
 
-  ans = [],
-  res = [],
-  len = nums.length;
+  (ans = []), (res = []), (len = nums.length);
 
   dfs(0, nums);
 

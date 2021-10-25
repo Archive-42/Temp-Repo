@@ -11,17 +11,17 @@
 // Your runtime beats 100.00% of javascript submissions.
 // use Binary Indexed Tree
 
-function lowbit(x) {return x & (-x)};
+function lowbit(x) {
+  return x & -x;
+}
 
-var NumArray = function(nums) {
+var NumArray = function (nums) {
   this.len = nums.length;
   this.sum = [];
   this.nums = [];
-  for (var i = 0; i <= this.len; i++)
-    this.sum[i] = this.nums[i] = 0;
+  for (var i = 0; i <= this.len; i++) this.sum[i] = this.nums[i] = 0;
 
-  for (var i = 0; i < this.len; i++) 
-    this.update(i, nums[i]);
+  for (var i = 0; i < this.len; i++) this.update(i, nums[i]);
 };
 
 /**
@@ -29,15 +29,14 @@ var NumArray = function(nums) {
  * @param {number} val
  * @return {void}
  */
-NumArray.prototype.update = function(index, val) {
+NumArray.prototype.update = function (index, val) {
   // 改变到 add（跟原数比的增量） 的形式，回归到最原始的树状数组改点求段
   var add = val - this.nums[index];
 
   this.nums[index] = val;
 
   // 树状数组 nums[] 数组 index 从 1 开始
-  for (var i = index + 1; i <= this.len; i += lowbit(i))
-    this.sum[i] += add;
+  for (var i = index + 1; i <= this.len; i += lowbit(i)) this.sum[i] += add;
 };
 
 /**
@@ -45,12 +44,11 @@ NumArray.prototype.update = function(index, val) {
  * @param {number} j
  * @return {number}
  */
-NumArray.prototype.sumRange = function(i, j) {
+NumArray.prototype.sumRange = function (i, j) {
   var that = this;
   function getSum(index) {
     var ans = 0;
-    for (var i = index; i; i -= lowbit(i))
-      ans += that.sum[i];
+    for (var i = index; i; i -= lowbit(i)) ans += that.sum[i];
     return ans;
   }
 

@@ -3,26 +3,26 @@
 //    the number that is a duplicate
 //    the number that is missing
 
-var findErrorNums = function(nums) {
+var findErrorNums = function (nums) {
   let set = new Set();
   let result = [];
 
   for (let i = 0; i < nums.length; i++) {
     const currNum = nums[i];
     if (set.has(currNum)) {
-      dups.push(currNum)
+      dups.push(currNum);
     } else {
-      set.add(currNum)
+      set.add(currNum);
     }
   }
 
-  let numsSet = new Set(nums)
+  let numsSet = new Set(nums);
   let i = 1;
   while (i <= nums.length) {
     if (!numsSet.has(i)) {
-      result.push(i)
-      return result
+      result.push(i);
+      return result;
     }
-    i++
+    i++;
   }
-}
+};

@@ -13,13 +13,11 @@
 // 比如 "1,2,2,3,3,4,5,6"
 // 然后二分查找，插入，因为插入只是 string 的简单拼接，所以速度应该不慢
 
-var findDuplicate = function(nums) {
+var findDuplicate = function (nums) {
   var hash = {};
   for (var i = 0, len = nums.length; i < len; i++) {
     var item = nums[i];
-    if (!hash[item])
-      hash[item] = true;
-    else 
-      return item;
+    if (!hash[item]) hash[item] = true;
+    else return item;
   }
 };

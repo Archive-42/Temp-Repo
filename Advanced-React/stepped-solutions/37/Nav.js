@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import NavStyles from './styles/NavStyles';
-import { useUser } from './User';
+import Link from "next/link";
+import NavStyles from "./styles/NavStyles";
+import { useUser } from "./User";
 
 export default function Nav() {
   const user = useUser();

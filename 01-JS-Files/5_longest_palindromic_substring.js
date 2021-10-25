@@ -13,12 +13,12 @@ Output: "bb"
 */
 
 var longestPalindrome = function (s) {
-  var longest = '';
-  var current = '';
+  var longest = "";
+  var current = "";
   var start = 0;
   var end = 1;
 
-  var checkPalindrome = function(start, end) {
+  var checkPalindrome = function (start, end) {
     while (s[start] === s[end] && start >= 0 && end < s.length) {
       current = s.slice(start, end + 1);
       start--;
@@ -28,8 +28,8 @@ var longestPalindrome = function (s) {
       longest = current;
     }
     return;
-  }
-  
+  };
+
   while (end < s.length) {
     if (s[start] === s[end + 1]) {
       checkPalindrome(start, end + 1);
@@ -42,8 +42,5 @@ var longestPalindrome = function (s) {
   return longest;
 };
 
-
-
-
-console.log(longestPalindrome("babad"))
+console.log(longestPalindrome("babad"));
 // console.log(checkPalindrome("babad", 0, 1))

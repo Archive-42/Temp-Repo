@@ -1,8 +1,8 @@
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/client';
-import Form from './styles/Form';
-import useForm from '../lib/useForm';
-import Error from './ErrorMessage';
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/client";
+import Form from "./styles/Form";
+import useForm from "../lib/useForm";
+import Error from "./ErrorMessage";
 
 const RESET_MUTATION = gql`
   mutation RESET_MUTATION(
@@ -23,8 +23,8 @@ const RESET_MUTATION = gql`
 
 export default function Reset({ token }) {
   const { inputs, handleChange, resetForm } = useForm({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     token,
   });
   const [reset, { data, loading, error }] = useMutation(RESET_MUTATION, {

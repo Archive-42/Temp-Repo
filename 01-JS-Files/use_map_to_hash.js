@@ -6,31 +6,29 @@
  * @param {string[]} words
  * @return {number[][]}
  */
-var palindromePairs = function(words) {
+var palindromePairs = function (words) {
   var hash = [];
 
   var len = words.length;
 
   var myMap = new Map();
 
-  for (var i = 0; i < len; i++)
-    myMap.set(words[i], i);
+  for (var i = 0; i < len; i++) myMap.set(words[i], i);
 
   var ans = [];
-  
+
   // 循环迭代每个元素
-  // 判断该元素的前缀的逆序可否在集合中找到 
+  // 判断该元素的前缀的逆序可否在集合中找到
   for (var i = 0; i < len; i++) {
     var item = words[i];
 
-    var str = '';
+    var str = "";
 
     var wLen = item.length;
 
     var j = 0;
 
     do {
-
       var index = myMap.get(str);
 
       if (index === undefined || index === i) {
@@ -48,9 +46,7 @@ var palindromePairs = function(words) {
       ans.push([i, index]);
 
       str = item[j++] + str;
-
     } while (j < wLen);
-
   }
 
   // 循环迭代每个元素
@@ -58,21 +54,20 @@ var palindromePairs = function(words) {
   for (var i = 0; i < len; i++) {
     var item = words[i];
 
-    var str = '';
+    var str = "";
 
     var wLen = item.length;
 
     var j = wLen - 1;
 
     do {
-
       var index = myMap.get(str);
 
       if (index === undefined || index === i) {
         str += item[j--];
         continue;
       }
-      
+
       var _str = item.substring(0, j + 1);
 
       if (!isPalindrome(_str)) {
@@ -83,12 +78,11 @@ var palindromePairs = function(words) {
       ans.push([index, i]);
 
       str += item[j--];
-
     } while (j >= -1);
   }
 
   function isPalindrome(s) {
-    return s === s.split('').reverse().join('');
+    return s === s.split("").reverse().join("");
   }
 
   return ans;

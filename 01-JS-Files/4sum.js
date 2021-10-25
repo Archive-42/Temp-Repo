@@ -12,8 +12,8 @@
  * @param {number} target
  * @return {number[][]}
  */
-var fourSum = function(nums, target) {
-  nums.sort(function(a, b) {
+var fourSum = function (nums, target) {
+  nums.sort(function (a, b) {
     return a - b;
   });
 
@@ -23,14 +23,12 @@ var fourSum = function(nums, target) {
 
   for (var i = 0; i < len; i++)
     for (var j = i + 1; j < len; j++) {
-      var a = nums[i]
-        , b = nums[j]
-        , c = a + b;
+      var a = nums[i],
+        b = nums[j],
+        c = a + b;
 
-      if (hash[c] === undefined) 
-        hash[c] = [[i, j]];
-      else 
-        hash[c].push([i, j]);
+      if (hash[c] === undefined) hash[c] = [[i, j]];
+      else hash[c].push([i, j]);
     }
 
   var ans = [];
@@ -39,12 +37,11 @@ var fourSum = function(nums, target) {
 
   for (var i = 0; i < len; i++)
     for (var j = i + 1; j < len; j++) {
-      var a = nums[i]
-        , b = nums[j]
-        , sum = target - a - b;
+      var a = nums[i],
+        b = nums[j],
+        sum = target - a - b;
 
-      if (!hash[sum])
-        continue;
+      if (!hash[sum]) continue;
 
       for (var k = 0, _len = hash[sum].length; k < _len; k++) {
         var item = hash[sum][k];
@@ -52,14 +49,14 @@ var fourSum = function(nums, target) {
         if (item[0] === i || item[1] === i || item[0] === j || item[1] === j)
           continue;
 
-        var c = nums[item[0]]
-          , d = nums[item[1]];
+        var c = nums[item[0]],
+          d = nums[item[1]];
 
-        var tmp = [a, b, c, d].sort(function(a, b) {
+        var tmp = [a, b, c, d].sort(function (a, b) {
           return a - b;
         });
 
-        var str = tmp.join(',');
+        var str = tmp.join(",");
         if (!hashSet[str]) {
           hashSet[str] = true;
           ans.push(tmp);
@@ -67,5 +64,5 @@ var fourSum = function(nums, target) {
       }
     }
 
-    return ans;
+  return ans;
 };

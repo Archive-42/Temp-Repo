@@ -9,7 +9,7 @@ Using npm, install the CSS loader with: `npm install css-loader --save-dev`
 Then as you require the file, prefix the loader to perform the transformation separated by a `'!'` character:
 
 ```js
-var css = require('css!./css/style.css');
+var css = require("css!./css/style.css");
 ```
 
 This will transform the CSS into a string and return that string. The useful part of this is the css-loader will treat `@import` and `url()` calls within the CSS just like `require()` statements. Thus making your CSS as modular as the rest of your application.
@@ -23,7 +23,7 @@ Having your CSS as a raw string most of time isn't that useful. We likely would 
 Now you just need to chain the loaders in the order you would like the transformation to occur:
 
 ```js
-require('style!css!./css/style.css');
+require("style!css!./css/style.css");
 ```
 
 Which will first transform the file into resolved CSS and then apply that CSS to the page as if you included it in a `<link>` tag.
@@ -33,17 +33,17 @@ Which will first transform the file into resolved CSS and then apply that CSS to
 Some loaders have options that can be passed to them. Such as with the exports-loader, a loader for exporting a specific variable from within the module. For example if we have a module that does not use `module.exports` but rather just defines a global variable:
 
 ```js
-var Animal = (function() {
-  return function(type) {
-    console.log('I am a ' + type);
-  }
-}());
+var Animal = (function () {
+  return function (type) {
+    console.log("I am a " + type);
+  };
+})();
 ```
 
 You can resolve this module by specifying which variable should be exported by passing an option to the exports loader using the `'?'` separator:
 
 ```js
-var Animal = require('exports?Animal!animals/dist/animals.js');
+var Animal = require("exports?Animal!animals/dist/animals.js");
 ```
 
 Which will effectively add `module.exports = Animal;` to the module's source when bundling.
@@ -54,20 +54,18 @@ Prefixing all your modules with a loader might be taxing where in a lot of insta
 
 In your `webpack.config.js`:
 
-``` javascript
+```javascript
 module.exports = {
   module: {
-    loaders: [
-      { test: /\.css$/, loader: 'style!css' }
-    ]
-  }
+    loaders: [{ test: /\.css$/, loader: "style!css" }],
+  },
 };
 ```
 
 Now any module that ends with `.css` that is resolved will automatically have the CSS and style loader applied. Which shortens our previous call to apply CSS to our page to:
 
-``` javascript
-require('./css/style.css');
+```javascript
+require("./css/style.css");
 ```
 
 ## Common Useful Loaders
