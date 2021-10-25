@@ -14,19 +14,19 @@
  * @param {TreeLinkNode} root
  * @return {void} Do not return anything, modify tree in-place instead.
  */
-var connect = function(root) {
-    if(root === null){
-        return;
-    }
-    
-    if(root.left){
-        root.left.next = root.right;
-    }
-    
-    if(root.right){
-        root.right.next = (root.next === null) ? null : root.next.left
-    }
-    
-    connect(root.left);
-    connect(root.right);
+var connect = function (root) {
+  if (root === null) {
+    return;
+  }
+
+  if (root.left) {
+    root.left.next = root.right;
+  }
+
+  if (root.right) {
+    root.right.next = root.next === null ? null : root.next.left;
+  }
+
+  connect(root.left);
+  connect(root.right);
 };

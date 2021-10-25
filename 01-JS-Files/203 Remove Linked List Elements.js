@@ -14,25 +14,25 @@
  * @param {number} val
  * @return {ListNode}
  */
-var removeElements = function(head, val) {
-    if(head === null){
-        return head;
+var removeElements = function (head, val) {
+  if (head === null) {
+    return head;
+  }
+
+  var dummy = new ListNode(-1);
+  dummy.next = head;
+  prev = dummy;
+  cur = head;
+
+  while (prev !== null && prev.next !== null) {
+    if (cur.val === val) {
+      prev.next = cur.next;
+      cur = prev.next;
+    } else {
+      prev = cur;
+      cur = cur.next;
     }
-    
-    var dummy = new ListNode(-1);
-    dummy.next = head;
-    prev = dummy;
-    cur = head;
-    
-    while(prev !== null && prev.next !== null){
-        if(cur.val === val) {
-            prev.next = cur.next;
-            cur = prev.next;
-        } else {
-            prev = cur;
-            cur = cur.next;
-        }
-    }
-    
-    return dummy.next;
+  }
+
+  return dummy.next;
 };

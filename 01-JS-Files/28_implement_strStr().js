@@ -16,11 +16,11 @@ function needleInHaystack(haystack, needle) {
   for (let i = 0; i < haystack.length; i++) {
     if (haystack[i] === needle[0]) {
       let check = haystack.slice(i, i + needle.length);
-      if (check.includes(needle)) return i
+      if (check.includes(needle)) return i;
     }
   }
 
-  return -1
+  return -1;
 }
 
-console.log(needleInHaystack("mississippi", "issip"))
+console.log(needleInHaystack("mississippi", "issip"));

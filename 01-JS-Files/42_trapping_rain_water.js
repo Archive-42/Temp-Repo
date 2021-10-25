@@ -23,7 +23,7 @@ Once you have the leftMax and the rightMax, AND the current value is less than b
   spilling over the smaller height.
 */
 
-var trapRainwater = function(heightArr) {
+var trapRainwater = function (heightArr) {
   let units = 0;
 
   for (let i = 0; i < heightArr.length; i++) {
@@ -33,13 +33,13 @@ var trapRainwater = function(heightArr) {
     let leftMax = Math.max(...left);
     let rightMax = Math.max(...right);
 
-    let current = heightArr[i]
+    let current = heightArr[i];
     if (current < leftMax && current < rightMax) {
-      units += Math.min((leftMax - current), (rightMax - current))
+      units += Math.min(leftMax - current, rightMax - current);
     }
   }
 
-  return units
-}
+  return units;
+};
 
-console.log(trapRainwater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+console.log(trapRainwater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));

@@ -12,7 +12,6 @@
 // Show Tags
 // Show Similar Problems
 
-
 /**
  * // This is the interface that allows for creating nested lists.
  * // You should not implement it, or speculate about its implementation
@@ -43,22 +42,21 @@
  * @param {NestedInteger[]} nestedList
  * @return {number}
  */
- 
-var depthSum = function(nestedList) {
-    
-    function traverse(arr, lvl) {
-        var sum = 0;
-        
-        for(var i = 0; i < arr.length; i++) {
-            if(arr[i].isInteger()) {
-                sum += arr[i].getInteger()*lvl;
-            } else {
-                sum += traverse(arr[i].getList(), lvl + 1);
-            }
-        }
-        
-        return sum;
+
+var depthSum = function (nestedList) {
+  function traverse(arr, lvl) {
+    var sum = 0;
+
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].isInteger()) {
+        sum += arr[i].getInteger() * lvl;
+      } else {
+        sum += traverse(arr[i].getList(), lvl + 1);
+      }
     }
-    
-    return traverse(nestedList, 1);
+
+    return sum;
+  }
+
+  return traverse(nestedList, 1);
 };

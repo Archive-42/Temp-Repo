@@ -31,4 +31,4 @@ var maxNumberOfApples = function (arr) {
   return counter;
 };
 
-console.log(maxNumberOfApples([900, 950, 800, 1000, 700, 800]))
+console.log(maxNumberOfApples([900, 950, 800, 1000, 700, 800]));

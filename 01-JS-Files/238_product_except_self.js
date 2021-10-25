@@ -1,4 +1,4 @@
-// Given an array of n integers where n > 1, return an array 'output' such that 'output[i]' is equal to the product 
+// Given an array of n integers where n > 1, return an array 'output' such that 'output[i]' is equal to the product
 //  of all the elements of nums except nums[i]
 // input: [1, 2, 3, 4]
 // output: [24, 12, 8, 6]
@@ -8,15 +8,15 @@
 
 // with division, but not allowed in this problem:
 // Also, doesn't cover edge cases where there is a 0 in the array
-var productExceptSelfWithDivision = function(nums) {
+var productExceptSelfWithDivision = function (nums) {
   let res = [];
-  let totalProd = nums.reduce((a, b) => a * b)
+  let totalProd = nums.reduce((a, b) => a * b);
 
   for (let i = 0; i < nums.length; i++) {
-    res.push(totalProd/nums[i])  
+    res.push(totalProd / nums[i]);
   }
   return res;
-}
+};
 
 // brute force:
 // this works, and doesn't use division, but times out
@@ -24,12 +24,12 @@ var productExceptSelfBruteForce = function (nums) {
   let resMap = {};
 
   for (let i = 0; i < nums.length; i++) {
-    let sub = nums.slice(0, i).concat(nums.slice(i + 1))
-    let prod = sub.reduce((a, b) => a * b)
-    resMap[i] = prod
+    let sub = nums.slice(0, i).concat(nums.slice(i + 1));
+    let prod = sub.reduce((a, b) => a * b);
+    resMap[i] = prod;
   }
 
-  return Object.values(resMap)
+  return Object.values(resMap);
 };
 
 // the key is that the array product without an element is equal to that element's left-neighbor prefix product
@@ -38,7 +38,7 @@ var productExceptSelfBruteForce = function (nums) {
 
 // i.e. for input of arr = [1, 2, 3, 4]:
 // the left / prefix products are: [1, 2, 6, 24]
-// the first element is 1, becuase at arr[0], there is nothing to the left of it. 
+// the first element is 1, becuase at arr[0], there is nothing to the left of it.
 //    so the product of it times everything to the left of it is just itself.
 // the right / postfix products are: [24, 24, 12, 4]
 // similarly, the last element in the postfix array is the last element in the input array.
@@ -55,8 +55,7 @@ var productExceptSelfBruteForce = function (nums) {
 // el 4 in post === 4
 // so the value we want to put at postition/element 3 in the results array is 2 * 4, or 8
 
-
-var productExceptSelf = function(nums) {
+var productExceptSelf = function (nums) {
   // you can also do:
   // const res = [];
   // but I find the below easier to see progression of calculation
@@ -64,8 +63,8 @@ var productExceptSelf = function(nums) {
   const res = new Array(nums.length).fill(1);
   let left = 1;
   let right = 1;
- 
-  // this is building up the left/prefix array. 
+
+  // this is building up the left/prefix array.
   // in each iteration, you first replace what is at res[i] with the product of that element * what is currently left
   // then you replace left with the product of what is currently left * the element at that index in the original nums array
   // **even though it appears that you're including yourself in the multiplication, you're not actually doing anything with that left
@@ -74,24 +73,24 @@ var productExceptSelf = function(nums) {
   // the res[i] is replacing each element in that position with that number.
   for (let i = 0; i < nums.length; i++) {
     res[i] *= left;
-    left *= nums[i]
+    left *= nums[i];
   }
   console.log(`before post res ${res}`);
-  
+
   // this is doing the same but working backwards.
-  // the reason this works in place, is because after the first iteration going left to right, each element represents 
-  //    the product of everything to the left of it. 
+  // the reason this works in place, is because after the first iteration going left to right, each element represents
+  //    the product of everything to the left of it.
   // so the 4th element, the value at index 3, is the product of elements 1, 2, and 3.
   // and as before, right represents an accumulation of the products of everything to the right.
   // now when you traverse the same res array backwards and replace it with the product of itself * what is right,
-  //    you are essentially multiplying everything to the left * everything to the right EXCEPT for itself. 
+  //    you are essentially multiplying everything to the left * everything to the right EXCEPT for itself.
   // (the original res elements don't include themselves)
   for (let j = nums.length - 1; j >= 0; j--) {
     res[j] *= right;
-    right *= nums[j]
+    right *= nums[j];
   }
-  
-  return res;
-}
 
-console.log(productExceptSelf([1, 2, 3, 4]))
+  return res;
+};
+
+console.log(productExceptSelf([1, 2, 3, 4]));

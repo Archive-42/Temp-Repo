@@ -20,10 +20,10 @@ var defangIPaddr = function (address) {
   let res = [];
   for (let i = 0; i < address.length; i++) {
     if (address[i] === ".") {
-      res.push("[.]")
+      res.push("[.]");
     } else {
-      res.push(address[i])
+      res.push(address[i]);
     }
   }
-  return res.join("")
+  return res.join("");
 };

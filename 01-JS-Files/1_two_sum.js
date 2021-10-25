@@ -17,11 +17,11 @@ var twoSum = function (nums, target) {
   for (let i = 0; i < nums.length; i++) {
     let remainder = target - nums[i];
     if (map[remainder] !== undefined) {
-      return [map[remainder], i]
+      return [map[remainder], i];
     }
     map[nums[i]] = i;
   }
   return res;
 };
 
-console.log(twoSum([2, 7, 11, 15], 9))
+console.log(twoSum([2, 7, 11, 15], 9));

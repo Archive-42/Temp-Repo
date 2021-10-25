@@ -19,4 +19,4 @@ Output: [""]
 */
 
 // For a string to be valid, every left has to have a closint right, but they also have to be in the correct order.
-// we could go through and 
+// we could go through and

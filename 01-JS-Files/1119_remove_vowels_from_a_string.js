@@ -14,6 +14,8 @@ Output: ""
 */
 
 var removeVowels = function (S) {
-  let vowels = 'aeiou';
-  return S.split("").filter(char => !vowels.includes(char)).join("")
+  let vowels = "aeiou";
+  return S.split("")
+    .filter((char) => !vowels.includes(char))
+    .join("");
 };

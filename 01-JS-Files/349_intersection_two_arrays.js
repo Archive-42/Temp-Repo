@@ -16,16 +16,16 @@ var intersection = function (nums1, nums2) {
 
   let res = [];
   if (set1.size < set2.size) {
-    set1.forEach(s => {
-      if (set2.has(s)) res.push(s)
-    })
+    set1.forEach((s) => {
+      if (set2.has(s)) res.push(s);
+    });
   } else {
-    set2.forEach(s => {
-      if (set1.has(s)) res.push(s)
-    })
+    set2.forEach((s) => {
+      if (set1.has(s)) res.push(s);
+    });
   }
 
   return res;
-};;
+};
 
-console.log(intersection([1, 2, 3, 4], [2, 3, 6, 5]))
+console.log(intersection([1, 2, 3, 4], [2, 3, 6, 5]));

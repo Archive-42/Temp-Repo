@@ -13,25 +13,34 @@ Explanation: Paint house 0 into blue, paint house 1 into green, paint house 2 in
 */
 
 // you want to find the minimum sum for each possible combination.
-// by starting at idx 1, you += previous idx values. 
+// by starting at idx 1, you += previous idx values.
 // But only += the minimum of the two remaining options (bc you can't take a value from the idx where you're at now)
 // bc you want to end up with the minimum possible sum
 
 // Note that it doesn't matter which index represents which color, only that they don't overlap
 //  i.e. you just make sure you don't += a value from the same idx position. This will ensure no overlap
-// you're updating the input array as you go, so by the time you return the last array at the end, 
+// you're updating the input array as you go, so by the time you return the last array at the end,
 //  you've got a cumulative sum.
 var minCost = function (costs) {
   if (!costs.length || costs === null) return null;
 
   let minCost = 0;
   for (let i = 1; i < costs.length; i++) {
-    costs[i][0] += Math.min(costs[i - 1][1], costs[i - 1][2])
-    costs[i][1] += Math.min(costs[i - 1][0], costs[i - 1][2])
-    costs[i][2] += Math.min(costs[i - 1][0], costs[i - 1][1])
+    costs[i][0] += Math.min(costs[i - 1][1], costs[i - 1][2]);
+    costs[i][1] += Math.min(costs[i - 1][0], costs[i - 1][2]);
+    costs[i][2] += Math.min(costs[i - 1][0], costs[i - 1][1]);
   }
 
-  return Math.min(Math.min(costs[costs.length - 1][0], costs[costs.length - 1][1]), costs[costs.length - 1][2])
-}; 
+  return Math.min(
+    Math.min(costs[costs.length - 1][0], costs[costs.length - 1][1]),
+    costs[costs.length - 1][2]
+  );
+};
 
-console.log(minCost([[17, 2, 17], [16, 16, 5], [14, 3, 19]]));
+console.log(
+  minCost([
+    [17, 2, 17],
+    [16, 16, 5],
+    [14, 3, 19],
+  ])
+);

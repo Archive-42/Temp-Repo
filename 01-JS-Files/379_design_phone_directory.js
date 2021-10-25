@@ -22,31 +22,31 @@ check(): check to see if the value stored for that key is 1 or 0
 release(): set the value for that key equal to 1
 */
 
-var PhoneDirectory = function(maxNumbers) {
+var PhoneDirectory = function (maxNumbers) {
   this.directory = {};
 
   for (let i = 0; i < maxNumbers; i++) {
-    this.directory[i] = 1
+    this.directory[i] = 1;
   }
-}
+};
 
-PhoneDirectory.prototype.get = function() {
+PhoneDirectory.prototype.get = function () {
   for (let key in this.directory) {
     if (this.directory[key] === 1) {
-      this.directory[key] = 0
+      this.directory[key] = 0;
       return key;
     }
   }
-  return -1
-}
+  return -1;
+};
 
-PhoneDirectory.prototype.check = function(number) {
-  return this.directory[number] === 1 ? true : false
-}
+PhoneDirectory.prototype.check = function (number) {
+  return this.directory[number] === 1 ? true : false;
+};
 
-PhoneDirectory.prototype.release = function(number) {
-  this.directory[number] = 0
-}
+PhoneDirectory.prototype.release = function (number) {
+  this.directory[number] = 0;
+};
 
 let directory = new PhoneDirectory(5);
 console.log(directory.get());

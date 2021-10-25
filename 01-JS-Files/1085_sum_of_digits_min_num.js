@@ -20,10 +20,13 @@ The minimal element is 33, and the sum of those digits is S = 3 + 3 = 6 which is
 */
 
 var sumOfDigits = function (A) {
-  let min = Math.min(...A)
-  let digits = min.toString().split("").map(el => parseInt(el))
-  let sum = digits.reduce((a, b) => a + b)
-  return sum % 2 === 0 ? 1 : 0
+  let min = Math.min(...A);
+  let digits = min
+    .toString()
+    .split("")
+    .map((el) => parseInt(el));
+  let sum = digits.reduce((a, b) => a + b);
+  return sum % 2 === 0 ? 1 : 0;
 };
 
-console.log(sumOfDigits([99, 77, 33, 66, 55]))
+console.log(sumOfDigits([99, 77, 33, 66, 55]));
