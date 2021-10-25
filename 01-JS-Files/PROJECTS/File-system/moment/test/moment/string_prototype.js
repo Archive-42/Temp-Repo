@@ -1,10 +1,10 @@
-var moment = require('../../moment');
+var moment = require("../../moment");
 
 exports.string_prototype = {
-  'string prototype overrides call': function (test) {
+  "string prototype overrides call": function (test) {
     test.expect(1);
 
-    moment.lang('en');
+    moment.lang("en");
     var prior = String.prototype.call,
       b;
     String.prototype.call = function () {
@@ -12,7 +12,7 @@ exports.string_prototype = {
     };
 
     b = moment(new Date(2011, 7, 28, 15, 25, 50, 125));
-    test.equal(b.format('MMMM Do YYYY, h:mm a'), 'August 28th 2011, 3:25 pm');
+    test.equal(b.format("MMMM Do YYYY, h:mm a"), "August 28th 2011, 3:25 pm");
 
     String.prototype.call = prior;
     test.done();

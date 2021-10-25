@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const os = require('os');
+const fs = require("fs");
+const os = require("os");
 const fse = require(process.cwd());
-const path = require('path');
-const assert = require('assert');
-const proxyquire = require('proxyquire');
+const path = require("path");
+const assert = require("assert");
+const proxyquire = require("proxyquire");
 let gracefulFsStub;
 let utimes;
 
@@ -14,7 +14,7 @@ let utimes;
 // HFS, ext{2,3}, FAT do not
 function hasMillisResSync() {
   let tmpfile = path.join(
-    'millis-test-sync' +
+    "millis-test-sync" +
       Date.now().toString() +
       Math.random().toString().slice(2)
   );
@@ -24,30 +24,30 @@ function hasMillisResSync() {
   const d = new Date(1435410243862);
   fs.writeFileSync(
     tmpfile,
-    'https://github.com/jprichardson/node-fs-extra/pull/141'
+    "https://github.com/jprichardson/node-fs-extra/pull/141"
   );
-  const fd = fs.openSync(tmpfile, 'r+');
+  const fd = fs.openSync(tmpfile, "r+");
   fs.futimesSync(fd, d, d);
   fs.closeSync(fd);
   return fs.statSync(tmpfile).mtime > 1435410243000;
 }
 
-describe('utimes', () => {
+describe("utimes", () => {
   let TEST_DIR;
 
   beforeEach((done) => {
-    TEST_DIR = path.join(os.tmpdir(), 'fs-extra', 'utimes');
+    TEST_DIR = path.join(os.tmpdir(), "fs-extra", "utimes");
     fse.emptyDir(TEST_DIR, done);
     // reset stubs
     gracefulFsStub = {};
-    utimes = proxyquire('../utimes', { 'graceful-fs': gracefulFsStub });
+    utimes = proxyquire("../utimes", { "graceful-fs": gracefulFsStub });
   });
 
-  describe('utimesMillis()', () => {
+  describe("utimesMillis()", () => {
     // see discussion https://github.com/jprichardson/node-fs-extra/pull/141
-    it('should set the utimes w/ millisecond precision', (done) => {
-      const tmpFile = path.join(TEST_DIR, 'someFile');
-      fs.writeFileSync(tmpFile, 'hello');
+    it("should set the utimes w/ millisecond precision", (done) => {
+      const tmpFile = path.join(TEST_DIR, "someFile");
+      fs.writeFileSync(tmpFile, "hello");
 
       let stats = fs.lstatSync(tmpFile);
 
@@ -72,7 +72,7 @@ describe('utimes', () => {
       });
     });
 
-    it('should close open file desciptors after encountering an error', (done) => {
+    it("should close open file desciptors after encountering an error", (done) => {
       const fakeFd = Math.random();
 
       gracefulFsStub.open = (
@@ -81,7 +81,7 @@ describe('utimes', () => {
         modeIgnored,
         callback
       ) => {
-        if (typeof modeIgnored === 'function') callback = modeIgnored;
+        if (typeof modeIgnored === "function") callback = modeIgnored;
         process.nextTick(() => callback(null, fakeFd));
       };
 
@@ -95,12 +95,12 @@ describe('utimes', () => {
       let testError;
       gracefulFsStub.futimes = (fd, atimeIgnored, mtimeIgnored, callback) => {
         process.nextTick(() => {
-          testError = new Error('A test error');
+          testError = new Error("A test error");
           callback(testError);
         });
       };
 
-      utimes.utimesMillis('ignored', 'ignored', 'ignored', (err) => {
+      utimes.utimesMillis("ignored", "ignored", "ignored", (err) => {
         assert.strictEqual(err, testError);
         assert(closeCalled);
         done();

@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const path = require('path');
-const fs = require('graceful-fs');
-const pathExists = require('../path-exists').pathExists;
+const path = require("path");
+const fs = require("graceful-fs");
+const pathExists = require("../path-exists").pathExists;
 
 /**
  * Function that returns two types of paths, one relative to symlink, and one
@@ -30,7 +30,7 @@ function symlinkPaths(srcpath, dstpath, callback) {
   if (path.isAbsolute(srcpath)) {
     return fs.lstat(srcpath, (err) => {
       if (err) {
-        err.message = err.message.replace('lstat', 'ensureSymlink');
+        err.message = err.message.replace("lstat", "ensureSymlink");
         return callback(err);
       }
       return callback(null, {
@@ -51,7 +51,7 @@ function symlinkPaths(srcpath, dstpath, callback) {
       } else {
         return fs.lstat(srcpath, (err) => {
           if (err) {
-            err.message = err.message.replace('lstat', 'ensureSymlink');
+            err.message = err.message.replace("lstat", "ensureSymlink");
             return callback(err);
           }
           return callback(null, {
@@ -68,7 +68,7 @@ function symlinkPathsSync(srcpath, dstpath) {
   let exists;
   if (path.isAbsolute(srcpath)) {
     exists = fs.existsSync(srcpath);
-    if (!exists) throw new Error('absolute srcpath does not exist');
+    if (!exists) throw new Error("absolute srcpath does not exist");
     return {
       toCwd: srcpath,
       toDst: srcpath,
@@ -84,7 +84,7 @@ function symlinkPathsSync(srcpath, dstpath) {
       };
     } else {
       exists = fs.existsSync(srcpath);
-      if (!exists) throw new Error('relative srcpath does not exist');
+      if (!exists) throw new Error("relative srcpath does not exist");
       return {
         toCwd: srcpath,
         toDst: path.relative(dstdir, srcpath),

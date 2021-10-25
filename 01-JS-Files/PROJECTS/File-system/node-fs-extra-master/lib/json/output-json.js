@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const { stringify } = require('jsonfile/utils');
-const { outputFile } = require('../output-file');
+const { stringify } = require("jsonfile/utils");
+const { outputFile } = require("../output-file");
 
 async function outputJson(file, data, options = {}) {
   const str = stringify(data, options);

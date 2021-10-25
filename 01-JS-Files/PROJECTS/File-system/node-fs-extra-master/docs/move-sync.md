@@ -10,17 +10,17 @@ Moves a file or directory, even across devices.
 ## Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-fs.moveSync('/tmp/somefile', '/tmp/does/not/exist/yet/somefile');
+fs.moveSync("/tmp/somefile", "/tmp/does/not/exist/yet/somefile");
 ```
 
 **Using `overwrite` option**
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-fs.moveSync('/tmp/somedir', '/tmp/may/already/exist/somedir', {
+fs.moveSync("/tmp/somedir", "/tmp/may/already/exist/somedir", {
   overwrite: true,
 });
 ```

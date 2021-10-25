@@ -1,26 +1,26 @@
-'use strict';
+"use strict";
 
 // relevant: https://github.com/jprichardson/node-fs-extra/issues/599
 
-const os = require('os');
-const fs = require('../../');
-const path = require('path');
-const assert = require('assert');
-const klawSync = require('klaw-sync');
+const os = require("os");
+const fs = require("../../");
+const path = require("path");
+const assert = require("assert");
+const klawSync = require("klaw-sync");
 
 /* global afterEach, beforeEach, describe, it */
 
-let TEST_DIR = '';
+let TEST_DIR = "";
 
 const FILES = [
-  path.join('dir1', 'file1.txt'),
-  path.join('dir1', 'dir2', 'file2.txt'),
-  path.join('dir1', 'dir2', 'dir3', 'file3.txt'),
+  path.join("dir1", "file1.txt"),
+  path.join("dir1", "dir2", "file2.txt"),
+  path.join("dir1", "dir2", "dir3", "file3.txt"),
 ];
 
-describe('+ copySync() - copy a readonly directory with content', () => {
+describe("+ copySync() - copy a readonly directory with content", () => {
   beforeEach((done) => {
-    TEST_DIR = path.join(os.tmpdir(), 'test', 'fs-extra', 'copy-readonly-dir');
+    TEST_DIR = path.join(os.tmpdir(), "test", "fs-extra", "copy-readonly-dir");
     fs.emptyDir(TEST_DIR, done);
   });
 
@@ -29,18 +29,18 @@ describe('+ copySync() - copy a readonly directory with content', () => {
     fs.remove(TEST_DIR, done);
   });
 
-  describe('> when src is readonly directory with content', () => {
-    it('should copy successfully', () => {
+  describe("> when src is readonly directory with content", () => {
+    it("should copy successfully", () => {
       FILES.forEach((file) => {
         fs.outputFileSync(path.join(TEST_DIR, file), file);
       });
-      const sourceDir = path.join(TEST_DIR, 'dir1');
+      const sourceDir = path.join(TEST_DIR, "dir1");
       const sourceHierarchy = klawSync(sourceDir);
       sourceHierarchy.forEach((source) =>
         fs.chmodSync(source.path, source.stats.isDirectory() ? 0o555 : 0o444)
       );
 
-      const targetDir = path.join(TEST_DIR, 'target');
+      const targetDir = path.join(TEST_DIR, "target");
       fs.copySync(sourceDir, targetDir);
 
       // Make sure copy was made and mode was preserved

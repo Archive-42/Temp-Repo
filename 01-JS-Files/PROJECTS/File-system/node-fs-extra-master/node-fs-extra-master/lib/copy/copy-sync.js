@@ -1,28 +1,28 @@
-'use strict';
+"use strict";
 
-const fs = require('graceful-fs');
-const path = require('path');
-const mkdirsSync = require('../mkdirs').mkdirsSync;
-const utimesMillisSync = require('../util/utimes').utimesMillisSync;
-const stat = require('../util/stat');
+const fs = require("graceful-fs");
+const path = require("path");
+const mkdirsSync = require("../mkdirs").mkdirsSync;
+const utimesMillisSync = require("../util/utimes").utimesMillisSync;
+const stat = require("../util/stat");
 
 function copySync(src, dest, opts) {
-  if (typeof opts === 'function') {
+  if (typeof opts === "function") {
     opts = { filter: opts };
   }
 
   opts = opts || {};
-  opts.clobber = 'clobber' in opts ? !!opts.clobber : true; // default to true for now
-  opts.overwrite = 'overwrite' in opts ? !!opts.overwrite : opts.clobber; // overwrite falls back to clobber
+  opts.clobber = "clobber" in opts ? !!opts.clobber : true; // default to true for now
+  opts.overwrite = "overwrite" in opts ? !!opts.overwrite : opts.clobber; // overwrite falls back to clobber
 
   // Warn about using preserveTimestamps on 32-bit node
-  if (opts.preserveTimestamps && process.arch === 'ia32') {
+  if (opts.preserveTimestamps && process.arch === "ia32") {
     console.warn(`fs-extra: Using the preserveTimestamps option in 32-bit node is not recommended;\n
     see https://github.com/jprichardson/node-fs-extra/issues/269`);
   }
 
-  const { srcStat, destStat } = stat.checkPathsSync(src, dest, 'copy', opts);
-  stat.checkParentPathsSync(src, srcStat, dest, 'copy');
+  const { srcStat, destStat } = stat.checkPathsSync(src, dest, "copy", opts);
+  stat.checkParentPathsSync(src, srcStat, dest, "copy");
   return handleFilterAndCopy(destStat, src, dest, opts);
 }
 
@@ -122,7 +122,7 @@ function copyDir(src, dest, opts) {
 function copyDirItem(item, src, dest, opts) {
   const srcItem = path.join(src, item);
   const destItem = path.join(dest, item);
-  const { destStat } = stat.checkPathsSync(srcItem, destItem, 'copy', opts);
+  const { destStat } = stat.checkPathsSync(srcItem, destItem, "copy", opts);
   return startCopy(destStat, srcItem, destItem, opts);
 }
 
@@ -142,7 +142,7 @@ function onLink(destStat, src, dest, opts) {
       // dest exists and is a regular file or directory,
       // Windows may throw UNKNOWN error. If dest already exists,
       // fs throws error anyway, so no need to guard against it here.
-      if (err.code === 'EINVAL' || err.code === 'UNKNOWN')
+      if (err.code === "EINVAL" || err.code === "UNKNOWN")
         return fs.symlinkSync(resolvedSrc, dest);
       throw err;
     }

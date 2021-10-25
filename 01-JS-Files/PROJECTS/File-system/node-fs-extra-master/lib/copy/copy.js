@@ -1,36 +1,36 @@
-'use strict';
+"use strict";
 
-const fs = require('graceful-fs');
-const path = require('path');
-const mkdirs = require('../mkdirs').mkdirs;
-const pathExists = require('../path-exists').pathExists;
-const utimesMillis = require('../util/utimes').utimesMillis;
-const stat = require('../util/stat');
+const fs = require("graceful-fs");
+const path = require("path");
+const mkdirs = require("../mkdirs").mkdirs;
+const pathExists = require("../path-exists").pathExists;
+const utimesMillis = require("../util/utimes").utimesMillis;
+const stat = require("../util/stat");
 
 function copy(src, dest, opts, cb) {
-  if (typeof opts === 'function' && !cb) {
+  if (typeof opts === "function" && !cb) {
     cb = opts;
     opts = {};
-  } else if (typeof opts === 'function') {
+  } else if (typeof opts === "function") {
     opts = { filter: opts };
   }
 
   cb = cb || function () {};
   opts = opts || {};
 
-  opts.clobber = 'clobber' in opts ? !!opts.clobber : true; // default to true for now
-  opts.overwrite = 'overwrite' in opts ? !!opts.overwrite : opts.clobber; // overwrite falls back to clobber
+  opts.clobber = "clobber" in opts ? !!opts.clobber : true; // default to true for now
+  opts.overwrite = "overwrite" in opts ? !!opts.overwrite : opts.clobber; // overwrite falls back to clobber
 
   // Warn about using preserveTimestamps on 32-bit node
-  if (opts.preserveTimestamps && process.arch === 'ia32') {
+  if (opts.preserveTimestamps && process.arch === "ia32") {
     console.warn(`fs-extra: Using the preserveTimestamps option in 32-bit node is not recommended;\n
     see https://github.com/jprichardson/node-fs-extra/issues/269`);
   }
 
-  stat.checkPaths(src, dest, 'copy', opts, (err, stats) => {
+  stat.checkPaths(src, dest, "copy", opts, (err, stats) => {
     if (err) return cb(err);
     const { srcStat, destStat } = stats;
-    stat.checkParentPaths(src, srcStat, dest, 'copy', (err) => {
+    stat.checkParentPaths(src, srcStat, dest, "copy", (err) => {
       if (err) return cb(err);
       if (opts.filter)
         return handleFilter(checkParentDir, destStat, src, dest, opts, cb);
@@ -187,7 +187,7 @@ function copyDirItems(items, src, dest, opts, cb) {
 function copyDirItem(items, item, src, dest, opts, cb) {
   const srcItem = path.join(src, item);
   const destItem = path.join(dest, item);
-  stat.checkPaths(srcItem, destItem, 'copy', opts, (err, stats) => {
+  stat.checkPaths(srcItem, destItem, "copy", opts, (err, stats) => {
     if (err) return cb(err);
     const { destStat } = stats;
     startCopy(destStat, srcItem, destItem, opts, (err) => {
@@ -212,7 +212,7 @@ function onLink(destStat, src, dest, opts, cb) {
           // dest exists and is a regular file or directory,
           // Windows may throw UNKNOWN error. If dest already exists,
           // fs throws error anyway, so no need to guard against it here.
-          if (err.code === 'EINVAL' || err.code === 'UNKNOWN')
+          if (err.code === "EINVAL" || err.code === "UNKNOWN")
             return fs.symlink(resolvedSrc, dest, cb);
           return cb(err);
         }

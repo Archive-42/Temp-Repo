@@ -1,6 +1,6 @@
-'use strict';
-const u = require('universalify').fromPromise;
-const fs = require('../fs');
+"use strict";
+const u = require("universalify").fromPromise;
+const fs = require("../fs");
 
 function pathExists(path) {
   return fs

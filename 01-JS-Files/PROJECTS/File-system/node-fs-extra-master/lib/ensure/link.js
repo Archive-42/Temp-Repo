@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-const u = require('universalify').fromCallback;
-const path = require('path');
-const fs = require('graceful-fs');
-const mkdir = require('../mkdirs');
-const pathExists = require('../path-exists').pathExists;
-const { areIdentical } = require('../util/stat');
+const u = require("universalify").fromCallback;
+const path = require("path");
+const fs = require("graceful-fs");
+const mkdir = require("../mkdirs");
+const pathExists = require("../path-exists").pathExists;
+const { areIdentical } = require("../util/stat");
 
 function createLink(srcpath, dstpath, callback) {
   function makeLink(srcpath, dstpath) {
@@ -18,7 +18,7 @@ function createLink(srcpath, dstpath, callback) {
   fs.lstat(dstpath, (_, dstStat) => {
     fs.lstat(srcpath, (err, srcStat) => {
       if (err) {
-        err.message = err.message.replace('lstat', 'ensureLink');
+        err.message = err.message.replace("lstat", "ensureLink");
         return callback(err);
       }
       if (dstStat && areIdentical(srcStat, dstStat)) return callback(null);
@@ -46,7 +46,7 @@ function createLinkSync(srcpath, dstpath) {
     const srcStat = fs.lstatSync(srcpath);
     if (dstStat && areIdentical(srcStat, dstStat)) return;
   } catch (err) {
-    err.message = err.message.replace('lstat', 'ensureLink');
+    err.message = err.message.replace("lstat", "ensureLink");
     throw err;
   }
 

@@ -1,19 +1,19 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const os = require('os');
+const fs = require("fs");
+const os = require("os");
 const fse = require(process.cwd());
-const path = require('path');
-const assert = require('assert');
+const path = require("path");
+const assert = require("assert");
 
 /* global before, describe, it */
 
-describe('mkdirp / clobber', () => {
+describe("mkdirp / clobber", () => {
   let TEST_DIR;
   let file;
 
   before((done) => {
-    TEST_DIR = path.join(os.tmpdir(), 'fs-extra', 'mkdirp-clobber');
+    TEST_DIR = path.join(os.tmpdir(), "fs-extra", "mkdirp-clobber");
     fse.emptyDir(TEST_DIR, (err) => {
       assert.ifError(err);
 
@@ -29,20 +29,20 @@ describe('mkdirp / clobber', () => {
       // a file in the way
       const itw = ps.slice(0, 2).join(path.sep);
 
-      fs.writeFileSync(itw, 'I AM IN THE WAY, THE TRUTH, AND THE LIGHT.');
+      fs.writeFileSync(itw, "I AM IN THE WAY, THE TRUTH, AND THE LIGHT.");
 
       fs.stat(itw, (err, stat) => {
         assert.ifError(err);
-        assert.ok(stat && stat.isFile(), 'should be file');
+        assert.ok(stat && stat.isFile(), "should be file");
         done();
       });
     });
   });
 
-  it('should clobber', (done) => {
+  it("should clobber", (done) => {
     fse.mkdirp(file, 0o755, (err) => {
       assert.ok(err);
-      assert.strictEqual(err.code, 'ENOTDIR');
+      assert.strictEqual(err.code, "ENOTDIR");
       done();
     });
   });

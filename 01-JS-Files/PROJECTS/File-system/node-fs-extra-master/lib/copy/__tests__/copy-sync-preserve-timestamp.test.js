@@ -1,34 +1,34 @@
-'use strict';
+"use strict";
 
-const fs = require('../../');
-const os = require('os');
-const path = require('path');
-const copySync = require('../copy-sync');
-const utimesSync = require('../../util/utimes').utimesMillisSync;
-const assert = require('assert');
+const fs = require("../../");
+const os = require("os");
+const path = require("path");
+const copySync = require("../copy-sync");
+const utimesSync = require("../../util/utimes").utimesMillisSync;
+const assert = require("assert");
 
 /* global beforeEach, afterEach, describe, it */
 
-if (process.arch === 'ia32')
-  console.warn('32 bit arch; skipping copySync timestamp tests');
+if (process.arch === "ia32")
+  console.warn("32 bit arch; skipping copySync timestamp tests");
 
-const describeIfPractical = process.arch === 'ia32' ? describe.skip : describe;
+const describeIfPractical = process.arch === "ia32" ? describe.skip : describe;
 
-describeIfPractical('copySync() - preserveTimestamps option', () => {
+describeIfPractical("copySync() - preserveTimestamps option", () => {
   let TEST_DIR, SRC, DEST, FILES;
 
   function setupFixture(readonly) {
     TEST_DIR = path.join(
       os.tmpdir(),
-      'fs-extra',
-      'copy-sync-preserve-timestamp'
+      "fs-extra",
+      "copy-sync-preserve-timestamp"
     );
-    SRC = path.join(TEST_DIR, 'src');
-    DEST = path.join(TEST_DIR, 'dest');
+    SRC = path.join(TEST_DIR, "src");
+    DEST = path.join(TEST_DIR, "dest");
     FILES = [
-      'a-file',
-      path.join('a-folder', 'another-file'),
-      path.join('a-folder', 'another-folder', 'file3'),
+      "a-file",
+      path.join("a-folder", "another-file"),
+      path.join("a-folder", "another-folder", "file3"),
     ];
     const timestamp = Date.now() / 1000 - 5;
     FILES.forEach((f) => {
@@ -45,15 +45,15 @@ describeIfPractical('copySync() - preserveTimestamps option', () => {
 
   afterEach((done) => fs.remove(TEST_DIR, done));
 
-  describe('> when preserveTimestamps option is true', () => {
+  describe("> when preserveTimestamps option is true", () => {
     [
-      { subcase: 'writable', readonly: false },
-      { subcase: 'readonly', readonly: true },
+      { subcase: "writable", readonly: false },
+      { subcase: "readonly", readonly: true },
     ].forEach((params) => {
       describe(`>> with ${params.subcase} source files`, () => {
         beforeEach(() => setupFixture(params.readonly));
 
-        it('should have the same timestamps on copy', () => {
+        it("should have the same timestamps on copy", () => {
           copySync(SRC, DEST, { preserveTimestamps: true });
           FILES.forEach(testFile({ preserveTimestamps: true }));
         });
@@ -72,19 +72,19 @@ describeIfPractical('copySync() - preserveTimestamps option', () => {
         assert.strictEqual(
           toStat.mtime.getTime(),
           fromStat.mtime.getTime(),
-          'different mtime values'
+          "different mtime values"
         );
         assert.strictEqual(
           toStat.atime.getTime(),
           fromStat.atime.getTime(),
-          'different atime values'
+          "different atime values"
         );
       } else {
         // the access time might actually be the same, so check only modification time
         assert.notStrictEqual(
           toStat.mtime.getTime(),
           fromStat.mtime.getTime(),
-          'same mtime values'
+          "same mtime values"
         );
       }
     };

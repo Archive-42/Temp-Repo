@@ -12,10 +12,10 @@ Ensures that the link exists. If the directory structure does not exist, it is c
 ## Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-const srcPath = '/tmp/file.txt';
-const destPath = '/tmp/this/path/does/not/exist/file.txt';
+const srcPath = "/tmp/file.txt";
+const destPath = "/tmp/this/path/does/not/exist/file.txt";
 
 // With a callback:
 fs.ensureLink(srcPath, destPath, (err) => {
@@ -26,7 +26,7 @@ fs.ensureLink(srcPath, destPath, (err) => {
 // With Promises:
 fs.ensureLink(srcPath, destPath)
   .then(() => {
-    console.log('success!');
+    console.log("success!");
   })
   .catch((err) => {
     console.error(err);
@@ -36,7 +36,7 @@ fs.ensureLink(srcPath, destPath)
 async function example(src, dest) {
   try {
     await fs.ensureLink(src, dest);
-    console.log('success!');
+    console.log("success!");
   } catch (err) {
     console.error(err);
   }

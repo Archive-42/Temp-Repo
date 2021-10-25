@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const u = require('universalify').fromCallback;
-const path = require('path');
-const fs = require('graceful-fs');
-const mkdir = require('../mkdirs');
+const u = require("universalify").fromCallback;
+const path = require("path");
+const fs = require("graceful-fs");
+const mkdir = require("../mkdirs");
 
 function createFile(file, callback) {
   function makeFile() {
-    fs.writeFile(file, '', (err) => {
+    fs.writeFile(file, "", (err) => {
       if (err) return callback(err);
       callback();
     });
@@ -20,7 +20,7 @@ function createFile(file, callback) {
     fs.stat(dir, (err, stats) => {
       if (err) {
         // if the directory doesn't exist, make it
-        if (err.code === 'ENOENT') {
+        if (err.code === "ENOENT") {
           return mkdir.mkdirs(dir, (err) => {
             if (err) return callback(err);
             makeFile();
@@ -57,11 +57,11 @@ function createFileSync(file) {
     }
   } catch (err) {
     // If the stat call above failed because the directory doesn't exist, create it
-    if (err && err.code === 'ENOENT') mkdir.mkdirsSync(dir);
+    if (err && err.code === "ENOENT") mkdir.mkdirsSync(dir);
     else throw err;
   }
 
-  fs.writeFileSync(file, '');
+  fs.writeFileSync(file, "");
 }
 
 module.exports = {

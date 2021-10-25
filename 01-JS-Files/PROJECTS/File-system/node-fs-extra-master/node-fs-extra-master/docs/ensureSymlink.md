@@ -13,10 +13,10 @@ Ensures that the symlink exists. If the directory structure does not exist, it i
 ## Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-const srcPath = '/tmp/file.txt';
-const destPath = '/tmp/this/path/does/not/exist/file.txt';
+const srcPath = "/tmp/file.txt";
+const destPath = "/tmp/this/path/does/not/exist/file.txt";
 
 // With a callback:
 fs.ensureSymlink(srcPath, destPath, (err) => {
@@ -27,7 +27,7 @@ fs.ensureSymlink(srcPath, destPath, (err) => {
 // With Promises:
 fs.ensureSymlink(srcPath, destPath)
   .then(() => {
-    console.log('success!');
+    console.log("success!");
   })
   .catch((err) => {
     console.error(err);
@@ -37,7 +37,7 @@ fs.ensureSymlink(srcPath, destPath)
 async function example(src, dest) {
   try {
     await fs.ensureSymlink(src, dest);
-    console.log('success!');
+    console.log("success!");
   } catch (err) {
     console.error(err);
   }

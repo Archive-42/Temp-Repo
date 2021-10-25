@@ -1,25 +1,25 @@
-'use strict';
+"use strict";
 
-const fs = require('graceful-fs');
-const path = require('path');
-const copy = require('../copy').copy;
-const remove = require('../remove').remove;
-const mkdirp = require('../mkdirs').mkdirp;
-const pathExists = require('../path-exists').pathExists;
-const stat = require('../util/stat');
+const fs = require("graceful-fs");
+const path = require("path");
+const copy = require("../copy").copy;
+const remove = require("../remove").remove;
+const mkdirp = require("../mkdirs").mkdirp;
+const pathExists = require("../path-exists").pathExists;
+const stat = require("../util/stat");
 
 function move(src, dest, opts, cb) {
-  if (typeof opts === 'function') {
+  if (typeof opts === "function") {
     cb = opts;
     opts = {};
   }
 
   const overwrite = opts.overwrite || opts.clobber || false;
 
-  stat.checkPaths(src, dest, 'move', opts, (err, stats) => {
+  stat.checkPaths(src, dest, "move", opts, (err, stats) => {
     if (err) return cb(err);
     const { srcStat, isChangingCase = false } = stats;
-    stat.checkParentPaths(src, srcStat, dest, 'move', (err) => {
+    stat.checkParentPaths(src, srcStat, dest, "move", (err) => {
       if (err) return cb(err);
       if (isParentRoot(dest))
         return doRename(src, dest, overwrite, isChangingCase, cb);
@@ -47,7 +47,7 @@ function doRename(src, dest, overwrite, isChangingCase, cb) {
   }
   pathExists(dest, (err, destExists) => {
     if (err) return cb(err);
-    if (destExists) return cb(new Error('dest already exists.'));
+    if (destExists) return cb(new Error("dest already exists."));
     return rename(src, dest, overwrite, cb);
   });
 }
@@ -55,7 +55,7 @@ function doRename(src, dest, overwrite, isChangingCase, cb) {
 function rename(src, dest, overwrite, cb) {
   fs.rename(src, dest, (err) => {
     if (!err) return cb();
-    if (err.code !== 'EXDEV') return cb(err);
+    if (err.code !== "EXDEV") return cb(err);
     return moveAcrossDevice(src, dest, overwrite, cb);
   });
 }

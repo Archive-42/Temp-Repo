@@ -12,21 +12,21 @@ Moves a file or directory, even across devices.
 ## Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-const src = '/tmp/file.txt';
-const dest = '/tmp/this/path/does/not/exist/file.txt';
+const src = "/tmp/file.txt";
+const dest = "/tmp/this/path/does/not/exist/file.txt";
 
 // With a callback:
 fs.move(src, dest, (err) => {
   if (err) return console.error(err);
-  console.log('success!');
+  console.log("success!");
 });
 
 // With Promises:
 fs.move(src, dest)
   .then(() => {
-    console.log('success!');
+    console.log("success!");
   })
   .catch((err) => {
     console.error(err);
@@ -36,7 +36,7 @@ fs.move(src, dest)
 async function example(src, dest) {
   try {
     await fs.move(src, dest);
-    console.log('success!');
+    console.log("success!");
   } catch (err) {
     console.error(err);
   }
@@ -48,15 +48,15 @@ example(src, dest);
 **Using `overwrite` option**
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
 fs.move(
-  '/tmp/somedir',
-  '/tmp/may/already/exist/somedir',
+  "/tmp/somedir",
+  "/tmp/may/already/exist/somedir",
   { overwrite: true },
   (err) => {
     if (err) return console.error(err);
-    console.log('success!');
+    console.log("success!");
   }
 );
 ```

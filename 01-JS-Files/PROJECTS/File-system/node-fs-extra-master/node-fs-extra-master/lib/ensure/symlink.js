@@ -1,27 +1,27 @@
-'use strict';
+"use strict";
 
-const u = require('universalify').fromCallback;
-const path = require('path');
-const fs = require('../fs');
-const _mkdirs = require('../mkdirs');
+const u = require("universalify").fromCallback;
+const path = require("path");
+const fs = require("../fs");
+const _mkdirs = require("../mkdirs");
 const mkdirs = _mkdirs.mkdirs;
 const mkdirsSync = _mkdirs.mkdirsSync;
 
-const _symlinkPaths = require('./symlink-paths');
+const _symlinkPaths = require("./symlink-paths");
 const symlinkPaths = _symlinkPaths.symlinkPaths;
 const symlinkPathsSync = _symlinkPaths.symlinkPathsSync;
 
-const _symlinkType = require('./symlink-type');
+const _symlinkType = require("./symlink-type");
 const symlinkType = _symlinkType.symlinkType;
 const symlinkTypeSync = _symlinkType.symlinkTypeSync;
 
-const pathExists = require('../path-exists').pathExists;
+const pathExists = require("../path-exists").pathExists;
 
-const { areIdentical } = require('../util/stat');
+const { areIdentical } = require("../util/stat");
 
 function createSymlink(srcpath, dstpath, type, callback) {
-  callback = typeof type === 'function' ? type : callback;
-  type = typeof type === 'function' ? false : type;
+  callback = typeof type === "function" ? type : callback;
+  type = typeof type === "function" ? false : type;
 
   fs.lstat(dstpath, (err, stats) => {
     if (!err && stats.isSymbolicLink()) {

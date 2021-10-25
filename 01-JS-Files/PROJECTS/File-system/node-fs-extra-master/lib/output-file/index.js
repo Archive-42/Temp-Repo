@@ -1,15 +1,15 @@
-'use strict';
+"use strict";
 
-const u = require('universalify').fromCallback;
-const fs = require('graceful-fs');
-const path = require('path');
-const mkdir = require('../mkdirs');
-const pathExists = require('../path-exists').pathExists;
+const u = require("universalify").fromCallback;
+const fs = require("graceful-fs");
+const path = require("path");
+const mkdir = require("../mkdirs");
+const pathExists = require("../path-exists").pathExists;
 
 function outputFile(file, data, encoding, callback) {
-  if (typeof encoding === 'function') {
+  if (typeof encoding === "function") {
     callback = encoding;
-    encoding = 'utf8';
+    encoding = "utf8";
   }
 
   const dir = path.dirname(file);

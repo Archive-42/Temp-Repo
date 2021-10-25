@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const u = require('universalify').fromPromise;
-const jsonFile = require('./jsonfile');
+const u = require("universalify").fromPromise;
+const jsonFile = require("./jsonfile");
 
-jsonFile.outputJson = u(require('./output-json'));
-jsonFile.outputJsonSync = require('./output-json-sync');
+jsonFile.outputJson = u(require("./output-json"));
+jsonFile.outputJsonSync = require("./output-json-sync");
 // aliases
 jsonFile.outputJSON = jsonFile.outputJson;
 jsonFile.outputJSONSync = jsonFile.outputJsonSync;

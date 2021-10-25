@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const u = require('universalify').fromPromise;
-const fs = require('../fs');
-const path = require('path');
-const mkdir = require('../mkdirs');
-const remove = require('../remove');
+const u = require("universalify").fromPromise;
+const fs = require("../fs");
+const path = require("path");
+const mkdir = require("../mkdirs");
+const remove = require("../remove");
 
 const emptyDir = u(async function emptyDir(dir) {
   let items;

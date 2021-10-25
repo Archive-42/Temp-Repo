@@ -12,9 +12,9 @@ Ensures that the directory exists. If the directory structure does not exist, it
 ## Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-const dir = '/tmp/this/path/does/not/exist';
+const dir = "/tmp/this/path/does/not/exist";
 
 const desiredMode = 0o2775;
 const options = {

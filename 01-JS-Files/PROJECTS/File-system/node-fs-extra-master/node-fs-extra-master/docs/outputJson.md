@@ -17,12 +17,12 @@ Almost the same as [`writeJson`](writeJson.md), except that if the directory doe
 ## Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-const file = '/tmp/this/path/does/not/exist/file.json';
+const file = "/tmp/this/path/does/not/exist/file.json";
 
 // With a callback:
-fs.outputJson(file, { name: 'JP' }, (err) => {
+fs.outputJson(file, { name: "JP" }, (err) => {
   console.log(err); // => null
 
   fs.readJson(file, (err, data) => {
@@ -32,7 +32,7 @@ fs.outputJson(file, { name: 'JP' }, (err) => {
 });
 
 // With Promises:
-fs.outputJson(file, { name: 'JP' })
+fs.outputJson(file, { name: "JP" })
   .then(() => fs.readJson(file))
   .then((data) => {
     console.log(data.name); // => JP
@@ -44,7 +44,7 @@ fs.outputJson(file, { name: 'JP' })
 // With async/await:
 async function example(f) {
   try {
-    await fs.outputJson(f, { name: 'JP' });
+    await fs.outputJson(f, { name: "JP" });
 
     const data = await fs.readJson(f);
 

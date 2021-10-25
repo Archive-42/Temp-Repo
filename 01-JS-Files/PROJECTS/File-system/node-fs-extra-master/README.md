@@ -19,26 +19,26 @@ I got tired of including `mkdirp`, `rimraf`, and `ncp` in most of my projects.
 You don't ever need to include the original `fs` module again:
 
 ```js
-const fs = require('fs'); // this is no longer necessary
+const fs = require("fs"); // this is no longer necessary
 ```
 
 you can now do this:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 ```
 
 or if you prefer to make it clear that you're using `fs-extra` and not `fs`, you may want to name your `fs` variable `fse` like so:
 
 ```js
-const fse = require('fs-extra');
+const fse = require("fs-extra");
 ```
 
 you can also keep both, but it's redundant:
 
 ```js
-const fs = require('fs');
-const fse = require('fs-extra');
+const fs = require("fs");
+const fse = require("fs-extra");
 ```
 
 ## Sync vs Async vs Async/Await
@@ -52,23 +52,23 @@ Also Async/Await will throw an error if one occurs.
 Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
 // Async with promises:
-fs.copy('/tmp/myfile', '/tmp/mynewfile')
-  .then(() => console.log('success!'))
+fs.copy("/tmp/myfile", "/tmp/mynewfile")
+  .then(() => console.log("success!"))
   .catch((err) => console.error(err));
 
 // Async with callbacks:
-fs.copy('/tmp/myfile', '/tmp/mynewfile', (err) => {
+fs.copy("/tmp/myfile", "/tmp/mynewfile", (err) => {
   if (err) return console.error(err);
-  console.log('success!');
+  console.log("success!");
 });
 
 // Sync:
 try {
-  fs.copySync('/tmp/myfile', '/tmp/mynewfile');
-  console.log('success!');
+  fs.copySync("/tmp/myfile", "/tmp/mynewfile");
+  console.log("success!");
 } catch (err) {
   console.error(err);
 }
@@ -76,8 +76,8 @@ try {
 // Async/Await:
 async function copyFiles() {
   try {
-    await fs.copy('/tmp/myfile', '/tmp/mynewfile');
-    console.log('success!');
+    await fs.copy("/tmp/myfile", "/tmp/mynewfile");
+    console.log("success!");
   } catch (err) {
     console.error(err);
   }

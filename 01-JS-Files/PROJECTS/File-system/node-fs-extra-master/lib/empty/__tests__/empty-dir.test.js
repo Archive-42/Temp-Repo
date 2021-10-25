@@ -1,18 +1,18 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const os = require('os');
+const fs = require("fs");
+const os = require("os");
 const fse = require(process.cwd());
-const path = require('path');
-const assert = require('assert');
+const path = require("path");
+const assert = require("assert");
 
 /* global afterEach, beforeEach, describe, it */
 
-describe('+ emptyDir()', () => {
+describe("+ emptyDir()", () => {
   let TEST_DIR;
 
   beforeEach(() => {
-    TEST_DIR = path.join(os.tmpdir(), 'test-fs-extra', 'empty-dir');
+    TEST_DIR = path.join(os.tmpdir(), "test-fs-extra", "empty-dir");
     if (fs.existsSync(TEST_DIR)) {
       fse.removeSync(TEST_DIR);
     }
@@ -21,13 +21,13 @@ describe('+ emptyDir()', () => {
 
   afterEach((done) => fse.remove(TEST_DIR, done));
 
-  describe('> when directory exists and contains items', () => {
-    it('should delete all of the items', (done) => {
+  describe("> when directory exists and contains items", () => {
+    it("should delete all of the items", (done) => {
       // verify nothing
       assert.strictEqual(fs.readdirSync(TEST_DIR).length, 0);
-      fse.ensureFileSync(path.join(TEST_DIR, 'some-file'));
-      fse.ensureFileSync(path.join(TEST_DIR, 'some-file-2'));
-      fse.ensureDirSync(path.join(TEST_DIR, 'some-dir'));
+      fse.ensureFileSync(path.join(TEST_DIR, "some-file"));
+      fse.ensureFileSync(path.join(TEST_DIR, "some-file-2"));
+      fse.ensureDirSync(path.join(TEST_DIR, "some-dir"));
       assert.strictEqual(fs.readdirSync(TEST_DIR).length, 3);
 
       fse.emptyDir(TEST_DIR, (err) => {
@@ -38,8 +38,8 @@ describe('+ emptyDir()', () => {
     });
   });
 
-  describe('> when directory exists and contains no items', () => {
-    it('should do nothing', (done) => {
+  describe("> when directory exists and contains no items", () => {
+    it("should do nothing", (done) => {
       assert.strictEqual(fs.readdirSync(TEST_DIR).length, 0);
       fse.emptyDir(TEST_DIR, (err) => {
         assert.ifError(err);
@@ -49,8 +49,8 @@ describe('+ emptyDir()', () => {
     });
   });
 
-  describe('> when directory does not exist', () => {
-    it('should create it', (done) => {
+  describe("> when directory does not exist", () => {
+    it("should create it", (done) => {
       fse.removeSync(TEST_DIR);
       assert(!fs.existsSync(TEST_DIR));
       fse.emptyDir(TEST_DIR, (err) => {

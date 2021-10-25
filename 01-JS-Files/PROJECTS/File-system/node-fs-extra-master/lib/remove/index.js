@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const fs = require('graceful-fs');
-const u = require('universalify').fromCallback;
-const rimraf = require('./rimraf');
+const fs = require("graceful-fs");
+const u = require("universalify").fromCallback;
+const rimraf = require("./rimraf");
 
 function remove(path, callback) {
   // Node 14.14.0+

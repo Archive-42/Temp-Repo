@@ -1,10 +1,10 @@
-'use strict';
-const fs = require('../fs');
-const { checkPath } = require('./utils');
+"use strict";
+const fs = require("../fs");
+const { checkPath } = require("./utils");
 
 const getMode = (options) => {
   const defaults = { mode: 0o777 };
-  if (typeof options === 'number') return options;
+  if (typeof options === "number") return options;
   return { ...defaults, ...options }.mode;
 };
 

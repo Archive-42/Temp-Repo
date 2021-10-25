@@ -1,6 +1,6 @@
-'use strict';
-const u = require('universalify').fromPromise;
-const { makeDir: _makeDir, makeDirSync } = require('./make-dir');
+"use strict";
+const u = require("universalify").fromPromise;
+const { makeDir: _makeDir, makeDirSync } = require("./make-dir");
 const makeDir = u(_makeDir);
 
 module.exports = {

@@ -10,9 +10,9 @@ Test whether or not the given path exists by checking with the file system. Like
 ## Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-const file = '/tmp/this/path/does/not/exist/file.txt';
+const file = "/tmp/this/path/does/not/exist/file.txt";
 
 // With a callback:
 fs.pathExists(file, (err, exists) => {

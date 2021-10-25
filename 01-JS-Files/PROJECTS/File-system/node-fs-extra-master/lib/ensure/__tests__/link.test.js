@@ -1,78 +1,78 @@
-'use strict';
+"use strict";
 
 const CWD = process.cwd();
 
-const fs = require('graceful-fs');
-const os = require('os');
+const fs = require("graceful-fs");
+const os = require("os");
 const fse = require(CWD);
-const path = require('path');
-const assert = require('assert');
+const path = require("path");
+const assert = require("assert");
 const ensureLink = fse.ensureLink;
 const ensureLinkSync = fse.ensureLinkSync;
 
 /* global afterEach, beforeEach, describe, it, after, before */
 
-describe('fse-ensure-link', () => {
-  const TEST_DIR = path.join(os.tmpdir(), 'fs-extra', 'ensure-symlink');
+describe("fse-ensure-link", () => {
+  const TEST_DIR = path.join(os.tmpdir(), "fs-extra", "ensure-symlink");
 
   const tests = [
     // [[srcpath, dstpath], fs.link expect, ensureLink expect]
-    [['./foo.txt', './link.txt'], 'file-success', 'file-success'],
-    [['./foo.txt', './dir-foo/link.txt'], 'file-success', 'file-success'],
-    [['./foo.txt', './empty-dir/link.txt'], 'file-success', 'file-success'],
-    [['./foo.txt', './real-alpha/link.txt'], 'file-success', 'file-success'],
+    [["./foo.txt", "./link.txt"], "file-success", "file-success"],
+    [["./foo.txt", "./dir-foo/link.txt"], "file-success", "file-success"],
+    [["./foo.txt", "./empty-dir/link.txt"], "file-success", "file-success"],
+    [["./foo.txt", "./real-alpha/link.txt"], "file-success", "file-success"],
     [
-      ['./foo.txt', './real-alpha/real-beta/link.txt'],
-      'file-success',
-      'file-success',
+      ["./foo.txt", "./real-alpha/real-beta/link.txt"],
+      "file-success",
+      "file-success",
     ],
     [
-      ['./foo.txt', './real-alpha/real-beta/real-gamma/link.txt'],
-      'file-success',
-      'file-success',
+      ["./foo.txt", "./real-alpha/real-beta/real-gamma/link.txt"],
+      "file-success",
+      "file-success",
     ],
-    [['./foo.txt', './alpha/link.txt'], 'file-error', 'file-success'],
-    [['./foo.txt', './alpha/beta/link.txt'], 'file-error', 'file-success'],
+    [["./foo.txt", "./alpha/link.txt"], "file-error", "file-success"],
+    [["./foo.txt", "./alpha/beta/link.txt"], "file-error", "file-success"],
     [
-      ['./foo.txt', './alpha/beta/gamma/link.txt'],
-      'file-error',
-      'file-success',
+      ["./foo.txt", "./alpha/beta/gamma/link.txt"],
+      "file-error",
+      "file-success",
     ],
-    [['./foo.txt', './link-foo.txt'], 'file-error', 'file-success'],
-    [['./dir-foo/foo.txt', './link-foo.txt'], 'file-error', 'file-error'],
-    [['./missing.txt', './link.txt'], 'file-error', 'file-error'],
-    [['./missing.txt', './missing-dir/link.txt'], 'file-error', 'file-error'],
-    [['./foo.txt', './link.txt'], 'file-success', 'file-success'],
-    [['./dir-foo/foo.txt', './link.txt'], 'file-success', 'file-success'],
-    [['./missing.txt', './link.txt'], 'file-error', 'file-error'],
-    [['../foo.txt', './link.txt'], 'file-error', 'file-error'],
-    [['../dir-foo/foo.txt', './link.txt'], 'file-error', 'file-error'],
+    [["./foo.txt", "./link-foo.txt"], "file-error", "file-success"],
+    [["./dir-foo/foo.txt", "./link-foo.txt"], "file-error", "file-error"],
+    [["./missing.txt", "./link.txt"], "file-error", "file-error"],
+    [["./missing.txt", "./missing-dir/link.txt"], "file-error", "file-error"],
+    [["./foo.txt", "./link.txt"], "file-success", "file-success"],
+    [["./dir-foo/foo.txt", "./link.txt"], "file-success", "file-success"],
+    [["./missing.txt", "./link.txt"], "file-error", "file-error"],
+    [["../foo.txt", "./link.txt"], "file-error", "file-error"],
+    [["../dir-foo/foo.txt", "./link.txt"], "file-error", "file-error"],
     // error is thrown if destination path exists
-    [['./foo.txt', './dir-foo/foo.txt'], 'file-error', 'file-error'],
+    [["./foo.txt", "./dir-foo/foo.txt"], "file-error", "file-error"],
     [
-      [path.resolve(path.join(TEST_DIR, './foo.txt')), './link.txt'],
-      'file-success',
-      'file-success',
+      [path.resolve(path.join(TEST_DIR, "./foo.txt")), "./link.txt"],
+      "file-success",
+      "file-success",
     ],
     [
-      [path.resolve(path.join(TEST_DIR, './dir-foo/foo.txt')), './link.txt'],
-      'file-success',
-      'file-success',
+      [path.resolve(path.join(TEST_DIR, "./dir-foo/foo.txt")), "./link.txt"],
+      "file-success",
+      "file-success",
     ],
     [
-      [path.resolve(path.join(TEST_DIR, './missing.txt')), './link.txt'],
-      'file-error',
-      'file-error',
+      [path.resolve(path.join(TEST_DIR, "./missing.txt")), "./link.txt"],
+      "file-error",
+      "file-error",
     ],
     [
-      [path.resolve(path.join(TEST_DIR, '../foo.txt')), './link.txt'],
-      'file-error',
-      'file-error',
+      [path.resolve(path.join(TEST_DIR, "../foo.txt")), "./link.txt"],
+      "file-error",
+      "file-error",
     ],
     [
-      [path.resolve(path.join(TEST_DIR, '../dir-foo/foo.txt')), './link.txt'],
-      'file-error',
-      'file-error',
+      [path.resolve(path.join(TEST_DIR, "../dir-foo/foo.txt")), "./link.txt"],
+      "file-error",
+      "file-error",
     ],
   ];
 
@@ -82,14 +82,14 @@ describe('fse-ensure-link', () => {
   });
 
   beforeEach(() => {
-    fs.writeFileSync('./foo.txt', 'foo\n');
-    fse.mkdirsSync('empty-dir');
-    fse.mkdirsSync('dir-foo');
-    fs.writeFileSync('dir-foo/foo.txt', 'dir-foo\n');
-    fse.mkdirsSync('dir-bar');
-    fs.writeFileSync('dir-bar/bar.txt', 'dir-bar\n');
-    fse.mkdirsSync('real-alpha/real-beta/real-gamma');
-    fs.linkSync('foo.txt', 'link-foo.txt');
+    fs.writeFileSync("./foo.txt", "foo\n");
+    fse.mkdirsSync("empty-dir");
+    fse.mkdirsSync("dir-foo");
+    fs.writeFileSync("dir-foo/foo.txt", "dir-foo\n");
+    fse.mkdirsSync("dir-bar");
+    fs.writeFileSync("dir-bar/bar.txt", "dir-bar\n");
+    fse.mkdirsSync("real-alpha/real-beta/real-gamma");
+    fs.linkSync("foo.txt", "link-foo.txt");
   });
 
   afterEach((done) => fse.emptyDir(TEST_DIR, done));
@@ -107,11 +107,11 @@ describe('fse-ensure-link', () => {
       const callback = (err) => {
         if (err) return done(err);
 
-        const srcContent = fs.readFileSync(srcpath, 'utf8');
+        const srcContent = fs.readFileSync(srcpath, "utf8");
         const dstDir = path.dirname(dstpath);
         const dstBasename = path.basename(dstpath);
         const isSymlink = fs.lstatSync(dstpath).isFile();
-        const dstContent = fs.readFileSync(dstpath, 'utf8');
+        const dstContent = fs.readFileSync(dstpath, "utf8");
         const dstDirContents = fs.readdirSync(dstDir);
 
         assert.strictEqual(isSymlink, true);
@@ -148,11 +148,11 @@ describe('fse-ensure-link', () => {
 
     it(`should create link file using src ${srcpath} and dst ${dstpath}`, () => {
       fn(...args);
-      const srcContent = fs.readFileSync(srcpath, 'utf8');
+      const srcContent = fs.readFileSync(srcpath, "utf8");
       const dstDir = path.dirname(dstpath);
       const dstBasename = path.basename(dstpath);
       const isSymlink = fs.lstatSync(dstpath).isFile();
-      const dstContent = fs.readFileSync(dstpath, 'utf8');
+      const dstContent = fs.readFileSync(dstpath, "utf8");
       const dstDirContents = fs.readdirSync(dstDir);
       assert.strictEqual(isSymlink, true);
       assert.strictEqual(srcContent, dstContent);
@@ -179,31 +179,31 @@ describe('fse-ensure-link', () => {
     });
   }
 
-  describe('fs.link()', () => {
+  describe("fs.link()", () => {
     const fn = fs.link;
     tests.forEach((test) => {
       const args = test[0].slice(0);
       const nativeBehavior = test[1];
       // const newBehavior = test[2]
-      if (nativeBehavior === 'file-success') fileSuccess(args, fn);
-      if (nativeBehavior === 'file-error') fileError(args, fn);
+      if (nativeBehavior === "file-success") fileSuccess(args, fn);
+      if (nativeBehavior === "file-error") fileError(args, fn);
     });
   });
 
-  describe('ensureLink()', () => {
+  describe("ensureLink()", () => {
     const fn = ensureLink;
     tests.forEach((test) => {
       const args = test[0].slice(0);
       // const nativeBehavior = test[1]
       const newBehavior = test[2];
-      if (newBehavior === 'file-success') fileSuccess(args, fn);
-      if (newBehavior === 'file-error') fileError(args, fn);
+      if (newBehavior === "file-success") fileSuccess(args, fn);
+      if (newBehavior === "file-error") fileError(args, fn);
     });
   });
 
-  describe('ensureLink() promise support', () => {
+  describe("ensureLink() promise support", () => {
     tests
-      .filter((test) => test[2] === 'file-success')
+      .filter((test) => test[2] === "file-success")
       .forEach((test) => {
         const args = test[0].slice(0);
         const srcpath = args[0];
@@ -211,11 +211,11 @@ describe('fse-ensure-link', () => {
 
         it(`should create link file using src ${srcpath} and dst ${dstpath}`, () => {
           return ensureLink(srcpath, dstpath).then(() => {
-            const srcContent = fs.readFileSync(srcpath, 'utf8');
+            const srcContent = fs.readFileSync(srcpath, "utf8");
             const dstDir = path.dirname(dstpath);
             const dstBasename = path.basename(dstpath);
             const isSymlink = fs.lstatSync(dstpath).isFile();
-            const dstContent = fs.readFileSync(dstpath, 'utf8');
+            const dstContent = fs.readFileSync(dstpath, "utf8");
             const dstDirContents = fs.readdirSync(dstDir);
 
             assert.strictEqual(isSymlink, true);
@@ -226,25 +226,25 @@ describe('fse-ensure-link', () => {
       });
   });
 
-  describe('fs.linkSync()', () => {
+  describe("fs.linkSync()", () => {
     const fn = fs.linkSync;
     tests.forEach((test) => {
       const args = test[0].slice(0);
       const nativeBehavior = test[1];
       // const newBehavior = test[2]
-      if (nativeBehavior === 'file-success') fileSuccessSync(args, fn);
-      if (nativeBehavior === 'file-error') fileErrorSync(args, fn);
+      if (nativeBehavior === "file-success") fileSuccessSync(args, fn);
+      if (nativeBehavior === "file-error") fileErrorSync(args, fn);
     });
   });
 
-  describe('ensureLinkSync()', () => {
+  describe("ensureLinkSync()", () => {
     const fn = ensureLinkSync;
     tests.forEach((test) => {
       const args = test[0].slice(0);
       // const nativeBehavior = test[1]
       const newBehavior = test[2];
-      if (newBehavior === 'file-success') fileSuccessSync(args, fn);
-      if (newBehavior === 'file-error') fileErrorSync(args, fn);
+      if (newBehavior === "file-success") fileSuccessSync(args, fn);
+      if (newBehavior === "file-error") fileErrorSync(args, fn);
     });
   });
 });

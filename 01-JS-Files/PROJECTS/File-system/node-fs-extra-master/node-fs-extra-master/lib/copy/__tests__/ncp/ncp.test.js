@@ -1,28 +1,28 @@
-'use strict';
+"use strict";
 
-const fs = require('fs');
-const ncp = require('../../copy');
-const path = require('path');
-const rimraf = require('rimraf');
-const assert = require('assert');
-const readDirFiles = require('read-dir-files').read; // temporary, will remove
+const fs = require("fs");
+const ncp = require("../../copy");
+const path = require("path");
+const rimraf = require("rimraf");
+const assert = require("assert");
+const readDirFiles = require("read-dir-files").read; // temporary, will remove
 
 /* eslint-env mocha */
 
-const fixturesDir = path.join(__dirname, 'fixtures');
+const fixturesDir = path.join(__dirname, "fixtures");
 
-describe('ncp', () => {
-  describe('regular files and directories', () => {
-    const fixtures = path.join(fixturesDir, 'regular-fixtures');
-    const src = path.join(fixtures, 'src');
-    const out = path.join(fixtures, 'out');
+describe("ncp", () => {
+  describe("regular files and directories", () => {
+    const fixtures = path.join(fixturesDir, "regular-fixtures");
+    const src = path.join(fixtures, "src");
+    const out = path.join(fixtures, "out");
 
     before((cb) => rimraf(out, () => ncp(src, out, cb)));
 
-    describe('when copying a directory of files', () => {
-      it('files are copied correctly', (cb) => {
-        readDirFiles(src, 'utf8', (srcErr, srcFiles) => {
-          readDirFiles(out, 'utf8', (outErr, outFiles) => {
+    describe("when copying a directory of files", () => {
+      it("files are copied correctly", (cb) => {
+        readDirFiles(src, "utf8", (srcErr, srcFiles) => {
+          readDirFiles(out, "utf8", (outErr, outFiles) => {
             assert.ifError(srcErr);
             assert.deepStrictEqual(srcFiles, outFiles);
             cb();
@@ -31,27 +31,27 @@ describe('ncp', () => {
       });
     });
 
-    describe('when copying files using filter', () => {
+    describe("when copying files using filter", () => {
       before((cb) => {
-        const filter = (name) => name.substr(name.length - 1) !== 'a';
+        const filter = (name) => name.substr(name.length - 1) !== "a";
 
         rimraf(out, () => ncp(src, out, { filter }, cb));
       });
 
-      it('files are copied correctly', (cb) => {
-        readDirFiles(src, 'utf8', (srcErr, srcFiles) => {
+      it("files are copied correctly", (cb) => {
+        readDirFiles(src, "utf8", (srcErr, srcFiles) => {
           function filter(files) {
             for (const fileName in files) {
               const curFile = files[fileName];
               if (curFile instanceof Object) {
                 filter(curFile);
-              } else if (fileName.substr(fileName.length - 1) === 'a') {
+              } else if (fileName.substr(fileName.length - 1) === "a") {
                 delete files[fileName];
               }
             }
           }
           filter(srcFiles);
-          readDirFiles(out, 'utf8', (outErr, outFiles) => {
+          readDirFiles(out, "utf8", (outErr, outFiles) => {
             assert.ifError(outErr);
             assert.deepStrictEqual(srcFiles, outFiles);
             cb();
@@ -60,7 +60,7 @@ describe('ncp', () => {
       });
     });
 
-    describe('when using overwrite=true', () => {
+    describe("when using overwrite=true", () => {
       before(function () {
         this.originalCreateReadStream = fs.createReadStream;
       });
@@ -69,10 +69,10 @@ describe('ncp', () => {
         fs.createReadStream = this.originalCreateReadStream;
       });
 
-      it('the copy is complete after callback', (done) => {
+      it("the copy is complete after callback", (done) => {
         ncp(src, out, { overwrite: true }, (err) => {
           fs.createReadStream = () =>
-            done(new Error('createReadStream after callback'));
+            done(new Error("createReadStream after callback"));
 
           assert.ifError(err);
           process.nextTick(done);
@@ -80,17 +80,17 @@ describe('ncp', () => {
       });
     });
 
-    describe('when using overwrite=false', () => {
+    describe("when using overwrite=false", () => {
       beforeEach((done) => rimraf(out, done));
 
-      it('works', (cb) => {
+      it("works", (cb) => {
         ncp(src, out, { overwrite: false }, (err) => {
           assert.ifError(err);
           cb();
         });
       });
 
-      it('should not error if files exist', (cb) => {
+      it("should not error if files exist", (cb) => {
         ncp(src, out, () => {
           ncp(src, out, { overwrite: false }, (err) => {
             assert.ifError(err);
@@ -99,7 +99,7 @@ describe('ncp', () => {
         });
       });
 
-      it('should error if errorOnExist and file exists', (cb) => {
+      it("should error if errorOnExist and file exists", (cb) => {
         ncp(src, out, () => {
           ncp(
             src,
@@ -117,10 +117,10 @@ describe('ncp', () => {
       });
     });
 
-    describe('clobber', () => {
+    describe("clobber", () => {
       beforeEach((done) => rimraf(out, done));
 
-      it('is an alias for overwrite', (cb) => {
+      it("is an alias for overwrite", (cb) => {
         ncp(src, out, () => {
           ncp(
             src,
@@ -138,15 +138,15 @@ describe('ncp', () => {
       });
     });
 
-    describe('when using transform', () => {
-      it('file descriptors are passed correctly', (cb) => {
+    describe("when using transform", () => {
+      it("file descriptors are passed correctly", (cb) => {
         ncp(
           src,
           out,
           {
             transform: (read, write, file) => {
               assert.notStrictEqual(file.name, undefined);
-              assert.strictEqual(typeof file.mode, 'number');
+              assert.strictEqual(typeof file.mode, "number");
               read.pipe(write);
             },
           },
@@ -157,10 +157,10 @@ describe('ncp', () => {
   });
 
   // see https://github.com/AvianFlu/ncp/issues/71
-  describe('Issue 71: Odd Async Behaviors', () => {
-    const fixtures = path.join(__dirname, 'fixtures', 'regular-fixtures');
-    const src = path.join(fixtures, 'src');
-    const out = path.join(fixtures, 'out');
+  describe("Issue 71: Odd Async Behaviors", () => {
+    const fixtures = path.join(__dirname, "fixtures", "regular-fixtures");
+    const src = path.join(fixtures, "src");
+    const out = path.join(fixtures, "out");
 
     let totalCallbacks = 0;
 
@@ -169,8 +169,8 @@ describe('ncp', () => {
       ncp(src, out, (err) => {
         assert(!err);
         totalCallbacks += 1;
-        readDirFiles(src, 'utf8', (srcErr, srcFiles) => {
-          readDirFiles(out, 'utf8', (outErr, outFiles) => {
+        readDirFiles(src, "utf8", (srcErr, srcFiles) => {
+          readDirFiles(out, "utf8", (outErr, outFiles) => {
             assert.ifError(srcErr);
             assert.deepStrictEqual(srcFiles, outFiles);
             callback();
@@ -180,8 +180,8 @@ describe('ncp', () => {
       // })
     }
 
-    describe('when copying a directory of files without cleaning the destination', () => {
-      it('callback fires once per run and directories are equal', (done) => {
+    describe("when copying a directory of files without cleaning the destination", () => {
+      it("callback fires once per run and directories are equal", (done) => {
         const expected = 10;
         let count = 10;
 

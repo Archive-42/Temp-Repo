@@ -14,9 +14,9 @@ Ensures that the directory exists. If the directory structure does not exist, it
 ## Example:
 
 ```js
-const fs = require('fs-extra');
+const fs = require("fs-extra");
 
-const dir = '/tmp/this/path/does/not/exist';
+const dir = "/tmp/this/path/does/not/exist";
 const desiredMode = 0o2775;
 const options = {
   mode: 0o2775,
@@ -37,7 +37,7 @@ fs.ensureDir(dir, desiredMode, (err) => {
 // With Promises:
 fs.ensureDir(dir)
   .then(() => {
-    console.log('success!');
+    console.log("success!");
   })
   .catch((err) => {
     console.error(err);
@@ -46,7 +46,7 @@ fs.ensureDir(dir)
 // With Promises and a mode integer:
 fs.ensureDir(dir, desiredMode)
   .then(() => {
-    console.log('success!');
+    console.log("success!");
   })
   .catch((err) => {
     console.error(err);
@@ -56,7 +56,7 @@ fs.ensureDir(dir, desiredMode)
 async function example(directory) {
   try {
     await fs.ensureDir(directory);
-    console.log('success!');
+    console.log("success!");
   } catch (err) {
     console.error(err);
   }
@@ -67,7 +67,7 @@ example(dir);
 async function exampleMode(directory) {
   try {
     await fs.ensureDir(directory, options);
-    console.log('success!');
+    console.log("success!");
   } catch (err) {
     console.error(err);
   }

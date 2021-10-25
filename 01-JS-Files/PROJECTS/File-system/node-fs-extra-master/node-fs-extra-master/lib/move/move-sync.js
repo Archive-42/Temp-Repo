@@ -1,11 +1,11 @@
-'use strict';
+"use strict";
 
-const fs = require('graceful-fs');
-const path = require('path');
-const copySync = require('../copy').copySync;
-const removeSync = require('../remove').removeSync;
-const mkdirpSync = require('../mkdirs').mkdirpSync;
-const stat = require('../util/stat');
+const fs = require("graceful-fs");
+const path = require("path");
+const copySync = require("../copy").copySync;
+const removeSync = require("../remove").removeSync;
+const mkdirpSync = require("../mkdirs").mkdirpSync;
+const stat = require("../util/stat");
 
 function moveSync(src, dest, opts) {
   opts = opts || {};
@@ -14,10 +14,10 @@ function moveSync(src, dest, opts) {
   const { srcStat, isChangingCase = false } = stat.checkPathsSync(
     src,
     dest,
-    'move',
+    "move",
     opts
   );
-  stat.checkParentPathsSync(src, srcStat, dest, 'move');
+  stat.checkParentPathsSync(src, srcStat, dest, "move");
   if (!isParentRoot(dest)) mkdirpSync(path.dirname(dest));
   return doRename(src, dest, overwrite, isChangingCase);
 }
@@ -34,7 +34,7 @@ function doRename(src, dest, overwrite, isChangingCase) {
     removeSync(dest);
     return rename(src, dest, overwrite);
   }
-  if (fs.existsSync(dest)) throw new Error('dest already exists.');
+  if (fs.existsSync(dest)) throw new Error("dest already exists.");
   return rename(src, dest, overwrite);
 }
 
@@ -42,7 +42,7 @@ function rename(src, dest, overwrite) {
   try {
     fs.renameSync(src, dest);
   } catch (err) {
-    if (err.code !== 'EXDEV') throw err;
+    if (err.code !== "EXDEV") throw err;
     return moveAcrossDevice(src, dest, overwrite);
   }
 }

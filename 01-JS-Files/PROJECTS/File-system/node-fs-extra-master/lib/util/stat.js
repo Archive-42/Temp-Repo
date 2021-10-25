@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-const fs = require('../fs');
-const path = require('path');
-const util = require('util');
+const fs = require("../fs");
+const path = require("path");
+const util = require("util");
 
 function getStats(src, dest, opts) {
   const statFunc = opts.dereference
@@ -11,7 +11,7 @@ function getStats(src, dest, opts) {
   return Promise.all([
     statFunc(src),
     statFunc(dest).catch((err) => {
-      if (err.code === 'ENOENT') return null;
+      if (err.code === "ENOENT") return null;
       throw err;
     }),
   ]).then(([srcStat, destStat]) => ({ srcStat, destStat }));
@@ -26,7 +26,7 @@ function getStatsSync(src, dest, opts) {
   try {
     destStat = statFunc(dest);
   } catch (err) {
-    if (err.code === 'ENOENT') return { srcStat, destStat: null };
+    if (err.code === "ENOENT") return { srcStat, destStat: null };
     throw err;
   }
   return { srcStat, destStat };
@@ -42,13 +42,13 @@ function checkPaths(src, dest, funcName, opts, cb) {
         const srcBaseName = path.basename(src);
         const destBaseName = path.basename(dest);
         if (
-          funcName === 'move' &&
+          funcName === "move" &&
           srcBaseName !== destBaseName &&
           srcBaseName.toLowerCase() === destBaseName.toLowerCase()
         ) {
           return cb(null, { srcStat, destStat, isChangingCase: true });
         }
-        return cb(new Error('Source and destination must not be the same.'));
+        return cb(new Error("Source and destination must not be the same."));
       }
       if (srcStat.isDirectory() && !destStat.isDirectory()) {
         return cb(
@@ -81,13 +81,13 @@ function checkPathsSync(src, dest, funcName, opts) {
       const srcBaseName = path.basename(src);
       const destBaseName = path.basename(dest);
       if (
-        funcName === 'move' &&
+        funcName === "move" &&
         srcBaseName !== destBaseName &&
         srcBaseName.toLowerCase() === destBaseName.toLowerCase()
       ) {
         return { srcStat, destStat, isChangingCase: true };
       }
-      throw new Error('Source and destination must not be the same.');
+      throw new Error("Source and destination must not be the same.");
     }
     if (srcStat.isDirectory() && !destStat.isDirectory()) {
       throw new Error(
@@ -118,7 +118,7 @@ function checkParentPaths(src, srcStat, dest, funcName, cb) {
     return cb();
   fs.stat(destParent, { bigint: true }, (err, destStat) => {
     if (err) {
-      if (err.code === 'ENOENT') return cb();
+      if (err.code === "ENOENT") return cb();
       return cb(err);
     }
     if (areIdentical(srcStat, destStat)) {
@@ -137,7 +137,7 @@ function checkParentPathsSync(src, srcStat, dest, funcName) {
   try {
     destStat = fs.statSync(destParent, { bigint: true });
   } catch (err) {
-    if (err.code === 'ENOENT') return;
+    if (err.code === "ENOENT") return;
     throw err;
   }
   if (areIdentical(srcStat, destStat)) {
