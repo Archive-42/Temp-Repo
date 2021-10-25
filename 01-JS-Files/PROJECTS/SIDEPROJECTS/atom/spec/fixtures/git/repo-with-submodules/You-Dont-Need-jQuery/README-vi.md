@@ -17,9 +17,9 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
 Đối với những selector phổ biến như class, id hoặc thuộc tính thì chúng ta có thể sử dụng `document.querySelector` hoặc `document.querySelectorAll` để thay thế cho jQuery selector. Sự khác biệt của hai hàm này là ở chỗ:
 
-* `document.querySelector` trả về element đầu tiên được tìm thấy
-* `document.querySelectorAll` trả về tất cả các element được tìm thấy dưới dạng một instance của NodeList. Nó có thể được convert qua array bằng cách `[].slice.call(document.querySelectorAll(selector) || []);`
-* Nếu không có element nào được tìm thấy, thì jQuery sẽ trả về một array rỗng `[]` trong khi đó DOM API sẽ trả về `null`. Hãy chú ý đến Null Pointer Exception. Bạn có thể sử dụng toán tử `||` để đặt giá trị default nếu như không có element nào được tìm thấy, ví dụ như `document.querySelectorAll(selector) || []`
+- `document.querySelector` trả về element đầu tiên được tìm thấy
+- `document.querySelectorAll` trả về tất cả các element được tìm thấy dưới dạng một instance của NodeList. Nó có thể được convert qua array bằng cách `[].slice.call(document.querySelectorAll(selector) || []);`
+- Nếu không có element nào được tìm thấy, thì jQuery sẽ trả về một array rỗng `[]` trong khi đó DOM API sẽ trả về `null`. Hãy chú ý đến Null Pointer Exception. Bạn có thể sử dụng toán tử `||` để đặt giá trị default nếu như không có element nào được tìm thấy, ví dụ như `document.querySelectorAll(selector) || []`
 
 > Chú ý : `document.querySelector` và `document.querySelectorAll` hoạt động khá **CHẬM**, hãy thử dùng `getElementById`, `document.getElementsByClassName` hoặc `document.getElementsByTagName` nếu bạn muốn đạt hiệu suất tốt hơn.
 
@@ -71,7 +71,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
 - [1.4](#1.4) <a name='1.4'></a> Tìm bất cứ gì.
 
-  + Tìm node
+  - Tìm node
 
     ```js
     // jQuery
@@ -81,7 +81,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     el.querySelectorAll('li');
     ```
 
-  + Tìm body
+  - Tìm body
 
     ```js
     // jQuery
@@ -91,7 +91,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     document.body;
     ```
 
-  + lấy thuộc tính
+  - lấy thuộc tính
 
     ```js
     // jQuery
@@ -101,7 +101,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     e.getAttribute('foo');
     ```
 
-  + Lấy giá trị của thuộc tính `data`
+  - Lấy giá trị của thuộc tính `data`
 
     ```js
     // jQuery
@@ -116,19 +116,19 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
 - [1.5](#1.5) <a name='1.5'></a> Tìm element cùng level/trước/sau
 
-  + Element cùng level
+  - Element cùng level
 
     ```js
     // jQuery
     $el.siblings();
 
     // Native
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + Element ở phía trước
+  - Element ở phía trước
 
     ```js
     // jQuery
@@ -136,10 +136,9 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
     // Native
     el.previousElementSibling;
-
     ```
 
-  + Element ở phía sau
+  - Element ở phía sau
 
     ```js
     // next
@@ -157,7 +156,11 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
   // Native
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -181,7 +184,11 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
   // Native
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // match start from parent
     el = el.parentElement;
@@ -201,7 +208,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
 - [1.8](#1.8) <a name='1.8'></a> Form
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -211,7 +218,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     document.querySelector('#my-input').value;
     ```
 
-  + Lấy index của e.currentTarget trong danh sách các element khớp với selector `.radio`
+  - Lấy index của e.currentTarget trong danh sách các element khớp với selector `.radio`
 
     ```js
     // jQuery
@@ -225,7 +232,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
   `$('iframe').contents()` trả về thuộc tính `contentDocument` của iframe được tìm thấy
 
-  + Nọi dung iframe
+  - Nọi dung iframe
 
     ```js
     // jQuery
@@ -235,7 +242,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     iframe.contentDocument;
     ```
 
-  + Query Iframe
+  - Query Iframe
 
     ```js
     // jQuery
@@ -251,11 +258,11 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + Lấy style
+  - Lấy style
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Native
     // NOTE: Bug đã được biết, sẽ trả về 'auto' nếu giá trị của style là 'auto'
@@ -264,22 +271,21 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     win.getComputedStyle(el, null).color;
     ```
 
-  + Đặt style
+  - Đặt style
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Native
     el.style.color = '#ff0011';
     ```
 
-  + Lấy/Đặt Nhiều style
+  - Lấy/Đặt Nhiều style
 
     Nếu bạn muốn đặt nhiều style một lần, bạn có thể sẽ thích phương thức [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194) trong thư viện oui-dom-utils.
 
-
-  + Thêm class và element
+  - Thêm class và element
 
     ```js
     // jQuery
@@ -289,7 +295,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     el.classList.add(className);
     ```
 
-  + Loại bỏ class class ra khỏi element
+  - Loại bỏ class class ra khỏi element
 
     ```js
     // jQuery
@@ -299,7 +305,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     el.classList.remove(className);
     ```
 
-  + Kiểm tra xem element có class nào đó hay không
+  - Kiểm tra xem element có class nào đó hay không
 
     ```js
     // jQuery
@@ -309,7 +315,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     el.classList.contains(className);
     ```
 
-  + Toggle class
+  - Toggle class
 
     ```js
     // jQuery
@@ -323,7 +329,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
   Về mặt lý thuyết thì chiều rộng và chiều cao giống như nhau trong cả jQuery và DOM API:
 
-  + Chiều rộng của window
+  - Chiều rộng của window
 
     ```js
     // window height
@@ -334,7 +340,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     window.innerHeight;
     ```
 
-  + Chiều cao của Document
+  - Chiều cao của Document
 
     ```js
     // jQuery
@@ -344,7 +350,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     document.documentElement.scrollHeight;
     ```
 
-  + Chiều cao của element
+  - Chiều cao của element
 
     ```js
     // jQuery
@@ -358,7 +364,9 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // chính xác tới số nguyên（khi có thuộc tính `box-sizing` là `border-box`, nó là `height`; khi box-sizing là `content-box`, nó là `height + padding + border`）
     el.clientHeight;
@@ -368,7 +376,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
 - [2.3](#2.3) <a name='2.3'></a> Position & Offset
 
-  + Position
+  - Position
 
     ```js
     // jQuery
@@ -378,20 +386,21 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Offset
+  - Offset
 
     ```js
     // jQuery
     $el.offset();
 
     // Native
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -402,7 +411,8 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
   $(window).scrollTop();
 
   // Native
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ Trở về đầu](#danh-mục)**
@@ -410,6 +420,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 ## Thao tác với DOM
 
 - [3.1](#3.1) <a name='3.1'></a> Loại bỏ
+
   ```js
   // jQuery
   $el.remove();
@@ -420,7 +431,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
 - [3.2](#3.2) <a name='3.2'></a> Text
 
-  + Lấy text
+  - Lấy text
 
     ```js
     // jQuery
@@ -430,7 +441,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     el.textContent;
     ```
 
-  + Đặt giá trị text
+  - Đặt giá trị text
 
     ```js
     // jQuery
@@ -442,7 +453,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + Lấy HTML
+  - Lấy HTML
 
     ```js
     // jQuery
@@ -452,7 +463,7 @@ Ngày nay, môi trường lập trình front-end phát triển rất nhanh chón
     el.innerHTML;
     ```
 
-  + Đặt giá trị HTML
+  - Đặt giá trị HTML
 
     ```js
     // jQuery
@@ -552,14 +563,14 @@ Thay thế bằng [fetch](https://github.com/camsong/fetch-ie8) và [fetch-jsonp
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Native
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -615,19 +626,19 @@ Thay thế bằng [fetch](https://github.com/camsong/fetch-ie8) và [fetch-jsonp
 
 ## Ngôn ngữ khác
 
-* [한국어](./README.ko-KR.md)
-* [简体中文](./README.zh-CN.md)
-* [Bahasa Melayu](./README-my.md)
-* [Português(PT-BR)](./README.pt-BR.md)
-* [Tiếng Việt Nam](./README-vi.md)
-* [Русский](./README-ru.md)
-* [Türkçe](./README-tr.md)
+- [한국어](./README.ko-KR.md)
+- [简体中文](./README.zh-CN.md)
+- [Bahasa Melayu](./README-my.md)
+- [Português(PT-BR)](./README.pt-BR.md)
+- [Tiếng Việt Nam](./README-vi.md)
+- [Русский](./README-ru.md)
+- [Türkçe](./README-tr.md)
 
 ## Các trình duyệt hỗ trợ
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | 10+ ✔ | Latest ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Latest ✔                                                                             | Latest ✔                                                                                | 10+ ✔                                                                                                  | Latest ✔                                                                          | 6.1+ ✔                                                                               |
 
 # Giấy phép
 

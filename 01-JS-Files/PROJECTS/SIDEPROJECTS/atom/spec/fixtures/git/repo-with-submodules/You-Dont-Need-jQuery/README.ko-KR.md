@@ -17,9 +17,10 @@
 ## Query Selector
 
 평범한 class, id, attribute같은 selecotor는 `document.querySelector`나 `document.querySelectorAll`으로 대체할 수 있습니다.
-* `document.querySelector`는 처음 매칭된 엘리먼트를 반환합니다.
-* `document.querySelectorAll`는 모든 매칭된 엘리먼트를 NodeList로 반환합니다. `[].slice.call`을 사용해서 Array로 변환할 수 있습니다.
-* 만약 매칭된 엘리멘트가 없으면 jQuery는 `[]` 를 반환하지만 DOM API는 `null`을 반환합니다. Null Pointer Exception에 주의하세요.
+
+- `document.querySelector`는 처음 매칭된 엘리먼트를 반환합니다.
+- `document.querySelectorAll`는 모든 매칭된 엘리먼트를 NodeList로 반환합니다. `[].slice.call`을 사용해서 Array로 변환할 수 있습니다.
+- 만약 매칭된 엘리멘트가 없으면 jQuery는 `[]` 를 반환하지만 DOM API는 `null`을 반환합니다. Null Pointer Exception에 주의하세요.
 
 > 안내: `document.querySelector`와 `document.querySelectorAll`는 꽤 **느립니다**, `getElementById`나 `document.getElementsByClassName`, `document.getElementsByTagName`를 사용하면 퍼포먼스가 향상을 기대할 수 있습니다.
 
@@ -81,19 +82,19 @@
 
 - [1.5](#1.5) <a name='1.5'></a> 형제/이전/다음 엘리먼트 찾기
 
-  + 형제 엘리먼트
+  - 형제 엘리먼트
 
     ```js
     // jQuery
     $el.siblings();
 
     // Native
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + 이전 엘리먼트
+  - 이전 엘리먼트
 
     ```js
     // jQuery
@@ -103,7 +104,7 @@
     el.previousElementSibling;
     ```
 
-  + 다음 엘리먼트
+  - 다음 엘리먼트
 
     ```js
     // jQuery
@@ -122,11 +123,15 @@
   $el.closest(selector);
 
   // Native - 최신 브라우저만, IE는 미지원
-   el.closest(selector);
+  el.closest(selector);
 
   // Native - IE10 이상
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -150,7 +155,11 @@
   // Native
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // match start from parent
     el = el.parentElement;
@@ -170,7 +179,7 @@
 
 - [1.8](#1.8) <a name='1.8'></a> Form
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -180,7 +189,7 @@
     document.querySelector('#my-input').value;
     ```
 
-  + e.currentTarget이 `.radio`의 몇번째인지 구하기
+  - e.currentTarget이 `.radio`의 몇번째인지 구하기
 
     ```js
     // jQuery
@@ -194,7 +203,7 @@
 
   `$('iframe').contents()`는 iframe에 한정해서 `contentDocument`를 반환합니다.
 
-  + Iframe contents
+  - Iframe contents
 
     ```js
     // jQuery
@@ -204,7 +213,7 @@
     iframe.contentDocument;
     ```
 
-  + Iframe에서 찾기
+  - Iframe에서 찾기
 
     ```js
     // jQuery
@@ -226,7 +235,7 @@
 
 - [1.11](#1.11) <a name='1.11'></a> 속성 얻기 및 설정
 
-  + 속성 얻기
+  - 속성 얻기
 
     ```js
     // jQuery
@@ -235,7 +244,8 @@
     // Native
     el.getAttribute('foo');
     ```
-  + 속성 설정하기
+
+  - 속성 설정하기
 
     ```js
     // jQuery, DOM 변형 없이 메모리에서 작동됩니다.
@@ -245,7 +255,7 @@
     el.setAttribute('foo', 'bar');
     ```
 
-  + `data-` 속성 얻기
+  - `data-` 속성 얻기
 
     ```js
     // jQuery
@@ -263,11 +273,11 @@
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + style값 얻기
+  - style값 얻기
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Native
     // NOTE: 알려진 버그로, style값이 'auto'이면 'auto'를 반환합니다.
@@ -276,22 +286,21 @@
     win.getComputedStyle(el, null).color;
     ```
 
-  + style값 설정하기
+  - style값 설정하기
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Native
     el.style.color = '#ff0011';
     ```
 
-  + Style값들을 동시에 얻거나 설정하기
+  - Style값들을 동시에 얻거나 설정하기
 
     만약 한번에 여러 style값을 바꾸고 싶다면 oui-dom-utils 패키지의 [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194)를 사용해보세요.
 
-
-  + class 추가하기
+  - class 추가하기
 
     ```js
     // jQuery
@@ -301,7 +310,7 @@
     el.classList.add(className);
     ```
 
-  + class 제거하기
+  - class 제거하기
 
     ```js
     // jQuery
@@ -311,7 +320,7 @@
     el.classList.remove(className);
     ```
 
-  + class를 포함하고 있는지 검사하기
+  - class를 포함하고 있는지 검사하기
 
     ```js
     // jQuery
@@ -321,7 +330,7 @@
     el.classList.contains(className);
     ```
 
-  + class 토글하기
+  - class 토글하기
 
     ```js
     // jQuery
@@ -335,7 +344,7 @@
 
   폭과 높이는 이론상 동일합니다. 높이로 예를 들겠습니다.
 
-  + Window의 높이
+  - Window의 높이
 
     ```js
     // window 높이
@@ -346,7 +355,7 @@
     window.innerHeight;
     ```
 
-  + 문서 높이
+  - 문서 높이
 
     ```js
     // jQuery
@@ -356,7 +365,7 @@
     document.documentElement.scrollHeight;
     ```
 
-  + Element 높이
+  - Element 높이
 
     ```js
     // jQuery
@@ -370,7 +379,9 @@
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // 정수로 정확하게（`border-box`일 때 이 값은 `height`이고, `content-box`일 때, 이 값은 `height + padding + border`）
     el.clientHeight;
@@ -380,7 +391,7 @@
 
 - [2.3](#2.3) <a name='2.3'></a> Position & Offset
 
-  + Position
+  - Position
 
     ```js
     // jQuery
@@ -390,20 +401,21 @@
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Offset
+  - Offset
 
     ```js
     // jQuery
     $el.offset();
 
     // Native
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -414,7 +426,8 @@
   $(window).scrollTop();
 
   // Native
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ 목차로 돌아가기](#목차)**
@@ -422,6 +435,7 @@
 ## DOM 조작
 
 - [3.1](#3.1) <a name='3.1'></a> 제거
+
   ```js
   // jQuery
   $el.remove();
@@ -432,7 +446,7 @@
 
 - [3.2](#3.2) <a name='3.2'></a> Text
 
-  + text 가져오기
+  - text 가져오기
 
     ```js
     // jQuery
@@ -442,7 +456,7 @@
     el.textContent;
     ```
 
-  + text 설정하기
+  - text 설정하기
 
     ```js
     // jQuery
@@ -454,7 +468,7 @@
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + HTML 가져오기
+  - HTML 가져오기
 
     ```js
     // jQuery
@@ -464,7 +478,7 @@
     el.innerHTML;
     ```
 
-  + HTML 설정하기
+  - HTML 설정하기
 
     ```js
     // jQuery
@@ -483,7 +497,7 @@
   $el.append("<div id='container'>hello</div>");
 
   // Native
-  el.insertAdjacentHTML("beforeend","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('beforeend', "<div id='container'>hello</div>");
   ```
 
 - [3.5](#3.5) <a name='3.5'></a> 해당 엘리먼트의 자식들 앞에 넣기(Prepend)
@@ -493,7 +507,7 @@
   $el.prepend("<div id='container'>hello</div>");
 
   // Native
-el.insertAdjacentHTML("afterbegin","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('afterbegin', "<div id='container'>hello</div>");
   ```
 
 - [3.6](#3.6) <a name='3.6'></a> 해당 엘리먼트 앞에 넣기(insertBefore)
@@ -521,11 +535,12 @@ el.insertAdjacentHTML("afterbegin","<div id='container'>hello</div>");
   const target = document.querySelector(queryString);
   target.parentNode.insertBefore(newEl, target.nextSibling);
   ```
+
 - [3.8](#3.8) <a name='3.8'></a> is
 
   query selector와 일치하면 `true` 를 반환합니다.
 
-   ```js
+  ```js
   // jQuery
   $el.is(selector);
 
@@ -597,14 +612,14 @@ namespace와 delegation을 포함해서 완전히 갈아 엎길 원하시면 htt
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Native
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -670,39 +685,37 @@ namespace와 delegation을 포함해서 완전히 갈아 엎길 원하시면 htt
 
   ```js
   // jQuery
-  $.map(array, function(value, index) {
-  });
+  $.map(array, function (value, index) {});
 
   // Native
-  Array.map(function(value, index) {
-  });
+  Array.map(function (value, index) {});
   ```
 
 **[⬆ 목차로 돌아가기](#목차)**
 
 ## 대안방법
 
-* [You Might Not Need jQuery](http://youmightnotneedjquery.com/) - 일반 자바스크립트로 공통이벤트, 엘리먼트, ajax 등을 다루는 방법 예제.
-* [npm-dom](http://github.com/npm-dom) 과 [webmodules](http://github.com/webmodules) - 개별 DOM모듈을 NPM에서 찾을 수 있습니다.
+- [You Might Not Need jQuery](http://youmightnotneedjquery.com/) - 일반 자바스크립트로 공통이벤트, 엘리먼트, ajax 등을 다루는 방법 예제.
+- [npm-dom](http://github.com/npm-dom) 과 [webmodules](http://github.com/webmodules) - 개별 DOM모듈을 NPM에서 찾을 수 있습니다.
 
 ## 번역
 
-* [한국어](./README.ko-KR.md)
-* [简体中文](./README.zh-CN.md)
-* [Bahasa Melayu](./README-my.md)
-* [Bahasa Indonesia](./README-id.md)
-* [Português(PT-BR)](./README.pt-BR.md)
-* [Tiếng Việt Nam](./README-vi.md)
-* [Español](./README-es.md)
-* [Русский](./README-ru.md)
-* [Türkçe](./README-tr.md)
-* [Italian](./README-it.md)
+- [한국어](./README.ko-KR.md)
+- [简体中文](./README.zh-CN.md)
+- [Bahasa Melayu](./README-my.md)
+- [Bahasa Indonesia](./README-id.md)
+- [Português(PT-BR)](./README.pt-BR.md)
+- [Tiếng Việt Nam](./README-vi.md)
+- [Español](./README-es.md)
+- [Русский](./README-ru.md)
+- [Türkçe](./README-tr.md)
+- [Italian](./README-it.md)
 
 ## 브라우저 지원
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | 10+ ✔ | Latest ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Latest ✔                                                                             | Latest ✔                                                                                | 10+ ✔                                                                                                  | Latest ✔                                                                          | 6.1+ ✔                                                                               |
 
 # License
 

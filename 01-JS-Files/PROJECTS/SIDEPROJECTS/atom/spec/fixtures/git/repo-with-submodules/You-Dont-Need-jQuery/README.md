@@ -2,7 +2,6 @@
 
 Frontend environments evolve rapidly nowadays, modern browsers have already implemented a great deal of DOM/BOM APIs which are good enough. We don't have to learn jQuery from scratch for DOM manipulation or events. In the meantime, thanks to the prevailment of frontend libraries such as React, Angular and Vue, manipulating DOM directly becomes anti-pattern, jQuery has never been less important. This project summarizes most of the jQuery method alternatives in native implementation, with IE 10+ support.
 
-
 ## Table of Contents
 
 1. [Query Selector](#query-selector)
@@ -20,9 +19,10 @@ Frontend environments evolve rapidly nowadays, modern browsers have already impl
 ## Query Selector
 
 In place of common selectors like class, id or attribute we can use `document.querySelector` or `document.querySelectorAll` for substitution. The differences lie in:
-* `document.querySelector` returns the first matched element
-* `document.querySelectorAll` returns all matched elements as NodeList. It can be converted to Array using `[].slice.call(document.querySelectorAll(selector) || []);`
-* If no elements matched, jQuery would return `[]` whereas the DOM API will return `null`. Pay attention to Null Pointer Exception. You can also use `||` to set default value if not found, like `document.querySelectorAll(selector) || []`
+
+- `document.querySelector` returns the first matched element
+- `document.querySelectorAll` returns all matched elements as NodeList. It can be converted to Array using `[].slice.call(document.querySelectorAll(selector) || []);`
+- If no elements matched, jQuery would return `[]` whereas the DOM API will return `null`. Pay attention to Null Pointer Exception. You can also use `||` to set default value if not found, like `document.querySelectorAll(selector) || []`
 
 > Notice: `document.querySelector` and `document.querySelectorAll` are quite **SLOW**, try to use `getElementById`, `document.getElementsByClassName` or `document.getElementsByTagName` if you want to get a performance bonus.
 
@@ -84,19 +84,19 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
 - [1.5](#1.5) <a name='1.5'></a> Sibling/Previous/Next Elements
 
-  + Sibling elements
+  - Sibling elements
 
     ```js
     // jQuery
     $el.siblings();
 
     // Native
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + Previous elements
+  - Previous elements
 
     ```js
     // jQuery
@@ -106,7 +106,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     el.previousElementSibling;
     ```
 
-  + Next elements
+  - Next elements
 
     ```js
     // jQuery
@@ -129,7 +129,11 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
   // Native - IE10+
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -153,7 +157,11 @@ In place of common selectors like class, id or attribute we can use `document.qu
   // Native
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // match start from parent
     el = el.parentElement;
@@ -173,7 +181,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
 - [1.8](#1.8) <a name='1.8'></a> Form
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -183,7 +191,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     document.querySelector('#my-input').value;
     ```
 
-  + Get index of e.currentTarget between `.radio`
+  - Get index of e.currentTarget between `.radio`
 
     ```js
     // jQuery
@@ -197,7 +205,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
   `$('iframe').contents()` returns `contentDocument` for this specific iframe
 
-  + Iframe contents
+  - Iframe contents
 
     ```js
     // jQuery
@@ -207,7 +215,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     iframe.contentDocument;
     ```
 
-  + Iframe Query
+  - Iframe Query
 
     ```js
     // jQuery
@@ -229,7 +237,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
 - [1.11](#1.11) <a name='1.11'></a> Attribute getter and setter
 
-  + Get an attribute
+  - Get an attribute
 
     ```js
     // jQuery
@@ -238,7 +246,8 @@ In place of common selectors like class, id or attribute we can use `document.qu
     // Native
     el.getAttribute('foo');
     ```
-  + Set an attribute
+
+  - Set an attribute
 
     ```js
     // jQuery, note that this works in memory without change the DOM
@@ -248,7 +257,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     el.setAttribute('foo', 'bar');
     ```
 
-  + Get a `data-` attribute
+  - Get a `data-` attribute
 
     ```js
     // jQuery
@@ -266,11 +275,11 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + Get style
+  - Get style
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Native
     // NOTE: Known bug, will return 'auto' if style value is 'auto'
@@ -279,22 +288,21 @@ In place of common selectors like class, id or attribute we can use `document.qu
     win.getComputedStyle(el, null).color;
     ```
 
-  + Set style
+  - Set style
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Native
     el.style.color = '#ff0011';
     ```
 
-  + Get/Set Styles
+  - Get/Set Styles
 
     Note that if you want to set multiple styles once, you could refer to [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194) method in oui-dom-utils package.
 
-
-  + Add class
+  - Add class
 
     ```js
     // jQuery
@@ -304,7 +312,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     el.classList.add(className);
     ```
 
-  + Remove class
+  - Remove class
 
     ```js
     // jQuery
@@ -314,7 +322,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     el.classList.remove(className);
     ```
 
-  + has class
+  - has class
 
     ```js
     // jQuery
@@ -324,7 +332,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     el.classList.contains(className);
     ```
 
-  + Toggle class
+  - Toggle class
 
     ```js
     // jQuery
@@ -338,7 +346,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
   Width and Height are theoretically identical, take Height as example:
 
-  + Window height
+  - Window height
 
     ```js
     // window height
@@ -349,7 +357,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     window.innerHeight;
     ```
 
-  + Document height
+  - Document height
 
     ```js
     // jQuery
@@ -359,7 +367,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     document.documentElement.scrollHeight;
     ```
 
-  + Element height
+  - Element height
 
     ```js
     // jQuery
@@ -373,7 +381,9 @@ In place of common selectors like class, id or attribute we can use `document.qu
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // accurate to integer（when `border-box`, it's `height`; when `content-box`, it's `height + padding + border`）
     el.clientHeight;
@@ -383,7 +393,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
 - [2.3](#2.3) <a name='2.3'></a> Position & Offset
 
-  + Position
+  - Position
 
     ```js
     // jQuery
@@ -393,20 +403,21 @@ In place of common selectors like class, id or attribute we can use `document.qu
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Offset
+  - Offset
 
     ```js
     // jQuery
     $el.offset();
 
     // Native
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -417,7 +428,8 @@ In place of common selectors like class, id or attribute we can use `document.qu
   $(window).scrollTop();
 
   // Native
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -425,6 +437,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
 ## DOM Manipulation
 
 - [3.1](#3.1) <a name='3.1'></a> Remove
+
   ```js
   // jQuery
   $el.remove();
@@ -435,7 +448,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
 - [3.2](#3.2) <a name='3.2'></a> Text
 
-  + Get text
+  - Get text
 
     ```js
     // jQuery
@@ -445,7 +458,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     el.textContent;
     ```
 
-  + Set text
+  - Set text
 
     ```js
     // jQuery
@@ -457,7 +470,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + Get HTML
+  - Get HTML
 
     ```js
     // jQuery
@@ -467,7 +480,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
     el.innerHTML;
     ```
 
-  + Set HTML
+  - Set HTML
 
     ```js
     // jQuery
@@ -486,7 +499,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
   $el.append("<div id='container'>hello</div>");
 
   // Native
-  el.insertAdjacentHTML("beforeend","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('beforeend', "<div id='container'>hello</div>");
   ```
 
 - [3.5](#3.5) <a name='3.5'></a> Prepend
@@ -496,7 +509,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
   $el.prepend("<div id='container'>hello</div>");
 
   // Native
-  el.insertAdjacentHTML("afterbegin","<div id='container'>hello</div>");
+  el.insertAdjacentHTML('afterbegin', "<div id='container'>hello</div>");
   ```
 
 - [3.6](#3.6) <a name='3.6'></a> insertBefore
@@ -536,6 +549,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
   // Native
   el.matches(selector);
   ```
+
 - [3.9](#3.9) <a name='3.9'></a> clone
 
   Create a deep copy of that element
@@ -571,7 +585,7 @@ In place of common selectors like class, id or attribute we can use `document.qu
   $('.inner').wrap('<div class="wrapper"></div>');
 
   // Native
-  [].slice.call(document.querySelectorAll('.inner')).forEach(function(el){
+  [].slice.call(document.querySelectorAll('.inner')).forEach(function (el) {
     var wrapper = document.createElement('div');
     wrapper.className = 'wrapper';
     el.parentNode.insertBefore(wrapper, el);
@@ -589,13 +603,13 @@ In place of common selectors like class, id or attribute we can use `document.qu
   $('.inner').unwrap();
 
   // Native
-  [].slice.call(document.querySelectorAll('.inner')).forEach(function(el){
-    [].slice.call(el.childNodes).forEach(function(child){
+  [].slice.call(document.querySelectorAll('.inner')).forEach(function (el) {
+    [].slice.call(el.childNodes).forEach(function (child) {
       el.parentNode.insertBefore(child, el);
     });
     el.parentNode.removeChild(el);
   });
-   ```
+  ```
 
   - [3.13](#3.13) <a name='3.13'></a> replaceWith
 
@@ -606,14 +620,13 @@ In place of common selectors like class, id or attribute we can use `document.qu
   $('.inner').replaceWith('<div class="outer"></div>');
 
   // Native
-  [].slice.call(document.querySelectorAll('.inner')).forEach(function(el){
+  [].slice.call(document.querySelectorAll('.inner')).forEach(function (el) {
     var outer = document.createElement('div');
     outer.className = 'outer';
     el.parentNode.insertBefore(outer, el);
     el.parentNode.removeChild(el);
   });
-   ```
-
+  ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -653,14 +666,14 @@ For a complete replacement with namespace and delegation, refer to https://githu
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Native
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -674,7 +687,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
 
 - [6.1](#6.1) <a name='6.1'></a> Basic utilities
 
-  + isArray
+  - isArray
 
   Determine whether the argument is an array.
 
@@ -686,7 +699,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   Array.isArray(array);
   ```
 
-  + isWindow
+  - isWindow
 
   Determine whether the argument is a window.
 
@@ -700,7 +713,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   }
   ```
 
-  + inArray
+  - inArray
 
   Search for a specified value within an array and return its index (or -1 if not found).
 
@@ -712,7 +725,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   Array.indexOf(item);
   ```
 
-  + isNumbic
+  - isNumbic
 
   Determines whether its argument is a number.
   Use `typeof` to decide type. if necessary to use library, sometimes `typeof` isn't accurate.
@@ -727,7 +740,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   }
   ```
 
-  + isFunction
+  - isFunction
 
   Determine if the argument passed is a JavaScript function object.
 
@@ -741,7 +754,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   }
   ```
 
-  + isEmptyObject
+  - isEmptyObject
 
   Check to see if an object is empty (contains no enumerable properties).
 
@@ -758,7 +771,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   }
   ```
 
-  + isPlanObject
+  - isPlanObject
 
   Check to see if an object is a plain object (created using “{}” or “new Object”).
 
@@ -768,12 +781,18 @@ Most of utilities are found by native API. Others advanced functions could be ch
 
   // Native
   function isPlainObject(obj) {
-    if (typeof (obj) !== 'object' || obj.nodeType || obj != null && obj === obj.window) {
+    if (
+      typeof obj !== 'object' ||
+      obj.nodeType ||
+      (obj != null && obj === obj.window)
+    ) {
       return false;
     }
 
-    if (obj.constructor &&
-        !{}.hasOwnPropert.call(obj.constructor.prototype, 'isPrototypeOf')) {
+    if (
+      obj.constructor &&
+      !{}.hasOwnPropert.call(obj.constructor.prototype, 'isPrototypeOf')
+    ) {
       return false;
     }
 
@@ -781,7 +800,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   }
   ```
 
-  + extend
+  - extend
 
   Merge the contents of two or more objects together into the first object.
   object.assign is ES6 API, and you could use [polyfill](https://github.com/ljharb/object.assign) also.
@@ -794,7 +813,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   Object.assign({}, defaultOpts, opts);
   ```
 
-  + trim
+  - trim
 
   Remove the whitespace from the beginning and end of a string.
 
@@ -806,49 +825,43 @@ Most of utilities are found by native API. Others advanced functions could be ch
   string.trim();
   ```
 
-  + map
+  - map
 
   Translate all items in an array or object to new array of items.
 
   ```js
   // jQuery
-  $.map(array, function(value, index) {
-  });
+  $.map(array, function (value, index) {});
 
   // Native
-  array.map(function(value, index) {
-  });
+  array.map(function (value, index) {});
   ```
 
-  + each
+  - each
 
   A generic iterator function, which can be used to seamlessly iterate over both objects and arrays.
 
   ```js
   // jQuery
-  $.each(array, function(value, index) {
-  });
+  $.each(array, function (value, index) {});
 
   // Native
-  array.forEach(function(value, index) {
-  });
+  array.forEach(function (value, index) {});
   ```
 
-  + grep
+  - grep
 
   Finds the elements of an array which satisfy a filter function.
 
   ```js
   // jQuery
-  $.grep(array, function(value, index) {
-  });
+  $.grep(array, function (value, index) {});
 
   // Native
-  array.filter(function(value, index) {
-  });
+  array.filter(function (value, index) {});
   ```
 
-  + type
+  - type
 
   Determine the internal JavaScript [[Class]] of an object.
 
@@ -857,10 +870,13 @@ Most of utilities are found by native API. Others advanced functions could be ch
   $.type(obj);
 
   // Native
-  Object.prototype.toString.call(obj).replace(/^\[object (.+)\]$/, '$1').toLowerCase();
+  Object.prototype.toString
+    .call(obj)
+    .replace(/^\[object (.+)\]$/, '$1')
+    .toLowerCase();
   ```
 
-  + merge
+  - merge
 
   Merge the contents of two arrays together into the first array.
 
@@ -871,11 +887,11 @@ Most of utilities are found by native API. Others advanced functions could be ch
   // Native
   // But concat function don't remove duplicate items.
   function merge() {
-    return Array.prototype.concat.apply([], arguments)
+    return Array.prototype.concat.apply([], arguments);
   }
   ```
 
-  + now
+  - now
 
   Return a number representing the current time.
 
@@ -887,7 +903,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   Date.now();
   ```
 
-  + proxy
+  - proxy
 
   Takes a function and returns a new one that will always have a particular context.
 
@@ -899,7 +915,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   fn.bind(context);
   ```
 
-  + makeArray
+  - makeArray
 
   Convert an array-like object into a true JavaScript array.
 
@@ -913,13 +929,13 @@ Most of utilities are found by native API. Others advanced functions could be ch
 
 - [6.2](#6.2) <a name='6.2'></a> DOM utilities
 
-  + unique
+  - unique
 
   Sorts an array of DOM elements, in place, with the duplicates removed. Note that this only works on arrays of DOM elements, not strings or numbers.
 
   Sizzle's API
 
-  + contains
+  - contains
 
   Check to see if a DOM element is a descendant of another DOM element.
 
@@ -951,7 +967,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
 
 - [6.4](#6.4) <a name='6.4'></a> parse
 
-  + parseHTML
+  - parseHTML
 
   Parses a string into an array of DOM nodes.
 
@@ -967,7 +983,7 @@ Most of utilities are found by native API. Others advanced functions could be ch
   }
   ```
 
-  + parseJSON
+  - parseJSON
 
   Takes a well-formed JSON string and returns the resulting JavaScript value.
 
@@ -991,10 +1007,10 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
 
   ```js
   // jQuery
-  $promise.done(doneCallback).fail(failCallback).always(alwaysCallback)
+  $promise.done(doneCallback).fail(failCallback).always(alwaysCallback);
 
   // Native
-  promise.then(doneCallback, failCallback).then(alwaysCallback, alwaysCallback)
+  promise.then(doneCallback, failCallback).then(alwaysCallback, alwaysCallback);
   ```
 
 - [7.2](#7.2) <a name='7.2'></a> when
@@ -1017,8 +1033,8 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
   // jQuery
   function asyncFunc() {
     var d = new $.Deferred();
-    setTimeout(function() {
-      if(true) {
+    setTimeout(function () {
+      if (true) {
         d.resolve('some_value_compute_asynchronously');
       } else {
         d.reject('failed');
@@ -1030,7 +1046,7 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
   // Native
   function asyncFunc() {
     return new Promise((resolve, reject) => {
-      setTimeout(function() {
+      setTimeout(function () {
         if (true) {
           resolve('some_value_compute_asynchronously');
         } else {
@@ -1054,7 +1070,7 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
 
   // Native
   // More detail about show method, please refer to https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L363
-  el.style.display = ''|'inline'|'inline-block'|'inline-table'|'block';
+  el.style.display = '' | 'inline' | 'inline-block' | 'inline-table' | 'block';
   el.style.display = 'none';
   ```
 
@@ -1065,10 +1081,12 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
   $el.toggle();
 
   // Native
-  if (el.ownerDocument.defaultView.getComputedStyle(el, null).display === 'none') {
-    el.style.display = ''|'inline'|'inline-block'|'inline-table'|'block';
-  }
-  else {
+  if (
+    el.ownerDocument.defaultView.getComputedStyle(el, null).display === 'none'
+  ) {
+    el.style.display =
+      '' | 'inline' | 'inline-block' | 'inline-table' | 'block';
+  } else {
     el.style.display = 'none';
   }
   ```
@@ -1092,7 +1110,7 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
 
   ```js
   // jQuery
-  $el.fadeTo('slow',0.15);
+  $el.fadeTo('slow', 0.15);
   // Native
   el.style.transition = 'opacity 3s'; // assume 'slow' equals 3 seconds
   el.style.opacity = '0.15';
@@ -1109,8 +1127,7 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
   let { opacity } = el.ownerDocument.defaultView.getComputedStyle(el, null);
   if (opacity === '1') {
     el.style.opacity = '0';
-  }
-  else {
+  } else {
     el.style.opacity = '1';
   }
   ```
@@ -1143,9 +1160,8 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
   let { height } = el.ownerDocument.defaultView.getComputedStyle(el, null);
   if (parseInt(height, 10) === 0) {
     el.style.height = originHeight;
-  }
-  else {
-   el.style.height = '0px';
+  } else {
+    el.style.height = '0px';
   }
   ```
 
@@ -1153,38 +1169,38 @@ A promise represents the eventual result of an asynchronous operation. jQuery ha
 
   ```js
   // jQuery
-  $el.animate({params}, speed);
+  $el.animate({ params }, speed);
 
   // Native
   el.style.transition = 'all' + speed;
-  Object.keys(params).forEach(function(key) {
+  Object.keys(params).forEach(function (key) {
     el.style[key] = params[key];
-  })
+  });
   ```
 
 ## Alternatives
 
-* [You Might Not Need jQuery](http://youmightnotneedjquery.com/) - Examples of how to do common event, element, ajax etc with plain javascript.
-* [npm-dom](http://github.com/npm-dom) and [webmodules](http://github.com/webmodules) - Organizations you can find individual DOM modules on NPM
+- [You Might Not Need jQuery](http://youmightnotneedjquery.com/) - Examples of how to do common event, element, ajax etc with plain javascript.
+- [npm-dom](http://github.com/npm-dom) and [webmodules](http://github.com/webmodules) - Organizations you can find individual DOM modules on NPM
 
 ## Translations
 
-* [한국어](./README.ko-KR.md)
-* [简体中文](./README.zh-CN.md)
-* [Bahasa Melayu](./README-my.md)
-* [Bahasa Indonesia](./README-id.md)
-* [Português(PT-BR)](./README.pt-BR.md)
-* [Tiếng Việt Nam](./README-vi.md)
-* [Español](./README-es.md)
-* [Русский](./README-ru.md)
-* [Türkçe](./README-tr.md)
-* [Italian](./README-it.md)
+- [한국어](./README.ko-KR.md)
+- [简体中文](./README.zh-CN.md)
+- [Bahasa Melayu](./README-my.md)
+- [Bahasa Indonesia](./README-id.md)
+- [Português(PT-BR)](./README.pt-BR.md)
+- [Tiếng Việt Nam](./README-vi.md)
+- [Español](./README-es.md)
+- [Русский](./README-ru.md)
+- [Türkçe](./README-tr.md)
+- [Italian](./README-it.md)
 
 ## Browser Support
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | 10+ ✔ | Latest ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Latest ✔                                                                             | Latest ✔                                                                                | 10+ ✔                                                                                                  | Latest ✔                                                                          | 6.1+ ✔                                                                               |
 
 # License
 

@@ -1,11 +1,10 @@
-
 switch (e) {
   case 5:
-  something();
-  more();
+    something();
+    more();
   case 6:
-  somethingElse();
+    somethingElse();
   case 7:
   default:
-  done();
+    done();
 }

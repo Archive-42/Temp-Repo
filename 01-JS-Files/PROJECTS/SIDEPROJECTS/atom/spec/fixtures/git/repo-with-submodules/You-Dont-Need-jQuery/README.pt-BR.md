@@ -1,7 +1,6 @@
 > #### You Don't Need jQuery
 
-Você não precisa de jQuery
----
+## Você não precisa de jQuery
 
 Ambientes Frontend evoluem rapidamente nos dias de hoje, navegadores modernos já implementaram uma grande parte das APIs DOM/BOM que são boas o suficiente. Nós não temos que aprender jQuery a partir do zero para manipulação do DOM ou eventos. Nesse meio tempo, graças a bibliotecas frontend como React, Angular e Vue, a manipulação direta do DOM torna-se um anti-padrão, jQuery é menos importante do que nunca. Este projeto resume a maioria das alternativas dos métodos jQuery em implementação nativa, com suporte ao IE 10+.
 
@@ -18,9 +17,10 @@ Ambientes Frontend evoluem rapidamente nos dias de hoje, navegadores modernos j�
 ## Query Selector
 
 No lugar de seletores comuns como classe, id ou atributo podemos usar `document.querySelector` ou `document.querySelectorAll` para substituição. As diferenças são:
-* `document.querySelector` retorna o primeiro elemento correspondente
-* `document.querySelectorAll` retorna todos os elementos correspondentes como NodeList. Pode ser convertido para Array usando `[].slice.call(document.querySelectorAll(selector) || []);`
-* Se não tiver elementos correspondentes, jQuery retornaria `[]` considerando que a DOM API irá retornar `null`. Preste atenção ao Null Pointer Exception. Você também pode usar `||` para definir um valor padrão caso nenhum elemento seja encontrado, como `document.querySelectorAll(selector) || []`
+
+- `document.querySelector` retorna o primeiro elemento correspondente
+- `document.querySelectorAll` retorna todos os elementos correspondentes como NodeList. Pode ser convertido para Array usando `[].slice.call(document.querySelectorAll(selector) || []);`
+- Se não tiver elementos correspondentes, jQuery retornaria `[]` considerando que a DOM API irá retornar `null`. Preste atenção ao Null Pointer Exception. Você também pode usar `||` para definir um valor padrão caso nenhum elemento seja encontrado, como `document.querySelectorAll(selector) || []`
 
 > Aviso: `document.querySelector` e `document.querySelectorAll` são bastante **LENTOS**, tente usar `getElementById`, `document.getElementsByClassName` ou `document.getElementsByTagName` se você quer ter uma maior performance.
 
@@ -72,7 +72,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
 - [1.4](#1.4) <a name='1.4'></a> Find sth.
 
-  + Busca por nós
+  - Busca por nós
 
     ```js
     // jQuery
@@ -82,7 +82,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     el.querySelectorAll('li');
     ```
 
-  + Buscar `body`
+  - Buscar `body`
 
     ```js
     // jQuery
@@ -92,7 +92,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     document.body;
     ```
 
-  + Buscar atributos
+  - Buscar atributos
 
     ```js
     // jQuery
@@ -102,7 +102,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     e.getAttribute('foo');
     ```
 
-  + Buscar atributos `data-`
+  - Buscar atributos `data-`
 
     ```js
     // jQuery
@@ -117,19 +117,19 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
 - [1.5](#1.5) <a name='1.5'></a> Sibling/Previous/Next Elements
 
-  + Sibling elements
+  - Sibling elements
 
     ```js
     // jQuery
     $el.siblings();
 
     // Nativo
-    [].filter.call(el.parentNode.children, function(child) {
+    [].filter.call(el.parentNode.children, function (child) {
       return child !== el;
     });
     ```
 
-  + Previous elements
+  - Previous elements
 
     ```js
     // jQuery
@@ -137,10 +137,9 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
     // Nativo
     el.previousElementSibling;
-
     ```
 
-  + Next elements
+  - Next elements
 
     ```js
     // jQuery
@@ -160,7 +159,11 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
   // Nativo
   function closest(el, selector) {
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     while (el) {
       if (matchesSelector.call(el, selector)) {
@@ -184,7 +187,11 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
   // Nativo
   function parentsUntil(el, selector, filter) {
     const result = [];
-    const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+    const matchesSelector =
+      el.matches ||
+      el.webkitMatchesSelector ||
+      el.mozMatchesSelector ||
+      el.msMatchesSelector;
 
     // match start from parent
     el = el.parentElement;
@@ -204,7 +211,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
 - [1.8](#1.8) <a name='1.8'></a> Form
 
-  + Input/Textarea
+  - Input/Textarea
 
     ```js
     // jQuery
@@ -214,7 +221,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     document.querySelector('#my-input').value;
     ```
 
-  + Obter o índice do e.currentTarget entre `.radio`
+  - Obter o índice do e.currentTarget entre `.radio`
 
     ```js
     // jQuery
@@ -228,7 +235,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
   `$('iframe').contents()` retorna `contentDocument` para este iframe específico
 
-  + Iframe contents
+  - Iframe contents
 
     ```js
     // jQuery
@@ -238,7 +245,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     iframe.contentDocument;
     ```
 
-  + Iframe Query
+  - Iframe Query
 
     ```js
     // jQuery
@@ -250,16 +257,15 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
 **[⬆ ir para o topo](#tabela-de-conteúdos)**
 
-
 ## CSS & Estilo
 
 - [2.1](#2.1) <a name='2.1'></a> CSS
 
-  + Obter estilo
+  - Obter estilo
 
     ```js
     // jQuery
-    $el.css("color");
+    $el.css('color');
 
     // Nativo
     // AVISO: Bug conhecido, irá retornar 'auto' se o valor do estilo for 'auto'
@@ -268,22 +274,21 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     win.getComputedStyle(el, null).color;
     ```
 
-  + Definir Estilo
+  - Definir Estilo
 
     ```js
     // jQuery
-    $el.css({ color: "#ff0011" });
+    $el.css({ color: '#ff0011' });
 
     // Nativo
     el.style.color = '#ff0011';
     ```
 
-  + Get/Set Styles
+  - Get/Set Styles
 
     Observe que se você deseja setar vários estilos de uma vez, você pode optar por [setStyles](https://github.com/oneuijs/oui-dom-utils/blob/master/src/index.js#L194) método no pacote oui-dom-utils.
 
-
-  + Adicionar classe
+  - Adicionar classe
 
     ```js
     // jQuery
@@ -293,7 +298,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     el.classList.add(className);
     ```
 
-  + Remover classe
+  - Remover classe
 
     ```js
     // jQuery
@@ -303,7 +308,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     el.classList.remove(className);
     ```
 
-  + Verificar classe
+  - Verificar classe
 
     ```js
     // jQuery
@@ -313,7 +318,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     el.classList.contains(className);
     ```
 
-  + Toggle class
+  - Toggle class
 
     ```js
     // jQuery
@@ -327,7 +332,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
   `width` e `height` são teoricamente idênticos, vamos pegar `height` como exemplo:
 
-  + Altura da janela
+  - Altura da janela
 
     ```jsc
     // window height
@@ -338,7 +343,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     window.innerHeight;
     ```
 
-  + Altura do Documento
+  - Altura do Documento
 
     ```js
     // jQuery
@@ -348,7 +353,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     document.documentElement.scrollHeight;
     ```
 
-  + Altura do Elemento
+  - Altura do Elemento
 
     ```js
     // jQuery
@@ -362,7 +367,9 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
       const borderBottomWidth = parseFloat(styles.borderBottomWidth);
       const paddingTop = parseFloat(styles.paddingTop);
       const paddingBottom = parseFloat(styles.paddingBottom);
-      return height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom;
+      return (
+        height - borderBottomWidth - borderTopWidth - paddingTop - paddingBottom
+      );
     }
     // preciso para inteiro（quando `border-box`, é `height`; quando `content-box`, é `height + padding + border`）
     el.clientHeight;
@@ -372,7 +379,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
 - [2.3](#2.3) <a name='2.3'></a> Position & Offset
 
-  + Position
+  - Position
 
     ```js
     // jQuery
@@ -382,20 +389,21 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     { left: el.offsetLeft, top: el.offsetTop }
     ```
 
-  + Offset
+  - Offset
 
     ```js
     // jQuery
     $el.offset();
 
     // Nativo
-    function getOffset (el) {
+    function getOffset(el) {
       const box = el.getBoundingClientRect();
 
       return {
         top: box.top + window.pageYOffset - document.documentElement.clientTop,
-        left: box.left + window.pageXOffset - document.documentElement.clientLeft
-      }
+        left:
+          box.left + window.pageXOffset - document.documentElement.clientLeft,
+      };
     }
     ```
 
@@ -406,7 +414,8 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
   $(window).scrollTop();
 
   // Nativo
-  (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+  (document.documentElement && document.documentElement.scrollTop) ||
+    document.body.scrollTop;
   ```
 
 **[⬆ ir para o topo](#tabela-de-conteúdos)**
@@ -414,6 +423,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 ## Manipulação do Dom
 
 - [3.1](#3.1) <a name='3.1'></a> Remover
+
   ```js
   // jQuery
   $el.remove();
@@ -424,7 +434,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
 - [3.2](#3.2) <a name='3.2'></a> Texto
 
-  + Obter texto
+  - Obter texto
 
     ```js
     // jQuery
@@ -434,7 +444,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     el.textContent;
     ```
 
-  + Definir texto
+  - Definir texto
 
     ```js
     // jQuery
@@ -446,7 +456,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
 
 - [3.3](#3.3) <a name='3.3'></a> HTML
 
-  + Obter HTML
+  - Obter HTML
 
     ```js
     // jQuery
@@ -456,7 +466,7 @@ No lugar de seletores comuns como classe, id ou atributo podemos usar `document.
     el.innerHTML;
     ```
 
-  + Definir HTML
+  - Definir HTML
 
     ```js
     // jQuery
@@ -556,14 +566,14 @@ Para uma substituição completa com namespace e delegation, consulte https://gi
 
   ```js
   // jQuery
-  $(el).trigger('custom-event', {key1: 'data'});
+  $(el).trigger('custom-event', { key1: 'data' });
 
   // Nativo
   if (window.CustomEvent) {
-    const event = new CustomEvent('custom-event', {detail: {key1: 'data'}});
+    const event = new CustomEvent('custom-event', { detail: { key1: 'data' } });
   } else {
     const event = document.createEvent('CustomEvent');
-    event.initCustomEvent('custom-event', true, true, {key1: 'data'});
+    event.initCustomEvent('custom-event', true, true, { key1: 'data' });
   }
 
   el.dispatchEvent(event);
@@ -619,9 +629,9 @@ Para uma substituição completa com namespace e delegation, consulte https://gi
 
 ## Suporte dos Navegadores
 
-![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
---- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | 10+ ✔ | Latest ✔ | 6.1+ ✔ |
+| ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png) |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Latest ✔                                                                             | Latest ✔                                                                                | 10+ ✔                                                                                                  | Latest ✔                                                                          | 6.1+ ✔                                                                               |
 
 # Licença
 
