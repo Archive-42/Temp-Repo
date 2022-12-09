@@ -4,7 +4,7 @@
   "description": "A sample codebase for introduction to Node.js (Ref. Medium Article)",
   "main": "calculate.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "lodash": "^4.17.15"
   },
   "devDependencies": {},
